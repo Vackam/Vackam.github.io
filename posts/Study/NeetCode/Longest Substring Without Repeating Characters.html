@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가장 긴 중복 없는 부분 문자열 &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>가장 긴 중복 없는 부분 문자열</h1>
+      <p class="meta">2026-05-04 <span class="tag">slidingWindow</span><span class="tag">ps</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>Problem: https://neetcode.io/problems/longest-substring-without-duplicates/question</p>
+
+<p>걸린 시간: 30분</p>
+
+<p>어려웠던 이유: 항상 index 연산에서 포함인 지 비포함인 지를 헷갈려서 시간이 간다. +1을 해야 하는 지, 안 해야 하는 지가 헷갈린다. 머릿속으로 풀 수 있도록 연습하자.</p>
+<h3>해결 방법</h3>
+
+<p>현재 주목하고 있는 인덱스를 pointer로 저장해둔다. </p>
+<p>pointer 이후 모든 값에 대해 비교를 하면서 중복되는 값이 있는 지 체크한다.</p>
+
+<p>만약 중복되는 값이 존재한다면, 여태까지의 길이와 저장되어 있는 길이 중 큰 값을 반환하고, 중간 결과를 (중복되는 값에서 큰 인덱스 - 중복되는 값에서 작은 인덱스)로 설정해주고, pointer를 (중복되는 값에서 작은 인덱스 + 1)로 설정해준다.</p>
+
+<h3>Solution 해석</h3>
+
+<p>Solution을 보니 아주 멋있게 풀었다.</p>
+
+<p>left 변수와 right 변수를 준비한다. 전부 0으로 설정한다.</p>
+<p>map 변수를 하나 준비하고, right를 1씩 증가하면서 s를 순회한다.</p>
+
+<p>순회하면서 처음 만나는 char이면 map에서 해당 char에 대한 값을 right로 설정한다.</p>
+
+<p>만약 만났던 char이면, left를 당겨오는 연산을 하는데, <code>map의 값 + 1</code> 와 <code>left</code> 값 중 큰 값을 가져온다. 이유는, 이미 left가 당겨온 상태이면 다른 중복되는 값이 있다는 뜻이기에 max 연산을 해줘야 한다.</p>
+
+<p>이후 right - left + 1 값으로 연산 후 max 연산을 씌우면 된다.</p>
+
+<h3>결론</h3>
+<p>neetcode에서 map과 set을 자주 사용하는 문제가 많은 것 같다. 적극적이게 생각해보자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

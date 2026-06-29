@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최적 면을 생각하라. &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>최적 면을 생각하라.</h1>
+      <p class="meta">2026-05-10 </p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+
+<p>face cycle의 최적 면 개수 k는 무엇일까? 저번에 elbow를 찾으려 했지만 찾지 못하였다. 또한, SA로 돌리는 시간이 오래걸리기 때문에 어떠한 기준, 식을 가지고 찾는 것이 좋아보인다. 이를 탐구해보자.</p>
+
+<h1>본론</h1>
+
+<h3>무엇이 최적일까?</h3>
+<ol>
+<li>apsp가 가장 적을 것</li>
+<li>면 당 내부 vertex 수가 비슷할 것</li>
+<li>빠른 시간 안에 될 것 (부수적임)</li>
+<li>강연결을 보장할 것</li>
+</ol>
+
+<p>1번이 가장 중요하다. 어떤 그래프가 오더라도 apsp가 가장 적은 k를 자동으로 선택해준다면, 이것이 최적면이다. </p>
+<p>또한, 2번이 중요한데 면당 밸런스 있게 조정되도록 하여 면이 잘 분할 되도록 한다. </p>
+<p>근데 그것이 가능한가? 정말 수도 없이 많은 그래프의 종류가 있을 때, 그것에 대한 모든 최적의 k가 존재하고, 그 k를 다항시간 안에 계산을 하여 찾을 수 있을 것인가?</p>
+
+<h3>생각들</h3>
+
+<p>지금 k를 개수에만 집중해서 문제일 거 같은 생각도 한다. k를 구하는 방식이 snow ball bfs 방식인데, 단순 랜덤하게 중심을 찾은 뒤에 주변을 병합하면서 나아가는 방식이다. 즉, k와 전혀 관련없이 진행이 된다.(물론 중심 개수는 맞추겠지만) 좀 더 생각을 해봐야한다. </p>
+
+<p>적대적 방식으로 하면 되나? 땅따먹기 비슷하게 진행하는 거지. 각 centroid마다 내가 이길 수 있도록 계속 적대적으로 먹는 거지. 이런 거로 최적을 찾아보는 건가?</p>
+
+<p>현재 bfs는 주변에 있는 모든 애들의 흡수이다. 근데 이러면 당연히 적대적으로 내가 이득 보게 하는 거 아닌가?</p>
+
+<p>그렇네 무조건 이득인 대로 움직이는 거잖아...</p>
+
+<p>그럼 흡수 시 balance 있게 움직이도록 한다면?</p>
+<p>흡수 할 때, 이전에 먹은 애들의 정보를 바탕으로 흡수하게 한다면?</p>
+<p>아니 이게 이미 되어있는 거 아닌가? 내가 고민했을 때 이미 되어있었던 걸로 기억하는데.</p>
+
+<hr>
+<p>지금 문제는 테스트가 너무 오래 걸린다는 점이다. 이게 하루가 꼬박 넘게 걸리니 어떻게 할 수 가 없어.</p>
+
+<p>근데 이게 테스트가 우예 되어있노?</p>
+
+<p>그냥 단순하게 되어있구나.</p>
+
+<p>이걸 어떻게 뭐 바꿔서 찾으면 좋을 것 같은데 그 방법을 모르겠네. </p>
+<p>그니까 SA까지 안가고 어떻게 최적면 개수를 구하는 거지?</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

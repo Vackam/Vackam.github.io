@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Nth Node From End of List &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>Remove Nth Node From End of List</h1>
+      <p class="meta">— <span class="tag">ps</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>뒤에서 n 번째에 있는 숫자를 지운 링크드 리스트를 제시하시오</p>
+
+<h1>푸는 방법</h1>
+<p>제일 처음에 푼 방식은 단순히 length를 구한 다음 푸는 방식이다.</p>
+<p>탐색은 \(O(n)\) 이고, 제거하는 곳까지 가는 것도 \(O(n)\) 이므로 상관없다고 판단.</p>
+
+<p>아래는 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int length = 0;
+        ListNode* copy_head = head;
+        while (copy_head) {
+            length++;
+            copy_head = copy_head-&gt;next;
+        }    
+
+        if (length &lt;= 1) {
+            return nullptr;
+        }
+        else if (length == n) {
+            head = head-&gt;next;
+            return head;
+        }
+        copy_head = head;
+        for (int i=0; i&lt;length-n-1; ++i) {
+            copy_head = copy_head-&gt;next;
+        }
+
+        copy_head-&gt;next = copy_head-&gt;next-&gt;next;
+
+        return head;
+    }
+};
+</code></pre>
+
+
+<p>다른 풀이 방식은 투 포인터 방식이 있다.</p>
+<p>slow 변수와 fast 변수를 두고, 이를 dummy를 가리키도록 한다.</p>
+<p>dummy는 문제에서 주어진 head를 next로 가지는 변수이다.</p>
+<p>(dummy.next = head)</p>
+<p>그리고 slow와 fast의 거리 차이를 n만큼 벌려준 상태로, fast가 끝에 도달할 때까지 fast와 slow를 한 칸씩 이동시킨다.</p>
+<p>끝에 도달하게 되면, slow의 next가 지워야 할 변수가 된다. </p>
+
+<p>아래는 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode dummy(0, head);
+
+        ListNode* s = &amp;dummy;
+        ListNode* f = &amp;dummy;
+
+        for (int i=0; i&lt;n+1; ++i) f = f-&gt;next;
+        while (f) {
+            s = s-&gt;next;
+            f = f-&gt;next;
+        }
+
+        s-&gt;next = s-&gt;next-&gt;next;
+
+        return dummy.next;
+    }
+};
+</code></pre>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

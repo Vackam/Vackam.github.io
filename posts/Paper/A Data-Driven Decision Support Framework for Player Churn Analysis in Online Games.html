@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Data-Driven Decision Support Framework for Player Churn Analysis in Online Games 간단 리뷰 &mdash; devlog</title>
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../posts.html">&larr; back</a></p>
+
+      <h1>A Data-Driven Decision Support Framework for Player Churn Analysis in Online Games 간단 리뷰</h1>
+      <p class="meta">2026-06-05 <span class="tag">논문_리뷰</span></p>
+
+      <hr>
+
+      <article>
+        <h1>원문</h1>
+<p>https://dl.acm.org/doi/10.1145/3580305.3599759</p>
+<h1>서론</h1>
+<p>아래 글이 SHAP에 대한 이론적인 내용, 저자가 사용한 improved Anchor에 대한 설명을 하고 있지 않습니다. 단순한 리뷰만 있기 때문에 이를 기대하신 분들은 건너가는 것을 추천 드립니다.</p>
+
+<h1>본론</h1>
+<p>게임에서 이탈자를 막는 것은 아주 중요하다. 욕을 먹거나 개선을 하는 것도 다 유저가 있어야 하는 것이다.</p>
+<p>이런 탈주에 대한 연구는 많이 있었다. 크게는 탈주를 예측해서 막는 형식이거나, 탈주한 대상을 분석하는 것이다.</p>
+<p>해당 논문은 XAI(eXplainable AI)를 활용하여 이탈자를 예측하고 실질적으로 막는 방안을 제시하고자 한다.</p>
+<p>-> 여태까지 논문은 'A라는 이유로 탈주를 했다'이고, 실질적은 해결책 B에 대한 설명은 없다. 이를 XAI를 통해 알고자 했다.</p>
+
+<p>Dataset은 중국의 NetEase의 Justice Online에서 받아왔다. SHAP를 통해 feature 중요도를 추측하고, Anchor 기법을 사용하여 명확한 if...then 구조를 사용하여 이유를 찾아낸다.</p>
+<p>(해당 논문에서 이를 어떻게 사용하고, 기존 Anchor를 어떻게 개선했는 지가 나오니, 궁금하시면 찾아보시면 좋을 것 같다.)</p>
+
+<p>그래서 이를 세 그룹으로 나누었다. 개인, 그룹, 전체 유저. 개인은 사회적인 문제, 그룹은 장비 강화의 어려움과 사회적인 문제, 전체적도 비슷하게 나오나 재밌는 것은 시네마틱 비디오의 시청이 나왔다.</p>
+
+<p>그래서 이 논문은 실제 시네마틱 비디오에 스킵 버튼이 있는 경우 없는 경우로 A/B 테스트를 했을 때 있는 경우가 잔존율을 높였다고 나온다. 기존에는 80%를 봐야지 스킵이 가능한 것이 기존 방식, 바로 skip이 가능하게 한 것이 새로운 방식이다.</p>
+
+<h1>내 결론</h1>
+<p>실제로 A/B 테스트를 한 것이 굉장히 놀랍다. 사실 이것 때문에 매출이 떨어지면 누가 책임질 것인가? 이게 확실히 중국이라서 뭔가 다른가 싶다. 의사결졍 면에서.</p>
+
+<p>또 생각이 든 건, 많은 요소 중에서 길드 자금, 고급 스킬북 등이 탈주에 영향을 끼쳤는데, 이런 것들은 사실 A/B 테스트 하기가 어렵다고 생각된다. (한 그룹은 스킬북이 싸고, 다른 그룹은 스킬북이 비싸다? 이건 폭동이다.) 그래서 시네마틱 스킵이 가장 적절한 테스트가 아니었나 싶다.</p>
+
+<p>다른 생각으로는 시계열 단위로 분석한 데이터가 있으면 더 좋은 판단이 설까? 이다. 유저가 어디서 뭘 하고, 특정 장소에 많이 머무르거나 - 등의 다양한 판단 요소로 XAI를 적용하면 더 재밌을 것 같다는 생각이다.</p>
+
+<p>churn에 관한 것은 다른 모든 서비스 분야에서 중요한 부분이다. 이를 더욱 확장시켜 실제 몸 대 몸으로 만나는 헬스 pt 등으로 확장시켜보는 것도 좋을 것 같다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

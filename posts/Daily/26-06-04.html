@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26-06-04 &mdash; devlog</title>
+    <link rel="stylesheet" href="../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../posts.html">&larr; back</a></p>
+
+      <h1>26-06-04</h1>
+      <p class="meta">2026-06-04 <span class="tag">ps</span><span class="tag">학교_공부</span></p>
+
+      <hr>
+
+      <article>
+        <h1>PS</h1>
+<p>LinkedList에 대해 쉬운 난이도로 3개 풀었다.</p>
+<p>LinkedList의 제일 큰 문제는 주소값이다. 한 번 잘못 놓치면 영원히 못찾게 되버리니, swap이나 순서 바꾸기에도 여러 변수가 필요하다.</p>
+
+<p>그리고 초기 세팅을 항상 어려워 했는데, 이번 답안에서 재밌는 방식을 찾았다.</p>
+<p>우선 포인터가 아닌 Node 객체를 만든다. 이 객체 다음꺼부터 문제에 원하는 정답을 적어나간다. 이후 return 할 때 해당 객체의 next 주소를 반환하면 된다. 이런 방식으로 진행하면, 초기 값 설정에 대한 고민을 덜 수 있다.</p>
+
+<h1>학교 수업</h1>
+<h2>프로그래밍 언어론</h2>
+<p>이창섭이 나온 전과자에 코딩하는 쇼츠가 기억난다. 숟가락으로 밥을 먹는 거였는데, 대충 재밌게 보고 넘겼다. 컴공생 1학년이면 다 공감하지 않을까? </p>
+<p>이제 저런 것들을 자연스럽게 받아들인다고 생각했는데, 언어론까지 와버리니 더 심각한 문제들이 남아있었다.</p>
+<h3>parameter passing</h3>
+<p>함수에 파라미터가 있고 인자로 넘겨 줄 텐데, 그 값은 언제 계산할 것인가?</p>
+<pre><code class="language-c">int twice(int x) return 2 * x;
+
+int main() {
+	int k = 3;
+	k = twice(k + k); // 언제 할 것인가?	
+	return 0;
+}
+</code></pre>
+<p>이것에 대한 여러 방법론들이 있었다.</p>
+
+<p>다른 걸로는, call by name, reference, value, result, value and result 가 있었다.</p>
+<p>reference와 value는 c++의 앰퍼샌드와 기본이기 때문에 이해가 쉬웠지만, name과 value and result는 이해하기 매우 어려웠다.</p>
+
+<p>물론 현대적인 언어에 익숙한 사람인 내가 처음봤을 때는 무슨 말장난을 하나 싶었지만, 언어를 처음 만들 때 필히 고려해야만 했던 것들이다.</p>
+
+<p>이걸 고려한 사람들이 날 보면 마치 이창섭이 코딩하는 것을 보는 것 같지 않을까.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
