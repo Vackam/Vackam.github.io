@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge K Sorted Linked Lists &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>Merge K Sorted Linked Lists</h1>
+      <p class="meta">2026-07-02 <span class="tag">ps</span><span class="tag">링크드리스트</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+
+<p>| https://neetcode.io/problems/merge-k-sorted-linked-lists/question</p>
+<p>정렬되어 있는 여러 링크드리스트를 머지 sort 하라.</p>
+
+<h1>푸는 방법</h1>
+<p>이걸 풀면서 c++ 문법에 대해 다시 알게 되었다.</p>
+<div class="callout callout-note">
+  <p class="callout-title"></p>
+  <p>c++ 참조(&)는 한 번 초기화되면 가리키는 대상을 다른 곳을 변경할 수  없다.</p>
+</div>
+
+<p>한 번 참조를 시작하고 다른 곳으로 바꾸었다고 생각했지만, 사실 해당 주소에 있는 값을 변경하는 것이다. </p>
+
+<p>단순하게 풀었다. 리스트마다 제일 작은 것을 찾고 넣고, 한 칸 밀고 ... 이걸 반복했다.</p>
+
+<p>코드는 다음과 같다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
+        int size = lists.size();
+        if (size == 0) return nullptr;
+        bool is_all_end = false;
+        ListNode* dummy = new ListNode(1001);
+        auto result = dummy;
+
+        while (!is_all_end) {
+            int now_index = -1;
+            int now_value = 1001;
+            for (int i=0; i&lt;size; ++i) {
+                if (lists[i] &amp;&amp; (lists[i]-&gt;val &lt; now_value) ) {
+                    now_index = i;
+                    now_value = lists[i]-&gt;val;
+                }
+            }
+
+            if (now_index == -1) {
+                is_all_end = true;
+                break;
+            }
+
+            // result의 다음에 now_target 넣고
+            // now_target은 다음 거로 넘기기
+            result-&gt;next = lists[now_index];
+            result = result-&gt;next;
+            lists[now_index] = lists[now_index]-&gt;next;
+        }    
+
+        return dummy-&gt;next;
+    }
+};
+
+</code></pre>
+
+<p>하지만, 이건 리스트에 있는 값들을 추출하여 sorting 하는 것보다 느리다. </p>
+
+<p>그래서 위 방식과 비슷하지만, 우선순위 큐를 사용하는 방법이 있다.</p>
+<p>우선 순위 큐를 만들어서 첫 값을 넣어두고, 꺼내고 밀어 넣는 방식을 똑같이 진행하는 것이다. </p>
+<p>코드는 다음과 같다.</p>
+
+<pre><code class="language-cpp">class Solution {
+    // 우선순위 큐를 최소 힙(Min-Heap)으로 만들기 위한 비교 구조체
+    struct CompareNode {
+        bool operator()(ListNode* a, ListNode* b) {
+            return a-&gt;val &gt; b-&gt;val;
+        }
+    };
+
+public:
+    ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
+        priority_queue&lt;ListNode*, vector&lt;ListNode*&gt;, CompareNode&gt; pq;
+
+        // 1. 각 연결 리스트의 첫 번째 노드들을 큐에 삽입
+        for (auto node : lists) {
+            if (node) pq.push(node);
+        }
+
+        ListNode dummy(0); // 동적 할당(new) 대신 지역 변수 사용 (메모리 누수 방지)
+        ListNode* tail = &amp;dummy;
+
+        // 2. 가장 작은 노드를 꺼내서 연결하고, 그 노드의 다음 노드를 큐에 삽입
+        while (!pq.empty()) {
+            ListNode* minNode = pq.top();
+            pq.pop();
+
+            tail-&gt;next = minNode;
+            tail = tail-&gt;next;
+
+            if (minNode-&gt;next) {
+                pq.push(minNode-&gt;next);
+            }
+        }
+
+        return dummy.next;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>linked list에서 특히 그런 것 같은데, 생각은 되는데 자료형하고 연결이 잘 안되는 것 같다. 이번 문제들을 통해서 그거를 배우자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
