@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Tree Right Side View &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>Binary Tree Right Side View</h1>
+      <p class="meta">2026-07-06 <span class="tag">ps</span><span class="tag">트리</span><span class="tag">bfs</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/binary-tree-right-side-view/</p>
+<p>트리를 오른편에서 봤을 때 vector 값을 찾아라.</p>
+
+<h1>푸는 방법</h1>
+<p><a href="../../../posts/Study/NeetCode/Binary Tree Level Order Traversal.html">Binary Tree Level Order Traversal</a></p>
+<p>위 문제 풀이를 조금 바꾸면 해결이 된다.</p>
+
+<p>맨 오른쪽에 있다는 것을 생각해보면, queue에 left -> right 순으로 적재했을 때 queue 마지막 값이 해당 depth에 가장 오른쪽 값이 된다.</p>
+<p>그래서 나머지 값은 확인하지 않고 마지막 값만 찾으면 된다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; rightSideView(TreeNode* root) {
+        if (root == nullptr) return {};
+        vector&lt;int&gt; result;
+        queue&lt;TreeNode*&gt; q;
+
+        q.push(root);
+
+        while (!q.empty()) {
+            int size = q.size();
+            for (int i=0; i&lt;size - 1; ++i) {
+                auto temp = q.front();
+                q.pop();
+
+                if (temp-&gt;left != nullptr) q.push(temp-&gt;left);
+                if (temp-&gt;right != nullptr) q.push(temp-&gt;right);
+            }
+            // 마지막 한 칸 전까지만 진행하고,
+            // 마지막 녀석은 무조건 오른쪽에 있는 놈이기 때문에
+            // 얘만 저장
+            auto temp = q.front();
+            q.pop();
+
+            result.push_back(temp-&gt;val);
+            if (temp-&gt;left != nullptr) q.push(temp-&gt;left);
+            if (temp-&gt;right != nullptr) q.push(temp-&gt;right);
+        } 
+
+        return result;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>전 문제가 수학이고, 수학 익힘책 푸는 느낌이었다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

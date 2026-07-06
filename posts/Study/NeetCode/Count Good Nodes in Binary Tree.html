@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Good Nodes in Binary Tree &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>Count Good Nodes in Binary Tree</h1>
+      <p class="meta">2026-07-06 <span class="tag">ps</span><span class="tag">트리</span><span class="tag">dfs</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/count-good-nodes-in-binary-tree/</p>
+<p>루트부터 자기 자신까지 자기보다 큰 값이 없는 경우 good node라 하고 주어진 트리에 대해 good node 개수를 세어라</p>
+
+<h1>푸는 방법</h1>
+<p>처음에는 vector<int>를 계속 넘겨서 is_sorted()를 통해 확인하려 했다.</p>
+<p>근데 그렇게 하면 값 삽입 삭제가 빈번해서 오래 걸릴 것 같았고, 문제 조건 상 정렬이 안되어있어도 답이 되는 경우가 있기 때문에 바로 폐기 했다.</p>
+
+<p>단순하게 dfs 돌면서 가장 큰 값을 기록해나가면 된다.</p>
+
+<p>아래는 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int goodNodes(TreeNode* root) {
+        // 그게 문젠데, 내 path를 어떻게 생각할 지.
+        // 그럼 걍 vector&lt;int&gt; 해가지고 전달 전달?
+        // dfs로 풀어야 하고
+
+        int result = 0; // root 하나
+        auto dfs = [&amp;result](auto&amp; self, TreeNode* root, int biggest_in_path) {
+            if (root == nullptr) return;
+
+            if (biggest_in_path &lt;= root-&gt;val) {
+                result++;
+                biggest_in_path = root-&gt;val;
+            }
+
+            self(self, root-&gt;left, biggest_in_path);
+            self(self, root-&gt;right, biggest_in_path);
+        };  
+
+        int biggest_in_path = -101;
+        dfs(dfs, root, biggest_in_path);
+
+        return result; 
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>간단한 dfs 문제이다. ps 풀 때 개인적인 문제가 항상 어렵게 생각한다는 것이다. 쉬운 것부터 대입해보면서 될 지 안 될 지를 판단하자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
