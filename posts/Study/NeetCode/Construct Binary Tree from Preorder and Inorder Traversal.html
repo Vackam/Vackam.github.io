@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construct Binary Tree from Preorder and Inorder Traversal &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>Construct Binary Tree from Preorder and Inorder Traversal</h1>
+      <p class="meta">2026-07-07 <span class="tag">ps</span><span class="tag">트리</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal/</p>
+<p>Inorder 순회와 Preorder 순회가 주어졌을 때 트리를 구성하시오.</p>
+
+<h1>푸는 방법</h1>
+
+<p>백준에도 동일한 문제가 있었던 걸로 기억한다.</p>
+<p>이는 각 순회의 특징을 알면 쉽게 풀 수 있다.</p>
+
+<p>Preorder의 경우 "자기자신 -> L -> R" 순으로 간다. </p>
+<p>즉, 맨 앞에 있는 값이 root 값이다.</p>
+
+<p>Inorder의 경우 "L -> 자기자신 -> R" 순으로 간다.</p>
+<p>Preorder에서 얻은 root 값을 알면 L과 R의 크기를 알 수 있다.</p>
+
+<p>L의 크기를 x라고 한다면,</p>
+<p>Preorder에서 R의 위치를 알 수 있고, L의 root와 R의 root는 처음 값이다.</p>
+
+<p>이를 재귀로 풀면 된다.</p>
+
+<p>코드는 다음과 같다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) {
+        int size = preorder.size();
+        auto reconstruct = [&amp;](auto&amp; self, int pre_index, int in_start, int in_end) -&gt; TreeNode* {
+            if (in_start &gt; in_end) return nullptr;
+            int root_val = preorder[pre_index];
+            TreeNode* root = new TreeNode(root_val);
+
+            auto it = find(inorder.begin() + in_start,
+                            inorder.begin() + in_end + 1,
+                            root_val);
+            int index = distance(inorder.begin(), it);
+
+            // 값이 없진 않을 거임.
+            int left_size = index - in_start;
+
+            root-&gt;left = self(self, pre_index+1, in_start, index-1);
+            root-&gt;right = self(self, pre_index + 1 + left_size, index + 1, in_end);
+
+            return root;
+        };
+
+        return reconstruct(reconstruct, 0, 0, size - 1);
+    }
+};
+</code></pre>
+<h1>결론</h1>
+<p>한 번 풀어봤던 거라 개념은 빠르게 캐치 했는데, 구현에서 오래 걸렸다. index 세고 기준 세우는 게 너무 어렵다. 이런 부분을 명시적으로 연습을 해야겠다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

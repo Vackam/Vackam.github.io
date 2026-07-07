@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kth Smallest Integer in BST &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>Kth Smallest Integer in BST</h1>
+      <p class="meta">2026-07-07 <span class="tag">ps</span><span class="tag">트리</span><span class="tag">dfs</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/kth-smallest-integer-in-bst</p>
+<p>BST에서 k번쨰 작은 수를 구하라</p>
+
+<h1>푸는 방법</h1>
+
+<p>BST기 때문에 단순하게 생각해서 inorder 순회를 사용하면서 queue에 값을 저장하고, 나중에 k개 만큼 빼면 그것이 정답이다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        // 중위 순회 하면서 값만 저장
+        queue&lt;int&gt; q;
+
+        auto inorder = [&amp;q](auto&amp; self, TreeNode* root) {
+            if (root == nullptr) return;
+
+            self(self, root-&gt;left);
+            q.push(root-&gt;val);
+            self(self, root-&gt;right);
+        };
+
+        inorder(inorder, root);
+        
+        for (int i=0; i&lt;k-1; ++i) q.pop();
+
+        return q.front();
+    }
+};
+</code></pre>
+
+<p>다른 방식으로는 dfs를 동일하게 inorder로 순회하면서 카운팅을 하다가 k번째가 되면 중단하고 바로 값을 내는 방식이 있다.</p>
+<p>위 코드에 적용하고 싶으면 q.size()를 재귀마다 체크해주면 되겠다.</p>
+
+<h1>결론</h1>
+<p>BST 성질을 이용하면 쉽게 풀 수 있는 문제이다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
