@@ -101,3 +101,10 @@ img { max-width: 100%; height: auto; }
 
 /* 대상 글을 찾지 못한 위키링크 */
 .broken-link { color: #b00; border-bottom: 1px dashed #b00; }
+
+/* posts.html 카테고리 접이식 트리 */
+details.cat-tree { margin: 0.4rem 0; }
+details.cat-tree > summary { cursor: pointer; font-weight: bold; }
+details.cat-tree > ul,
+details.cat-tree > details { margin-left: 1.25rem; }
+details.cat-tree > ul { margin-top: 0.25rem; margin-bottom: 0.25rem; }
