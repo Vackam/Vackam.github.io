@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Two Numbers &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Add Two Numbers</h1>
+      <p class="meta">2026-06-30 <span class="tag">ps</span><span class="tag">링크드리스트</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/add-two-numbers/question</p>
+<p>거꾸로 정렬된 링크드 리스트를 더해서 해결하라</p>
+
+<h1>푸는 방법</h1>
+<p>컴공 1학년이 배울법한 덧셈기를 만들어서 풀면 된다.</p>
+<p>다만 주의할 점이 두 리스트의 길이가 다른 경우가 있다. 필자도 제출해보고 알았다.</p>
+<p>그래서 만약 한 쪽이 끝났으면, 계속 값이 없는 상태로 유지할 수 있는 장치가 필요하다.</p>
+
+<p>아래는 코드이다.</p>
+<pre><code class="language-cpp">ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+	ListNode* head = new ListNode();
+	int upclimber = 0;
+
+	ListNode* copy_head = head;
+	while (l1 || l2) {
+		int value = (l1 ? l1-&gt;val : 0) +
+					(l2 ? l2-&gt;val : 0) +
+					 upclimber;
+
+		if (value &gt; 9) {
+			upclimber = 1;
+			value -= 10;
+		} 
+		else {upclimber = 0;}
+
+		ListNode* new_Node = new ListNode(value);
+
+		head-&gt;next = new_Node;
+		head = head-&gt;next; 
+
+		l1 = l1 ? l1-&gt;next : l1;
+		l2 = l2 ? l2-&gt;next : l2;
+	}    
+
+	if (upclimber &gt;= 1) {
+		ListNode* new_Node = new ListNode(upclimber);
+		head-&gt;next = new_Node; 
+	}
+
+	return copy_head-&gt;next;
+}
+</code></pre>
+
+<p>삼항 연산자를 적극 활용하였다.</p>
+
+<h1>결론</h1>
+<p>굉장히 쉬운 문제였다. 다만, 삼항 연산자가 너무 반복적으로 나와 조금 그랬다. 이럴 때마다 제일 싫어하는 언어인 코틀린이 점점 그리워 진다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balanced Binary Tree &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Balanced Binary Tree</h1>
+      <p class="meta">2026-07-04 <span class="tag">ps</span><span class="tag">트리</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/balanced-binary-tree/question</p>
+<p>트리가 균형되게 되어있는 지 확인하라.</p>
+
+<h1>푸는 방법</h1>
+<p>백준 같은 곳에서는 리스트를 주면서 했을 거 같은데, 트리가 들어와 버리니까 조금 당황했다. </p>
+<p>푸는 방법은 단순하다. 재귀함수로 자식들의 균형이 이루어져 있는 지 확인해보면 된다.</p>
+
+<p>코드는 다음과 같다.</p>
+<pre><code class="language-cpp">bool isBalanced(TreeNode* root) {
+	auto check_height = [](auto&amp; self, TreeNode* node) -&gt; int {
+		if (!node) return 0;
+
+		int left_height = self(self, node-&gt;left);
+		if (left_height == -1) return -1;
+
+		int right_height = self(self, node-&gt;right);
+		if (right_height == -1) return -1;
+
+		if (abs(left_height - right_height) &gt; 1) return -1;
+
+		return 1 + max(left_height, right_height);
+	};
+
+	return check_height(check_height, root) != -1;
+}
+</code></pre>
+
+<p>왼편과 오른편의 높이 차이가 1보다 크게 된다면, 균형이 안맞다는 뜻이므로 -1을 반환하도록 한다.</p>
+
+<h1>결론</h1>
+<p>기본 자료형에 익숙해질 필요가 있다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

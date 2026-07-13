@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implement Trie (Prefix Tree) &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Implement Trie (Prefix Tree)</h1>
+      <p class="meta">2026-07-10 <span class="tag">ps</span><span class="tag">트리</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/implement-prefix-tree/question?list=neetcode150</p>
+<p>prefix tree, trie를 구성하라</p>
+
+<h1>푸는 방법</h1>
+<p>정말 깡 구현이다.</p>
+<p>쉽게 풀기 vs 어렵게 풀기가 있는데, 전자는 한 글자씩 찾아나가는 방식이고 후자는 공통되는 부분을 최대로 묶어놓는 방식이다.</p>
+
+<p>이번에는 어렵게 풀어보자.</p>
+
+<p>app -> apple -> apply 순으로 입력이 들어오면</p>
+<p>첫번째로 app가 구성되고, 이후 app 아래 노드로 le를 가진 노드가 들어오고, apply가 들어오면 l에서 쪼개져서 e와 y가 결정되는 형식이다.</p>
+
+<p>아래는 코드이다.</p>
+
+<pre><code class="language-cpp">class PrefixTree {
+private:
+    struct RadixNode {
+        map&lt;char, pair&lt;string, RadixNode*&gt;&gt; children;
+        bool isEndOfWord = false;
+    };
+
+    RadixNode* root;
+public:
+    PrefixTree() {
+        root = new RadixNode(); 
+    }
+    
+    void insert(string word) {
+        RadixNode* curr = root;
+        int i = 0;
+
+        while (i &lt; word.length()) {
+            char first_char = word[i];
+
+            if (curr-&gt;children.find(first_char) == curr-&gt;children.end()) { // 첫글자가 매칭 안되면 새로 만들기.
+                RadixNode* new_Node = new RadixNode();
+                new_Node-&gt;isEndOfWord = true;
+                curr-&gt;children[first_char] = {word.substr(i), new_Node}; 
+            }
+
+            auto&amp; edge = curr-&gt;children[first_char];
+            string edge_str = edge.first;
+            RadixNode* next_Node = edge.second;
+
+            int j = 0;
+            while (j &lt; edge_str.length() &amp;&amp; 
+                    i+j &lt; word.length() &amp;&amp;
+                    edge_str[j] == word[i+j]) j++; // 같은 부분 스킵
+            if (j &lt; edge_str.length()) {
+                RadixNode* split_Node = new RadixNode();
+                split_Node-&gt;children[edge_str[j]] = {edge_str.substr(j), next_Node};
+                curr-&gt;children[first_char] = {edge_str.substr(0, j), split_Node};
+                curr = split_Node; // 나누고 나서는 우리가 주목하고자 하는 곳에 이동
+            }
+            else curr = next_Node; // 전부 같다면 다음 노드로 이동
+            i += j; // 덧셈하기
+        }  
+        curr-&gt;isEndOfWord = true; // 끝났으면 단어의 끝이라고 알려주기
+    }
+    
+    bool search(string word) {
+        RadixNode* curr = root;
+        int i = 0;
+
+        while (i &lt; word.length()) {
+            char first_char = word[i];
+            if (curr-&gt;children.find(first_char) == curr-&gt;children.end()) {
+                return false;
+            }
+
+            auto&amp; edge = curr-&gt;children[first_char];
+            string edge_str = edge.first;
+            
+            if (word.substr(i, edge_str.length()) != edge_str) {
+                return false;
+            }
+            
+            i += edge_str.length();
+            curr = edge.second;
+        } 
+        return curr-&gt;isEndOfWord;
+    }
+    
+    bool startsWith(string prefix) {
+        RadixNode* curr = root;
+        int i = 0;
+        
+        while (i &lt; prefix.length()) {
+            char first_char = prefix[i];
+            if (curr-&gt;children.find(first_char) == curr-&gt;children.end()) {
+                return false;
+            }
+            
+            auto&amp; edge = curr-&gt;children[first_char];
+            string edge_str = edge.first;
+            
+            // prefix의 남은 부분이 edge_str보다 짧을 수 있으므로 공통 비교
+            int compare_len = min(edge_str.length(), prefix.length() - i);
+            if (prefix.substr(i, compare_len) != edge_str.substr(0, compare_len)) {
+                return false;
+            }
+            
+            i += compare_len;
+            curr = edge.second;
+        }
+        
+        return true;
+    }
+};
+</code></pre>
+<p>묶고 쪼개는 과정이 추가되어 아주 복잡해졌지만, 효율성이 좋다.</p>
+
+<h1>결론</h1>
+<p>점점 깡구현을 못해가는 몸이 되가는 것 같다. 사실 문제보자마자 못 풀겠다 싶어서 바로 도움을 받았다. 좀 더 고민하는 습관을 가지자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
