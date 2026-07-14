@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combination Sum II &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Combination Sum II</h1>
+      <p class="meta">2026-07-14 <span class="tag">ps</span><span class="tag">백트래킹</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/combination-target-sum-ii/question</p>
+<p>배열에서 target을 만들 수 있는 조합을 찾으시오</p>
+
+<h1>푸는 방법</h1>
+<p>주어진 배열(candidates)에서 중복된 값이 있을 수 있어 어려운 문제이다.</p>
+
+<p>1 2 2 2 2 3 이란 배열이 있을 때, 2를 여러번 사용은 가능하지만 동일 개수에 대해서는 한 번만 카운팅 해야 한다.</p>
+
+<p>당연히 백트래킹이고 위 조건에 대한 부분을 if문으로 걸러주면 해결할 수 있다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; result;
+    vector&lt;int&gt; path;
+
+    void dfs(int start, int target, const vector&lt;int&gt;&amp; candidates) {
+        if (target == 0) { result.push_back(path); return; }
+        for (int i=start; i&lt;(int)candidates.size(); ++i) {
+            if (candidates[i] &gt; target) break; // 정렬 상태이니 보는 의미 없음.
+            if (i&gt;start &amp;&amp; candidates[i] == candidates[i-1]) continue;
+            path.push_back(candidates[i]);
+            dfs(i+1, target - candidates[i], candidates);
+            path.pop_back();
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        dfs(0, target, candidates);
+        return result;
+    }
+};
+</code></pre>
+
+<p>target을 0으로 만드는 식으로 진행하였다.</p>
+<p>제일 중요한 파트는 for문에 있는 두 개의 if 문이다.</p>
+
+<h3>if (candidates\[i\] > target) break;</h3>
+<p>정렬된 배열을 받는다 가정하기 때문에 만약 원하는 값보다 큰 값이 나온다면 그 이후의 값은 볼 필요가 없다. 그러므로 제친다.</p>
+
+<h3>if (i>start && candidates\[i\] == candidates\[i-1\])</h3>
+<p>1 2 2 2 3 의 배열에서 2를 한 번 넣은 경우는 첫 번째에서 전부 탐색한다.</p>
+<p>두 번째 2에서 이 조건문이 없다면 첫 번째 2가 이미 해둔 것을 다시 반복하게 된다.</p>
+<p>그래서 i가 증가했을 때, 그 증가 값이 전의 값과 동일하다면 제낀다.</p>
+
+<h1>결론</h1>
+<p>이제 백트래킹 구현 자체는 손에 익숙해서 좋은데, 문제는 응용이 어렵다. 저 if문을 떠올리지 못해서 계속 시간초과가 났었다. 다른 비슷한 문제에 적용할 수 있도록 하자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
