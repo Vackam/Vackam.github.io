@@ -70,10 +70,10 @@ public:
 <p>target을 0으로 만드는 식으로 진행하였다.</p>
 <p>제일 중요한 파트는 for문에 있는 두 개의 if 문이다.</p>
 
-<h3>if (candidates\[i\] > target) break;</h3>
+<h3>if (candidates[i] > target) break;</h3>
 <p>정렬된 배열을 받는다 가정하기 때문에 만약 원하는 값보다 큰 값이 나온다면 그 이후의 값은 볼 필요가 없다. 그러므로 제친다.</p>
 
-<h3>if (i>start && candidates\[i\] == candidates\[i-1\])</h3>
+<h3>if (i>start && candidates[i] == candidates[i-1])</h3>
 <p>1 2 2 2 3 의 배열에서 2를 한 번 넣은 경우는 첫 번째에서 전부 탐색한다.</p>
 <p>두 번째 2에서 이 조건문이 없다면 첫 번째 2가 이미 해둔 것을 다시 반복하게 된다.</p>
 <p>그래서 i가 증가했을 때, 그 증가 값이 전의 값과 동일하다면 제낀다.</p>
