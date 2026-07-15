@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permutations &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Permutations</h1>
+      <p class="meta">2026-07-15 <span class="tag">ps</span><span class="tag">백트래킹</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/permutations/question?list=neetcode150</p>
+<p>주어진 배열의 순열을 구하라.</p>
+
+<h1>푸는 방법</h1>
+<p>정석적으로는 자기 자신과 i번째 칸에 있는 친구를 swap하고 dfs를 진행한 다음 swap을 원상복구 시켜놓은 다음, i += 1을 한다.</p>
+<p>즉, 숫자를 계속 바꿔가면서 트리를 만든다고 생각하는 것이다.</p>
+
+<p>하지만, c++에는 무적의 함수 next_permutation이 있다.</p>
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+
+public:
+
+    vector&lt;vector&lt;int&gt;&gt; permute(vector&lt;int&gt;&amp; nums) {
+        sort(nums.begin(), nums.end());
+
+        vector&lt;vector&lt;int&gt;&gt; result;
+
+        do {
+            result.emplace_back(nums);
+        } while (next_permutation(nums.begin(), nums.end()));
+        return result;
+    }
+}
+</code></pre>
+
+<p>정렬해주고, next_permutation 돌리면 된다.</p>
+
+<h1>결론 </h1>
+<p>좋은 무기를 활용하는 것도 능력이다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
