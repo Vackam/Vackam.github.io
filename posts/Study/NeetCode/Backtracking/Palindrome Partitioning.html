@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Partitioning &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Palindrome Partitioning</h1>
+      <p class="meta">2026-07-17 <span class="tag">ps</span><span class="tag">백트래킹</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/palindrome-partitioning/question</p>
+<p>주어진 문자열을 잘랐을 때 나올 수 있는 모든 팰린드롬을 구하라.</p>
+
+<h1>푸는 방법</h1>
+<p>칸막이 방식을 생각하면 된다.</p>
+<p>n번째까지 보고 칸막이를 세운 다음 그 다음부터 또 자를 준비를 한다.</p>
+<p>이거를 구현하는 방법은 아주 단순하게 칸막이를 세우고 dfs를 호출하면 된다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    bool is_palindrome(string s, int start, int end) {
+        while (start &lt; end) {
+            if (s[start] != s[end]) return false;
+            start += 1;
+            end -= 1;
+        }
+
+        return true;
+    }
+
+    void dfs (const string&amp; s, int start, vector&lt;string&gt;&amp; path, vector&lt;vector&lt;string&gt;&gt;&amp; result) {
+        if (start == s.size()) {
+            result.push_back(path);
+            return;
+        }
+
+        for (int end = start; end &lt; s.size(); ++end) {
+            if (is_palindrome(s, start, end)) {
+                path.push_back(s.substr(start, end - start + 1));
+                dfs(s, end+1, path, result);
+                path.pop_back();
+            }
+        }
+    }
+    vector&lt;vector&lt;string&gt;&gt; partition(string s) {
+        vector&lt;vector&lt;string&gt;&gt; result;
+        vector&lt;string&gt; path;
+        dfs(s, 0, path, result);
+        return result;
+    }
+};
+</code></pre>
+
+<p>주목할 부분은 dfs 파트이다. </p>
+<p>시작 지점에서 출발하여 주어진 문자열의 끝까지 탐색해보면서 현재 위치에 칸막이를 세울 수 있는 지 확인한다.</p>
+<p>가능한 경우 -> 칸막이를 세우고 문자열을 저장한 다음, dfs를 돌린다.</p>
+<p>불가능한 경우 -> 무시하고 다음 가능성을 탐구한다.</p>
+
+<h1>결론</h1>
+<p>칸막이는 빠르게 생각해냈는데, 구현하는 데 어려웠다.. 이렇게 문제를 풀면서 무기를 닦아나가자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
