@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Queens &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>N-Queens</h1>
+      <p class="meta">2026-07-18 <span class="tag">ps</span><span class="tag">백트래킹</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/n-queens/question?list=neetcode150</p>
+<p>N Queens를 풀어라.</p>
+
+<h1>푸는 방법</h1>
+<p>백트래킹의 아주 정석적인 문제인 N-Queens가 나왔다.</p>
+<p>푸는 방법은 하나하나 정직하게 체크하면서 가면 된다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+    vector&lt;bool&gt; cols, diag1, diag2;
+
+    void dfs(int row, int n, vector&lt;int&gt;&amp; tracking, vector&lt;vector&lt;string&gt;&gt;&amp; result) {
+        if (row == n) {
+            result.push_back(make_board(tracking, n));
+            return;
+        }
+        for (int col = 0; col &lt; n; ++col) {
+            if (cols[col] || diag1[row + col] || diag2[row - col + n - 1]) continue;
+
+            cols[col] = diag1[row + col] = diag2[row - col + n - 1] = true;
+            tracking.push_back(col);
+
+            dfs(row + 1, n, tracking, result);
+
+            tracking.pop_back();
+            cols[col] = diag1[row + col] = diag2[row - col + n - 1] = false;
+        }
+    }
+
+    vector&lt;string&gt; make_board(const vector&lt;int&gt;&amp; tracking, int n) {
+        vector&lt;string&gt; board;
+        for (int col : tracking) {
+            string row(n, '.');
+            row[col] = 'Q';
+            board.push_back(row);
+        }
+        return board;
+    }
+
+public:
+    vector&lt;vector&lt;string&gt;&gt; solveNQueens(int n) {
+        cols.assign(n, false);
+        diag1.assign(2 * n - 1, false);
+        diag2.assign(2 * n - 1, false);
+        vector&lt;int&gt; tracking;
+        vector&lt;vector&lt;string&gt;&gt; result;
+        dfs(0, n, tracking, result);
+        return result;
+    }
+};
+</code></pre>
+<p>대각선 판정을 아름답게 하는 법이 이 문제의 관건이다.</p>
+
+<h1>결론</h1>
+<p>너무나도 유명한 문제여서 글을 줄이도록 하겠다.</p>
+<p>대신 신기했던 점은 이렇게 문자열로 내보내는 게 신기했다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

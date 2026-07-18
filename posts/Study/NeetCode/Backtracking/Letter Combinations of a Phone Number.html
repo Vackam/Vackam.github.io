@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Combinations of a Phone Number &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Letter Combinations of a Phone Number</h1>
+      <p class="meta">2026-07-18 <span class="tag">ps</span><span class="tag">백트래킹</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/combinations-of-a-phone-number/question?list=neetcode150</p>
+<p>핸드폰 번호가 주어졌을 때, 가능한 경우를 구하시오</p>
+
+<h1>푸는 방법</h1>
+<p>단순하게 문자열을 저장하는 array를 하나 세우고 이를 만날 때마다 탐색하면 된다.</p>
+<p>가지치기도 필요없이 정직하게 백트래킹으로 풀면된다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+    static constexpr array&lt;string_view, 8&gt; keypad = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+public:
+    void dfs (const string&amp; d, int now, string&amp; path, vector&lt;string&gt;&amp; result) {
+        if (now == d.size()) {
+            result.push_back(path);
+            return;
+        }
+
+        // 올바른 digit인 지는 알아서 밖에서 체크해가지고 오는 걸로
+        int target = d[now] - '2';
+        for (int i=0; i&lt;keypad[target].size(); ++i) {
+            path.push_back(keypad[target][i]);
+            dfs(d, now+1, path, result); 
+            path.pop_back();
+        }
+
+        return;
+    }
+    vector&lt;string&gt; letterCombinations(string digits) {
+        vector&lt;string&gt; result;
+        if (digits.empty()) return result;
+        string path = "";
+
+        dfs(digits, 0, path, result);
+        return result; 
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>전에 풀었던 것보다 난이도가 확 낮아졌다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
