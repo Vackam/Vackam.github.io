@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Closest Points to Origin &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>K Closest Points to Origin</h1>
+      <p class="meta">2026-07-20 <span class="tag">ps</span><span class="tag">우선순위큐</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+
+<p>| https://neetcode.io/problems/k-closest-points-to-origin/question?list=neetcode150</p>
+<p>원점이랑 가까운 k개의 점들을 반환하라</p>
+
+<h1>푸는 방법</h1>
+<p>처음에 k번째인 데 겹치는 동일한 값에 대해서는 따로 처리해야 하는 줄 알아서 온갖 복잡한 짓을 다해봤다.</p>
+<p>근데 그게 아니라, k개를 전부 반환하기만 하면 되더라.</p>
+<p>그러면 간단하게 우선순위 큐를 세우고 조지면 된다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">using pivi = pair&lt;int, vector&lt;int&gt;&gt;;
+
+class Solution {
+public:
+    int dis_square(const vector&lt;int&gt;&amp; v) {
+        return (v[0]*v[0] + v[1]*v[1]);
+    }
+    vector&lt;vector&lt;int&gt;&gt; kClosest(vector&lt;vector&lt;int&gt;&gt;&amp; points, int k) {
+        priority_queue&lt;pivi&gt; pq;
+        vector&lt;vector&lt;int&gt;&gt; result;
+
+        for (auto&amp; a : points) {
+            int dis = dis_square(a);
+            pq.push({-dis, a});
+        }
+
+        for (int i=0; i&lt;k; ++i) {
+            auto a = pq.top();
+            pq.pop();
+            result.push_back(a.second);
+        }
+
+        return result;
+    }
+};
+</code></pre>
+
+<p>거리를 구하는 데 굳이 시간이 많이 드는 연산인 sqrt를 할 필요가 없다.</p>
+<p>또한, 기본 priority_queue는 max heap 이므로, distance를 넣어줄 때 음수로 넣어주어 min heap 처럼 작동하게 하였다.</p>
+
+<h1>결론</h1>
+<p>역시 문제를 푸는 것보다 독해가 훨씬 중요하다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

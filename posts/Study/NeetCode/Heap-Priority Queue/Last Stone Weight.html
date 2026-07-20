@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last Stone Weight &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Last Stone Weight</h1>
+      <p class="meta">2026-07-20 <span class="tag">ps</span><span class="tag">우선순위큐</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/last-stone-weight/question?list=neetcode150</p>
+<p>돌멩이를 최대한 깨서 남는 것을 구하라.</p>
+
+<h1>푸는 방법</h1>
+<p>우선순위 큐를 Max_Heap으로 설정하고 가장 큰 놈을 두 개 뽑은 뒤 if 문으로 연산하면 된다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    priority_queue&lt;int&gt; pq;
+    int lastStoneWeight(vector&lt;int&gt;&amp; stones) {
+        for (auto&amp; a : stones) pq.push(a);
+
+        while (pq.size() &gt; 1) {
+            int x = pq.top();
+            pq.pop();
+            int y = pq.top();
+            pq.pop();
+
+            if (x == y) continue;
+            else {
+                pq.push(abs(x-y));
+            }
+        }
+
+        return pq.empty() ? 0 : pq.top();
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>단순한 문제이다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
