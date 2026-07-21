@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-07-21 &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>2026-07-21</h1>
+      <p class="meta">2026-07-21 <span class="tag">데일리</span></p>
+
+      <hr>
+
+      <article>
+        <h1>프론트에서 레디스를 쓰면 안되나?</h1>
+<p>되긴 되는데 레디스 접속 방식이 프론트에 있으면 다 공개가 되는 것이기 때문에 위험을 감수할 필요가 없다.</p>
+
+<p>또한, 클라이언트의 각 기기마다 redis를 사용하려고 한다면 그냥 local storage, SQLite를 사용하도록 하자.</p>
+
+
+<h1>마이너 임베딩 캐싱</h1>
+<p>양자컴퓨터를 통해서 문제를 푸는 Quantum Annealing이라는 분야가 있다.</p>
+<p>양자컴퓨터가 보급되진 않았으니, 이를 API 형태로 사용을 할 수 있다.</p>
+<p>물론 가격이 사악하다. 정확히 기억은 나지 않지만 학생은 엄두도 못내는 가격이었다.</p>
+
+<p>이제 해결하고자 하는 식이 있을 것이다. 예를 들어 30개의 큐빗이 필요한 문제라고 가정해보자. 그러면 양자컴퓨터에서 아무 큐빗이나 30개 잡아서 해결하고 싶지만 그렇게 할 수가 없다.</p>
+<p>정확한 이유는 모르지만 물리적인 제약으로 인해 모든 큐빗이 다른 모든 큐빗과 연결되어 있지 않다고 한다. 즉, 30개가 서로 연결되어 있는 경우가 없다는 것이다.</p>
+<p>그러면 이를 어떻게 해결하는가? 하면 마이너 임베딩이라는 기술을 통해 이용한다.</p>
+
+<p>일단 간단한 너무 멀리 있는 경우를 생각해보자. 1번과 2번을 연결해야 하는데 배치된 큐빗이 너무 멀어서 연결되어 있지 않은 경우에는 1번과 2번 사이 3번이라는 노드를 하나 추가하여 연결시킨다. 이때, 3번은 1번과 같은 방향을 가지도록 강하게 연결시킨다. 그럼 사실상 1번 역할을 3번이 하기 때문에 원하는 결과를 얻을 수 있다.</p>
+
+<p>이거를 그대로 적용하여서 복잡한 경우에도 사용하는 것이다. 1번이 여러개에 연결되어야 할 때 1번 단독으로 연결에는 한계가 있으니 자신과 동일한 역할을 하는 다른 놈들을 연결해서 진행하는 것이다.</p>
+
+<p>이런 마이너 임베딩은 시간이 굉장히 오래 걸린다. 양자를 쓰는 이유가 속도인데, 얘가 속도를 다 잡아먹는다. </p>
+<p>다행히도 동일 문제에 대해서는 이를 캐싱해서 사용할 수 있다. 변수와 변수간의 관계만 바뀌지 않는다면, 즉 주어진 식에서 중요 변수들만 바뀌지 않는다면 캐싱을 통해 진행을 할 수 있다. </p>
+
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
