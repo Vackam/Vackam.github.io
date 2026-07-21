@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-07-20 &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+      <h1>2026-07-20</h1>
+      <p class="meta">2026-07-20 <span class="tag">데일리</span></p>
+
+      <hr>
+
+      <article>
+        <h1>Flyway</h1>
+
+<p>데이터베이스 마이그레이션 툴이다.</p>
+<p>개발을 진행하다 보면 DB 스키마가 종종 바뀔 때가 있다. 전 플젝의 경우 한 이슈당 여러번 바뀐 경우도 있었다.</p>
+<p>문제는 이걸 migration 폴더에 기록은 해두는 데 이를 하나하나 실행해야 한다는 단점과 만약 다른 레포에서 지가 알아서 migration을 만들 경우 그냥 충돌이 난다는 단점이 있었다.</p>
+<p>그래서 전 플젝에선 따로 db 레포를 파서 관리를 하고자 했는데, 복잡하고 귀찮은 작업이었다.</p>
+<p>이런 점에 도움이 되는 것이 flyway이다.</p>
+
+<p>| https://documentation.red-gate.com/fd/flyway-projects-271585108.html</p>
+
+<p>자세한 내용은 위 주소를 참고하길 바란다.</p>
+
+<p>간단하게 서술하여, migrations 폴더에 버전과 수정 내용을 기록하여 주욱 트래킹 해주는 것이다.</p>
+<p>스프링 프로젝트에 추가하여 db 연결정보를 주면 그것을 따라 알아서 sql을 실행해준다. 또한, 현재 올라가 있는 스키마가 주어진 정보와 다르다면 에러를 발생한다.</p>
+
+<p>이런 기록을 하기위해 flyway는 스키마에 flyway_schema_history를 만들어 기록을 시작한다.</p>
+
+<h1>클라우드 컴퓨팅 관련</h1>
+<p>왜 클라우드를 써야 하는가? 그냥 본인 데스크탑에서 돌리면 되는 게 아닌가?</p>
+
+<p>물론 그런 경우가 좋을 수도 있는데, 문제는 너무 오버스펙이란 것이다. </p>
+<p>예를 들어 새벽에 서버를 돌린다고 해보자. 이때 유저는 1~10명이다. API 호출도 잘 안할 것이고 속도가 그렇게 필요하지 않을 수도 있다. </p>
+
+<p>또한 서버를 여러개 띄워야 할 수가 있다. 한 쪽에 트래픽이 너무 몰리면 기대 이하의 성능을 낼 것이다.</p>
+
+<p>마치 pc방이라 생각하면 된다. 이벤트 때 여러 계정에 이벤트 보상을 벌기 위해서 여러 대를 결제해서 사용하고, 그냥 평범한 시기일 때는 한 대만 빌려서 내가 사용하는 것이다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

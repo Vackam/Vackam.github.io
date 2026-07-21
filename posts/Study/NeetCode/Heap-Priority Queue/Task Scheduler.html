@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Scheduler &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Task Scheduler</h1>
+      <p class="meta">2026-07-21 <span class="tag">ps</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/task-scheduling/question</p>
+<p>cpu 스케쥴러를 작성하라. 대신 같은 작업을 바로 반복할 수 없다.</p>
+
+<h1>푸는 방법</h1>
+<p>생각해보면 가장 많이 나오는 친구를 기준으로 판별하면 된다.</p>
+<p>문제 예제 중 AAABBC에 k=3인 경우를 생각해보자.</p>
+<pre><code>A _ _ | A _ _ | A
+</code></pre>
+<p>이 구조는 우선 확정이다. 이후 B와 C를 걸리지 않게만 넣어버리면 된다.</p>
+
+<p>공식화 하면</p>
+<p>블록 하나당 크기가 n+1, 블록이 총 mx -1, 만약 A와 빈도가 동일한 놈이 있으면 뒤에 몇 번 더 붙여야 하므로 count.</p>
+<p>최빈값이 아닌 애들은 _ 자리에 그냥 넣으면 된다.</p>
+
+<p>그리고 위에서 구한 값과 tasks의 사이즈를 분석해야 하는데, 사이즈가 그냥 크다면 이렇게 복잡하게 알 것 없이 그냥 집어 넣으면 되기 때문이다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int leastInterval(vector&lt;char&gt;&amp; tasks, int n) {
+        vector&lt;int&gt; cnt(26, 0);
+        for (char c : tasks) cnt[c - 'A']++;
+        int mx = *max_element(cnt.begin(), cnt.end());
+        int mx_count = count(cnt.begin(), cnt.end(), mx);
+        return max((int) tasks.size(), (mx - 1) * (n + 1) + mx_count);
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>처음에는 하나하나 트래킹하면서 세야하는 줄 알았는데, 칸막이 이론 들고 와서 빠르게 처리할 수 있었던 문제이다.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

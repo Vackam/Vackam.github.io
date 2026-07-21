@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kth Largest Element in an Array &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Kth Largest Element in an Array</h1>
+      <p class="meta">2026-07-21 <span class="tag">ps</span><span class="tag">힙</span><span class="tag">우선순위큐</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/kth-largest-element-in-an-array/question</p>
+<p>정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라.</p>
+
+<h1>푸는 방법</h1>
+<p>당연히 sort를 하면 풀린다.</p>
+<p>다음은 코드이다</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        sort(nums.rbegin(), nums.rend());
+        return nums[k-1];    
+    }
+};
+</code></pre>
+
+<p>물론 이렇게 하라고 만든 것이 아니다. </p>
+<p>우선순위큐를 만들어서 k가 넘어갈 시 계속 pop 해주면서 트래킹 해주면 된다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
+        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+
+        for (auto&amp; a : nums) {
+            pq.push(a);
+
+            if (pq.size() &gt; k) pq.pop();
+        } 
+
+        return pq.top();
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>계속 백준이 그립다. 문제에서 O(nlogn)을 쓰면 바로 아웃되도록 만들어 놨을 텐데...</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
