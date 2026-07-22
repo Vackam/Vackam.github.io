@@ -1,24 +1,69 @@
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #fffefb;
+  --muted: #666;
+  --rule: #ddd;
+  --link: #06c;
+  --box: #f7f7f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #ddd8d0;
+    --bg: #16161a;
+    --muted: #9a948c;
+    --rule: #3a3a40;
+    --link: #79b8ff;
+    --box: #202027;
+  }
+}
+
 body {
-  font-family: Georgia, 'Times New Roman', serif;
-  max-width: 600px;
+  /* 라틴은 Georgia, 한글은 시스템 고딕으로 폴백된다.
+     serif 로 두면 윈도우에서 바탕체가 잡혀 화면 가독성이 크게 떨어짐. */
+  font-family: Georgia, 'Times New Roman',
+               'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  max-width: 38rem;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-  line-height: 1.5;
+  line-height: 1.75;          /* 한글 본문 기준 */
+  word-break: keep-all;       /* 한글 단어 중간에서 줄바꿈되지 않도록 */
+  overflow-wrap: break-word;  /* 긴 URL 은 예외적으로 끊음 */
+  color: var(--fg);
+  background: var(--bg);
 }
+
+a { color: var(--link); }
+
+h1, h2, h3 { line-height: 1.35; margin-top: 2rem; }
 
 code, pre {
   font-family: ui-monospace, 'Courier New', monospace;
+  font-size: 0.92em;
 }
 
+code { word-break: break-all; }
+
 pre {
-  border: 1px solid #ddd;
+  border: 1px solid var(--rule);
   padding: 0.5rem 0.75rem;
   overflow-x: auto;
+  line-height: 1.5;
+}
+
+pre code { word-break: normal; }
+
+blockquote {
+  border-left: 3px solid var(--rule);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: var(--muted);
 }
 
 hr {
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--rule);
   margin: 1.5rem 0;
 }
 
@@ -38,7 +83,7 @@ ul.post-list {
 .post-date,
 .post-tags,
 .meta {
-  color: #666;
+  color: var(--muted);
   font-size: 0.9em;
 }
 
@@ -50,18 +95,34 @@ ul.post-list {
   margin-left: 0.25rem;
 }
 
+/* 글 하단 이전/다음 (같은 카테고리 안에서) */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9em;
+  margin: 1.5rem 0;
+}
+
+.comments-title {
+  font-size: 1.1em;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  margin-top: 3rem;
+}
+
 footer {
-  color: #666;
+  color: var(--muted);
   font-size: 0.9em;
   margin-top: 3rem;
 }
 
 details.callout,
 div.callout {
-  border-left: 3px solid #aaa;
+  border-left: 3px solid var(--muted);
   padding: 0.5rem 1rem;
   margin: 1rem 0 1rem 1rem;
-  background: #f7f7f5;
+  background: var(--box);
 }
 details.callout summary { font-weight: bold; cursor: pointer; }
 div.callout .callout-title { font-weight: bold; margin: 0 0 0.5rem 0; }
@@ -83,16 +144,13 @@ details[open].callout > summary { margin-bottom: 0.4rem; }
 details.callout-note,
 div.callout-note { border-color: #888; }
 details.callout-warning,
-div.callout-warning { border-color: #c00; background: #fdf3f3; }
+div.callout-warning { border-color: #c00; }
 details.callout-tip,
-div.callout-tip { border-color: #080; background: #f3faf3; }
+div.callout-tip { border-color: #080; }
 details.callout-info,
-div.callout-info { border-color: #06a; background: #f2f7fb; }
+div.callout-info { border-color: #06a; }
 details.callout-danger,
-div.callout-danger { border-color: #a00; background: #fdf0f0; }
-
-.wrapper { max-width: 600px; margin: 0 auto; padding: 2rem 1.5rem; }
-
+div.callout-danger { border-color: #a00; }
 
 img { max-width: 100%; height: auto; }
 
