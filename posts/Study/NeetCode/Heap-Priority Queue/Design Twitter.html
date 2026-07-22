@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Twitter &mdash; devlog</title>
+    <link rel="stylesheet" href="../../../../style.css">
+    <!-- 코드 하이라이팅 (highlight.js) -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+    <!-- 수식 렌더링 (MathJax) -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath:  [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+      };
+    </script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+      <h1>Design Twitter</h1>
+      <p class="meta">2026-07-22 <span class="tag">ps</span><span class="tag">우선순위큐</span></p>
+
+      <hr>
+
+      <article>
+        <h1>서론</h1>
+<p>| https://neetcode.io/problems/design-twitter-feed/question?list=neetcode150</p>
+<p>트위터 비슷한 기능을 만들어라.</p>
+
+<h1>푸는 방법</h1>
+<p>제일 중요한 풀이는 내가 팔로잉한 사람들의 최신 것까지 반영하여 출력하는 getNewsFeed를 만드는 것이다.</p>
+
+<p>단순하게 사람마다 게시물을 시간순으로 정리하는 우선순위큐를 세워주고 팔로잉 목록에 있는 모든 사람의 우선순위큐와 합쳐서 10개만 뽑아내도록 했다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Twitter {
+    map&lt;int, priority_queue&lt;pair&lt;int, int&gt;&gt;&gt; m; 
+    // userId, {tweet_date, tweet id}
+    map&lt;int, set&lt;int&gt;&gt; following;
+    int date_count;
+    int new_feed_count;
+public:
+    Twitter() {
+        date_count = 0;
+        new_feed_count = 10;
+    }
+    
+    void postTweet(int userId, int tweetId) {
+        m[userId].push({date_count, tweetId});
+        date_count++;
+    }
+    
+    vector&lt;int&gt; getNewsFeed(int userId) {
+        vector&lt;int&gt; result;
+        auto copy_pq = m[userId];
+
+        for (const auto&amp; a : following[userId]) {
+            auto copy = m[a];
+
+            while (!copy.empty()) {
+                copy_pq.push(copy.top());
+                copy.pop();
+            }
+        }
+
+        int count = 10;
+        while (!copy_pq.empty() &amp;&amp; count &gt; 0) {
+            result.push_back(copy_pq.top().second);
+            copy_pq.pop();
+
+            count--;
+        } 
+
+        return result;
+    }
+    
+    void follow(int followerId, int followeeId) {
+        if (followerId != followeeId) {
+            following[followerId].insert(followeeId);
+        }
+    }
+    
+    void unfollow(int followerId, int followeeId) {
+        if (followerId != followeeId) {
+            following[followerId].erase(followeeId); 
+        }
+    }
+}
+</code></pre>
+<p>자기 자신을 팔로우할 때 에러가 생겨서 자기 자신은 팔로우 할 수 없도록 했다.</p>
+
+<p>위 방법보다 좀 더 진화하면,</p>
+<p>팔로잉한 사람들 목록이 n개가 있으면 각 사람마다 한 개씩 가장 최신 게시물을 들고온다. 그리고 이를 우선순위 큐에 저장한다.</p>
+<p>그렇다면 n개와 자신 것을 포함하여 n+1개의 요소를 가진 우선순위 큐를 생성한다.</p>
+<p>하나를 뽑을 때마다 해당 유저의 2번째 최신 게시물을 다시 큐에 넣어준다.</p>
+<p>거기서 10개를 뽑아서 확인한다.</p>
+
+<p>이렇게 하면 시간 복잡도가 확 줄어든다.</p>
+
+<h1>결론</h1>
+<p>내 풀이는 결국 큐를 복제하는 것이다. 이러면 당연히 시간이 오래 걸린다. 언제나 시간을 줄일 방법을 생각하자.</p>
+
+      </article>
+
+      <hr>
+
+      <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    </div>
+
+    <!-- 코드 하이라이팅 실행 (MathJax 는 pre/code 를 건드리지 않음) -->
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
