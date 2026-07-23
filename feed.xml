@@ -7,21 +7,13 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
-    <title>2026-07-22</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-22.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-22.html</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>html 자료 공유에 대해서 요새 AI를 통해 공부를 하거나 회의를 할 때 html로 자료를 작성하는 경우가 많아졌다. 물론 한 번에 잘 뽑아내지 못하고 이상한 내용들을 넣는 경우가 있어서 수정을 가해야 하긴 하지만 시각화가 너무 편리해서 계속 사용하고 있다. 문득 그런 생각이 들었는데, 사실 AI가 나오기 …</description>
-  </item>
-  <item>
-    <title>Find Median From Data Stream</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Find Median From Data Stream.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Find Median From Data Stream.html</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
+    <title>Number of Islands</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</guid>
+    <pubDate>Thu, 23 Jul 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
-    <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/find-median-in-a-data-stream/question?list=neetcode150 중앙값을 찾아라 푸는 방법 가장 간단한 방법은 정렬해서 중앙값을 찾는 것이다. 당연히 각 시도마다 O(nlogn)의 시간 복잡도를 가진다. 여기서 원하는 풀이는 아마도 두 개의 힙을 세우는 것이다 low heap과 max heap을 세워서 편하게 찾는 …</description>
+    <category>그래프</category>
+    <description>서론 | https://neetcode.io/problems/count-number-of-islands/question 섬을 찾아라 푸는 방법 BFS로 풀면 된다. 다음은 코드이다. class Solution { private: vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; public: bool is_possible(int nx, int ny, int m, int n) { return (nx &amp;lt; m &amp;amp;&amp;amp; nx &amp;gt;= 0 &amp;amp;&amp;amp; ny &amp;lt; n &amp;amp;&amp;amp; ny &amp;gt;= 0); } int nu…</description>
   </item>
   <item>
     <title>Design Twitter</title>
@@ -33,22 +25,29 @@
     <description>서론 | https://neetcode.io/problems/design-twitter-feed/question?list=neetcode150 트위터 비슷한 기능을 만들어라. 푸는 방법 제일 중요한 풀이는 내가 팔로잉한 사람들의 최신 것까지 반영하여 출력하는 getNewsFeed를 만드는 것이다. 단순하게 사람마다 게시물을 시간순으로 정리하는 우선순위큐를 세워주고 팔로잉 목록에…</description>
   </item>
   <item>
+    <title>Find Median From Data Stream</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Find Median From Data Stream.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Find Median From Data Stream.html</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>우선순위큐</category>
+    <description>서론 | https://neetcode.io/problems/find-median-in-a-data-stream/question?list=neetcode150 중앙값을 찾아라 푸는 방법 가장 간단한 방법은 정렬해서 중앙값을 찾는 것이다. 당연히 각 시도마다 O(nlogn)의 시간 복잡도를 가진다. 여기서 원하는 풀이는 아마도 두 개의 힙을 세우는 것이다 low heap과 max heap을 세워서 편하게 찾는 …</description>
+  </item>
+  <item>
+    <title>2026-07-22</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-22.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-22.html</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>html 자료 공유에 대해서 요새 AI를 통해 공부를 하거나 회의를 할 때 html로 자료를 작성하는 경우가 많아졌다. 물론 한 번에 잘 뽑아내지 못하고 이상한 내용들을 넣는 경우가 있어서 수정을 가해야 하긴 하지만 시각화가 너무 편리해서 계속 사용하고 있다. 문득 그런 생각이 들었는데, 사실 AI가 나오기 …</description>
+  </item>
+  <item>
     <title>Task Scheduler</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Task Scheduler.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Task Scheduler.html</guid>
     <pubDate>Tue, 21 Jul 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <description>서론 | https://neetcode.io/problems/task-scheduling/question cpu 스케쥴러를 작성하라. 대신 같은 작업을 바로 반복할 수 없다. 푸는 방법 생각해보면 가장 많이 나오는 친구를 기준으로 판별하면 된다. 문제 예제 중 AAABBC에 k=3인 경우를 생각해보자. A _ _ | A _ _ | A 이 구조는 우선 확정이다. 이후 B와 C를 걸리지 않게만 …</description>
-  </item>
-  <item>
-    <title>Kth Largest Element in an Array</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</guid>
-    <pubDate>Tue, 21 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>힙</category>
-    <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸는 방법 당연히 sort를 하면 풀린다. 다음은 코드이다 class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { sort(nums.rbegin(), nums.rend()); return nums[k-1]; } }; 물론 이렇게 하라고 만든 것이 …</description>
   </item>
   <item>
     <title>2026-07-21</title>
@@ -59,13 +58,14 @@
     <description>프론트에서 레디스를 쓰면 안되나? 되긴 되는데 레디스 접속 방식이 프론트에 있으면 다 공개가 되는 것이기 때문에 위험을 감수할 필요가 없다. 또한, 클라이언트의 각 기기마다 redis를 사용하려고 한다면 그냥 local storage, SQLite를 사용하도록 하자. 마이너 임베딩 캐싱 양자컴퓨터를 통해서 문제를 푸는…</description>
   </item>
   <item>
-    <title>Last Stone Weight</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Last Stone Weight.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Last Stone Weight.html</guid>
-    <pubDate>Mon, 20 Jul 2026 00:00:00 +0900</pubDate>
+    <title>Kth Largest Element in an Array</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</guid>
+    <pubDate>Tue, 21 Jul 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
+    <category>힙</category>
     <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/last-stone-weight/question?list=neetcode150 돌멩이를 최대한 깨서 남는 것을 구하라. 푸는 방법 우선순위 큐를 Max_Heap으로 설정하고 가장 큰 놈을 두 개 뽑은 뒤 if 문으로 연산하면 된다. 다음은 코드이다. class Solution { public: priority_queue&amp;lt;int&amp;gt; pq; int lastStoneWeight(vector&amp;lt;int&amp;gt;&amp;amp; stones) …</description>
+    <description>서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸는 방법 당연히 sort를 하면 풀린다. 다음은 코드이다 class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { sort(nums.rbegin(), nums.rend()); return nums[k-1]; } }; 물론 이렇게 하라고 만든 것이 …</description>
   </item>
   <item>
     <title>2026-07-20</title>
@@ -85,13 +85,13 @@
     <description>서론 | https://neetcode.io/problems/k-closest-points-to-origin/question?list=neetcode150 원점이랑 가까운 k개의 점들을 반환하라 푸는 방법 처음에 k번째인 데 겹치는 동일한 값에 대해서는 따로 처리해야 하는 줄 알아서 온갖 복잡한 짓을 다해봤다. 근데 그게 아니라, k개를 전부 반환하기만 하면 되더라. 그러면 간단하게 …</description>
   </item>
   <item>
-    <title>N-Queens</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/N-Queens.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/N-Queens.html</guid>
-    <pubDate>Sat, 18 Jul 2026 00:00:00 +0900</pubDate>
+    <title>Last Stone Weight</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Last Stone Weight.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Last Stone Weight.html</guid>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
-    <category>백트래킹</category>
-    <description>서론 | https://neetcode.io/problems/n-queens/question?list=neetcode150 N Queens를 풀어라. 푸는 방법 백트래킹의 아주 정석적인 문제인 N-Queens가 나왔다. 푸는 방법은 하나하나 정직하게 체크하면서 가면 된다. 다음은 코드이다. class Solution { vector&amp;lt;bool&amp;gt; cols, diag1, diag2; void dfs(int row, int n, vector&amp;lt;int&amp;gt;&amp;amp; tracking, vector&amp;lt…</description>
+    <category>우선순위큐</category>
+    <description>서론 | https://neetcode.io/problems/last-stone-weight/question?list=neetcode150 돌멩이를 최대한 깨서 남는 것을 구하라. 푸는 방법 우선순위 큐를 Max_Heap으로 설정하고 가장 큰 놈을 두 개 뽑은 뒤 if 문으로 연산하면 된다. 다음은 코드이다. class Solution { public: priority_queue&amp;lt;int&amp;gt; pq; int lastStoneWeight(vector&amp;lt;int&amp;gt;&amp;amp; stones) …</description>
   </item>
   <item>
     <title>Letter Combinations of a Phone Number</title>
@@ -101,6 +101,15 @@
     <category>ps</category>
     <category>백트래킹</category>
     <description>서론 | https://neetcode.io/problems/combinations-of-a-phone-number/question?list=neetcode150 핸드폰 번호가 주어졌을 때, 가능한 경우를 구하시오 푸는 방법 단순하게 문자열을 저장하는 array를 하나 세우고 이를 만날 때마다 탐색하면 된다. 가지치기도 필요없이 정직하게 백트래킹으로 풀면된다. 다음은 코드이다. class Solut…</description>
+  </item>
+  <item>
+    <title>N-Queens</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/N-Queens.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/N-Queens.html</guid>
+    <pubDate>Sat, 18 Jul 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>백트래킹</category>
+    <description>서론 | https://neetcode.io/problems/n-queens/question?list=neetcode150 N Queens를 풀어라. 푸는 방법 백트래킹의 아주 정석적인 문제인 N-Queens가 나왔다. 푸는 방법은 하나하나 정직하게 체크하면서 가면 된다. 다음은 코드이다. class Solution { vector&amp;lt;bool&amp;gt; cols, diag1, diag2; void dfs(int row, int n, vector&amp;lt;int&amp;gt;&amp;amp; tracking, vector&amp;lt…</description>
   </item>
   <item>
     <title>Palindrome Partitioning</title>
@@ -130,15 +139,6 @@
     <description>서론 | https://neetcode.io/problems/generate-parentheses/question?list=neetcode150 n개의 유효한 소괄호 조합을 찾아라. 푸는 방법 괄호하면 바로 스택이 생각나게 된다. 스택의 맨 위가 열린 괄호라면 열거나 닫는 동작이 가능하고, 아무것도 없을 시에는 여는 동작만 가능하다. 또한 닫았을 때는 여는 괄호 하나를 pop해준…</description>
   </item>
   <item>
-    <title>Subsets II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets II.html</guid>
-    <pubDate>Wed, 15 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>백트래킹</category>
-    <description>서론 | https://neetcode.io/problems/subsets-ii/question?list=neetcode150 배열의 조합을 전부 구하라 푸는 방법 다른 백트래킹과 동일한데, result에 넣는 조건이 없다는 것이 차이점이다. for문으로 돌면서 dfs를 진행하는데, 될 때마다 result에 푸쉬해준다. 다음은 코드이다. class Solution {     int size;     vector&amp;lt;vector&amp;lt;int&amp;g…</description>
-  </item>
-  <item>
     <title>Permutations</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Permutations.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Permutations.html</guid>
@@ -146,6 +146,15 @@
     <category>ps</category>
     <category>백트래킹</category>
     <description>서론 | https://neetcode.io/problems/permutations/question?list=neetcode150 주어진 배열의 순열을 구하라. 푸는 방법 정석적으로는 자기 자신과 i번째 칸에 있는 친구를 swap하고 dfs를 진행한 다음 swap을 원상복구 시켜놓은 다음, i += 1을 한다. 즉, 숫자를 계속 바꿔가면서 트리를 만든다고 생각하는 것이다. 하지만, c++에는…</description>
+  </item>
+  <item>
+    <title>Subsets II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets II.html</guid>
+    <pubDate>Wed, 15 Jul 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>백트래킹</category>
+    <description>서론 | https://neetcode.io/problems/subsets-ii/question?list=neetcode150 배열의 조합을 전부 구하라 푸는 방법 다른 백트래킹과 동일한데, result에 넣는 조건이 없다는 것이 차이점이다. for문으로 돌면서 dfs를 진행하는데, 될 때마다 result에 푸쉬해준다. 다음은 코드이다. class Solution {     int size;     vector&amp;lt;vector&amp;lt;int&amp;g…</description>
   </item>
   <item>
     <title>Combination Sum II</title>
@@ -157,15 +166,6 @@
     <description>서론 | https://neetcode.io/problems/combination-target-sum-ii/question 배열에서 target을 만들 수 있는 조합을 찾으시오 푸는 방법 주어진 배열(candidates)에서 중복된 값이 있을 수 있어 어려운 문제이다. 1 2 2 2 2 3 이란 배열이 있을 때, 2를 여러번 사용은 가능하지만 동일 개수에 대해서는 한 번만 카운팅 해야 한다. 당연…</description>
   </item>
   <item>
-    <title>Combination Sum</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Combination Sum.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Combination Sum.html</guid>
-    <pubDate>Mon, 13 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>백트래킹</category>
-    <description>서론 | https://neetcode.io/problems/combination-target-sum/question 중복 조합으로 target을 만드는 경우를 찾아라. 푸는 방법 백트래킹으로 작성하면 풀린다. 나는 하나의 index에서 넣을 수 있는 모든 가능성을 시도해보는 식으로 접근했다. 예를 들어 처음이 2라는 값을 가지고 목표 값이 9라고 했을 때, 0 - dfs 2 - dfs 4 - df…</description>
-  </item>
-  <item>
     <title>Subsets</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets.html</guid>
@@ -175,14 +175,13 @@
     <description>서론 | https://neetcode.io/problems/subsets/question?list=neetcode150 가능한 모든 조합을 구하라 푸는 방법 정석적인 백트래킹으로 풀면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; subsets(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int size = nums.size(); vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; result; auto dfs = [&amp;amp;] (auto&amp;amp; self, int now) -…</description>
   </item>
   <item>
-    <title>Word Search II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Tries/Word Search II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Tries/Word Search II.html</guid>
-    <pubDate>Sun, 12 Jul 2026 00:00:00 +0900</pubDate>
+    <title>Combination Sum</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Combination Sum.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Combination Sum.html</guid>
+    <pubDate>Mon, 13 Jul 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
-    <category>trie</category>
-    <category>트리</category>
-    <description>서론 | https://neetcode.io/problems/search-for-word-ii/question 단어 목록 중 2차원 배열을 순회하며 만들 수 있는 단어를 찾아라 푸는 방법 Trie를 무얼로 구성할 지가 중요한 문제이다. 주어진 words를 Trie로 구성한 다음에 board의 각 모든 점에서 출발하는 dfs를 구성하면 풀 수 있다. 다음은 코드이다. struct Node { Node* chil…</description>
+    <category>백트래킹</category>
+    <description>서론 | https://neetcode.io/problems/combination-target-sum/question 중복 조합으로 target을 만드는 경우를 찾아라. 푸는 방법 백트래킹으로 작성하면 풀린다. 나는 하나의 index에서 넣을 수 있는 모든 가능성을 시도해보는 식으로 접근했다. 예를 들어 처음이 2라는 값을 가지고 목표 값이 9라고 했을 때, 0 - dfs 2 - dfs 4 - df…</description>
   </item>
 </channel>
 </rss>
