@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Max Area of Island</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Max Area of Island.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Max Area of Island.html</guid>
+    <pubDate>Fri, 24 Jul 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>그래프</category>
+    <description>서론 | https://neetcode.io/problems/max-area-of-island/question 가장 큰 섬을 찾아라 푸는 방법 Number of Islands 위 문제에서 섬 크기를 세주는 코드만 작성하면 된다. 다음은 코드이다. class Solution { public: int maxAreaOfIsland(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid) { vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; int m = grid…</description>
+  </item>
+  <item>
     <title>Number of Islands</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</guid>
@@ -14,6 +23,14 @@
     <category>ps</category>
     <category>그래프</category>
     <description>서론 | https://neetcode.io/problems/count-number-of-islands/question 섬을 찾아라 푸는 방법 BFS로 풀면 된다. 다음은 코드이다. class Solution { private: vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; public: bool is_possible(int nx, int ny, int m, int n) { return (nx &amp;lt; m &amp;amp;&amp;amp; nx &amp;gt;= 0 &amp;amp;&amp;amp; ny &amp;lt; n &amp;amp;&amp;amp; ny &amp;gt;= 0); } int nu…</description>
+  </item>
+  <item>
+    <title>2026-07-23</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-23.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-23.html</guid>
+    <pubDate>Thu, 23 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>AI 시대의 아키텍쳐 그리기 AI가 너무 발전하다 보니까 수업에서 배운 지루한 아키텍쳐들을 굳이 만들어야 하나 싶었다. 개발자면 우당탕탕 개발 하면서 커버칠 수 있을 거라 생각했다. 이게 마음이 잘 맞는 애랑 했을 때 됐던 거였더라. 생각하는 게 비슷하면 이게 잘 되는데 생각이 다르니까 소통하는데…</description>
   </item>
   <item>
     <title>Design Twitter</title>
@@ -68,14 +85,6 @@
     <description>서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸는 방법 당연히 sort를 하면 풀린다. 다음은 코드이다 class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { sort(nums.rbegin(), nums.rend()); return nums[k-1]; } }; 물론 이렇게 하라고 만든 것이 …</description>
   </item>
   <item>
-    <title>2026-07-20</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-20.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-20.html</guid>
-    <pubDate>Mon, 20 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>Flyway 데이터베이스 마이그레이션 툴이다. 개발을 진행하다 보면 DB 스키마가 종종 바뀔 때가 있다. 전 플젝의 경우 한 이슈당 여러번 바뀐 경우도 있었다. 문제는 이걸 migration 폴더에 기록은 해두는 데 이를 하나하나 실행해야 한다는 단점과 만약 다른 레포에서 지가 알아서 migration을 만들 경우 그냥 충…</description>
-  </item>
-  <item>
     <title>K Closest Points to Origin</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html</guid>
@@ -83,6 +92,14 @@
     <category>ps</category>
     <category>우선순위큐</category>
     <description>서론 | https://neetcode.io/problems/k-closest-points-to-origin/question?list=neetcode150 원점이랑 가까운 k개의 점들을 반환하라 푸는 방법 처음에 k번째인 데 겹치는 동일한 값에 대해서는 따로 처리해야 하는 줄 알아서 온갖 복잡한 짓을 다해봤다. 근데 그게 아니라, k개를 전부 반환하기만 하면 되더라. 그러면 간단하게 …</description>
+  </item>
+  <item>
+    <title>2026-07-20</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-20.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-20.html</guid>
+    <pubDate>Mon, 20 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>Flyway 데이터베이스 마이그레이션 툴이다. 개발을 진행하다 보면 DB 스키마가 종종 바뀔 때가 있다. 전 플젝의 경우 한 이슈당 여러번 바뀐 경우도 있었다. 문제는 이걸 migration 폴더에 기록은 해두는 데 이를 하나하나 실행해야 한다는 단점과 만약 다른 레포에서 지가 알아서 migration을 만들 경우 그냥 충…</description>
   </item>
   <item>
     <title>Last Stone Weight</title>
@@ -164,24 +181,6 @@
     <category>ps</category>
     <category>백트래킹</category>
     <description>서론 | https://neetcode.io/problems/combination-target-sum-ii/question 배열에서 target을 만들 수 있는 조합을 찾으시오 푸는 방법 주어진 배열(candidates)에서 중복된 값이 있을 수 있어 어려운 문제이다. 1 2 2 2 2 3 이란 배열이 있을 때, 2를 여러번 사용은 가능하지만 동일 개수에 대해서는 한 번만 카운팅 해야 한다. 당연…</description>
-  </item>
-  <item>
-    <title>Subsets</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Subsets.html</guid>
-    <pubDate>Mon, 13 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>백트래킹</category>
-    <description>서론 | https://neetcode.io/problems/subsets/question?list=neetcode150 가능한 모든 조합을 구하라 푸는 방법 정석적인 백트래킹으로 풀면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; subsets(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int size = nums.size(); vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; result; auto dfs = [&amp;amp;] (auto&amp;amp; self, int now) -…</description>
-  </item>
-  <item>
-    <title>Combination Sum</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Combination Sum.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Combination Sum.html</guid>
-    <pubDate>Mon, 13 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>백트래킹</category>
-    <description>서론 | https://neetcode.io/problems/combination-target-sum/question 중복 조합으로 target을 만드는 경우를 찾아라. 푸는 방법 백트래킹으로 작성하면 풀린다. 나는 하나의 index에서 넣을 수 있는 모든 가능성을 시도해보는 식으로 접근했다. 예를 들어 처음이 2라는 값을 가지고 목표 값이 9라고 했을 때, 0 - dfs 2 - dfs 4 - df…</description>
   </item>
 </channel>
 </rss>

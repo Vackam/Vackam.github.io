@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number of Islands &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/count-number-of-islands/question 섬을 찾아라 푸는 방법 BFS로 풀면 된다. 다음은 코드이다. cl…">
+    <title>Max Area of Island &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/max-area-of-island/question 가장 큰 섬을 찾아라 푸는 방법 Number of Islands 위 문제에서 섬 크…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,84 +18,82 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Number of Islands</h1>
-    <p class="meta">2026-07-23 <span class="tag">ps</span><span class="tag">그래프</span></p>
+    <h1>Max Area of Island</h1>
+    <p class="meta">2026-07-24 <span class="tag">ps</span><span class="tag">그래프</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/count-number-of-islands/question</p>
-<p>섬을 찾아라</p>
+<p>| https://neetcode.io/problems/max-area-of-island/question</p>
+<p>가장 큰 섬을 찾아라</p>
 
 <h1>푸는 방법</h1>
-<p>BFS로 풀면 된다.</p>
+<p><a href="../../../../posts/Study/NeetCode/Graph/Number of Islands.html">Number of Islands</a></p>
+
+<p>위 문제에서 섬 크기를 세주는 코드만 작성하면 된다.</p>
 
 <p>다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
-private:
-    vector&lt;int&gt; dx = {1, -1, 0, 0};
-    vector&lt;int&gt; dy = {0, 0, 1, -1};
 public:
-    bool is_possible(int nx, int ny, int m, int n) {
-        return (nx &lt; m &amp;&amp; nx &gt;= 0 &amp;&amp; ny &lt; n &amp;&amp; ny &gt;= 0);
-    }
-    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid) {
-        int m, n;
+    int maxAreaOfIsland(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        vector&lt;int&gt; dx = {1, -1, 0, 0};    
+        vector&lt;int&gt; dy = {0, 0, 1, -1};    
 
-        m = grid.size();
-        n = grid[0].size();
+        int m = grid.size();
+        int n = grid[0].size();
 
-        vector&lt;vector&lt;bool&gt;&gt; visited(m, vector&lt;bool&gt;(n, false));
+        auto check = [&amp;](int x, int y){
+            return (x &gt;= 0 &amp;&amp; x &lt; m &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; n);
+        };
 
         int result = 0;
 
         for (int i=0; i&lt;m; ++i) {
             for (int j=0; j&lt;n; ++j) {
-                if (visited[i][j]) continue;
+                if (grid[i][j] == 0) continue;
 
-                if (grid[i][j] == '1') {
-                    result++;
+                if (grid[i][j] == 1) {
+                    int size = 0;
                     queue&lt;pair&lt;int, int&gt;&gt; q;
                     q.push({i, j});
-
-                    visited[i][j] = true;
+                    grid[i][j] = 0;
 
                     while (!q.empty()) {
+                        size++;
+
                         auto a = q.front();
                         q.pop();
 
-                        for (int i=0; i&lt;4; ++i) {
-                            int nx = a.first + dx[i];
-                            int ny = a.second + dy[i];
-
-                            if (is_possible(nx, ny, m, n) &amp;&amp; !visited[nx][ny] &amp;&amp; grid[nx][ny] == '1') {
+                        for (int k=0; k&lt;4; ++k) {
+                            int nx = a.first + dx[k];
+                            int ny = a.second + dy[k];
+                            if (check(nx, ny) &amp;&amp; grid[nx][ny] == 1) {
                                 q.push({nx, ny});
-                                visited[nx][ny] = true;
-                            }
+                                grid[nx][ny] = 0;
+                            } 
                         }
                     }
-                }
 
-                else visited[i][j] = true;
+                    if (size &gt; result) result = size;
+                }
             }
-        }    
+        }
 
         return result;
     }
 };
-
 </code></pre>
 
 <h1>결론</h1>
-<p>아주 단순한 bfs 문제이다.</p>
+<p>그냥 풀자.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span></span><span><a href="../../../../posts/Study/NeetCode/Graph/Max Area of Island.html">&larr; Max Area of Island</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Number of Islands.html">Number of Islands &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
