@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Graph &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/clone-graph/question?list=neetcode150 그래프를 딥카피 해라. 푸는 방법 성실하게 딥카피 하면…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Clone Graph</h1>
+    <p class="meta">2026-07-25 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/clone-graph/question?list=neetcode150</p>
+<p>그래프를 딥카피 해라.</p>
+
+<h1>푸는 방법</h1>
+<p>성실하게 딥카피 하면 된다.</p>
+<p>다만, 자신의 이웃처리를 중복 생성하지 않고 기억하기 위해 기억하는 배열을 하나 추가하는 것이 핵심이다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">
+class Solution {
+public:
+    Node* cloneGraph(Node* node) {
+        if (node == nullptr) return nullptr;
+        Node* root = new Node(node-&gt;val);
+
+        vector&lt;bool&gt; visited(101, false);
+        vector&lt;Node*&gt; rem(101, nullptr);
+
+        auto dfs = [&amp;](auto&amp; self, Node* node, Node* deep_copy) -&gt; void {
+            // 들어왔을 때는 동일한 노드가 들어온다고 가정. 즉 이미 처리함. 이웃만 처리해주기
+
+            visited[node-&gt;val] = true;
+            rem[node-&gt;val] = deep_copy;
+            
+            vector&lt;Node*&gt; nei;
+            for (auto&amp; a : node-&gt;neighbors) {
+                if (visited[a-&gt;val]) {
+                    nei.push_back(rem[a-&gt;val]);
+                    continue;
+                };
+
+                Node* new_node = new Node(a-&gt;val); // 일단 만들고
+                self(self, a, new_node); // 돌려서 nei 다 추가한 다음.
+                nei.push_back(new_node); // 결과에 추가해주자. 
+            }
+
+            deep_copy-&gt;neighbors = nei;
+        };
+
+        dfs(dfs, node, root);
+
+        return root;
+    }
+};
+</code></pre>
+
+<p>사실 여기서 visited와 rem 역할이 겹치기 때문에 rem 하나만 사용해도 가능하다. </p>
+
+<h1>결론</h1>
+<p>그래프 탐색하는 기초에 대한 문제이다.</p>
+
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Max Area of Island.html">Max Area of Island &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

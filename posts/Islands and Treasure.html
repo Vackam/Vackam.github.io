@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islands and Treasure &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150 보물에 도착할 수 있는 최소 거리를 구하라 푸는 …">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../posts.html">&larr; back</a></p>
+
+    <h1>Islands and Treasure</h1>
+    <p class="meta">2026-07-25 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150</p>
+<p>보물에 도착할 수 있는 최소 거리를 구하라</p>
+
+<h1>푸는 방법</h1>
+<p>성실하게 bfs로 탐색해 주면 된다.</p>
+<p>뭔가 단순 덧셈으로 푸는 방식이 있어서 이상한 INF 값으로 막아둔 것 같은데, bfs로 성실하게 풀면 바로 풀린다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">constexpr int INF = 2147483647;
+
+class Solution {
+public:
+    void islandsAndTreasure(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int m = grid.size();
+        int n = grid[0].size();
+
+        vector&lt;int&gt; dx = {1, -1, 0, 0};
+        vector&lt;int&gt; dy = {0, 0, 1, -1};
+
+        queue&lt;pair&lt;int, int&gt;&gt; q;
+
+        for (int i=0; i&lt;m; ++i) {
+            for (int j=0; j&lt;n; ++j) {
+                if (grid[i][j] == 0) {
+                    q.push({i, j});
+                }
+            }
+        }
+
+        int kan = 0;
+        while(!q.empty()) {
+            kan++;
+            int size = q.size();
+
+            for (int i=0; i&lt;size; ++i) {
+                auto a = q.front();
+                q.pop();
+
+                for (int j=0; j&lt;4; ++j) {
+                    int nx = a.first + dx[j];
+                    int ny = a.second + dy[j];
+
+                    if (
+                        nx &gt;= 0 &amp;&amp; nx &lt; m &amp;&amp;
+                        ny &gt;= 0 &amp;&amp; ny &lt; n &amp;&amp;
+                        grid[nx][ny] == INF
+                    ) {
+                        q.push({nx, ny});
+                        grid[nx][ny] = kan;
+                    }
+                }                
+            } 
+        }
+
+        return;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>INF라고 문제에서 설명해주길래 상수 취급을 어떻게 해줬나 싶었더니만 처리를 안해놔서 직접 constexpr로 정의했다.</p>
+<p>이런 문제들은 그래프 쪽이 아니라 탐색 쪽으로 가야하는 게 아닐까? 싶다.</p>
+
+    </article>
+
+    <hr>
+
+    
+
+    <p><a href="../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
