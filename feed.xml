@@ -16,6 +16,14 @@
     <description>서론 | https://neetcode.io/problems/surrounded-regions/question 바둑처럼 상대편을 먹었을 때 오셀로처럼 뒤집어라. 푸는 방법 새로운 벡터를 만드는 것이 아니고 참조로 받은 보드를 반환하기에 visited 배열처럼 사용하면 된다. 바깥쪽에 위치안 O를 기준으로 bfs 탐색을 하면 된다. 바깥에서 탐색해서 이어진 곳을 \&apos;#\&apos;…</description>
   </item>
   <item>
+    <title>2026-07-28</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-28.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-28.html</guid>
+    <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>도커에 관하여 프로젝트에서 ghcr에 이미지를 올린 다음 개발 서버에서 땡겨서 컨테이너를 만들어 사용하려고 했는데 이해가 안되는 부분들이 많았다. docker compose는 언제 쓰는 것일까? 그거를 해결하기 위해 다음과 같이 공부를 해보았다. 이미지는 무엇일까? 이미지는 파일시스템을 쌓아놓은 것이다. 실…</description>
+  </item>
+  <item>
     <title>Pacific Atlantic Water Flow</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Pacific Atlantic Water Flow.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Pacific Atlantic Water Flow.html</guid>
@@ -60,6 +68,14 @@
     <description>서론 | https://neetcode.io/problems/max-area-of-island/question 가장 큰 섬을 찾아라 푸는 방법 Number of Islands 위 문제에서 섬 크기를 세주는 코드만 작성하면 된다. 다음은 코드이다. class Solution { public: int maxAreaOfIsland(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid) { vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; int m = grid…</description>
   </item>
   <item>
+    <title>2026-07-23</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-23.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-23.html</guid>
+    <pubDate>Thu, 23 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>AI 시대의 아키텍쳐 그리기 AI가 너무 발전하다 보니까 수업에서 배운 지루한 아키텍쳐들을 굳이 만들어야 하나 싶었다. 개발자면 우당탕탕 개발 하면서 커버칠 수 있을 거라 생각했다. 이게 마음이 잘 맞는 애랑 했을 때 됐던 거였더라. 생각하는 게 비슷하면 이게 잘 되는데 생각이 다르니까 소통하는데…</description>
+  </item>
+  <item>
     <title>Number of Islands</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</guid>
@@ -67,14 +83,6 @@
     <category>ps</category>
     <category>그래프</category>
     <description>서론 | https://neetcode.io/problems/count-number-of-islands/question 섬을 찾아라 푸는 방법 BFS로 풀면 된다. 다음은 코드이다. class Solution { private: vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; public: bool is_possible(int nx, int ny, int m, int n) { return (nx &amp;lt; m &amp;amp;&amp;amp; nx &amp;gt;= 0 &amp;amp;&amp;amp; ny &amp;lt; n &amp;amp;&amp;amp; ny &amp;gt;= 0); } int nu…</description>
-  </item>
-  <item>
-    <title>2026-07-23</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-23.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-23.html</guid>
-    <pubDate>Thu, 23 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>AI 시대의 아키텍쳐 그리기 AI가 너무 발전하다 보니까 수업에서 배운 지루한 아키텍쳐들을 굳이 만들어야 하나 싶었다. 개발자면 우당탕탕 개발 하면서 커버칠 수 있을 거라 생각했다. 이게 마음이 잘 맞는 애랑 했을 때 됐던 거였더라. 생각하는 게 비슷하면 이게 잘 되는데 생각이 다르니까 소통하는데…</description>
   </item>
   <item>
     <title>Find Median From Data Stream</title>
@@ -86,6 +94,15 @@
     <description>서론 | https://neetcode.io/problems/find-median-in-a-data-stream/question?list=neetcode150 중앙값을 찾아라 푸는 방법 가장 간단한 방법은 정렬해서 중앙값을 찾는 것이다. 당연히 각 시도마다 O(nlogn)의 시간 복잡도를 가진다. 여기서 원하는 풀이는 아마도 두 개의 힙을 세우는 것이다 low heap과 max heap을 세워서 편하게 찾는 …</description>
   </item>
   <item>
+    <title>Design Twitter</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Design Twitter.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Design Twitter.html</guid>
+    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>우선순위큐</category>
+    <description>서론 | https://neetcode.io/problems/design-twitter-feed/question?list=neetcode150 트위터 비슷한 기능을 만들어라. 푸는 방법 제일 중요한 풀이는 내가 팔로잉한 사람들의 최신 것까지 반영하여 출력하는 getNewsFeed를 만드는 것이다. 단순하게 사람마다 게시물을 시간순으로 정리하는 우선순위큐를 세워주고 팔로잉 목록에…</description>
+  </item>
+  <item>
     <title>2026-07-22</title>
     <link>https://vackam.github.io/posts/Daily/7월/2026-07-22.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-22.html</guid>
@@ -94,13 +111,14 @@
     <description>html 자료 공유에 대해서 요새 AI를 통해 공부를 하거나 회의를 할 때 html로 자료를 작성하는 경우가 많아졌다. 물론 한 번에 잘 뽑아내지 못하고 이상한 내용들을 넣는 경우가 있어서 수정을 가해야 하긴 하지만 시각화가 너무 편리해서 계속 사용하고 있다. 문득 그런 생각이 들었는데, 사실 AI가 나오기 …</description>
   </item>
   <item>
-    <title>Design Twitter</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Design Twitter.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Design Twitter.html</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
+    <title>Kth Largest Element in an Array</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</guid>
+    <pubDate>Tue, 21 Jul 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
+    <category>힙</category>
     <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/design-twitter-feed/question?list=neetcode150 트위터 비슷한 기능을 만들어라. 푸는 방법 제일 중요한 풀이는 내가 팔로잉한 사람들의 최신 것까지 반영하여 출력하는 getNewsFeed를 만드는 것이다. 단순하게 사람마다 게시물을 시간순으로 정리하는 우선순위큐를 세워주고 팔로잉 목록에…</description>
+    <description>서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸는 방법 당연히 sort를 하면 풀린다. 다음은 코드이다 class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { sort(nums.rbegin(), nums.rend()); return nums[k-1]; } }; 물론 이렇게 하라고 만든 것이 …</description>
   </item>
   <item>
     <title>2026-07-21</title>
@@ -119,23 +137,12 @@
     <description>서론 | https://neetcode.io/problems/task-scheduling/question cpu 스케쥴러를 작성하라. 대신 같은 작업을 바로 반복할 수 없다. 푸는 방법 생각해보면 가장 많이 나오는 친구를 기준으로 판별하면 된다. 문제 예제 중 AAABBC에 k=3인 경우를 생각해보자. A _ _ | A _ _ | A 이 구조는 우선 확정이다. 이후 B와 C를 걸리지 않게만 …</description>
   </item>
   <item>
-    <title>Kth Largest Element in an Array</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Kth Largest Element in an Array.html</guid>
-    <pubDate>Tue, 21 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>힙</category>
-    <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸는 방법 당연히 sort를 하면 풀린다. 다음은 코드이다 class Solution { public: int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { sort(nums.rbegin(), nums.rend()); return nums[k-1]; } }; 물론 이렇게 하라고 만든 것이 …</description>
-  </item>
-  <item>
-    <title>K Closest Points to Origin</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html</guid>
+    <title>2026-07-20</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-20.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-20.html</guid>
     <pubDate>Mon, 20 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/k-closest-points-to-origin/question?list=neetcode150 원점이랑 가까운 k개의 점들을 반환하라 푸는 방법 처음에 k번째인 데 겹치는 동일한 값에 대해서는 따로 처리해야 하는 줄 알아서 온갖 복잡한 짓을 다해봤다. 근데 그게 아니라, k개를 전부 반환하기만 하면 되더라. 그러면 간단하게 …</description>
+    <category>데일리</category>
+    <description>Flyway 데이터베이스 마이그레이션 툴이다. 개발을 진행하다 보면 DB 스키마가 종종 바뀔 때가 있다. 전 플젝의 경우 한 이슈당 여러번 바뀐 경우도 있었다. 문제는 이걸 migration 폴더에 기록은 해두는 데 이를 하나하나 실행해야 한다는 단점과 만약 다른 레포에서 지가 알아서 migration을 만들 경우 그냥 충…</description>
   </item>
   <item>
     <title>Last Stone Weight</title>
@@ -147,12 +154,13 @@
     <description>서론 | https://neetcode.io/problems/last-stone-weight/question?list=neetcode150 돌멩이를 최대한 깨서 남는 것을 구하라. 푸는 방법 우선순위 큐를 Max_Heap으로 설정하고 가장 큰 놈을 두 개 뽑은 뒤 if 문으로 연산하면 된다. 다음은 코드이다. class Solution { public: priority_queue&amp;lt;int&amp;gt; pq; int lastStoneWeight(vector&amp;lt;int&amp;gt;&amp;amp; stones) …</description>
   </item>
   <item>
-    <title>2026-07-20</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-20.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-20.html</guid>
+    <title>K Closest Points to Origin</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html</guid>
     <pubDate>Mon, 20 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>Flyway 데이터베이스 마이그레이션 툴이다. 개발을 진행하다 보면 DB 스키마가 종종 바뀔 때가 있다. 전 플젝의 경우 한 이슈당 여러번 바뀐 경우도 있었다. 문제는 이걸 migration 폴더에 기록은 해두는 데 이를 하나하나 실행해야 한다는 단점과 만약 다른 레포에서 지가 알아서 migration을 만들 경우 그냥 충…</description>
+    <category>ps</category>
+    <category>우선순위큐</category>
+    <description>서론 | https://neetcode.io/problems/k-closest-points-to-origin/question?list=neetcode150 원점이랑 가까운 k개의 점들을 반환하라 푸는 방법 처음에 k번째인 데 겹치는 동일한 값에 대해서는 따로 처리해야 하는 줄 알아서 온갖 복잡한 짓을 다해봤다. 근데 그게 아니라, k개를 전부 반환하기만 하면 되더라. 그러면 간단하게 …</description>
   </item>
   <item>
     <title>Letter Combinations of a Phone Number</title>
@@ -171,15 +179,6 @@
     <category>ps</category>
     <category>백트래킹</category>
     <description>서론 | https://neetcode.io/problems/n-queens/question?list=neetcode150 N Queens를 풀어라. 푸는 방법 백트래킹의 아주 정석적인 문제인 N-Queens가 나왔다. 푸는 방법은 하나하나 정직하게 체크하면서 가면 된다. 다음은 코드이다. class Solution { vector&amp;lt;bool&amp;gt; cols, diag1, diag2; void dfs(int row, int n, vector&amp;lt;int&amp;gt;&amp;amp; tracking, vector&amp;lt…</description>
-  </item>
-  <item>
-    <title>Palindrome Partitioning</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Backtracking/Palindrome Partitioning.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Backtracking/Palindrome Partitioning.html</guid>
-    <pubDate>Fri, 17 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>백트래킹</category>
-    <description>서론 | https://neetcode.io/problems/palindrome-partitioning/question 주어진 문자열을 잘랐을 때 나올 수 있는 모든 팰린드롬을 구하라. 푸는 방법 칸막이 방식을 생각하면 된다. n번째까지 보고 칸막이를 세운 다음 그 다음부터 또 자를 준비를 한다. 이거를 구현하는 방법은 아주 단순하게 칸막이를 세우고 dfs를 호출…</description>
   </item>
 </channel>
 </rss>

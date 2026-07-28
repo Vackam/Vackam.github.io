@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-07-28 &mdash; devlog</title>
+    <meta name="description" content="도커에 관하여 프로젝트에서 ghcr에 이미지를 올린 다음 개발 서버에서 땡겨서 컨테이너를 만들어 사용하려고 했…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>2026-07-28</h1>
+    <p class="meta">2026-07-28 <span class="tag">데일리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>도커에 관하여</h1>
+<p>프로젝트에서 ghcr에 이미지를 올린 다음 개발 서버에서 땡겨서 컨테이너를 만들어 사용하려고 했는데 이해가 안되는 부분들이 많았다. docker compose는 언제 쓰는 것일까? 그거를 해결하기 위해 다음과 같이 공부를 해보았다.</p>
+
+<p>이미지는 무엇일까? </p>
+<p>이미지는 파일시스템을 쌓아놓은 것이다. 실행에 필요한 전부를 압축 파일로 담아 보내는 것인데, 단순 압축과 다른 점은 필요한 프로그램을 버전 그대로 동봉하고, 실행 설명서가 이미지 자체에 저장되며, 받는 쪽 PC에 뭐가 있든 상관없도록 격리된 공간에 풀어서 실행된다.</p>
+
+<p>그리고 이미지는 여러 이미지 위에 올라갈 수 있다. 자바 이미지 위에 우리 프로젝트 이미지 위에 모듈 이미지... 이런 식으로 구성이 가능하다. 이미지는 불변이라는 속성을 가지는 데, 자바 이미지는 다같이 공유하는데 자바가 변해버리면 실행이 전부 안될 수 있으므로 불변을 가져야 한다.</p>
+
+<p>그래서 이 이미지를 실행 인스턴스로 만든 게 컨테이너이다.</p>
+
+<p>이미지는 Dockerfile로 만들 수 있다.</p>
+
+<p>docker compose 파일을 컨테이너를 만들 때 명령어가 엄청 길어지는 데 이를 하나의 파일로 정리하기 위해서 사용하는 것이다.</p>
+
+<h1>CORS</h1>
+<p>많이 들었지만 아무것도 모르는 코스이다.</p>
+<p>Cross-Origin Resource Sharing이라는 뜻으로 다른 출처로의 요청을 통제하는 보안 규칙이다. 출처는 프로토콜 + 도메인 + 포트 조합이고 이 중 하나라도 다르면 다른 출처라고 판별한다.</p>
+
+<p>그래서 이것을 활용해 자기가 아닌 서버의 요청을 차단해버리는 것이다. 로컬에서 서버로 뿌릴 때 해당 설정이 필수이다.</p>
+
+<h1>Nginx</h1>
+<p>나는 이 친구를 리버스 프록시 역할을 하게 하는데, 문득 같은 포트인데 아예 다른 서버 요청을 어떻게 처리하는 지 궁금했다.</p>
+
+<p>이는 아주 단순한데, 경로를 기준으로 제끼는 것이다.</p>
+<p>예를 들어</p>
+
+<p>/api -> 서버 호출 -> 8080 호출 해야함</p>
+<p>/dashboard -> 대시보드 뷰 호출 -> 8081 호출 해야함</p>
+
+<p>이렇게 길을 찾고 해당 포트로 접속할 수 있게 해주는 것이다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Daily/7월/2026-07-23.html">2026-07-23 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
