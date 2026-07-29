@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Schedule &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/course-schedule/question?list=neetcode150 선수 과목 목록이 주어질 때 강의를 수강할 수 있는 …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Course Schedule</h1>
+    <p class="meta">2026-07-29 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/course-schedule/question?list=neetcode150</p>
+<p>선수 과목 목록이 주어질 때 강의를 수강할 수 있는 지 확인하라.</p>
+
+<h1>푸는 방법</h1>
+<p>위상 정렬을 활용하면 된다.</p>
+<p>어렸을 때, "난 쟤보다 빠르고 쟤보단 느려"가 엄청 많아서 그럼 누가 1등인가? 하는 문제를 봤을 것이다. 그것과 아주 동일한 문제이다.</p>
+<p>A가 B보다 앞선다는 것은 Directed Graph로 표현할 수 있다.</p>
+<p>즉, 앞선 정보만 모아서 그래프로 표현하고, 이를 하나하나씩 풀어나가면 된다.</p>
+<p>단, 이 문제에서는 말도 안되는 loop가 생길 수도 있다. 그래서 counter로 노드의 개수를 세어가며 진행했다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) {
+        vector&lt;vector&lt;int&gt;&gt; adj(numCourses);
+        vector&lt;int&gt; in_degree(numCourses, 0);
+
+        // first 가 나중에 들어도 되고, second가 선수과목
+        for (auto&amp; a : prerequisites) {
+            adj[a[1]].emplace_back(a[0]);
+            in_degree[a[0]]++;
+        }
+
+        queue&lt;int&gt; q;
+        for (int i=0; i&lt;numCourses; ++i) {
+            if (in_degree[i] == 0) q.push(i);
+        }
+
+        int counter = 0;
+        while (!q.empty()) {
+            int c = q.front(); q.pop();
+            counter++;
+            for (int n : adj[c]) {
+                in_degree[n]--;
+                if (in_degree[n] == 0) q.push(n);
+            }
+        }
+
+        if (counter != numCourses) return false;
+        return true;
+    }
+};
+</code></pre>
+
+<p>인접 리스트를 만들어 준 후, 방향 그래프에서 들어오는 간선이 없는 노드만 집어낸다. 이후 이 노드를 삭제해가면서 계속 찾다 보면 끝에 까지 도달하게 되고, 도달을 못할 시 false를 날리게 된다.</p>
+
+<h1>결론</h1>
+<p>보자마자 위상정렬의 느낌이 왔는데, 위상정렬이란 단어가 기억이 안나서 풀이도 잘 안떠올랐다... 그리고 많이 공부했을 때도 어려워했던 것이라 좀 더 공부하도록 하자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule II.html">Course Schedule II &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

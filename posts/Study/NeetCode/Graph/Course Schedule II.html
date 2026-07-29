@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kth Largest Element in an Array &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸…">
+    <title>Course Schedule II &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/course-schedule-ii/question 선수 과목이 존재할 때 가능한 경우 중 하나를 구해라 푸는 방…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,56 +18,64 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Kth Largest Element in an Array</h1>
-    <p class="meta">2026-07-21 <span class="tag">ps</span><span class="tag">힙</span><span class="tag">우선순위큐</span></p>
+    <h1>Course Schedule II</h1>
+    <p class="meta">2026-07-29 <span class="tag">ps</span><span class="tag">그래프</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/kth-largest-element-in-an-array/question</p>
-<p>정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라.</p>
+<p>| https://neetcode.io/problems/course-schedule-ii/question</p>
+
+<p>선수 과목이 존재할 때 가능한 경우 중 하나를 구해라</p>
 
 <h1>푸는 방법</h1>
-<p>당연히 sort를 하면 풀린다.</p>
-<p>다음은 코드이다</p>
-<pre><code class="language-cpp">class Solution {
-public:
-    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
-        sort(nums.rbegin(), nums.rend());
-        return nums[k-1];    
-    }
-};
-</code></pre>
+<p><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">Course Schedule</a>과 동일한데, result vector를 세우는 것 밖에 없다.</p>
 
-<p>물론 이렇게 하라고 만든 것이 아니다. </p>
-<p>우선순위큐를 만들어서 k가 넘어갈 시 계속 pop 해주면서 트래킹 해주면 된다.</p>
 <p>다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
-    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
-        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
+    vector&lt;int&gt; findOrder(int n, vector&lt;vector&lt;int&gt;&gt;&amp; p) {
+        vector&lt;vector&lt;int&gt;&gt; adj(n);
+        vector&lt;int&gt; in_d(n, 0);
 
-        for (auto&amp; a : nums) {
-            pq.push(a);
-
-            if (pq.size() &gt; k) pq.pop();
+        for (auto a : p) {
+            adj[a[1]].emplace_back(a[0]);
+            in_d[a[0]]++;
         } 
 
-        return pq.top();
+        queue&lt;int&gt; q;
+
+        for (int i=0; i&lt;n; ++i) {
+            if (in_d[i] == 0) q.push(i);
+        }
+
+        vector&lt;int&gt; result;
+        while (!q.empty()) {
+            int target = q.front(); q.pop();
+            result.push_back(target);
+
+            for (auto a : adj[target]) {
+                in_d[a]--;
+                if (in_d[a] == 0) q.push(a);
+            } 
+        }
+
+        if (result.size() != n) return {};
+        return result;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>계속 백준이 그립다. 문제에서 O(nlogn)을 쓰면 바로 아웃되도록 만들어 놨을 텐데...</p>
+<p>위상정렬을 항상 기억하자.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Heap-Priority Queue/K Closest Points to Origin.html">K Closest Points to Origin &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Heap-Priority Queue/Task Scheduler.html">&larr; Task Scheduler</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Surrounded Regions.html">Surrounded Regions &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">&larr; Course Schedule</a></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
