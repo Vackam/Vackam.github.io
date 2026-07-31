@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Valid Tree &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/valid-tree/question 유효한 트리인지 확인하라 푸는 방법 인접리스트를 만든 다음, dfs로 v…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Graph Valid Tree</h1>
+    <p class="meta">2026-07-30 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/valid-tree/question</p>
+<p>유효한 트리인지 확인하라</p>
+
+<h1>푸는 방법</h1>
+<p>인접리스트를 만든 다음, dfs로 vistied 체크를 하면서 탐색한다. 이때 새로운 노드를 탐색할 때마다 카운트를 세준다. 이후 카운트가 전체 개수와 동일하지 않을 경우 false를 뱉는다.</p>
+<p>이게 가능한 이유는 트리의 성질 때문이다. 트리는 간선의 개수가 노드의 개수보다 딱 하나 작아야 한다. 그리고 트리인 경우 순회할 시 어떤 노드에서 출발하든 지 모든 노드에 도달할 수 있어야 한다. dfs 순회를 했을 때, 사이클이 생겼다는 것은 한 노드가 탐색이 안된다는 뜻이고(간선의 개수 제한) 이것이 마지막 cnt 조건에 걸려 false를 뱉게 된다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    bool validTree(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        if ((int)edges.size() != n-1) return false;
+
+        vector&lt;vector&lt;int&gt;&gt; adj(n);
+        for (const auto&amp; e : edges) {
+            adj[e[0]].push_back(e[1]);
+            adj[e[1]].push_back(e[0]);
+        }
+
+        vector&lt;bool&gt; visited(n, false);
+
+        int cnt = 0;
+        auto dfs = [&amp;](auto&amp;&amp; self, int now) -&gt; void {
+            visited[now] = true;
+            ++cnt;
+            for (int nxt : adj[now]) {
+                if (!visited[nxt]) self(self, nxt);
+            }
+        };
+        dfs(dfs, 0);
+
+        return cnt == n;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>그래프 이론 모르면 아예 못 푸는 문제이다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">Course Schedule &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Graph/Number of Connected Components in an Undirected Graph.html">&larr; Number of Connected Components in an Undirected Graph</a></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

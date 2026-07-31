@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of Connected Components in an Undirected Graph &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/count-connected-components/question 연결되어 있는 그래프의 개수를 세라 푸는 방법 Union Find …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Number of Connected Components in an Undirected Graph</h1>
+    <p class="meta">2026-07-30 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/count-connected-components/question</p>
+<p>연결되어 있는 그래프의 개수를 세라</p>
+
+<h1>푸는 방법</h1>
+<p>Union Find 하면 된다.</p>
+<p>size를 넣고 밸런스 있게 풀 수도 있지만 빠르게 하기 위하여 없애고 한다.</p>
+<p>합치는 경우에만 전체 개수에서 달라지므로 count를 두어 빼면서 진행하였다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int countComponents(int n, vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        vector&lt;int&gt; parent(n, 0);
+        iota(parent.begin(), parent.end(), 0);
+
+        auto find = [&amp;] (auto&amp; self, int x) -&gt; int {
+            return x == parent[x] ? x : parent[x] = self(self, parent[x]);
+        };
+
+        int count = n;
+        auto unite = [&amp;] (int x, int y) -&gt; void {
+            x = find(find, x); y = find(find, y);
+            if (x == y) return;
+            count--;
+            parent[x] = y;
+        }; 
+
+        for (const auto&amp; a : edges) {
+            unite(a[0], a[1]);       
+        }
+
+        return count;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>이제 그래프 즈음에 오면 그래프 별 풀이 방식이 하나 둘 자연스럽게 떠오르는 것 같다. 이대로만 가서 코테에서는 문제없게 하자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Graph Valid Tree.html">Graph Valid Tree &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Graph/Redundant Connection.html">&larr; Redundant Connection</a></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

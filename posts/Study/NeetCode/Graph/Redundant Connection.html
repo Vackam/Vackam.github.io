@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redundant Connection &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/redundant-connection/question 사이클이 생기는 지점을 찾아라 푸는 방법 처음에 bfs로 인접…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Redundant Connection</h1>
+    <p class="meta">2026-07-31 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      
+<h1>서론</h1>
+<p>| https://neetcode.io/problems/redundant-connection/question</p>
+<p>사이클이 생기는 지점을 찾아라</p>
+
+<h1>푸는 방법</h1>
+<p>처음에 bfs로 인접리스트 만들어서 어떻게든 풀 수 있을 줄 알았다.</p>
+<p>문제는 edges의 마지막 간선을 반환해야 한다는 점이다.</p>
+<p>bfs 탐색에서는 그것을 알 수가 없고, 결국 탐색에서 사이클 되는 지점을 찾으면</p>
+<p>해당 지점에서 다시 한 번 더 탐색을 해서 edges와 비교해야 한다.</p>
+
+<p>이는 말이 안된다.</p>
+
+<p>그래서 유니온 파인드로 edges를 하나하나 돌면서 중첩이 되는 부분을 찾는 것이 상책이다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;int&gt; findRedundantConnection(vector&lt;vector&lt;int&gt;&gt;&amp; edges) {
+        int n = edges.size();
+        vector&lt;int&gt; parent(n+1);
+        vector&lt;int&gt; size(n+1, 1);
+        iota(parent.begin(), parent.end(), 0);
+
+        auto find = [&amp;](auto&amp; self, int x) -&gt; int {
+            return x == parent[x] ? x : parent[x] = self(self, parent[x]);
+        };
+
+        for (const auto&amp; e : edges) {
+            int a = find(find, e[0]), b = find(find, e[1]);
+            if (a == b) return e;
+            if (size[a] &lt; size[b]) swap(a, b);
+            parent[b] = a;
+            size[a] += size[b];
+        }
+
+        return {};
+    }
+};
+</code></pre>
+<h1>결론</h1>
+<p>Union Find는 구현하라면 바로 구현할 수 있을 정도로 친숙한데, 양치기가 안되어있으니,</p>
+<p>생각할 때 bfs, dfs보다 우선순위가 밀리는 듯 하다... 정진...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Number of Connected Components in an Undirected Graph.html">Number of Connected Components in an Undirected Graph &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
