@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Ladder &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/word-ladder/question 시작 단어와 주어진 단어 리스트에서 경로를 찾아 마지막 단어까지 …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Word Ladder</h1>
+    <p class="meta">2026-08-01 <span class="tag">ps</span><span class="tag">그래프</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/word-ladder/question</p>
+<p>시작 단어와 주어진 단어 리스트에서 경로를 찾아 마지막 단어까지 도달할 수 있는 지 확인하라.</p>
+
+<h1>푸는 방법</h1>
+
+<p>단순하게 모든 단어에 대해 한 글자 다른 인접리스트를 만들어 탐색하게 했다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int diff(const string&amp; a, const string&amp; b, const int&amp; size) {
+        int counter = 0;
+        for (int i=0; i&lt;size; ++i) {
+            if (a[i] != b[i]) counter++;
+        } 
+
+        return counter;
+    }
+
+    int ladderLength(string b, string e, vector&lt;string&gt;&amp; v) {
+        // 일단 있는 지 없는 지 부터 확인을 해야 함.
+
+        int pos = find(v.begin(), v.end(), e) - v.begin();
+        int size = v.size(); 
+        int w_size = v[0].size();
+        if (pos == size) return 0; // 예외처리
+
+        // adj 그래프 그리면 될 거 같은데.
+        // 나랑 한 글자 차이나는 사람들을 adj 로 하고
+        // bfs 탐색해서 찾으면 굿 아니면 제끼기
+
+        vector&lt;vector&lt;int&gt;&gt; adj(size); // 자기 이웃을 인덱스로 표현
+
+        for (int i=0; i&lt;size-1; ++i) {
+            for (int j=i+1; j&lt;size; ++j) {
+                const auto&amp; a = v[i]; 
+                const auto&amp; b = v[j]; 
+
+                if (diff(a, b, w_size) == 1) {
+                    adj[i].push_back(j);
+                    adj[j].push_back(i);
+                }
+            }
+        }
+
+        queue&lt;int&gt; q;
+        int result = 1;
+        vector&lt;bool&gt; visited(size, false);
+
+        // 여기서 처음인 애들이 갈 수 있는 곳 확인.
+        for (int i=0; i&lt;size; ++i) {
+            if (diff(b, v[i], w_size) == 1) q.push(i);
+        }
+
+        while (!q.empty()) {
+            result++;
+            auto turn = q.size();
+
+            for (int i=0; i&lt;turn; ++i) {
+                auto a = q.front(); q.pop();
+                if (v[a] == e) return result;
+
+                visited[a] = true;
+
+                for (const auto&amp; k : adj[a]) {
+                    if (visited[k]) continue;
+                    q.push(k);
+                }
+            }
+        } 
+
+        return 0;
+    }
+};
+</code></pre>
+
+<p>당연히 속도가 느리다. 그래서 다음과 같은 방식을 생각해볼 수 있다.</p>
+
+<h2>1. 인접리스트 안 만들고 하나씩 치환해보기.</h2>
+<p>단어의 길이가 짧다고 생각했을 때, 굳이 안 만들고 소문자 26개를 한 번씩 치환해보면서 리스트에 있으면 큐에 넣고 아니면 제끼면 된다.</p>
+<h2>2. 양방향 bfs</h2>
+<p>끝 단어에서 돌리고, 시작 단어에서 돌려서 중간에 만나도록 한다. </p>
+<p>이렇게 되면 시간이 반으로 줄어들게 된다.</p>
+
+<h1>결론</h1>
+<p>어렵긴 한데, 시간 제한이 빡빡하지 않아서 풀 수 있었던 것 같다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Redundant Connection.html">Redundant Connection &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
