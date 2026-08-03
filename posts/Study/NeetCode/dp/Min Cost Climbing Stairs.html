@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Cost Climbing Stairs &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/min-cost-climbing-stairs/question 최소한의 값으로 계단을 오르는 법을 제시하라 푸는 방법 d…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Min Cost Climbing Stairs</h1>
+    <p class="meta">2026-08-03 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/min-cost-climbing-stairs/question</p>
+<p>최소한의 값으로 계단을 오르는 법을 제시하라</p>
+
+<h1>푸는 방법</h1>
+
+<p>dp로 단순하게 풀면 된다.</p>
+<p>내 두 칸 전에서 올라오는 게 좋은 지, 한 칸 전에서 올라오는 게 좋은 지를 비교하자.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int minCostClimbingStairs(vector&lt;int&gt;&amp; cost) {
+        int n = cost.size();
+        if (n &lt; 2) return 0;
+        vector&lt;int&gt; dp(n+1, 0);    
+
+        // 1까지는 0임
+        for (int i=2; i&lt;=n; ++i) {
+            dp[i] = min(dp[i-1] + cost[i-1], dp[i-2] + cost[i-2]);
+        } 
+
+        return dp[n];
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>아주 쉬운 dp긴 한데, 점화식 세우는 건 아직도 헷갈린다...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span></span><span><a href="../../../../posts/Study/NeetCode/dp/House Robber.html">&larr; House Robber</a></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

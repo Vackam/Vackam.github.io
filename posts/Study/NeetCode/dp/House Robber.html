@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Robber &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/house-robber/question 인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>House Robber</h1>
+    <p class="meta">2026-08-03 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/house-robber/question</p>
+<p>인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시오</p>
+
+<h1>푸는 방법</h1>
+<p>dp로 풀면 된다.</p>
+<p>내 위치에서 내가 최대인 방법은</p>
+<ol>
+<li>전 집에서 털고 우리 집을 쉰다</li>
+<li>전 집에서 쉬고 우리 집을 턴다</li>
+</ol>
+<p>둘 중에 최고인 하나를 찾으면 된다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int rob(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if (n&lt;=2) return *max_element(nums.begin(), nums.end());
+        vector&lt;int&gt; dp(n+1, 0);
+
+        dp[0] = nums[0];        
+        dp[1] = max(nums[0], nums[1]);        
+
+        for (int i=2; i&lt;n; ++i) {
+            dp[i] = max(dp[i-2] + nums[i], dp[i-1]);
+        }
+
+        return dp[n-1];
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>저 위 두 경우 말고 다른 경우가 있나 싶었는데, 제출해보니까 됐다. ㅋㅋㅋㅋㅋ.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Min Cost Climbing Stairs.html">Min Cost Climbing Stairs &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
