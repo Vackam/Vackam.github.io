@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Robber II &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/house-robber-ii/question 집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오 푸는 방법 Hou…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>House Robber II</h1>
+    <p class="meta">2026-08-04 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/house-robber-ii/question</p>
+<p>집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오</p>
+
+<h1>푸는 방법</h1>
+<p><a href="../../../../posts/Study/NeetCode/dp/House Robber.html">House Robber</a></p>
+<p>이거랑 같은데, 첫 집과 마지막 집 조건만 챙기면 된다.</p>
+<p>dp 라는 타이틀을 가지고 있으니 dp를 사용한다고 치면,</p>
+<p>1번집을 무조건 턴 dp1 하나,</p>
+<p>1번집을 안 턴 dp2 하나를 세워서 풀면 되겠다.</p>
+
+<p>이후는 dp1에서는 마지막 집을 선택하지 않고, dp2에서는 마지막 집을 선택하거나 하지 않으면 된다.</p>
+
+<p>다음은 코드이다. </p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int rob(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if (n &lt;= 2) return *max_element(nums.begin(), nums.end());
+        vector&lt;int&gt; dp1(n+1, 0);
+        vector&lt;int&gt; dp2(n+1, 0);
+
+        dp1[1] = nums[0];
+        dp1[2] = dp1[1]; // 2번 선택 안함.
+
+        dp2[2] = nums[1]; // 1번 선택 안함.
+        // dp의 인덱스는 집 번호 1번 2번
+        
+        for (int i=3; i&lt;n; ++i) {
+            dp1[i] = max(dp1[i-1], dp1[i-2] + nums[i-1]);
+            dp2[i] = max(dp2[i-1], dp2[i-2] + nums[i-1]);
+        }
+        dp1[n] = dp1[n-1]; // 마지막 선택 못함.
+        dp2[n] = max(dp2[n-1], dp2[n-2] + nums[n-1]); // 둘 중에 하나
+        
+        return max(dp1[n], dp2[n]);
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>결국 2차원 벡터 느낌이다. </p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Longest Palindromic Substring.html">Longest Palindromic Substring &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

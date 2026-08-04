@@ -7,6 +7,24 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>House Robber II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/house-robber-ii/question 집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오 푸는 방법 House Robber 이거랑 같은데, 첫 집과 마지막 집 조건만 챙기면 된다. dp 라는 타이틀을 가지고 있으니 dp를 사용한다고 치면, 1번집을 무조건 턴 dp1 하나, 1번집을 안 턴 dp2 하나를 세워서 풀면 되겠…</description>
+  </item>
+  <item>
+    <title>Longest Palindromic Substring</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Longest Palindromic Substring.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Longest Palindromic Substring.html</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰린드롬을 중앙에서부터 찾는 생각을 하면 된다. 주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다. 짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다. …</description>
+  </item>
+  <item>
     <title>House Robber</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</guid>
@@ -156,14 +174,6 @@
     <description>서론 | https://neetcode.io/problems/max-area-of-island/question 가장 큰 섬을 찾아라 푸는 방법 Number of Islands 위 문제에서 섬 크기를 세주는 코드만 작성하면 된다. 다음은 코드이다. class Solution { public: int maxAreaOfIsland(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; grid) { vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; int m = grid…</description>
   </item>
   <item>
-    <title>2026-07-23</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-23.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-23.html</guid>
-    <pubDate>Thu, 23 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>AI 시대의 아키텍쳐 그리기 AI가 너무 발전하다 보니까 수업에서 배운 지루한 아키텍쳐들을 굳이 만들어야 하나 싶었다. 개발자면 우당탕탕 개발 하면서 커버칠 수 있을 거라 생각했다. 이게 마음이 잘 맞는 애랑 했을 때 됐던 거였더라. 생각하는 게 비슷하면 이게 잘 되는데 생각이 다르니까 소통하는데…</description>
-  </item>
-  <item>
     <title>Number of Islands</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Number of Islands.html</guid>
@@ -171,15 +181,6 @@
     <category>ps</category>
     <category>그래프</category>
     <description>서론 | https://neetcode.io/problems/count-number-of-islands/question 섬을 찾아라 푸는 방법 BFS로 풀면 된다. 다음은 코드이다. class Solution { private: vector&amp;lt;int&amp;gt; dx = {1, -1, 0, 0}; vector&amp;lt;int&amp;gt; dy = {0, 0, 1, -1}; public: bool is_possible(int nx, int ny, int m, int n) { return (nx &amp;lt; m &amp;amp;&amp;amp; nx &amp;gt;= 0 &amp;amp;&amp;amp; ny &amp;lt; n &amp;amp;&amp;amp; ny &amp;gt;= 0); } int nu…</description>
-  </item>
-  <item>
-    <title>Design Twitter</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Design Twitter.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Heap-Priority Queue/Design Twitter.html</guid>
-    <pubDate>Wed, 22 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>우선순위큐</category>
-    <description>서론 | https://neetcode.io/problems/design-twitter-feed/question?list=neetcode150 트위터 비슷한 기능을 만들어라. 푸는 방법 제일 중요한 풀이는 내가 팔로잉한 사람들의 최신 것까지 반영하여 출력하는 getNewsFeed를 만드는 것이다. 단순하게 사람마다 게시물을 시간순으로 정리하는 우선순위큐를 세워주고 팔로잉 목록에…</description>
   </item>
 </channel>
 </rss>

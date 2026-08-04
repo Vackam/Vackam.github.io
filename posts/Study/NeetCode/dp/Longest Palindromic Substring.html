@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Permutations &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/permutations/question?list=neetcode150 주어진 배열의 순열을 구하라. 푸는 방법 정석적으로는…">
+    <title>Longest Palindromic Substring &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,49 +18,57 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Permutations</h1>
-    <p class="meta">2026-07-15 <span class="tag">ps</span><span class="tag">백트래킹</span></p>
+    <h1>Longest Palindromic Substring</h1>
+    <p class="meta">2026-08-04 <span class="tag">ps</span><span class="tag">dp</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/permutations/question?list=neetcode150</p>
-<p>주어진 배열의 순열을 구하라.</p>
+<p>| https://neetcode.io/problems/longest-palindromic-substring/question</p>
+<p>문자열 중 가장 긴 팰린드롬을 구하시오</p>
 
 <h1>푸는 방법</h1>
-<p>정석적으로는 자기 자신과 i번째 칸에 있는 친구를 swap하고 dfs를 진행한 다음 swap을 원상복구 시켜놓은 다음, i += 1을 한다.</p>
-<p>즉, 숫자를 계속 바꿔가면서 트리를 만든다고 생각하는 것이다.</p>
+<p>팰린드롬을 중앙에서부터 찾는 생각을 하면 된다.</p>
+<p>주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다.</p>
+<p>짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다.</p>
 
-<p>하지만, c++에는 무적의 함수 next_permutation이 있다.</p>
-<p>다음은 코드이다.</p>
+<p>다음은 코드이다. </p>
 <pre><code class="language-cpp">class Solution {
-
 public:
+    string longestPalindrome(string s) {
+        int n = s.size();
+        int start = 0, max_len = 1;
 
-    vector&lt;vector&lt;int&gt;&gt; permute(vector&lt;int&gt;&amp; nums) {
-        sort(nums.begin(), nums.end());
+        auto expand = [&amp;](int l, int r) {
+            while (l &gt;= 0 &amp;&amp; r &lt; n &amp;&amp; s[l] == s[r]) {
+                if (r-l+1 &gt; max_len) {
+                    start = l;
+                    max_len = r-l+1;
+                }
+                l--;
+                r++;
+            }
+        };
 
-        vector&lt;vector&lt;int&gt;&gt; result;
+        for (int i=0; i&lt;n; ++i) {
+            expand(i, i);
+            expand(i, i+1);
+        }
 
-        do {
-            result.emplace_back(nums);
-        } while (next_permutation(nums.begin(), nums.end()));
-        return result;
-    }
-}
+        return s.substr(start, max_len);
+    }
+};
 </code></pre>
 
-<p>정렬해주고, next_permutation 돌리면 된다.</p>
-
-<h1>결론 </h1>
-<p>좋은 무기를 활용하는 것도 능력이다.</p>
+<h1>결론</h1>
+<p>dp라고 해서 dp 어떻게 세우지 했는데, 전혀 dp가 아니라 당황했다...</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Backtracking/Combination Sum II.html">Combination Sum II &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Backtracking/Subsets II.html">&larr; Subsets II</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/House Robber.html">House Robber &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/House Robber II.html">&larr; House Robber II</a></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
