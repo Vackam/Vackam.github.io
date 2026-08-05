@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에이전트 평가에 대해서 &mdash; devlog</title>
+    <meta name="description" content="서론 | https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents 에이전트 평가는 어떻게 해야하는가? 본론 현대 에이…">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../posts.html">&larr; back</a></p>
+
+    <h1>에이전트 평가에 대해서</h1>
+    <p class="meta">2026-08-04 <span class="tag">아티클</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents</p>
+<p>에이전트 평가는 어떻게 해야하는가?</p>
+
+<h1>본론</h1>
+<p>현대 에이전트는 다양한 툴 콜링을 통해 상태를 수정하고 진행한다. 그렇기 때문에 초반에 잘못된 정보를 수정하게 되면(DB 수정 실수 등) 이것이 스노우볼링이 되어 겉잡을 수 없게 커지게 된다.</p>
+<p>또한, 에이전트가 내놓는 대답이 정답이라고 생각된 것보다 더 좋을 수 있다는 것이다.(Opus 4.5 타우벤치 예시)</p>
+
+<p>에이전트 평가에선 다음과 같은 정의들이 있다.</p>
+<ul>
+<li><strong>태스크(task)</strong> (problem, test case): 정의된 입력과 성공 기준을 가진 단일 테스트.</li>
+<li><strong>트라이얼(trial)</strong>: 태스크에 대한 1회 시도. 모델 출력이 실행마다 달라지므로 여러 트라이얼을 돌려 결과를 안정화한다.</li>
+<li><strong>그레이더(grader)</strong>: 에이전트 성능의 특정 측면을 채점하는 로직. 한 태스크에 여러 그레이더가 있을 수 있고, 각 그레이더는 여러 assertion(check)을 포함한다.</li>
+<li><strong>트랜스크립트(transcript)</strong> (trace, trajectory): 트라이얼의 전체 기록 — 출력, 툴 호출, 추론, 중간 결과 등. Anthropic API에서는 실행 종료 시점의 전체 <code>messages</code> 배열.</li>
+<li><strong>아웃컴(outcome)</strong>: 트라이얼 종료 시점의 환경 최종 상태. 트랜스크립트에 "예약 완료"라고 찍힌 것과 별개로, DB에 예약이 실제로 존재하는지가 아웃컴.</li>
+<li><strong>평가 하네스(evaluation harness)</strong>: 평가를 end-to-end로 실행하는 인프라 — 지시와 툴 제공, 태스크 동시 실행, 단계 기록, 채점, 결과 집계.</li>
+<li><strong>에이전트 하네스(agent harness)</strong> (scaffold): 모델이 에이전트로 동작하게 하는 시스템 — 입력 처리, 툴 호출 오케스트레이션, 결과 반환. "에이전트를 평가한다" = 하네스 + 모델을 함께 평가하는 것.</li>
+<li><strong>평가 스위트(evaluation suite)</strong>: 특정 역량이나 행동을 측정하는 태스크 모음. 보통 공통된 목표를 공유한다 (예: 환불·취소·에스컬레이션을 테스트하는 고객지원 스위트).</li>
+</ul>
+
+<p>언제 평가를 만들어야 하는가? 있기만 하면 언제든지 상관없다. 평가가 존재하게 된다면 개발 팀이 원하는 방향대로 agent가 움직이게 할 수 있다.</p>
+
+<p>평가는 총 세 가지가 있는데, 코드 베이스 평가, 모델 베이스 평가, 사람 평가가 있다. 당연히 사람 평가가 제일 좋지만 비싸고 느리다. </p>
+
+<p>역량 평가와 회귀 평가가 존재하는데, 역량 평가는 낮은 점수로 시작해서 개발될 수록 높은 점수를 향해가야 한다. 즉, 이 에이전트가 풀기 어려워 하지만 결국 풀어낼 것들을 적어낸다. 회귀 평가는 '이전에 풀었던 문제들을 잘 푸는가?'이다. 이것은 항상 100%를 목표로 해야하며 성능이 떨어지는 것을 방지한다.</p>
+
+<p>이전 코딩 에이전트는 단순히 테스트 통과만으로도 괜찮아 질 수 있다. 대화형인 경우에는 이것이 아예 다른데, end-state, 루브릭 채점 등을 함께 사용해야 하며 사용자 역할을 해줄 llm이 필요하단 점이다. 실제로 anthropic에선 적대적 유저를 해서 사용한다고 한다.</p>
+
+<p>10턴 안에 해냈는 지, 톤은 적절하게 표현 했는 지.</p>
+
+<p>그래서 computer use... 등 다양한 에이전트가 어떤 평가를 거쳤는 지 말해준다.</p>
+
+<p>pass@k와 pass^k 개념이 나온다. </p>
+<p>전자는 k번 했을 때 한 번이라도 성공할 확률이다.</p>
+<p>후자는 k번 했을 때 전체 성공할 확률이다.</p>
+<p>코드 생성과 같은 부분에선 pass@k를 사용하고 (만들기만 하면 됨) 사용-대화형 에이전트에서는 pass\^k를 사용한다고 한다.</p>
+
+<hr>
+<p>평가를 만드는 로드맵에 대해 서술해준다. </p>
+
+<ol>
+<li>최대한 빨리 평가를 만들어라 20~50 개여도 충분하다.</li>
+<li>개발 전에 자신이 대충 돌려본 것부터 시작해라. 또한, 버그 트래커 등을 확인해라</li>
+<li>모호하지 않은 작업을 제시하라</li>
+<li>균형잡힌 문제 셋을 제시하라</li>
+<li>안정적인 환경을 구축하라</li>
+<li>채점자를 널널하게 생각해라</li>
+<li>안되는 로그 읽어봐라.</li>
+<li>시간이 없어서 못하는 경우도 있으니까, 평가 포화를 막아라</li>
+<li>장기적으로 유지하라</li>
+</ol>
+
+<p>또한, 하나의 절대적인 테스트가 없다. 그래서 서로 다른 테스트가 보완해주며 나아가야 한다.</p>
+
+<h1>결론</h1>
+<p>뭔가 되게 친절하게 알려줘서 당황스럽다.</p>
+<p>AI가 우리 일상에 친숙해지면서 초반에는 AI의 답을 단순하게 믿는 사람이 많았다가 지금은 또 안 믿는 사람들이 많아진 듯 하다. 개발자들이야 상관 없겠다마는 일반 사용자에게 서비스를 팔아야 하는 입장에서 이런 eval은 계속 되어야겠다. eval driven development도 고려해보자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../posts/Paper/A Data-Driven Decision Support Framework for Player Churn Analysis in Online Games.html">A Data-Driven Decision Support Framework for Player Churn Analysis in Online Games 간단 리뷰 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>

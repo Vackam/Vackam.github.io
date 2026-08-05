@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longest Palindromic Substring &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰…">
+    <title>Palindromic Substrings &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/palindromic-substrings/question 팰린드롬인 서브스트링의 개수를 세라 푸는 방법 Longest Palind…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,57 +18,58 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Longest Palindromic Substring</h1>
-    <p class="meta">2026-08-04 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Palindromic Substrings</h1>
+    <p class="meta">2026-08-05 <span class="tag">ps</span><span class="tag">dp</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/longest-palindromic-substring/question</p>
-<p>문자열 중 가장 긴 팰린드롬을 구하시오</p>
+<p>| https://neetcode.io/problems/palindromic-substrings/question</p>
+<p>팰린드롬인 서브스트링의 개수를 세라</p>
 
 <h1>푸는 방법</h1>
-<p>팰린드롬을 중앙에서부터 찾는 생각을 하면 된다.</p>
-<p>주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다.</p>
-<p>짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다.</p>
+<p><a href="../../../../posts/Study/NeetCode/dp/Longest Palindromic Substring.html">Longest Palindromic Substring</a></p>
+<p>처음에 중복을 체크해야 할 거 같아서 set으로 하고 map으로 체크해보고 했는데, 전부다 시간 초과로 실패했다.</p>
 
-<p>다음은 코드이다. </p>
+<p>그래서 문제를 자세히 보니 중복을 허용하더라...</p>
+<p>위 링크에서 푸는 방법 대로 돈다고 가정하면, 겹치는 {l, r} 쌍이 없다. 그러므로, 그냥 돌면서 하나하나 세면 정답이다.</p>
+
+<p>다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
-    string longestPalindrome(string s) {
+    int countSubstrings(string s) {
         int n = s.size();
-        int start = 0, max_len = 1;
+        int count = 0;
 
-        auto expand = [&amp;](int l, int r) {
+        auto find = [&amp;](int l, int r) {
+            // 항상 l은 r 보다 작아야 함.
+            int temp = r*1000 + l;
             while (l &gt;= 0 &amp;&amp; r &lt; n &amp;&amp; s[l] == s[r]) {
-                if (r-l+1 &gt; max_len) {
-                    start = l;
-                    max_len = r-l+1;
-                }
+                count++;
                 l--;
                 r++;
             }
         };
 
         for (int i=0; i&lt;n; ++i) {
-            expand(i, i);
-            expand(i, i+1);
+            find(i, i); 
+            find(i, i+1); 
         }
 
-        return s.substr(start, max_len);
+        return count;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>dp라고 해서 dp 어떻게 세우지 했는데, 전혀 dp가 아니라 당황했다...</p>
+<p>문제 풀 때 감각이 중요하긴 한데, 이렇게 이상하게 찍어버리는 경우에 큰일이 자주 일어난다... 좀 더 생각하고 풀자.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/House Robber II.html">House Robber II &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Palindromic Substrings.html">&larr; Palindromic Substrings</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Longest Palindromic Substring.html">Longest Palindromic Substring &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
