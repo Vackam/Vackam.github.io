@@ -7,6 +7,23 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Decode Ways</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Decode Ways.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Decode Ways.html</guid>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/decode-ways/question 규칙에 따른 가능한 암호 개수를 제시하시오 푸는 방법 dp[i] 를 &quot;앞에서 i글자까지 잘랐을 때의 경우의 수&quot;라고 정의하자. 인덱스가 아니라 길이 다. 이렇게 두면 dp[0] 은 빈 문자열이 되고, 빈 문자열을 해석하는 방법은 1가지니까 dp[0] = 1 이다. 이 칸이 패딩 역…</description>
+  </item>
+  <item>
+    <title>2026-08-05</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-05.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-05.html</guid>
+    <pubDate>Wed, 05 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>레이지 로딩(lazy loading) 참고: https://developer.mozilla.org/ko/docs/Web/Performance/Guides/Lazy_loading 레이지 로딩은 말 그대로 특정한 것을 늦게 로딩하는 것이다. 유저에게 당장 필요한 정보만 주고, 추가 필요한 것은 요청 시에 줌으로써 페이지 로드 시간을 감소시킨다. 정말 단순하게 css, js 같은 코드를 잘라서 보낼 …</description>
+  </item>
+  <item>
     <title>Palindromic Substrings</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/dp/Palindromic Substrings.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Palindromic Substrings.html</guid>
@@ -14,6 +31,15 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/palindromic-substrings/question 팰린드롬인 서브스트링의 개수를 세라 푸는 방법 Longest Palindromic Substring 처음에 중복을 체크해야 할 거 같아서 set으로 하고 map으로 체크해보고 했는데, 전부다 시간 초과로 실패했다. 그래서 문제를 자세히 보니 중복을 허용하더라... 위 링크에서 푸…</description>
+  </item>
+  <item>
+    <title>House Robber II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/house-robber-ii/question 집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오 푸는 방법 House Robber 이거랑 같은데, 첫 집과 마지막 집 조건만 챙기면 된다. dp 라는 타이틀을 가지고 있으니 dp를 사용한다고 치면, 1번집을 무조건 턴 dp1 하나, 1번집을 안 턴 dp2 하나를 세워서 풀면 되겠…</description>
   </item>
   <item>
     <title>2026-08-04</title>
@@ -39,15 +65,6 @@
     <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
     <category>아티클</category>
     <description>서론 | https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents 에이전트 평가는 어떻게 해야하는가? 본론 현대 에이전트는 다양한 툴 콜링을 통해 상태를 수정하고 진행한다. 그렇기 때문에 초반에 잘못된 정보를 수정하게 되면(DB 수정 실수 등) 이것이 스노우볼링이 되어 겉잡을 수 없게 커지게 된다. 또…</description>
-  </item>
-  <item>
-    <title>House Robber II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/house-robber-ii/question 집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오 푸는 방법 House Robber 이거랑 같은데, 첫 집과 마지막 집 조건만 챙기면 된다. dp 라는 타이틀을 가지고 있으니 dp를 사용한다고 치면, 1번집을 무조건 턴 dp1 하나, 1번집을 안 턴 dp2 하나를 세워서 풀면 되겠…</description>
   </item>
   <item>
     <title>House Robber</title>
@@ -112,14 +129,6 @@
     <description>서론 | https://neetcode.io/problems/count-connected-components/question 연결되어 있는 그래프의 개수를 세라 푸는 방법 Union Find 하면 된다. size를 넣고 밸런스 있게 풀 수도 있지만 빠르게 하기 위하여 없애고 한다. 합치는 경우에만 전체 개수에서 달라지므로 count를 두어 빼면서 진행하였다. 다음은 코드이다. class Soluti…</description>
   </item>
   <item>
-    <title>2026-07-29</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-29.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-29.html</guid>
-    <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>Auto Hot Key 요새 노트북에는 코파일럿 키가 박혀져 있다. 근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다. 그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다. 그래서 Auto Hot Key를 사용하여 power toys run을 …</description>
-  </item>
-  <item>
     <title>Course Schedule II</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</guid>
@@ -136,6 +145,14 @@
     <category>ps</category>
     <category>그래프</category>
     <description>서론 | https://neetcode.io/problems/course-schedule/question?list=neetcode150 선수 과목 목록이 주어질 때 강의를 수강할 수 있는 지 확인하라. 푸는 방법 위상 정렬을 활용하면 된다. 어렸을 때, &quot;난 쟤보다 빠르고 쟤보단 느려&quot;가 엄청 많아서 그럼 누가 1등인가? 하는 문제를 봤을 것이다. 그것과 아주 동일한 문제이다. A…</description>
+  </item>
+  <item>
+    <title>2026-07-29</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-29.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-29.html</guid>
+    <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>Auto Hot Key 요새 노트북에는 코파일럿 키가 박혀져 있다. 근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다. 그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다. 그래서 Auto Hot Key를 사용하여 power toys run을 …</description>
   </item>
   <item>
     <title>2026-07-28</title>
@@ -162,23 +179,6 @@
     <category>ps</category>
     <category>그래프</category>
     <description>서론 | https://neetcode.io/problems/pacific-atlantic-water-flow/question (위쪽, 왼쪽), (아래쪽, 오른쪽)을 전부 갈 수 있는 칸을 구하라. 푸는 방법 dp 테이블을 비트 연산을 통해 구하면 된다. (위쪽, 왼쪽)을 1, (아래쪽, 오른쪽)을 2로 설정하고 초기에 접하는 칸들을 전부 큐에 넣는다. 이후 해당하는 칸부터 높이가 낮은 …</description>
-  </item>
-  <item>
-    <title>캐릭 트리 디자인</title>
-    <link>https://vackam.github.io/posts/Project/Battle_Defense/배틀디펜스 트리 디자인.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/Battle_Defense/배틀디펜스 트리 디자인.html</guid>
-    <pubDate>Mon, 27 Jul 2026 00:00:00 +0900</pubDate>
-    <category>디펜스게임</category>
-    <description>서론 배틀 디펜스 캐릭터 진화 순서를 정해보자. 처음은 검사, 궁수, 마법사, 탱커로 정한다. 검사 버서커 공속이 빠름. 3타 당 대공을 때리는 참격 킬 수가 올라갈수록 공격력 상승 (그래서 하나만 쓰는 게 좋음) 검사(리얼 무도인) 기본 공격이 범위 공격 4타 당 슬로우 범위 공격 성기사 그냥 기본 평타 3…</description>
-  </item>
-  <item>
-    <title>Clone Graph</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Clone Graph.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Clone Graph.html</guid>
-    <pubDate>Sat, 25 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그래프</category>
-    <description>서론 | https://neetcode.io/problems/clone-graph/question?list=neetcode150 그래프를 딥카피 해라. 푸는 방법 성실하게 딥카피 하면 된다. 다만, 자신의 이웃처리를 중복 생성하지 않고 기억하기 위해 기억하는 배열을 하나 추가하는 것이 핵심이다. 다음은 코드이다. class Solution { public: Node* cloneGraph(Node* node) { if (node == null…</description>
   </item>
 </channel>
 </rss>

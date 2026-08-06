@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decode Ways &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/decode-ways/question 규칙에 따른 가능한 암호 개수를 제시하시오 푸는 방법 dp[i] 를 "앞에…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Decode Ways</h1>
+    <p class="meta">2026-08-06 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/decode-ways/question</p>
+<p>규칙에 따른 가능한 암호 개수를 제시하시오</p>
+
+<h1>푸는 방법</h1>
+<p><code>dp[i]</code>를 "앞에서 i글자까지 잘랐을 때의 경우의 수"라고 정의하자. 인덱스가 아니라 <strong>길이</strong>다. 이렇게 두면 <code>dp[0]</code>은 빈 문자열이 되고, 빈 문자열을 해석하는 방법은 1가지니까 <code>dp[0] = 1</code>이다. 이 칸이 패딩 역할을 하면서 dp의 영원한 적수인 <code>i-2</code> 음수 인덱스 문제가 사라진다.</p>
+
+<p>이제 <code>dp[i]</code>를 채울 때, <strong>마지막 글자를 어떻게 떼어낼 것인지</strong>만 물어보자. 떼는 방법은 두 가지뿐이다.</p>
+
+<ol>
+<li>마지막 한 글자만 떼서 문자 하나로 본다.</li>
+<li>마지막 두 글자를 떼서 문자 하나로 본다.</li>
+</ol>
+
+<p>1번이 되려면 그 글자가 <code>'0'</code>이 아니어야 한다. 0에 대응되는 문자가 없으니까. 되면 남은 앞부분이 i-1글자이므로 <code>dp[i-1]</code>을 더한다.</p>
+
+<p>2번이 되려면 두 글자를 숫자로 만든 값 <code>two</code>가 <strong>10 이상 26 이하</strong>여야 한다. 10 미만은 <code>"02"</code>처럼 앞에 0이 붙은 꼴이라 두 글자로 묶을 수 없고, 27 이상은 대응 문자가 없다. 되면 <code>dp[i-2]</code>를 더한다.</p>
+
+<p>마지막 줄 덕분에 <code>return 0</code>으로 중간에 튀어나갈 필요가 없다. 한 번 0이 박히면 그 뒤는 <code>0 + 0</code>이라 끝까지 0으로 흘러간다.</p>
+
+<p><code>dp[1]</code>은 루프가 <code>i=2</code>부터 도니까 미리 채운다. 첫 글자가 <code>'0'</code>이면 0, 아니면 1이다. <code>n == 1</code>이어도 루프가 안 돌고 <code>dp[1]</code>이 그대로 반환되므로 예외 처리가 필요 없다.</p>
+
+<pre><code>"1123"
+dp[0] = 1
+dp[1] = 1  // "1"
+dp[2] = 2  // '1' 혼자 + "11"  → dp[1] + dp[0]
+dp[3] = 3  // '2' 혼자 + "12"  → dp[2] + dp[1]
+dp[4] = 5  // '3' 혼자 + "23"  → dp[3] + dp[2]
+
+"100"
+dp[0] = 1
+dp[1] = 1  // "1"
+dp[2] = 1  // '0' 혼자 불가, "10" 가능 → dp[0]
+dp[3] = 0  // '0' 혼자 불가, "00" 불가 → 0
+</code></pre>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int numDecodings(string s) {
+        int n = s.size();
+        vector&lt;int&gt; dp(n+1, 0);
+        dp[0] = 1;
+        dp[1] = (s[0] != '0');
+
+        for (int i=2; i&lt;=n; ++i) {
+            if (s[i-1] != '0') dp[i] += dp[i-1];
+            int two = (s[i-2] - '0') * 10 + (s[i-1] - '0');
+            if (two &gt;= 10 &amp;&amp; two &lt;= 26) dp[i] += dp[i-2];
+        }    
+        return dp[n];
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>사실 첫 풀이에서는 모든 엣지케이스를 하나하나 막는 괴랄한 코드를 작성했었다. </p>
+<p>Simple is Best 말을 숙지하도록 하자...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Word Ladder.html">Word Ladder &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
