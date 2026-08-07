@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-06 &mdash; devlog</title>
+    <meta name="description" content="sprint-boot-starter-validation 어노테이션을 추가하는 의존성인데, 각 필드의 유효성 검사를 자동으로 해준다. 서버 내…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>2026-08-06</h1>
+    <p class="meta">2026-08-06 <span class="tag">데일리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>sprint-boot-starter-validation</h1>
+<p>어노테이션을 추가하는 의존성인데, 각 필드의 유효성 검사를 자동으로 해준다.</p>
+<p>서버 내부에서 소통하는 것들은 괜찮을 수 있는데, 프론트 단에서 올라오는 값을 클래스 안에다가 하나하나 함수로 만든다면 에러가 발생할 확률이 높다.</p>
+<p>이렇게 어노테이션을 활용해서 dto를 검사하게 된다면 아주 간단하게 해결할 수 있다.</p>
+<p>특히 swagger를 붙였을 때 문서에서 정확하게 드러나게 할 수 있으므로 거진 반 필수이다.</p>
+
+<h1>ShoreBird</h1>
+<p>코드 푸시를 플러터 앱에서 할 수 있게 해준다는데, 코드 푸시는 이미 죽어버린 서비스이고, 뭔지도 모르기 때문에 간단하게 알아봤다.</p>
+<p>이해한 바로는 ShoreBird 서버에 코드 수정사항을 올리면 앱에서 실행했을 때 이 수정사항을 땡겨와서 패치를 한다는 것이다. 즉, 스토어의 심사를 받지 않고 긴급한 패치를 진행할 수 있다.</p>
+<p>ShoreBird는 그 서버 자체에 코드를 저장하지 않는다고 하여 앱 코드가 들킬 일도 없다.</p>
+<p>뭔가 좋은 거 같긴 한데 필요해 보이지가 않는다. 딱 그 느낌. 필요할 때 도입하면 될 거 같은...</p>
+
+<h1>VPC</h1>
+<p>| https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/what-is-amazon-vpc.html</p>
+<p>아마존이 제공하는 거대한 데이터베이스(네트워크?) 센터에서 우리가 사용할 부분을 정한 것이다. </p>
+<p>IP 대역을 정해주는데 10.0.0.0/16 이면 10.0.255.255까지 우리가 사용할 수 있는 것이다.</p>
+<p>이 범위 안에서 또 나눠서 사용하는 것이 서브넷이다. </p>
+<p>논리적으로 쪼개서 우리한테 준 다음에 또 그것을 쪼개서 사용하는 게 서브넷이라고 생각하면 된다.</p>
+<p>이렇게 하면 해당 주소에 대해서 접근을 통제하거나 할 수 있기 때문에 유리하다.</p>
+<p>프라이빗 ip 는 해당 VPC 안에서만 접근할 수 있는 주소이다.</p>
+<p>외부에서 접속하기 위해서는 퍼블릭 ip가 필요하다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Daily/8월/2026-08-05.html">2026-08-05 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>

@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Coin Change</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Coin Change.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Coin Change.html</guid>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/coin-change/question 배낭 문제인데, 개수는 최소로 해라. 푸는 방법 처음에 그리디로 했다가 최소 조건을 당연히 못맞추어 실패했다. 그럼 방법은 dp인데, 1부터 하나씩 기록하면서 코인 하나를 넣었을 때 값이 만족된다면 이를 갱신하는 것으로 하면 된다. 다음은 코드이다. ```cpp …</description>
+  </item>
+  <item>
     <title>Decode Ways</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Decode Ways.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Decode Ways.html</guid>
@@ -16,12 +25,12 @@
     <description>서론 | https://neetcode.io/problems/decode-ways/question 규칙에 따른 가능한 암호 개수를 제시하시오 푸는 방법 dp[i] 를 &quot;앞에서 i글자까지 잘랐을 때의 경우의 수&quot;라고 정의하자. 인덱스가 아니라 길이 다. 이렇게 두면 dp[0] 은 빈 문자열이 되고, 빈 문자열을 해석하는 방법은 1가지니까 dp[0] = 1 이다. 이 칸이 패딩 역…</description>
   </item>
   <item>
-    <title>2026-08-05</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-05.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-05.html</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 +0900</pubDate>
+    <title>2026-08-06</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-06.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-06.html</guid>
+    <pubDate>Thu, 06 Aug 2026 00:00:00 +0900</pubDate>
     <category>데일리</category>
-    <description>레이지 로딩(lazy loading) 참고: https://developer.mozilla.org/ko/docs/Web/Performance/Guides/Lazy_loading 레이지 로딩은 말 그대로 특정한 것을 늦게 로딩하는 것이다. 유저에게 당장 필요한 정보만 주고, 추가 필요한 것은 요청 시에 줌으로써 페이지 로드 시간을 감소시킨다. 정말 단순하게 css, js 같은 코드를 잘라서 보낼 …</description>
+    <description>sprint-boot-starter-validation 어노테이션을 추가하는 의존성인데, 각 필드의 유효성 검사를 자동으로 해준다. 서버 내부에서 소통하는 것들은 괜찮을 수 있는데, 프론트 단에서 올라오는 값을 클래스 안에다가 하나하나 함수로 만든다면 에러가 발생할 확률이 높다. 이렇게 어노테이션을 활용해서 dto를 검사…</description>
   </item>
   <item>
     <title>Palindromic Substrings</title>
@@ -33,6 +42,14 @@
     <description>서론 | https://neetcode.io/problems/palindromic-substrings/question 팰린드롬인 서브스트링의 개수를 세라 푸는 방법 Longest Palindromic Substring 처음에 중복을 체크해야 할 거 같아서 set으로 하고 map으로 체크해보고 했는데, 전부다 시간 초과로 실패했다. 그래서 문제를 자세히 보니 중복을 허용하더라... 위 링크에서 푸…</description>
   </item>
   <item>
+    <title>2026-08-05</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-05.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-05.html</guid>
+    <pubDate>Wed, 05 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>레이지 로딩(lazy loading) 참고: https://developer.mozilla.org/ko/docs/Web/Performance/Guides/Lazy_loading 레이지 로딩은 말 그대로 특정한 것을 늦게 로딩하는 것이다. 유저에게 당장 필요한 정보만 주고, 추가 필요한 것은 요청 시에 줌으로써 페이지 로드 시간을 감소시킨다. 정말 단순하게 css, js 같은 코드를 잘라서 보낼 …</description>
+  </item>
+  <item>
     <title>House Robber II</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</guid>
@@ -40,14 +57,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/house-robber-ii/question 집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오 푸는 방법 House Robber 이거랑 같은데, 첫 집과 마지막 집 조건만 챙기면 된다. dp 라는 타이틀을 가지고 있으니 dp를 사용한다고 치면, 1번집을 무조건 턴 dp1 하나, 1번집을 안 턴 dp2 하나를 세워서 풀면 되겠…</description>
-  </item>
-  <item>
-    <title>2026-08-04</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-04.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-04.html</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>카카오 카나나 2 경량모델 카카오가 카나나 2 경량 모델을 공개했다. 한국어 처리 효율을 기존 대비 30% 이상 향상했다고 한다 | https://tech.kakao.com/posts/826 자세한 내용은 위 참조 (이런 분야 생각하면 대학원을 가야겠다 싶다) 크래프톤의 음성모델 a.x-k2-raon-speech 크래프톤이 sk텔레콤에서 개발한 모델 위에 …</description>
   </item>
   <item>
     <title>Longest Palindromic Substring</title>
@@ -67,13 +76,12 @@
     <description>서론 | https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents 에이전트 평가는 어떻게 해야하는가? 본론 현대 에이전트는 다양한 툴 콜링을 통해 상태를 수정하고 진행한다. 그렇기 때문에 초반에 잘못된 정보를 수정하게 되면(DB 수정 실수 등) 이것이 스노우볼링이 되어 겉잡을 수 없게 커지게 된다. 또…</description>
   </item>
   <item>
-    <title>House Robber</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</guid>
-    <pubDate>Mon, 03 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/house-robber/question 인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시오 푸는 방법 dp로 풀면 된다. 내 위치에서 내가 최대인 방법은 전 집에서 털고 우리 집을 쉰다 전 집에서 쉬고 우리 집을 턴다 둘 중에 최고인 하나를 찾으면 된다. 다음은 코드이다. class Solut…</description>
+    <title>2026-08-04</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-04.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-04.html</guid>
+    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>카카오 카나나 2 경량모델 카카오가 카나나 2 경량 모델을 공개했다. 한국어 처리 효율을 기존 대비 30% 이상 향상했다고 한다 | https://tech.kakao.com/posts/826 자세한 내용은 위 참조 (이런 분야 생각하면 대학원을 가야겠다 싶다) 크래프톤의 음성모델 a.x-k2-raon-speech 크래프톤이 sk텔레콤에서 개발한 모델 위에 …</description>
   </item>
   <item>
     <title>Min Cost Climbing Stairs</title>
@@ -83,6 +91,15 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/min-cost-climbing-stairs/question 최소한의 값으로 계단을 오르는 법을 제시하라 푸는 방법 dp로 단순하게 풀면 된다. 내 두 칸 전에서 올라오는 게 좋은 지, 한 칸 전에서 올라오는 게 좋은 지를 비교하자. 다음은 코드이다. class Solution { public: int minCostClimbingStairs(vector&amp;lt;int&amp;gt;&amp;amp; cost)…</description>
+  </item>
+  <item>
+    <title>House Robber</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</guid>
+    <pubDate>Mon, 03 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/house-robber/question 인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시오 푸는 방법 dp로 풀면 된다. 내 위치에서 내가 최대인 방법은 전 집에서 털고 우리 집을 쉰다 전 집에서 쉬고 우리 집을 턴다 둘 중에 최고인 하나를 찾으면 된다. 다음은 코드이다. class Solut…</description>
   </item>
   <item>
     <title>Word Ladder</title>
@@ -103,6 +120,14 @@
     <description>서론 | https://neetcode.io/problems/redundant-connection/question 사이클이 생기는 지점을 찾아라 푸는 방법 처음에 bfs로 인접리스트 만들어서 어떻게든 풀 수 있을 줄 알았다. 문제는 edges의 마지막 간선을 반환해야 한다는 점이다. bfs 탐색에서는 그것을 알 수가 없고, 결국 탐색에서 사이클 되는 지점을 찾으면 해당 …</description>
   </item>
   <item>
+    <title>2026-07-30</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-30.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-30.html</guid>
+    <pubDate>Thu, 30 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>프론트와 백엔드에 관해서 지금 프로젝트가 거의 풀스택 개발을 하고 있다. 풀스택 개발의 장점이 뭘까? 입출력 API를 맘대로 바꿔도 된다는 점이다. 즉, 간편하다고 생각하다면 제약을 좀 더 걸어서, 또는 프론트 단에서 한 번 더 처리해서 보낸다고 가정을 하면 아주 쉬운 코드를 작성하고 있다. 그런데,…</description>
+  </item>
+  <item>
     <title>Graph Valid Tree</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Graph Valid Tree.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Graph Valid Tree.html</guid>
@@ -110,14 +135,6 @@
     <category>ps</category>
     <category>그래프</category>
     <description>서론 | https://neetcode.io/problems/valid-tree/question 유효한 트리인지 확인하라 푸는 방법 인접리스트를 만든 다음, dfs로 vistied 체크를 하면서 탐색한다. 이때 새로운 노드를 탐색할 때마다 카운트를 세준다. 이후 카운트가 전체 개수와 동일하지 않을 경우 false를 뱉는다. 이게 가능한 이유는 트리의 성질 때문이…</description>
-  </item>
-  <item>
-    <title>2026-07-30</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-30.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-30.html</guid>
-    <pubDate>Thu, 30 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>프론트와 백엔드에 관해서 지금 프로젝트가 거의 풀스택 개발을 하고 있다. 풀스택 개발의 장점이 뭘까? 입출력 API를 맘대로 바꿔도 된다는 점이다. 즉, 간편하다고 생각하다면 제약을 좀 더 걸어서, 또는 프론트 단에서 한 번 더 처리해서 보낸다고 가정을 하면 아주 쉬운 코드를 작성하고 있다. 그런데,…</description>
   </item>
   <item>
     <title>Number of Connected Components in an Undirected Graph</title>
@@ -129,13 +146,12 @@
     <description>서론 | https://neetcode.io/problems/count-connected-components/question 연결되어 있는 그래프의 개수를 세라 푸는 방법 Union Find 하면 된다. size를 넣고 밸런스 있게 풀 수도 있지만 빠르게 하기 위하여 없애고 한다. 합치는 경우에만 전체 개수에서 달라지므로 count를 두어 빼면서 진행하였다. 다음은 코드이다. class Soluti…</description>
   </item>
   <item>
-    <title>Course Schedule II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</guid>
+    <title>2026-07-29</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-29.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-29.html</guid>
     <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그래프</category>
-    <description>서론 | https://neetcode.io/problems/course-schedule-ii/question 선수 과목이 존재할 때 가능한 경우 중 하나를 구해라 푸는 방법 Course Schedule 과 동일한데, result vector를 세우는 것 밖에 없다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; findOrder(int n, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; p) { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; adj(n); ve…</description>
+    <category>데일리</category>
+    <description>Auto Hot Key 요새 노트북에는 코파일럿 키가 박혀져 있다. 근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다. 그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다. 그래서 Auto Hot Key를 사용하여 power toys run을 …</description>
   </item>
   <item>
     <title>Course Schedule</title>
@@ -147,12 +163,13 @@
     <description>서론 | https://neetcode.io/problems/course-schedule/question?list=neetcode150 선수 과목 목록이 주어질 때 강의를 수강할 수 있는 지 확인하라. 푸는 방법 위상 정렬을 활용하면 된다. 어렸을 때, &quot;난 쟤보다 빠르고 쟤보단 느려&quot;가 엄청 많아서 그럼 누가 1등인가? 하는 문제를 봤을 것이다. 그것과 아주 동일한 문제이다. A…</description>
   </item>
   <item>
-    <title>2026-07-29</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-29.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-29.html</guid>
+    <title>Course Schedule II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</guid>
     <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>Auto Hot Key 요새 노트북에는 코파일럿 키가 박혀져 있다. 근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다. 그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다. 그래서 Auto Hot Key를 사용하여 power toys run을 …</description>
+    <category>ps</category>
+    <category>그래프</category>
+    <description>서론 | https://neetcode.io/problems/course-schedule-ii/question 선수 과목이 존재할 때 가능한 경우 중 하나를 구해라 푸는 방법 Course Schedule 과 동일한데, result vector를 세우는 것 밖에 없다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; findOrder(int n, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; p) { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; adj(n); ve…</description>
   </item>
   <item>
     <title>2026-07-28</title>
@@ -161,24 +178,6 @@
     <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
     <category>데일리</category>
     <description>도커에 관하여 프로젝트에서 ghcr에 이미지를 올린 다음 개발 서버에서 땡겨서 컨테이너를 만들어 사용하려고 했는데 이해가 안되는 부분들이 많았다. docker compose는 언제 쓰는 것일까? 그거를 해결하기 위해 다음과 같이 공부를 해보았다. 이미지는 무엇일까? 이미지는 파일시스템을 쌓아놓은 것이다. 실…</description>
-  </item>
-  <item>
-    <title>Surrounded Regions</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Surrounded Regions.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Surrounded Regions.html</guid>
-    <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그래프</category>
-    <description>서론 | https://neetcode.io/problems/surrounded-regions/question 바둑처럼 상대편을 먹었을 때 오셀로처럼 뒤집어라. 푸는 방법 새로운 벡터를 만드는 것이 아니고 참조로 받은 보드를 반환하기에 visited 배열처럼 사용하면 된다. 바깥쪽에 위치안 O를 기준으로 bfs 탐색을 하면 된다. 바깥에서 탐색해서 이어진 곳을 \&apos;#\&apos;…</description>
-  </item>
-  <item>
-    <title>Pacific Atlantic Water Flow</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Pacific Atlantic Water Flow.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Pacific Atlantic Water Flow.html</guid>
-    <pubDate>Mon, 27 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그래프</category>
-    <description>서론 | https://neetcode.io/problems/pacific-atlantic-water-flow/question (위쪽, 왼쪽), (아래쪽, 오른쪽)을 전부 갈 수 있는 칸을 구하라. 푸는 방법 dp 테이블을 비트 연산을 통해 구하면 된다. (위쪽, 왼쪽)을 1, (아래쪽, 오른쪽)을 2로 설정하고 초기에 접하는 칸들을 전부 큐에 넣는다. 이후 해당하는 칸부터 높이가 낮은 …</description>
   </item>
 </channel>
 </rss>
