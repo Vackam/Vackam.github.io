@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Break &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/word-break/question dict를 통해 만들 수 있는 문자열인 지 판별하라 푸는 방법 dfs로 가능…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Word Break</h1>
+    <p class="meta">2026-08-10 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/word-break/question</p>
+<p>dict를 통해 만들 수 있는 문자열인 지 판별하라 </p>
+
+<h1>푸는 방법</h1>
+<p>dfs로 가능한 경우들을 map에 저장하고 끝낸 이후에 map에 해당 값이 있는 지 확인하면 된다.</p>
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    bool is_in(const string&amp; origin, const string&amp; target) {
+        int n = target.size();
+
+        for (int i=0; i&lt;n; ++i) {
+            if (origin[i] != target[i]) return false;
+        }
+
+        return true;
+    }
+    void dfs(unordered_map&lt;string, bool&gt;&amp; m, const vector&lt;string&gt;&amp; w, const int&amp; n, string target, string s) {
+        string copy = target;
+
+        if (!is_in(s, copy)) return;
+        for (const auto&amp; a : w) {
+            copy += a;
+            if (m.find(copy) == m.end() &amp;&amp;
+                copy.size() &lt;= n) {
+                
+                m[copy] = true;
+                dfs(m, w, n, copy, s);
+            }
+
+            copy = target;
+        }
+    }
+    bool wordBreak(string s, vector&lt;string&gt;&amp; wordDict) {
+        int n = s.size();
+
+        unordered_map&lt;string, bool&gt; m;
+        dfs(m, wordDict, n, "", s);
+
+        return m.find(s) == m.end() ? false : true;
+    }
+};
+</code></pre>
+<p>본 함수 위 2개의 함수는 헬퍼 함수들이다. </p>
+<p>하지만 모두가 알고 있듯이 문자열을 사용하면 시간이 느리다. 실제로 프루닝을 안하면 시간초과로 해결하지 못한다.</p>
+
+<p>그래서 다음과 같은 풀이가 있다.</p>
+<p>비슷한 방식을 생각하되 dp 처럼 생각하는 것이다.</p>
+<p>여기까지 만들 수 있나? 그럼 오케이 </p>
+<p>이런 로직으로 지나간다. </p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    bool wordBreak(string s, vector&lt;string&gt;&amp; wordDict) {
+        int n = s.size();
+        unordered_set&lt;string&gt; dict(wordDict.begin(), wordDict.end());
+        vector&lt;bool&gt; dp(n+1, false);
+        dp[0] = true;
+
+        for (int i=1; i&lt;=n; ++i) {
+            for (int j=0; j&lt;i; ++j) {
+                if (dp[j] &amp;&amp; dict.count(s.substr(j, i-j))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[n];
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>근데 아이러니하게 시간은 string 풀이가 더 빠르다. dp란 알다가도 모르겠는 세계다...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Maximum Product Subarray.html">Maximum Product Subarray &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

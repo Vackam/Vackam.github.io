@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum Product Subarray &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/maximum-product-subarray/question 곱이 가장 큰 부분배열을 찾아라 푸는 방법 핵심은 0과 음…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Maximum Product Subarray</h1>
+    <p class="meta">2026-08-08 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/maximum-product-subarray/question</p>
+<p>곱이 가장 큰 부분배열을 찾아라</p>
+
+<h1>푸는 방법</h1>
+<p>핵심은 0과 음수를 어떻게 처리하냐이다. 저것들만 없으면 무조건 풀 배열이 정답이다.</p>
+
+<p>첫번째 풀이는 상한과 하한을 들고 다니는 방법이다. 음수로 생긴 값도 들고 다니면서 다시 나올 음수를 기다리는 느낌이다. </p>
+<p>다음은 코드이다</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int maxProduct(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+
+        int cur_max = nums[0], cur_min = nums[0], ans = nums[0];
+
+        for (int i=1; i&lt;n; ++i) {
+            int a = nums[i];
+            if (a &lt; 0) swap(cur_max, cur_min);
+            cur_max = max(a, cur_max*a);
+            cur_min = min(a, cur_min * a);
+            ans = max(ans, cur_max);
+        }
+ 
+        return ans;
+    }
+};
+</code></pre>
+
+<p>다른 풀이로는 0을 기준점으로 앞에서 탐색하고 뒤에서 탐색하는 방식이다.</p>
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int maxProduct(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size(), ans = INT_MIN;
+        long long pre = 1, suf = 1;
+
+        for (int i=0; i&lt;n; ++i) {
+            pre *= nums[i];
+            suf *= nums[n-1-i];
+            ans = max(ans, (int)max(pre,suf));
+            if (pre == 0) pre = 1;
+            if (suf == 0) suf = 1;
+        }    
+
+        return ans;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>dp는 확실히 어렵다. 아무 생각 없이 어느정도 까지는 코드가 작성되길 바라는데 그것이 아예 안되는 거 같다...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Palindromic Substrings.html">Palindromic Substrings &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Word Break.html">&larr; Word Break</a></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

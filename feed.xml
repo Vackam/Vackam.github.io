@@ -7,6 +7,24 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Word Break</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Word Break.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Word Break.html</guid>
+    <pubDate>Mon, 10 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/word-break/question dict를 통해 만들 수 있는 문자열인 지 판별하라 푸는 방법 dfs로 가능한 경우들을 map에 저장하고 끝낸 이후에 map에 해당 값이 있는 지 확인하면 된다. 다음은 코드이다. class Solution { public: bool is_in(const string&amp;amp; origin, const string&amp;amp; target) { int n = target.size(); for (int…</description>
+  </item>
+  <item>
+    <title>Maximum Product Subarray</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Maximum Product Subarray.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Maximum Product Subarray.html</guid>
+    <pubDate>Sat, 08 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/maximum-product-subarray/question 곱이 가장 큰 부분배열을 찾아라 푸는 방법 핵심은 0과 음수를 어떻게 처리하냐이다. 저것들만 없으면 무조건 풀 배열이 정답이다. 첫번째 풀이는 상한과 하한을 들고 다니는 방법이다. 음수로 생긴 값도 들고 다니면서 다시 나올 음수를 기다리는 …</description>
+  </item>
+  <item>
     <title>Coin Change</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Coin Change.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Coin Change.html</guid>
@@ -14,6 +32,13 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/coin-change/question 배낭 문제인데, 개수는 최소로 해라. 푸는 방법 처음에 그리디로 했다가 최소 조건을 당연히 못맞추어 실패했다. 그럼 방법은 dp인데, 1부터 하나씩 기록하면서 코인 하나를 넣었을 때 값이 만족된다면 이를 갱신하는 것으로 하면 된다. 다음은 코드이다. ```cpp …</description>
+  </item>
+  <item>
+    <title>2026-08-07</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-07.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-07.html</guid>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 +0900</pubDate>
+    <description>Intellij 구독 관련 이게 학생이면 Education으로 Ultimate를 사용할 수 있다. 근데 로그인을 안해버리면 그냥 커뮤니티 버전으로 잡는다. 꼭 설정들어가서 확인하도록 하자... 좋은 기능을 버리면 너무 아깝다.</description>
   </item>
   <item>
     <title>Decode Ways</title>
@@ -120,14 +145,6 @@
     <description>서론 | https://neetcode.io/problems/redundant-connection/question 사이클이 생기는 지점을 찾아라 푸는 방법 처음에 bfs로 인접리스트 만들어서 어떻게든 풀 수 있을 줄 알았다. 문제는 edges의 마지막 간선을 반환해야 한다는 점이다. bfs 탐색에서는 그것을 알 수가 없고, 결국 탐색에서 사이클 되는 지점을 찾으면 해당 …</description>
   </item>
   <item>
-    <title>2026-07-30</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-30.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-30.html</guid>
-    <pubDate>Thu, 30 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>프론트와 백엔드에 관해서 지금 프로젝트가 거의 풀스택 개발을 하고 있다. 풀스택 개발의 장점이 뭘까? 입출력 API를 맘대로 바꿔도 된다는 점이다. 즉, 간편하다고 생각하다면 제약을 좀 더 걸어서, 또는 프론트 단에서 한 번 더 처리해서 보낸다고 가정을 하면 아주 쉬운 코드를 작성하고 있다. 그런데,…</description>
-  </item>
-  <item>
     <title>Graph Valid Tree</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Graph Valid Tree.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Graph Valid Tree.html</guid>
@@ -146,38 +163,20 @@
     <description>서론 | https://neetcode.io/problems/count-connected-components/question 연결되어 있는 그래프의 개수를 세라 푸는 방법 Union Find 하면 된다. size를 넣고 밸런스 있게 풀 수도 있지만 빠르게 하기 위하여 없애고 한다. 합치는 경우에만 전체 개수에서 달라지므로 count를 두어 빼면서 진행하였다. 다음은 코드이다. class Soluti…</description>
   </item>
   <item>
+    <title>2026-07-30</title>
+    <link>https://vackam.github.io/posts/Daily/7월/2026-07-30.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-30.html</guid>
+    <pubDate>Thu, 30 Jul 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>프론트와 백엔드에 관해서 지금 프로젝트가 거의 풀스택 개발을 하고 있다. 풀스택 개발의 장점이 뭘까? 입출력 API를 맘대로 바꿔도 된다는 점이다. 즉, 간편하다고 생각하다면 제약을 좀 더 걸어서, 또는 프론트 단에서 한 번 더 처리해서 보낸다고 가정을 하면 아주 쉬운 코드를 작성하고 있다. 그런데,…</description>
+  </item>
+  <item>
     <title>2026-07-29</title>
     <link>https://vackam.github.io/posts/Daily/7월/2026-07-29.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-29.html</guid>
     <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
     <category>데일리</category>
     <description>Auto Hot Key 요새 노트북에는 코파일럿 키가 박혀져 있다. 근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다. 그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다. 그래서 Auto Hot Key를 사용하여 power toys run을 …</description>
-  </item>
-  <item>
-    <title>Course Schedule</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule.html</guid>
-    <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그래프</category>
-    <description>서론 | https://neetcode.io/problems/course-schedule/question?list=neetcode150 선수 과목 목록이 주어질 때 강의를 수강할 수 있는 지 확인하라. 푸는 방법 위상 정렬을 활용하면 된다. 어렸을 때, &quot;난 쟤보다 빠르고 쟤보단 느려&quot;가 엄청 많아서 그럼 누가 1등인가? 하는 문제를 봤을 것이다. 그것과 아주 동일한 문제이다. A…</description>
-  </item>
-  <item>
-    <title>Course Schedule II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Course Schedule II.html</guid>
-    <pubDate>Wed, 29 Jul 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그래프</category>
-    <description>서론 | https://neetcode.io/problems/course-schedule-ii/question 선수 과목이 존재할 때 가능한 경우 중 하나를 구해라 푸는 방법 Course Schedule 과 동일한데, result vector를 세우는 것 밖에 없다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; findOrder(int n, vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; p) { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; adj(n); ve…</description>
-  </item>
-  <item>
-    <title>2026-07-28</title>
-    <link>https://vackam.github.io/posts/Daily/7월/2026-07-28.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/7월/2026-07-28.html</guid>
-    <pubDate>Tue, 28 Jul 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>도커에 관하여 프로젝트에서 ghcr에 이미지를 올린 다음 개발 서버에서 땡겨서 컨테이너를 만들어 사용하려고 했는데 이해가 안되는 부분들이 많았다. docker compose는 언제 쓰는 것일까? 그거를 해결하기 위해 다음과 같이 공부를 해보았다. 이미지는 무엇일까? 이미지는 파일시스템을 쌓아놓은 것이다. 실…</description>
   </item>
 </channel>
 </rss>
