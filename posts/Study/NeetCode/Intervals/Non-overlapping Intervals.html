@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partition Equal Subset Sum &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 …">
+    <title>Non-overlapping Intervals &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/non-overlapping-intervals/question 최소한으로 원소를 제거해서 겹치지 않도록 하는 최소값…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,51 +18,54 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Partition Equal Subset Sum</h1>
-    <p class="meta">2026-08-11 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Non-overlapping Intervals</h1>
+    <p class="meta">2026-08-14 <span class="tag">ps</span><span class="tag">interval</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/partition-equal-subset-sum/question</p>
-<p>전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라.</p>
+<p>| https://neetcode.io/problems/non-overlapping-intervals/question</p>
+<p>최소한으로 원소를 제거해서 겹치지 않도록 하는 최소값을 구하시오</p>
 
 <h1>푸는 방법</h1>
-<p>dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다.</p>
+<p>리턴값이 int 이므로 모든 상태를 추적할 필요는 없다.</p>
+<p>다른 인터벌 문제와 동일하게 뒷 값만 조정하면 된다.</p>
+<p>sort를 한 뒤에 뒷 값이 앞 값보다 작거나 같으면 겹치지 않으므로 삽입,</p>
+<p>겹치면은 뒷 값이 최대한 작은 놈으로 선택한다. 왜냐하면 최대한 안겹치려면 각자의 범위가 좁아야 하기 때문이다.</p>
 
 <p>다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
-    bool canPartition(vector&lt;int&gt;&amp; nums) {
-        int sum = accumulate(nums.begin(), nums.end(), 0);
+    int eraseOverlapIntervals(vector&lt;vector&lt;int&gt;&gt;&amp; intervals) {
+        int n = intervals.size();
+        sort(intervals.begin(), intervals.end());
 
-        if (sum % 2 != 0) return false;
+        int last = 0;
+        int counter = 0;
 
-        int target = sum/2;
-
-        vector&lt;bool&gt; dp(target + 1, false);
-
-        dp[0] = true;
-        for (int num : nums) {
-            for (int j=target; j&gt;=num; --j) {
-                dp[j] = dp[j] || dp[j-num];
+        for (int i=0; i&lt;n; ++i) {
+            if (i == 0 || last &lt;= intervals[i][0]) {
+                counter++;
+                last = intervals[i][1];
+            } else {
+                last = min(last, intervals[i][1]);
             }
         }
 
-        return dp[target];
+        return n-counter;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>처음에는 dfs로 풀었다가 답지를 보니 다음에는 이 풀이를 생각해내야 겠다고 생각하여 이 방식을 올린다.</p>
+<p>뭔가 신기한 문제다. 인터벌이란 주제에 안 익숙해서 푸는데 오래걸렸다..</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Word Break.html">Word Break &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Longest Increasing Subsequence.html">&larr; Longest Increasing Subsequence</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Intervals/Merge Intervals.html">Merge Intervals &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Intervals/Meeting Rooms II.html">&larr; Meeting Rooms II</a></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 

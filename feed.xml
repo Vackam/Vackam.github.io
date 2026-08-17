@@ -7,6 +7,33 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Meeting Rooms</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms.html</guid>
+    <pubDate>Mon, 17 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>interval</category>
+    <description>서론 | https://neetcode.io/problems/meeting-schedule/question 미팅 시간이 겹치는 지 확인해라. 푸는 방법 sort하고 겹치는 지 확인하면 된다. 이것도 대충하면 되는데, 전에 있는 end 값이 지금 값의 start 값보다 큰 지 확인하면 된다. 다음은 코드이다. class Solution { public: bool canAttendMeetings(vector&amp;lt;Interval&amp;gt;&amp;amp; intervals) { …</description>
+  </item>
+  <item>
+    <title>Meeting Rooms II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms II.html</guid>
+    <pubDate>Mon, 17 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>interval</category>
+    <description>서론 | https://neetcode.io/problems/meeting-schedule-ii/question 회의를 하기 위한 최소 개수를 구하시오 푸는 방법 미팅룸을 하나 넣고, 만약 겹친다면 새롭게 방을 추가하면 된다. 이 로직은 min-heap으로 만들면 된다. 다음은 코드이다. class Solution { public: int minMeetingRooms(vector&amp;lt;Interval&amp;gt;&amp;amp; intervals) { int n = intervals.size…</description>
+  </item>
+  <item>
+    <title>Non-overlapping Intervals</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Non-overlapping Intervals.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Non-overlapping Intervals.html</guid>
+    <pubDate>Fri, 14 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>interval</category>
+    <description>서론 | https://neetcode.io/problems/non-overlapping-intervals/question 최소한으로 원소를 제거해서 겹치지 않도록 하는 최소값을 구하시오 푸는 방법 리턴값이 int 이므로 모든 상태를 추적할 필요는 없다. 다른 인터벌 문제와 동일하게 뒷 값만 조정하면 된다. sort를 한 뒤에 뒷 값이 앞 값보다 작거나 같으면 겹치지 않…</description>
+  </item>
+  <item>
     <title>Merge Intervals</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Merge Intervals.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Merge Intervals.html</guid>
@@ -16,11 +43,12 @@
     <description>서론 | https://neetcode.io/problems/merge-intervals/question 최종 병합된 상태를 순서에 상관없이 제시하라 푸는 방법 이번 문제는 저번 Insert Interval 과 달리 sorting이 안되어 있어서 sort를 하고 가야한다. 병합이 되어있는 가장 최신 것의 끝점보다 내 첫 점이 크다면 겹치지 않으므로 그냥 삽입, 그렇지 않다면 내 끝 …</description>
   </item>
   <item>
-    <title>2026-08-12</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-12.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-12.html</guid>
-    <pubDate>Wed, 12 Aug 2026 00:00:00 +0900</pubDate>
-    <description>배틀 디펜스 관련 고정된 맵이 10개 정도 있고, 거기에 배치할 수 있는 칸을 정한다. 그 다음 각 맵마다 기믹을 랜덤으로 부여한다.(각 라운드?) 그래서 고정된 전략으로 못 깨게 한다. 이런 기획 어떨까? 그러면 맵에 대해서 랜덤 맵이 나오니까 재밌고, 기믹도 있으니까 기믹 해결하면서 풀어야 하니까 퍼…</description>
+    <title>2026-08-13</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-13.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-13.html</guid>
+    <pubDate>Thu, 13 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>임베딩 차원에 대해서 임베딩을 한다고는 많이 들었다. 하지만 이해가 &apos;n차원으로 만드는 것&apos; 이상을 나가지 못했다. 우리가 맛에 대한 n 차원 벡터가 있다고 하자. 짠맛, 단맛 ... 여러 개가 있을 것이다. 요리를 해당 차원에 넣어본다고 가정하자. 그렇다면 그 공간에서의 한 점으로 표현이 가능할 것이다…</description>
   </item>
   <item>
     <title>Insert Interval</title>
@@ -32,13 +60,11 @@
     <description>서론 | https://neetcode.io/problems/insert-new-interval/question 새로운 구간이 하나 왔을 때, 병합 가능할 시 병합된 구간을 구하라. 푸는 방법 새로운 구간의 시작(이후 start)보다 구간의 끝이 작은 것들은 result에 넣어두고 넘어간다. 이후 겹치는 부분이 시작되면 새로운 구간의 끝(이후 end)을 넘지 않는 구간을 계속 …</description>
   </item>
   <item>
-    <title>Partition Equal Subset Sum</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</guid>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라. 푸는 방법 dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다. 다음은 코드이다. class Solution { public: bool canPartition(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int sum = accumulate(nums…</description>
+    <title>2026-08-12</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-12.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-12.html</guid>
+    <pubDate>Wed, 12 Aug 2026 00:00:00 +0900</pubDate>
+    <description>배틀 디펜스 관련 고정된 맵이 10개 정도 있고, 거기에 배치할 수 있는 칸을 정한다. 그 다음 각 맵마다 기믹을 랜덤으로 부여한다.(각 라운드?) 그래서 고정된 전략으로 못 깨게 한다. 이런 기획 어떨까? 그러면 맵에 대해서 랜덤 맵이 나오니까 재밌고, 기믹도 있으니까 기믹 해결하면서 풀어야 하니까 퍼…</description>
   </item>
   <item>
     <title>Longest Increasing Subsequence</title>
@@ -48,6 +74,15 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/longest-increasing-subsequence/question 가장 긴 증가하는 부분수열을 구하시오 푸는 방법 트래킹해서 부분수열 자체를 구하는 것이 아니라서 단순히 1차원 dp 하나로 풀린다. 1차원 dp를 두고 내 전 dp들을 훑으며 나보다 작은 값보다 1은 더한 값을 계속 비교하면서 나가면 된다. 다음은…</description>
+  </item>
+  <item>
+    <title>Partition Equal Subset Sum</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</guid>
+    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라. 푸는 방법 dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다. 다음은 코드이다. class Solution { public: bool canPartition(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int sum = accumulate(nums…</description>
   </item>
   <item>
     <title>2026-08-11</title>
@@ -134,47 +169,12 @@
     <description>레이지 로딩(lazy loading) 참고: https://developer.mozilla.org/ko/docs/Web/Performance/Guides/Lazy_loading 레이지 로딩은 말 그대로 특정한 것을 늦게 로딩하는 것이다. 유저에게 당장 필요한 정보만 주고, 추가 필요한 것은 요청 시에 줌으로써 페이지 로드 시간을 감소시킨다. 정말 단순하게 css, js 같은 코드를 잘라서 보낼 …</description>
   </item>
   <item>
-    <title>House Robber II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber II.html</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/house-robber-ii/question 집이 원형으로 붙어있을 때 강탈할 방법을 찾으시오 푸는 방법 House Robber 이거랑 같은데, 첫 집과 마지막 집 조건만 챙기면 된다. dp 라는 타이틀을 가지고 있으니 dp를 사용한다고 치면, 1번집을 무조건 턴 dp1 하나, 1번집을 안 턴 dp2 하나를 세워서 풀면 되겠…</description>
-  </item>
-  <item>
     <title>에이전트 평가에 대해서</title>
     <link>https://vackam.github.io/posts/Paper/에이전트 평가에 대해서.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Paper/에이전트 평가에 대해서.html</guid>
     <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
     <category>아티클</category>
     <description>서론 | https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents 에이전트 평가는 어떻게 해야하는가? 본론 현대 에이전트는 다양한 툴 콜링을 통해 상태를 수정하고 진행한다. 그렇기 때문에 초반에 잘못된 정보를 수정하게 되면(DB 수정 실수 등) 이것이 스노우볼링이 되어 겉잡을 수 없게 커지게 된다. 또…</description>
-  </item>
-  <item>
-    <title>2026-08-04</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-04.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-04.html</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>카카오 카나나 2 경량모델 카카오가 카나나 2 경량 모델을 공개했다. 한국어 처리 효율을 기존 대비 30% 이상 향상했다고 한다 | https://tech.kakao.com/posts/826 자세한 내용은 위 참조 (이런 분야 생각하면 대학원을 가야겠다 싶다) 크래프톤의 음성모델 a.x-k2-raon-speech 크래프톤이 sk텔레콤에서 개발한 모델 위에 …</description>
-  </item>
-  <item>
-    <title>Longest Palindromic Substring</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Longest Palindromic Substring.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Longest Palindromic Substring.html</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰린드롬을 중앙에서부터 찾는 생각을 하면 된다. 주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다. 짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다. …</description>
-  </item>
-  <item>
-    <title>House Robber</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/House Robber.html</guid>
-    <pubDate>Mon, 03 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/house-robber/question 인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시오 푸는 방법 dp로 풀면 된다. 내 위치에서 내가 최대인 방법은 전 집에서 털고 우리 집을 쉰다 전 집에서 쉬고 우리 집을 턴다 둘 중에 최고인 하나를 찾으면 된다. 다음은 코드이다. class Solut…</description>
   </item>
 </channel>
 </rss>
