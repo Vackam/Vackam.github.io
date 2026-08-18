@@ -7,6 +7,23 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>2026-08-18</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-18.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-18.html</guid>
+    <pubDate>Tue, 18 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>CRLF, LF 이 윈도우하고 맥 환경을 같이 쓰는 사람들이 프로젝트를 하면 무조건 풀리 제목으로 하나 나오는 것이 LF 형식으로 변경이다. 대체 이게 뭘까? CR은 캐리지 리턴이란 뜻으로 커서를 맨 앞으로 이동하는 것이다. LF는 라인 피드로 커서를 아래로 이동하는 것이다. 윈도우에서는 CRLF를 동시에 써서, \r…</description>
+  </item>
+  <item>
+    <title>Minimum Interval to Include Each Query</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Minimum Interval to Include Each Query.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Minimum Interval to Include Each Query.html</guid>
+    <pubDate>Tue, 18 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>interval</category>
+    <description>서론 | https://neetcode.io/problems/minimum-interval-including-query/question 속한 구간 중 가장 작은 구간을 각각 구하시오 푸는 방법 주어진 queries, intervals가 정렬되어 있다고 하자. 최소힙을 하나 구현하고, 그것의 원소는 (구간 길이, 끝값)을 가진다고 하자. 하나의 쿼리마다 다음과 같은 과정을 거친다. 쿼리가 해당 …</description>
+  </item>
+  <item>
     <title>Meeting Rooms</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms.html</guid>
@@ -159,22 +176,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/palindromic-substrings/question 팰린드롬인 서브스트링의 개수를 세라 푸는 방법 Longest Palindromic Substring 처음에 중복을 체크해야 할 거 같아서 set으로 하고 map으로 체크해보고 했는데, 전부다 시간 초과로 실패했다. 그래서 문제를 자세히 보니 중복을 허용하더라... 위 링크에서 푸…</description>
-  </item>
-  <item>
-    <title>2026-08-05</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-05.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-05.html</guid>
-    <pubDate>Wed, 05 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>레이지 로딩(lazy loading) 참고: https://developer.mozilla.org/ko/docs/Web/Performance/Guides/Lazy_loading 레이지 로딩은 말 그대로 특정한 것을 늦게 로딩하는 것이다. 유저에게 당장 필요한 정보만 주고, 추가 필요한 것은 요청 시에 줌으로써 페이지 로드 시간을 감소시킨다. 정말 단순하게 css, js 같은 코드를 잘라서 보낼 …</description>
-  </item>
-  <item>
-    <title>에이전트 평가에 대해서</title>
-    <link>https://vackam.github.io/posts/Paper/에이전트 평가에 대해서.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Paper/에이전트 평가에 대해서.html</guid>
-    <pubDate>Tue, 04 Aug 2026 00:00:00 +0900</pubDate>
-    <category>아티클</category>
-    <description>서론 | https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents 에이전트 평가는 어떻게 해야하는가? 본론 현대 에이전트는 다양한 툴 콜링을 통해 상태를 수정하고 진행한다. 그렇기 때문에 초반에 잘못된 정보를 수정하게 되면(DB 수정 실수 등) 이것이 스노우볼링이 되어 겉잡을 수 없게 커지게 된다. 또…</description>
   </item>
 </channel>
 </rss>

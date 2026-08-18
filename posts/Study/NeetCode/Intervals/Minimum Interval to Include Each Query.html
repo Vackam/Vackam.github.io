@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimum Interval to Include Each Query &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/minimum-interval-including-query/question 속한 구간 중 가장 작은 구간을 각각 구하시오 푸는 …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Minimum Interval to Include Each Query</h1>
+    <p class="meta">2026-08-18 <span class="tag">ps</span><span class="tag">interval</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/minimum-interval-including-query/question</p>
+<p>속한 구간 중 가장 작은 구간을 각각 구하시오</p>
+
+<h1>푸는 방법</h1>
+
+<p>주어진 queries, intervals가 정렬되어 있다고 하자.</p>
+<p>최소힙을 하나 구현하고, 그것의 원소는 (구간 길이, 끝값)을 가진다고 하자.</p>
+<p>하나의 쿼리마다 다음과 같은 과정을 거친다.</p>
+
+<ol>
+<li>쿼리가 해당 구간의 첫 값보다 크거나 같다면(속할 것이라 생각되면) 최소 힙에 넣는다.</li>
+<li>해당 구간이 없을 때까지 반복한다.</li>
+<li>그리고 최소 힙에서 끝값이 쿼리보다 작은 경우 전부 뺀다.</li>
+<li>힙이 비어있을 경우 쿼리값은 -1, 비어있지 않을 경우 해당 값의 구간이다.</li>
+</ol>
+
+<p>이게 왜 되나면 </p>
+<ol>
+<li>최소힙이기 때문에 조건을 만족하면서 처음 만나는 값이 최소라고 할 수 있다.</li>
+<li>쿼리가 정렬되어 있다고 생각하기 때문에 자기보다 작은 끝값을 가지는 구간은 없앨 수 있다. 즉, 다신 안봐도 된다.</li>
+<li>동일 값에 대해서는 한 번 더 힙에 남김으로 볼 수 있으므로 가능하다. </li>
+</ol>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
+class Solution {
+public:
+    vector&lt;int&gt; minInterval(vector&lt;vector&lt;int&gt;&gt;&amp; intervals, vector&lt;int&gt;&amp; queries) {
+        sort(intervals.begin(), intervals.end());
+        vector&lt;pii&gt; v;
+
+        for (int i=0; i&lt;queries.size(); ++i) {
+            v.push_back({queries[i], i});
+        }
+        sort(v.begin(), v.end());
+
+        priority_queue&lt;pii, vector&lt;pii&gt;, greater&lt;&gt;&gt; pq;
+        vector&lt;int&gt; res(queries.size());
+
+        int i = 0;
+
+        for (auto&amp; [Q, idx] : v) {
+            while (i &lt; intervals.size() &amp;&amp; intervals[i][0] &lt;= Q) {
+                pq.push({intervals[i][1] - intervals[i][0] + 1, intervals[i][1]});
+                ++i;
+            }
+
+            while (!pq.empty() &amp;&amp; pq.top().second &lt; Q) pq.pop();
+            res[idx] = pq.empty() ? -1 : pq.top().first;
+        }
+
+        return res;
+    }
+}
+</code></pre>
+
+<h1>결론</h1>
+<p>아주 어려웠다. 사실 설명을 적으면서도 내가 이해를 하긴 했지만 설명을 잘 못하겠다...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Intervals/Meeting Rooms.html">Meeting Rooms &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
