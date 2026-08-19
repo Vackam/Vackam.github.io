@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meeting Rooms &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/meeting-schedule/question 미팅 시간이 겹치는 지 확인해라. 푸는 방법 sort하고 겹치는 지 …">
+    <title>Maximum Subarray &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/maximum-subarray/question 가장 값이 큰 subarray의 합을 구하시오 푸는 방법 subarray 자체를 구…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,55 +18,60 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Meeting Rooms</h1>
-    <p class="meta">2026-08-17 <span class="tag">ps</span><span class="tag">interval</span></p>
+    <h1>Maximum Subarray</h1>
+    <p class="meta">2026-08-19 <span class="tag">ps</span><span class="tag">그리디</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-
-<p>| https://neetcode.io/problems/meeting-schedule/question</p>
-<p>미팅 시간이 겹치는 지 확인해라.</p>
+<p>| https://neetcode.io/problems/maximum-subarray/question</p>
+<p>가장 값이 큰 subarray의 합을 구하시오</p>
 
 <h1>푸는 방법</h1>
-
-<p>sort하고 겹치는 지 확인하면 된다.</p>
-<p>이것도 대충하면 되는데, 전에 있는 end 값이 지금 값의 start 값보다 큰 지 확인하면 된다.</p>
+<p>subarray 자체를 구하는 것이 아니라 값만 기억하면서 나오면 된다.</p>
+<p>그리디 스타일로 내 차례가 되면 내가 무조건 포함되면 된다. </p>
+<p>만약 전 값들이 음수로 나왔을 경우에는 나랑 합치면 무조건 손해니까 subarray를 나부터 시작하고, 양수인 경우 subarray를 잇는다.</p>
 
 <p>다음은 코드이다.</p>
+
 <pre><code class="language-cpp">class Solution {
 public:
-    bool canAttendMeetings(vector&lt;Interval&gt;&amp; intervals) {
-        int n = intervals.size();
+    int maxSubArray(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if (n &lt;= 1) return nums[0];
 
-        if (n &lt; 2) return true;
-
-        sort(intervals.begin(), intervals.end(),
-            [](const Interval&amp; a, const Interval&amp; b) {
-                return tie(a.start, a.end) &lt; tie(b.start, b.end);
-        });
-
-        auto&amp; prev = intervals[0];
+        int result = nums[0];
+        int temp = nums[0];
 
         for (int i=1; i&lt;n; ++i) {
-            if (prev.end &gt; intervals[i].start) return false;
-            prev = intervals[i];
+            const auto&amp; target = nums[i];
+            // 왜냐면 무조건 선택할 거임.
+            // 그래서 temp가 0보다 작으면 버리고 쓰기, 크면 무조건 쓰기
+            temp = temp &gt; 0 ? temp + target : target;
+
+            result = max(temp, result);
         }
 
-        return true;
+        return result;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>전에 나왔던 것들 보다 아주 단순하다.</p>
+<p>처음에는 2차원 배열로 가능한 것들을 탐색하고자 했는데, 끊김에 대한 표현이 안되어서 실패했다.</p>
+<p>방금 생각한 걸로는 구간합으로 풀 수 있을 것 같다.</p>
+<p>구간합을 구한 다음, 가장 큰 값을 선택하면 되겠다.</p>
+<p>하지만, 시간이</p>
+<pre><code>구간합 구하기 + 2중 for문 돌면서 가장 큰 값 찾기
+</code></pre>
+<p>이렇게 되므로 위 풀이보다 더 오래 걸릴 것이다.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Intervals/Non-overlapping Intervals.html">Non-overlapping Intervals &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Intervals/Meeting Rooms II.html">&larr; Meeting Rooms II</a></span></nav>
+    
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
