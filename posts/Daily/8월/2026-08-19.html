@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-19 &mdash; devlog</title>
+    <meta name="description" content="EXIF에 대하여 EXIF는 이미지 파일에 대한 메타데이터이다. 아마 핸드폰 앨범에서 사진을 위로 올리면 다양한 정보…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>2026-08-19</h1>
+    <p class="meta">2026-08-19 <span class="tag">데일리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>EXIF에 대하여</h1>
+<p>EXIF는 이미지 파일에 대한 메타데이터이다. 아마 핸드폰 앨범에서 사진을 위로 올리면 다양한 정보가 나오는 것을 경험했을 텐데, 그것이 EXIF를 해석해서 나온 것이다.</p>
+<p>근데 개발자 관점에서, 얘네들이 사용자의 개인정보를 가지고 있을 수 있다. 휴대폰 GPS가 발전하면서 위치 정보도 기록하게 되는데, 이 정보 그대로 서비스에서 수집했다가는 큰일 날 수가 있다. 그래서 이미지를 받는 서비스라면 꼭 이 부분을 제거해주도록 하자. </p>
+<p>제거는 단순한데 그냥 다시 만들면 된다. png를 서버단에서 다시 만들어서 해당 파일을 저장해주면 EXIF가 깔끔해진다.</p>
+<p>다만, EXIF에는 rotation 정보가 들어있어서 사진이 정렬이 안될 수도 있는데, 이를 주의해서 하도록 하자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Daily/8월/2026-08-18.html">2026-08-18 &rarr;</a></span><span><a href="../../../posts/Daily/8월/2026-08-21.html">&larr; 2026-08-21</a></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>

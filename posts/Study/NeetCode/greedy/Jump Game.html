@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump Game &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/jump-game/question 점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라. 푸는 방법 처…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Jump Game</h1>
+    <p class="meta">2026-08-20 <span class="tag">ps</span><span class="tag">그리디</span><span class="tag">bfs</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/jump-game/question</p>
+<p>점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라.</p>
+
+<h1>푸는 방법</h1>
+<p>처음에는 bfs 방식으로 풀었다.</p>
+<p>방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행.</p>
+<p>이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. </p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    bool canJump(vector&lt;int&gt;&amp; nums) {
+        int goal = nums.size() - 1;
+        if (goal &lt; 1) return true;
+
+        vector&lt;bool&gt; visited(goal + 1, false);
+        queue&lt;int&gt; q;
+
+        q.push(0);
+        visited[0] = true;
+
+        while (!q.empty()) {
+            auto a = q.front();
+            q.pop();
+
+            for (int i=1; i&lt;=nums[a]; ++i) {
+                if (a + i &gt;= goal) return true;
+                if (!visited[a + i] &amp;&amp; nums[a+i] != 0) {
+                    visited[a+i] = true;
+                    q.push(a+i); 
+                }
+            }
+        }
+
+        return false;
+    }
+};
+</code></pre>
+
+<p>다른 풀이로는 그리디하게 푸는 방법이 있다.</p>
+<p>도달할 수 있는 칸을 보고, 가장 끝까지 가서 생각하는 것이다. </p>
+<p>그렇게 마지막까지 순회를 하면 성공, 아니면 실패로 한다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    bool canJump(vector&lt;int&gt;&amp; nums) {
+        int reach = 0;
+        for (int i=0; i&lt;nums.size(); ++i) {
+            if (i &gt; reach) return false;
+            reach = max(reach, i + nums[i]);
+        }    
+        return true;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>bfs 풀이도 시간이 그리 오래걸리지 않아서 괜찮다고 생각했는데, 그리디가 확실히 더 깔끔했다. bfs로 푼 이유는 만약 5칸 앞으로 갈 수 있는데 정답이 2칸만 가서 다른 칸을 들렀다 가는 경우가 있을 거 같아서 그랬는데, 넘어가는 거를 아예 신경 안써도 되니까 그리디 풀이가 더욱 좋은 거 같다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/greedy/Maximum Subarray.html">Maximum Subarray &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/greedy/Jump Game II.html">&larr; Jump Game II</a></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

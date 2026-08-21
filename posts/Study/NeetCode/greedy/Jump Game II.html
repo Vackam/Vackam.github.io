@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jump Game II &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/jump-game-ii/question 점프를 몇 번 뛰어야 하는 지 구하라 푸는 방법 이번에도 동일하게 b…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Jump Game II</h1>
+    <p class="meta">2026-08-21 <span class="tag">ps</span><span class="tag">그리디</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/jump-game-ii/question</p>
+<p>점프를 몇 번 뛰어야 하는 지 구하라</p>
+
+<h1>푸는 방법</h1>
+<p>이번에도 동일하게 bfs를 생각했다.</p>
+<p>아래는 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int jump(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        if (n == 1) return 0;
+
+        queue&lt;int&gt; q;
+        vector&lt;bool&gt; visited(n, false);
+
+        q.push(0);
+        visited[0] = true;
+        int jump = 0;
+
+        while (!q.empty()) {
+            jump++;
+            int turn = q.size();
+
+            for (int i=0; i&lt;turn; ++i) {
+                auto a = q.front();
+                q.pop();
+
+                for (int j=1; j&lt;=nums[a]; ++j) {
+                    if (a + j &gt;= n - 1) return jump;
+                    if (!visited[a + j]) {
+                        q.push(a + j);
+                        visited[a + j] = true;
+                    }
+                }
+            }
+        }
+
+        return 0;
+    }
+};
+</code></pre>
+
+<p>이것보다 더 단순한 버전이 있다.</p>
+<p>그리디로 구간을 넓힌다고 생각하면 된다. 위에서는 각 갈 수 있는 칸을 queue로 저장해서 풀었으면, 여기서는 가능성을 넓혀 놓는 것이다.</p>
+<p>한 칸에서 갈 수 있는 범위를 curEnd로 하고 curEnd에 속하는 칸들은 이미 접근이 가능한 범위니까 무시한다. 이후 범위가 벗어나면 그때 curEnd를 수정해나가면서 진행한다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int jump(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        int jumps = 0, curEnd = 0, farthest = 0;
+        for (int i = 0; i &lt; n - 1; ++i) {  // 마지막 칸은 볼 필요 없음
+            farthest = max(farthest, i + nums[i]);
+            if (i == curEnd) {      // 현재 점프 범위의 끝에 도달
+                jumps++;
+                curEnd = farthest;  // 다음 점프 범위로 확장
+            }
+        }
+        return jumps;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>아래 간단한 풀이도 bfs이기에 너무 queue만 사용하는 것에 국한되어 있지 말자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/greedy/Jump Game.html">Jump Game &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

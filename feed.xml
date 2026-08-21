@@ -7,6 +7,33 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Jump Game II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>그리디</category>
+    <description>서론 | https://neetcode.io/problems/jump-game-ii/question 점프를 몇 번 뛰어야 하는 지 구하라 푸는 방법 이번에도 동일하게 bfs를 생각했다. 아래는 코드이다. class Solution { public: int jump(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); if (n == 1) return 0; queue&amp;lt;int&amp;gt; q; vector&amp;lt;bool&amp;gt; visited(n, false); q.push(0); visited[0] = true; int jump =…</description>
+  </item>
+  <item>
+    <title>2026-08-21</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-21.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-21.html</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>클로드의 말투 요새 클로드를 자주 사용하다 보니 느끼는 것이 다음 문장을 많이 쓴다는 것이다. &quot;반은 맞고 반은 틀렸어&quot; 매일 마주하는 거 같은데, 왜 이렇게 답하는 것일까? 우선 실제로 반반인 경우가 있을 것이다. 어떤 아이디어의 장점을 설명했는데, 장점 속에 단점이 같이 드러날 수도 있고 그렇…</description>
+  </item>
+  <item>
+    <title>Jump Game</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</guid>
+    <pubDate>Thu, 20 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>그리디</category>
+    <category>bfs</category>
+    <description>서론 | https://neetcode.io/problems/jump-game/question 점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라. 푸는 방법 처음에는 bfs 방식으로 풀었다. 방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행. 이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. …</description>
+  </item>
+  <item>
     <title>Maximum Subarray</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Maximum Subarray.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Maximum Subarray.html</guid>
@@ -14,6 +41,14 @@
     <category>ps</category>
     <category>그리디</category>
     <description>서론 | https://neetcode.io/problems/maximum-subarray/question 가장 값이 큰 subarray의 합을 구하시오 푸는 방법 subarray 자체를 구하는 것이 아니라 값만 기억하면서 나오면 된다. 그리디 스타일로 내 차례가 되면 내가 무조건 포함되면 된다. 만약 전 값들이 음수로 나왔을 경우에는 나랑 합치면 무조건 손해니까 subarray…</description>
+  </item>
+  <item>
+    <title>2026-08-19</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-19.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-19.html</guid>
+    <pubDate>Wed, 19 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>EXIF에 대하여 EXIF는 이미지 파일에 대한 메타데이터이다. 아마 핸드폰 앨범에서 사진을 위로 올리면 다양한 정보가 나오는 것을 경험했을 텐데, 그것이 EXIF를 해석해서 나온 것이다. 근데 개발자 관점에서, 얘네들이 사용자의 개인정보를 가지고 있을 수 있다. 휴대폰 GPS가 발전하면서 위치 정보도 기록…</description>
   </item>
   <item>
     <title>Minimum Interval to Include Each Query</title>
@@ -93,15 +128,6 @@
     <description>배틀 디펜스 관련 고정된 맵이 10개 정도 있고, 거기에 배치할 수 있는 칸을 정한다. 그 다음 각 맵마다 기믹을 랜덤으로 부여한다.(각 라운드?) 그래서 고정된 전략으로 못 깨게 한다. 이런 기획 어떨까? 그러면 맵에 대해서 랜덤 맵이 나오니까 재밌고, 기믹도 있으니까 기믹 해결하면서 풀어야 하니까 퍼…</description>
   </item>
   <item>
-    <title>Partition Equal Subset Sum</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</guid>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라. 푸는 방법 dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다. 다음은 코드이다. class Solution { public: bool canPartition(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int sum = accumulate(nums…</description>
-  </item>
-  <item>
     <title>Longest Increasing Subsequence</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/dp/Longest Increasing Subsequence.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Longest Increasing Subsequence.html</guid>
@@ -117,6 +143,15 @@
     <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
     <category>데일리</category>
     <description>SELF BARGE-IN AI를 음성으로 사용할 때 출력 대답을 다시 입력으로 판단하여 사용하는 오류이다. 이를 어떻게 해결할까? 가장 단순한 방법은 출력을 할 때 마이크를 막는 방법이다. 이렇게 하면 출력 중에 AI의 대답이 들어갈 일이 없으므로 완전히 해결된다. 하지만, 이는 살짝 군대식 해결법이다. 통화하는 …</description>
+  </item>
+  <item>
+    <title>Partition Equal Subset Sum</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Partition Equal Subset Sum.html</guid>
+    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라. 푸는 방법 dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다. 다음은 코드이다. class Solution { public: bool canPartition(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int sum = accumulate(nums…</description>
   </item>
   <item>
     <title>2026-08-10</title>
@@ -143,39 +178,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/maximum-product-subarray/question 곱이 가장 큰 부분배열을 찾아라 푸는 방법 핵심은 0과 음수를 어떻게 처리하냐이다. 저것들만 없으면 무조건 풀 배열이 정답이다. 첫번째 풀이는 상한과 하한을 들고 다니는 방법이다. 음수로 생긴 값도 들고 다니면서 다시 나올 음수를 기다리는 …</description>
-  </item>
-  <item>
-    <title>2026-08-07</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-07.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-07.html</guid>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 +0900</pubDate>
-    <description>Intellij 구독 관련 이게 학생이면 Education으로 Ultimate를 사용할 수 있다. 근데 로그인을 안해버리면 그냥 커뮤니티 버전으로 잡는다. 꼭 설정들어가서 확인하도록 하자... 좋은 기능을 버리면 너무 아깝다.</description>
-  </item>
-  <item>
-    <title>Coin Change</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Coin Change.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Coin Change.html</guid>
-    <pubDate>Fri, 07 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/coin-change/question 배낭 문제인데, 개수는 최소로 해라. 푸는 방법 처음에 그리디로 했다가 최소 조건을 당연히 못맞추어 실패했다. 그럼 방법은 dp인데, 1부터 하나씩 기록하면서 코인 하나를 넣었을 때 값이 만족된다면 이를 갱신하는 것으로 하면 된다. 다음은 코드이다. ```cpp …</description>
-  </item>
-  <item>
-    <title>Decode Ways</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Graph/Decode Ways.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Graph/Decode Ways.html</guid>
-    <pubDate>Thu, 06 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/decode-ways/question 규칙에 따른 가능한 암호 개수를 제시하시오 푸는 방법 dp[i] 를 &quot;앞에서 i글자까지 잘랐을 때의 경우의 수&quot;라고 정의하자. 인덱스가 아니라 길이 다. 이렇게 두면 dp[0] 은 빈 문자열이 되고, 빈 문자열을 해석하는 방법은 1가지니까 dp[0] = 1 이다. 이 칸이 패딩 역…</description>
-  </item>
-  <item>
-    <title>2026-08-06</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-06.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-06.html</guid>
-    <pubDate>Thu, 06 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>sprint-boot-starter-validation 어노테이션을 추가하는 의존성인데, 각 필드의 유효성 검사를 자동으로 해준다. 서버 내부에서 소통하는 것들은 괜찮을 수 있는데, 프론트 단에서 올라오는 값을 클래스 안에다가 하나하나 함수로 만든다면 에러가 발생할 확률이 높다. 이렇게 어노테이션을 활용해서 dto를 검사…</description>
   </item>
 </channel>
 </rss>
