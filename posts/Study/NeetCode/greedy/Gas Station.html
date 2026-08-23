@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Schedule II &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/course-schedule-ii/question 선수 과목이 존재할 때 가능한 경우 중 하나를 구해라 푸는 방…">
+    <title>Gas Station &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/gas-station/question 차를 타고 갈 때 원으로 되어있는 동네를 모두 들를 수 있는 시작 지…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,64 +18,62 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Course Schedule II</h1>
-    <p class="meta">2026-07-29 <span class="tag">ps</span><span class="tag">그래프</span></p>
+    <h1>Gas Station</h1>
+    <p class="meta">2026-08-23 <span class="tag">ps</span><span class="tag">그리디</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/course-schedule-ii/question</p>
-
-<p>선수 과목이 존재할 때 가능한 경우 중 하나를 구해라</p>
+<p>| https://neetcode.io/problems/gas-station/question</p>
+<p>차를 타고 갈 때 원으로 되어있는 동네를 모두 들를 수 있는 시작 지점을 찾아라.</p>
 
 <h1>푸는 방법</h1>
-<p><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">Course Schedule</a>과 동일한데, result vector를 세우는 것 밖에 없다.</p>
+<p>우선 gas와 cost의 차를 minus라는 벡터에 저장해두자.</p>
+<p>이후 한 칸씩 돌면서 minus의 값들을 result에 더해나간다.</p>
+<p>만약 result가 0보다 작다면 가능한 경우가 없는 것이다.</p>
+
+<p>이렇게 더하면서 현재 남은 연료양을 체크한다.</p>
+<p>남은 연료량이 음수가 된다면, 그 구간을 지나오는 순간 음수가 되어서 빠져나오지 못한 다는 뜻이므로, 시작 인덱스를 해당 인덱스보다 하나 크게 설정한다.</p>
 
 <p>다음은 코드이다.</p>
-
 <pre><code class="language-cpp">class Solution {
 public:
-    vector&lt;int&gt; findOrder(int n, vector&lt;vector&lt;int&gt;&gt;&amp; p) {
-        vector&lt;vector&lt;int&gt;&gt; adj(n);
-        vector&lt;int&gt; in_d(n, 0);
+    int canCompleteCircuit(vector&lt;int&gt;&amp; gas, vector&lt;int&gt;&amp; cost) {
+        int n = gas.size();
+        vector&lt;int&gt; minus(n);
+        
+        for (int i=0; i&lt;n; ++i) {
+            minus[i] = gas[i] - cost[i];
+        }
 
-        for (auto a : p) {
-            adj[a[1]].emplace_back(a[0]);
-            in_d[a[0]]++;
-        } 
-
-        queue&lt;int&gt; q;
+        int result = 0;
+        int tank = 0;
+        int index = 0;
 
         for (int i=0; i&lt;n; ++i) {
-            if (in_d[i] == 0) q.push(i);
+            result += minus[i];
+            tank += minus[i];
+
+            if (tank &lt; 0) {
+                index = i+1;
+                tank = 0;
+            }
         }
 
-        vector&lt;int&gt; result;
-        while (!q.empty()) {
-            int target = q.front(); q.pop();
-            result.push_back(target);
-
-            for (auto a : adj[target]) {
-                in_d[a]--;
-                if (in_d[a] == 0) q.push(a);
-            } 
-        }
-
-        if (result.size() != n) return {};
-        return result;
+        return result &lt; 0 ? -1 : index;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>위상정렬을 항상 기억하자.</p>
+<p>어렵게 생각하지 말자. 현재 연료를 기준으로 가는 것이 중요한 문제이다.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">Course Schedule &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Graph/Graph Valid Tree.html">&larr; Graph Valid Tree</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/greedy/Jump Game II.html">Jump Game II &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 

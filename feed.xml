@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Gas Station</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Gas Station.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Gas Station.html</guid>
+    <pubDate>Sun, 23 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>그리디</category>
+    <description>서론 | https://neetcode.io/problems/gas-station/question 차를 타고 갈 때 원으로 되어있는 동네를 모두 들를 수 있는 시작 지점을 찾아라. 푸는 방법 우선 gas와 cost의 차를 minus라는 벡터에 저장해두자. 이후 한 칸씩 돌면서 minus의 값들을 result에 더해나간다. 만약 result가 0보다 작다면 가능한 경우가 없는 것이다. 이…</description>
+  </item>
+  <item>
     <title>Jump Game II</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</guid>
@@ -128,15 +137,6 @@
     <description>배틀 디펜스 관련 고정된 맵이 10개 정도 있고, 거기에 배치할 수 있는 칸을 정한다. 그 다음 각 맵마다 기믹을 랜덤으로 부여한다.(각 라운드?) 그래서 고정된 전략으로 못 깨게 한다. 이런 기획 어떨까? 그러면 맵에 대해서 랜덤 맵이 나오니까 재밌고, 기믹도 있으니까 기믹 해결하면서 풀어야 하니까 퍼…</description>
   </item>
   <item>
-    <title>Longest Increasing Subsequence</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Longest Increasing Subsequence.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Longest Increasing Subsequence.html</guid>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/longest-increasing-subsequence/question 가장 긴 증가하는 부분수열을 구하시오 푸는 방법 트래킹해서 부분수열 자체를 구하는 것이 아니라서 단순히 1차원 dp 하나로 풀린다. 1차원 dp를 두고 내 전 dp들을 훑으며 나보다 작은 값보다 1은 더한 값을 계속 비교하면서 나가면 된다. 다음은…</description>
-  </item>
-  <item>
     <title>2026-08-11</title>
     <link>https://vackam.github.io/posts/Daily/8월/2026-08-11.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-11.html</guid>
@@ -154,6 +154,15 @@
     <description>서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라. 푸는 방법 dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다. 다음은 코드이다. class Solution { public: bool canPartition(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int sum = accumulate(nums…</description>
   </item>
   <item>
+    <title>Longest Increasing Subsequence</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Longest Increasing Subsequence.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Longest Increasing Subsequence.html</guid>
+    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/longest-increasing-subsequence/question 가장 긴 증가하는 부분수열을 구하시오 푸는 방법 트래킹해서 부분수열 자체를 구하는 것이 아니라서 단순히 1차원 dp 하나로 풀린다. 1차원 dp를 두고 내 전 dp들을 훑으며 나보다 작은 값보다 1은 더한 값을 계속 비교하면서 나가면 된다. 다음은…</description>
+  </item>
+  <item>
     <title>2026-08-10</title>
     <link>https://vackam.github.io/posts/Daily/8월/2026-08-10.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-10.html</guid>
@@ -169,15 +178,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/word-break/question dict를 통해 만들 수 있는 문자열인 지 판별하라 푸는 방법 dfs로 가능한 경우들을 map에 저장하고 끝낸 이후에 map에 해당 값이 있는 지 확인하면 된다. 다음은 코드이다. class Solution { public: bool is_in(const string&amp;amp; origin, const string&amp;amp; target) { int n = target.size(); for (int…</description>
-  </item>
-  <item>
-    <title>Maximum Product Subarray</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/dp/Maximum Product Subarray.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/dp/Maximum Product Subarray.html</guid>
-    <pubDate>Sat, 08 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/maximum-product-subarray/question 곱이 가장 큰 부분배열을 찾아라 푸는 방법 핵심은 0과 음수를 어떻게 처리하냐이다. 저것들만 없으면 무조건 풀 배열이 정답이다. 첫번째 풀이는 상한과 하한을 들고 다니는 방법이다. 음수로 생긴 값도 들고 다니면서 다시 나올 음수를 기다리는 …</description>
   </item>
 </channel>
 </rss>
