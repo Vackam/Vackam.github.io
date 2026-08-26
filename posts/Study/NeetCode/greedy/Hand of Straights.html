@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partition Equal Subset Sum &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/partition-equal-subset-sum/question 전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 …">
+    <title>Hand of Straights &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/hand-of-straights/question 배열을 만들 수 있는 지 확인하라 푸는 방법 우선 정렬하여 값을…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,51 +18,58 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Partition Equal Subset Sum</h1>
-    <p class="meta">2026-08-11 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Hand of Straights</h1>
+    <p class="meta">2026-08-26 <span class="tag">ps</span><span class="tag">그리디</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/partition-equal-subset-sum/question</p>
-<p>전체 합의 딱 절반이 되는 서브셋을 두 개 만들 수 있는 지 확인하라.</p>
+
+<p>| https://neetcode.io/problems/hand-of-straights/question</p>
+<p>배열을 만들 수 있는 지 확인하라</p>
 
 <h1>푸는 방법</h1>
-<p>dp로 nums를 순회하면서 target을 만들 수 있는 지 없는 지를 판단하면 된다.</p>
+<p>우선 정렬하여 값을 저장하는 map으로 각 원소의 개수를 파악한다.</p>
+<p>이후 가장 앞에 있는 값을 가져온 다음 group size 하나씩 돌면서, 내가 그룹을 이룰 수 있는 값이 충분히 존재하는 지를 확인한다.</p>
+<p>없으면 false, 되면 true를 반환한다.</p>
 
-<p>다음은 코드이다.</p>
+<p>다음은 코드이다</p>
+
 <pre><code class="language-cpp">class Solution {
 public:
-    bool canPartition(vector&lt;int&gt;&amp; nums) {
-        int sum = accumulate(nums.begin(), nums.end(), 0);
+    bool isNStraightHand(vector&lt;int&gt;&amp; hand, int groupSize) {
+        int n = hand.size();
+        if (n % groupSize != 0 || groupSize &lt;= 0) return false;
 
-        if (sum % 2 != 0) return false;
+        map&lt;int, int&gt; cnt;
+        for (int x : hand) cnt[x]++;
 
-        int target = sum/2;
 
-        vector&lt;bool&gt; dp(target + 1, false);
-
-        dp[0] = true;
-        for (int num : nums) {
-            for (int j=target; j&gt;=num; --j) {
-                dp[j] = dp[j] || dp[j-num];
+        while (!cnt.empty()) {
+            auto [x, c] = *cnt.begin(); // map은 정렬되어 있음. 키 밸류 
+            for (int k=0; k&lt;groupSize; ++k) {
+                auto it = cnt.find(x + k);
+                if (it == cnt.end() || it-&gt;second &lt; c) return false;
+                it-&gt;second -= c;
+                if (it-&gt;second == 0) cnt.erase(it);
             }
         }
 
-        return dp[target];
+        return true;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>처음에는 dfs로 풀었다가 답지를 보니 다음에는 이 풀이를 생각해내야 겠다고 생각하여 이 방식을 올린다.</p>
+<p>이것도 어려웠다.</p>
+<p>그 원소 하나로 그룹을 만들 수 있는 지를 확인하는 게 핵심인 문제였다.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/Word Break.html">Word Break &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Longest Increasing Subsequence.html">&larr; Longest Increasing Subsequence</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/greedy/Gas Station.html">Gas Station &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
