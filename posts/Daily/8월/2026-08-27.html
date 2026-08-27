@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-08-27 &mdash; devlog</title>
+    <meta name="description" content="무중단 배포 하는 법 여러 고급진 방법이 있던데, 가장 단순한 방법을 이번에 배우게 되었다. 정답은 서버를 두 …">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>2026-08-27</h1>
+    <p class="meta">2026-08-27 <span class="tag">데일리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>무중단 배포 하는 법</h1>
+<p>여러 고급진 방법이 있던데, 가장 단순한 방법을 이번에 배우게 되었다.</p>
+<p>정답은 서버를 두 개를 띄워두는 것이다.</p>
+<p>이를 A, B라고 가정하자.</p>
+<p>우선 A만 사용하여 서버를 사용한다. 그러다가 수정된 버전이 필요하면, 이를 B로 올린다. </p>
+<p>A가 계속 돌고 있고, B가 배포가 끝날 때까지 기다린다. B의 health가 ok가 나오면 앞단에 비쳐지는 서버를 A에서 B로 바꾼다.</p>
+<p>그래서 사용자는 서버가 바뀌어도 중단되었다는 것을 못느끼는 것이다.</p>
+
+<p>근데 이 방식의 문제점이 db가 변동될 때이다. 그럴 일이 있지는 않겠지만, 새로운 버전이 db 테이블을 하나 지우는 작업을 하고 이것을 했는데 기존 버전이 해당 db 테이블을 읽는다면? 바로 터지게 된다. 그래서 col을 추가하고 이후에 안전하게 삭제하도록 하자.</p>
+
+<p>또한, 이 행위를 하면서 docker compose 를 구성하는 데 아주 재밌는 방식이 있다.</p>
+<p>똑같은 서버를 2개를 띄워야 하기 때문에 동일한 줄을 2번 적어야 한다.</p>
+<p>이런 반복이 싫을 때 x- 접두사를 사용하면 된다.</p>
+<p>docker compose 는 x- 접두사가 붙은 것을 해석하지 않는다고 한다.</p>
+<p>그 다음 x-app-base 라는 이름을 가진다고 하면 </p>
+<p><<\*app-base 라는 명령어로 해당 내용을 그대로 가져올 수 있다고 한다.</p>
+<p>역시 반복하기 싫어하는 개발자들이 맞다.</p>
+
+
+
+<h1>내 폰에서는 잘 되는 데 왜 쟤 폰에서는 깨져요?</h1>
+<p>우선 배율을 무시하고 있을 수 있다. </p>
+<p>글자 크기를 크게로 설정할 수 있는데, 이러면 기본 배율인 1.0보다 커지게 된다. 이걸 고려해서 핸드폰의 배율에 맞게 공간을 만들어 두자.</p>
+<p>근데 이렇게 계산을 했는데, 폰이 어떻게 그리는 지에 따라서도 다를 수가 있다.</p>
+<p>15.59라는 계산 결과가 나와서 그 만큼의 공간만 만들었더니, 폰이 갑자기 16만큼의 크기로 그려버리면 바로 에러가 뜨는 것이다.</p>
+<p>이렇게 반올림을 하는 폰이 있을 수가 있기 때문에 여유롭게 잡는 것이 좋겠다.</p>
+
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Daily/8월/2026-08-21.html">2026-08-21 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
