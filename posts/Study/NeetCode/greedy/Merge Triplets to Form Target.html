@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Schedule II &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/course-schedule-ii/question 선수 과목이 존재할 때 가능한 경우 중 하나를 구해라 푸는 방…">
+    <title>Merge Triplets to Form Target &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/merge-triplets-to-form-target/question 특별한 연산을 적용 했을 때 target을 만들 수 있는 지 판…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,64 +18,53 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Course Schedule II</h1>
-    <p class="meta">2026-07-29 <span class="tag">ps</span><span class="tag">그래프</span></p>
+    <h1>Merge Triplets to Form Target</h1>
+    <p class="meta">2026-08-27 <span class="tag">ps</span><span class="tag">그리디</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/course-schedule-ii/question</p>
-
-<p>선수 과목이 존재할 때 가능한 경우 중 하나를 구해라</p>
+<p>| https://neetcode.io/problems/merge-triplets-to-form-target/question</p>
+<p>특별한 연산을 적용 했을 때 target을 만들 수 있는 지 판단하시오</p>
 
 <h1>푸는 방법</h1>
-<p><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">Course Schedule</a>과 동일한데, result vector를 세우는 것 밖에 없다.</p>
+<p>주어진 배열을 순회하면서</p>
+<p>target보다 작은 것을 만족하면 연산을 적용한다.</p>
 
-<p>다음은 코드이다.</p>
+<p>이후 끝났을 때, target이 되면 참 아니면 거짓이다.</p>
+<p>넘어가는 tuple은 답이 될 수 없으므로 신경쓰지 않는다.</p>
 
+<p>다음은 코드이다. </p>
 <pre><code class="language-cpp">class Solution {
 public:
-    vector&lt;int&gt; findOrder(int n, vector&lt;vector&lt;int&gt;&gt;&amp; p) {
-        vector&lt;vector&lt;int&gt;&gt; adj(n);
-        vector&lt;int&gt; in_d(n, 0);
+    bool mergeTriplets(vector&lt;vector&lt;int&gt;&gt;&amp; triplets, vector&lt;int&gt;&amp; target) {
+        int x = target[0], y = target[1], z = target[2];
 
-        for (auto a : p) {
-            adj[a[1]].emplace_back(a[0]);
-            in_d[a[0]]++;
-        } 
+        int now_x = 0, now_y = 0, now_z = 0;
+        for (const auto k : triplets) {
+            int a = k[0], b = k[1], c = k[2];
 
-        queue&lt;int&gt; q;
-
-        for (int i=0; i&lt;n; ++i) {
-            if (in_d[i] == 0) q.push(i);
+            if (a &lt;= x &amp;&amp; b &lt;= y &amp;&amp; c &lt;= z) {
+                now_x = max(now_x, a);
+                now_y = max(now_y, b);
+                now_z = max(now_z, c);
+            }
         }
 
-        vector&lt;int&gt; result;
-        while (!q.empty()) {
-            int target = q.front(); q.pop();
-            result.push_back(target);
-
-            for (auto a : adj[target]) {
-                in_d[a]--;
-                if (in_d[a] == 0) q.push(a);
-            } 
-        }
-
-        if (result.size() != n) return {};
-        return result;
+        return (now_x == x &amp;&amp; now_y == y &amp;&amp; now_z == z);
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>위상정렬을 항상 기억하자.</p>
+<p>정말 그리디스럽게 잘 풀어서 만족스럽다.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Graph/Surrounded Regions.html">Surrounded Regions &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Graph/Course Schedule.html">&larr; Course Schedule</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/greedy/Hand of Straights.html">Hand of Straights &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
