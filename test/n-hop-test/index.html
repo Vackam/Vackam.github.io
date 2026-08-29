@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5장 재실험 보고서 — n-hop 조합과 간선 축약의 효과</title>
+<style>
+:root{
+  color-scheme: light;
+  --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --border:rgba(11,11,11,.10); --good:#006300; --bad:#d03b3b;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4;
+  --o1:#86b6ef; --o2:#5598e7; --o3:#2a78d6; --o4:#184f95;
+  --hl:#fff4d6;
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,.10); --good:#0ca30c; --bad:#e66767;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  --o1:#184f95; --o2:#256abf; --o3:#3987e5; --o4:#86b6ef;
+  --hl:#3a3418;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,.10); --good:#0ca30c; --bad:#e66767;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+    --o1:#184f95; --o2:#256abf; --o3:#3987e5; --o4:#86b6ef;
+    --hl:#3a3418;
+  }
+}
+*{box-sizing:border-box}
+html{background:var(--page)}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:var(--ink);font-size:15px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px}
+h1{font-size:28px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+h2{font-size:20px;margin:48px 0 12px;padding-top:24px;border-top:1px solid var(--grid)}
+h3{font-size:16px;margin:28px 0 8px;color:var(--ink)}
+.meta{color:var(--ink2);font-size:13.5px}
+.meta code{font-size:12.5px}
+code{font-family:ui-monospace,Consolas,monospace;background:var(--border);padding:1px 5px;border-radius:4px;font-size:.92em}
+p{margin:8px 0}
+.tbtn{background:var(--surface);border:1px solid var(--border);color:var(--ink2);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px;white-space:nowrap}
+.tbtn:hover{color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:20px 0 8px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.kpi .l{font-size:12.5px;color:var(--ink2)}
+.kpi .v{font-size:28px;font-weight:600;line-height:1.2;margin-top:2px}
+.kpi .d{font-size:12.5px;color:var(--muted);margin-top:2px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px 14px;margin:16px 0}
+.card .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card .t{font-weight:600;font-size:15px}
+.card .st{font-size:13px;color:var(--ink2);margin-top:2px}
+.card .body{position:relative;margin-top:10px}
+.card svg{display:block;width:100%;height:auto;overflow:visible}
+.card .tbl{display:none;overflow:auto}
+.card.show-table .tbl{display:block}
+.card.show-table .chart{display:none}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink2);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:14px;height:2px;border-radius:1px}
+.legend i.sq{width:11px;height:11px;border-radius:3px}
+.legend i.dot{width:9px;height:9px;border-radius:50%}
+.tip{position:absolute;pointer-events:none;background:var(--surface);border:1px solid var(--border);box-shadow:0 4px 16px rgba(0,0,0,.14);border-radius:8px;padding:8px 10px;font-size:12.5px;min-width:120px;z-index:5;display:none}
+.tip .h{color:var(--ink2);margin-bottom:4px}
+.tip .r{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.tip .r b{font-variant-numeric:tabular-nums}
+.tip .r i{display:inline-block;width:12px;height:2px;margin-right:6px;vertical-align:middle}
+.tip .r i.sq{width:9px;height:9px;border-radius:2px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:8px 0}
+th,td{padding:6px 10px;text-align:right;border-bottom:1px solid var(--grid);font-variant-numeric:tabular-nums;white-space:nowrap}
+th{color:var(--ink2);font-weight:500;font-size:12.5px}
+th:first-child,td:first-child{text-align:left}
+td.best{font-weight:600;background:var(--hl)}
+.small{font-size:13px;color:var(--ink2)}
+.note{border-left:3px solid var(--axis);padding:4px 14px;margin:12px 0;color:var(--ink2);font-size:14px}
+.claims{counter-reset:c;padding-left:0;list-style:none}
+.claims li{counter-increment:c;padding:10px 12px 10px 44px;position:relative;border-bottom:1px solid var(--grid)}
+.claims li::before{content:counter(c);position:absolute;left:10px;top:9px;width:24px;height:24px;border-radius:50%;background:var(--s1);color:#fff;font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.claims .ev{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+ul,ol{padding-left:20px}
+li{margin:3px 0}
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;margin:14px 0 0}
+.toc a{color:var(--ink2);text-decoration:none;border-bottom:1px dotted var(--axis)}
+.toc a:hover{color:var(--ink)}
+svg text{font-family:inherit}
+.hit{fill:transparent;cursor:crosshair}
+@media print{.tbtn{display:none}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>5장 재실험 보고서<br><span style="font-weight:500;color:var(--ink2)">n-hop 조합과 간선 축약의 효과</span></h1>
+    <div class="meta">
+      실행 2026-08-26 14:54 ~ 08-27 20:08 KST · 12 프로세스 병렬 · 브랜치 <code>feat/ISSUE-85</code> (PR #86, 이슈 #85) · 라이브러리 <code>mr2s_module/</code> 무수정<br>
+      원본: <code>experiments/results/full/REPORT.md</code> · 표 CSV·해 비트열·그림 PDF 는 같은 디렉터리. 차트마다 "표 보기" 로 같은 수치를 표로 볼 수 있다.
+    </div>
+    <nav class="toc">
+      <a href="#s1">1. 실험 설정</a><a href="#s2">2. n-hop 은 몇이 좋은가</a><a href="#s3">3. 간선 축약은 도움이 되는가</a>
+      <a href="#s4">4. 대조군: DnC 없이</a><a href="#s5">5. 5장에 쓸 문장</a><a href="#s6">6. 한계</a>
+    </nav>
+  </div>
+  <button class="tbtn" id="theme">🌗 테마</button>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">총 실행</div><div class="v">10,000</div><div class="d">그래프 200 × 구성 10 × 반복 5</div></div>
+  <div class="kpi"><div class="l">정상 종료</div><div class="v">9,990</div><div class="d">오류 10 (DnC 분할 실패, #78) · 타임아웃 0</div></div>
+  <div class="kpi"><div class="l">누적 솔버 시간</div><div class="v">347.8<span style="font-size:16px;font-weight:500"> h</span></div><div class="d">SA read 100 · seed 고정</div></div>
+  <div class="kpi"><div class="l">해 복원 검증 불일치</div><div class="v">0</div><div class="d">저장된 해 11,990개 재평가 전부 일치</div></div>
+  <div class="kpi"><div class="l">대조군 (DnC 없음)</div><div class="v">2,000</div><div class="d">반복 1회 · 전부 정상 종료</div></div>
+</div>
+
+<h2 id="s1">1. 실험 설정</h2>
+<table>
+<tr><th>항목</th><th style="text-align:left">값</th></tr>
+<tr><td>그래프</td><td style="text-align:left">Delaunay 삼각분할, 정점 v ∈ {100, 200, 300, 400, 500} × seed 10개 = 원본 50개</td></tr>
+<tr><td>간선 제거</td><td style="text-align:left">이중연결·평면성을 유지하며 {0, 10, 30, 50}% 제거 (실제 비율 목표 ±0.2%p) → 그래프 200개</td></tr>
+<tr><td>솔버</td><td style="text-align:left">DnC + QUBO-SA (<code>create_dnc_qubo_sa_solver</code> 와 같은 구성). <code>dwave.samplers.SimulatedAnnealingSampler</code>, read 100, seed 고정</td></tr>
+<tr><td>비교 축 1</td><td style="text-align:left">n-hop 항: {2}, {3}, {4}, {2+3}, {2+3+4}, 가중치 모두 1</td></tr>
+<tr><td>비교 축 2</td><td style="text-align:left">차수-2 체인 축약(harmonic 가중치) on / off</td></tr>
+<tr><td>반복</td><td style="text-align:left">구성마다 5회 (같은 그래프·같은 반복의 10개 구성은 같은 seed 공유)</td></tr>
+<tr><td>주지표</td><td style="text-align:left">평균 stretch(방향화 거리 / 무방향 거리, 강연결 해만; 1.0 이 이론적 최적), 강연결 성공률, 실행 시간, QUBO 변수 수, DnC 서브그래프 수</td></tr>
+</table>
+<div class="note">
+<b>주의 두 가지.</b> ① 라이브러리 QUBO 솔버의 기본 hop 은 <b>2+3</b> 이고 데모 스크립트만 2-hop 단독이다 — 논문이 "2-hop 만 사용" 이라면 코드 기본값과 다르다.
+② 3-hop 항은 경로를 양방향으로 세면 홀수 최고차 항이 상쇄되어 <b>실제로는 2차 다항식</b>이다. 그래서 h3·h2+3 은 보조 변수가 없고, 4-hop 만 4차 항이 남아 <code>make_quadratic</code> 보조 변수로 변수 수가 크게 는다 (v=100 원본: 2-hop 199 → 4-hop 1,624 변수).
+</div>
+<p class="small">오류 10건은 전부 그래프 <code>v500_s2_p50</code> 에서 4-hop 계열(h4, h2+3+4)·축약 off 두 구성이 5회 모두 DnC 분할 실패(<code>RuntimeError: DnC partition failed</code>)를 낸 것. 같은 그래프의 축약 on 은 변수가 줄어 분할에 성공했다.</p>
+
+<h2 id="s2">2. 질문 1: n-hop 은 몇이 좋은가</h2>
+<h3>2.1 stretch — 조밀하면 2-hop, 희소하면 3-hop</h3>
+<div class="card" id="c-stretch"></div>
+<div class="card" id="c-diff"></div>
+<p><b>해석.</b> "2-hop 이 최선" 은 조밀한 그래프(원본, 10% 제거)에서만 성립한다. 그래프가 희소해질수록 역전되어, 30% 제거에서는 3-hop 을 포함한 조합이 근소하게(−0.01), 50% 제거에서는 확실하게(−0.12, 약 6%) 좋다.
+2-hop 은 인접 두 간선의 방향 정합만 보므로 우회 경로가 적은 희소 그래프에서 먼 정점 쌍의 거리를 통제하지 못한다. h2+3 과 h3 은 사실상 같고(3-hop 항이 2차라 같은 종류의 상호작용을 더 넓게 볼 뿐), 4-hop 계열은 어느 밀도에서도 h3 보다 낫지 않다.</p>
+
+<h3>2.2 강연결 성공률과 비용</h3>
+<div class="card" id="c-sc"></div>
+<div class="card" id="c-cost"></div>
+<ul>
+<li>0~30% 제거에서는 모든 구성이 사실상 100% 강연결 해를 냈다. 실패는 50% 제거에서만 나오며 <b>2-hop·축약 off</b> 와 <b>4-hop 계열·축약 off</b> 에 집중된다.</li>
+<li>실행 시간(v=500 평균): 3-hop 계열은 2-hop 의 약 1.8배, 4-hop 계열은 약 4.3배.</li>
+<li>DnC 서브그래프 수(v=500 평균): h2 45개 → h3 213개 → h4 345개. hop 이 늘수록 QUBO 커플링·degeneracy 가 커져 QPU 임베딩 기준 분할이 훨씬 잘게 된다. 분할 효과와 목적함수 효과가 섞여 있으며, 이를 분리하는 대조군은 4절.</li>
+</ul>
+
+<h3>2.3 최선 해와 반복 수</h3>
+<div class="grid2">
+  <div class="card" id="c-best"></div>
+  <div class="card" id="c-bok"></div>
+</div>
+<p>그래프별 50회 중 최선 해를 낸 구성(동률 모두 셈)은 h2 가 159회로 가장 많지만 h3 34회, h2+3 35회도 꾸준히 나오고 이들은 30~50% 제거 그래프에 몰려 있다.
+반복 1회 최선 대비 5회 최선의 개선율은 모든 (v, hop) 에서 <b>0.7~1.9%</b>, 4회→5회 개선은 0.1~0.3% 로 줄어든다. 즉 5회 반복으로 이 방법(SA read 100 × DnC)이 낼 수 있는 해에 거의 수렴했다. 다만 SA 는 휴리스틱이라 최적해 보장은 없으며, "최적 대비 격차" 는 exact solver(이슈 #79 의 Gurobi 스크립트) 없이는 말할 수 없다.</p>
+
+<h2 id="s3">3. 질문 2: 간선 축약은 도움이 되는가</h2>
+<p>축약 대상(차수-2 체인)은 제거 비율이 커질수록 늘어난다: 축약 후 간선 수 / 원래 간선 수 = 0%: 1.00, 10%: 0.995, 30%: 0.935, 50%: 0.693. 원본 Delaunay 그래프에는 체인이 없어 축약 on/off 가 <b>완전히 같은 해</b>를 낸다(1,250쌍 전부 동일).</p>
+<div class="card" id="c-redratio"></div>
+<div class="card" id="c-redtable"></div>
+<p class="small">Wilcoxon(v × hop, 25셀): 실행 시간은 25셀 전부 축약 on 이 유의하게 짧다(p &lt; 0.01). stretch 는 h3·h2+3 에서 축약 on 이 약간 나쁘고(중앙값 +0.000~+0.006, 대부분 p &lt; 0.001), h2·h4 계열은 차이가 유의하지 않은 셀이 많다.</p>
+<p><b>해석.</b></p>
+<ol>
+<li><b>속도·크기</b>: 희소한 그래프일수록 효과가 크다. 50% 제거에서 실행 시간 −42%, QUBO 변수 −89개(약 −31%). 조밀한 그래프에서는 축약할 것이 없어 효과도 없다.</li>
+<li><b>실행 가능성·강건성</b>: 가장 큰 효과. 50% 제거·v=500 에서 2-hop 의 강연결 성공률 38% → 98%, 4-hop 82% → 98%. 축약 off 로는 DnC 분할이 실패하던 그래프가 축약 on 에서는 풀린다. 축약이 변수를 줄여 분할을 덜 잘게 만들고, 체인 전체가 한 변수로 묶여 강연결 제약이 지켜지기 쉬워지기 때문으로 보인다.</li>
+<li><b>품질</b>: 개선되지 않는다. 오히려 축약 on 이 stretch 를 0.005~0.02 나쁘게 한다(harmonic 가중치가 체인 내부 거리를 근사만 하므로). 따라서 논문에서 "축약이 도움이 된다" 는 <b>시간·변수 수·강연결 성공률</b>에 대한 주장으로 쓰고, 해 품질 개선 주장은 하지 않는 것이 정확하다.</li>
+</ol>
+
+<h2 id="s4">4. 대조군: DnC 없이 그래프 전체를 한 QUBO 로 풀면</h2>
+<p>DnC 는 QPU 임베딩 제약 때문에 존재하므로 SA 에서는 그래프 전체를 한 QUBO 로 풀 수 있다. 같은 그래프 200개 × hop 5 × 축약 2 를 반복 1회(본 실행 rep 0 과 같은 seed)로 풀어 2,000회를 얻었고, 본 실행 rep 0 과 같은 (그래프, hop, 축약)끼리 짝지어 비교했다.</p>
+<div class="grid2">
+  <div class="card" id="c-h4"></div>
+  <div class="card" id="c-dnc"></div>
+</div>
+<ul>
+<li><b>4-hop 은 DnC 없이는 풀리지 않는다.</b> <code>make_quadratic</code> 보조 변수(v=500 기준 12,813 변수)와 페널티 제약 때문에 SA read 100 으로는 강연결 배향을 한 번도 얻지 못했다(0/400). DnC 는 그래프를 수백 개의 작은 서브그래프로 쪼개 각 QUBO 를 작게 만들기 때문에 같은 목적함수로도 해를 낸다.</li>
+<li><b>h2</b>: 30~50% 제거에서는 DnC 가 분할하지 않고 직접 풀어(서브그래프 1개) 전체 그래프 버전과 같은 해를 낸다. 조밀한 그래프에서는 DnC 가 근소하게(−0.005) 낫다.</li>
+<li><b>h3·h2+3</b>: 모든 밀도에서 DnC 가 0.02~0.06 더 좋다(p&lt;10⁻⁴). 1,000 변수 이상의 3-hop QUBO 를 SA 로 통째로 푸는 것보다 face-cycle 로 경계를 먼저 잡고 수십~수백 개의 작은 QUBO 로 나누어 푸는 편이 SA 가 더 좋은 해를 찾는다.</li>
+<li><b>비용</b>: DnC 는 분할 탐색(target_k 이진 탐색과 서브그래프별 BQM 빌드) 때문에 전체 그래프 방식보다 1.1~4.7배 느리다.</li>
+<li><b>hop 결론은 분할과 무관하다.</b> 전체 그래프 방식에서도 stretch 순서는 2절과 같다(아래). "조밀하면 2-hop, 희소하면 3-hop" 은 DnC 분할 효과가 만든 것이 아니다.</li>
+</ul>
+<div class="card" id="c-whole"></div>
+
+<h2 id="s5">5. 5장에 쓸 수 있는 문장</h2>
+<ol class="claims">
+<li>2-hop 목적함수는 조밀한 평면 그래프(원본·10% 제거)에서 3-hop 이상보다 stretch 가 0.02~0.03 낮다.<span class="ev">근거: 표 A·B, p&lt;10⁻⁴ — §2.1</span></li>
+<li>간선이 30% 이상 제거된 희소 그래프에서는 3-hop 을 포함한 목적함수가 2-hop 보다 낫고(50% 제거에서 −0.12, 85% 의 짝에서 우세), 2-hop 단독은 강연결 해를 찾지 못하는 비율이 커진다(v=500 에서 축약 없이 38% 성공).<span class="ev">근거: 표 A·B·C — §2.1, §2.2</span></li>
+<li>3-hop 항은 양방향 합산에서 3차 항이 상쇄되어 2차로 남으므로 추가 보조 변수 없이 쓸 수 있다. 4-hop 은 보조 변수로 변수 수가 약 8배 늘고 실행 시간이 3~4배 들지만 어느 밀도에서도 3-hop 보다 좋지 않다.<span class="ev">근거: §1 주의, §2.2 비용 그림</span></li>
+<li>차수-2 체인 축약은 해 품질을 바꾸지 않으면서(차이 ≤ 0.02) 희소 그래프의 실행 시간을 최대 42% 줄이고 QUBO 변수를 최대 31% 줄이며, 강연결 성공률을 38% → 98% 로 끌어올린다.<span class="ev">근거: 표 D·E, fig_reduction_time_ratio, fig_sc_rate_by_ratio — §3</span></li>
+<li>5회 반복의 최선 해는 1회 대비 0.7~1.9% 개선에 그쳐 실험 설정 안에서 수렴했다.<span class="ev">근거: 표 F — §2.3</span></li>
+<li>DnC 는 QPU 제약을 위한 장치이지만 SA 에서도 해 품질을 깎지 않는다. 2-hop 은 전체 그래프 풀이와 같거나 근소하게 좋고, 3-hop 은 DnC 쪽이 0.02~0.04 좋다(p&lt;10⁻⁴). 4-hop 은 DnC 없이는 SA 가 강연결 해를 전혀 찾지 못한다(0/400).<span class="ev">근거: 표 W — §4</span></li>
+</ol>
+
+<h2 id="s6">6. 한계와 가정</h2>
+<ul>
+<li>SA 는 휴리스틱이므로 위 수치는 "이 설정에서 찾은 최선" 이지 최적해가 아니다. 최적 대비 격차는 exact solver 로만 측정할 수 있다.</li>
+<li>hop 항 가중치는 모두 1 로 고정했다. 가중치 튜닝은 범위 밖이다.</li>
+<li>DnC 분할이 hop 수에 따라 달라지지만, 4절의 대조군에서 분할 없이도 hop 순서가 같음을 확인했다. 대조군은 반복 1회뿐이다.</li>
+<li>축약의 super edge 가중치는 harmonic 하나만 썼다(unit 모드는 범위 밖).</li>
+<li>그래프 생성은 scipy 의 Delaunay 에 의존하므로 재현은 저장된 JSON 을 사용해야 한다.</li>
+</ul>
+</div>
+
+<div class="tip" id="tip"></div>
+<script>
+const D = {"tableA": {"0.0": {"h2": 1.294, "h3": 1.315, "h4": 1.327, "h2+3": 1.315, "h2+3+4": 1.328}, "0.1": {"h2": 1.326, "h3": 1.344, "h4": 1.351, "h2+3": 1.344, "h2+3+4": 1.352}, "0.3": {"h2": 1.46, "h3": 1.45, "h4": 1.455, "h2+3": 1.45, "h2+3+4": 1.455}, "0.5": {"h2": 1.93, "h3": 1.794, "h4": 1.797, "h2+3": 1.793, "h2+3+4": 1.797}}, "tableB": {"0.0": {"h3": {"n": 500, "median": 0.022, "win": 0.02}, "h4": {"n": 500, "median": 0.0339, "win": 0.004}, "h2+3": {"n": 500, "median": 0.0217, "win": 0.016}, "h2+3+4": {"n": 500, "median": 0.0341, "win": 0.004}}, "0.1": {"h3": {"n": 500, "median": 0.0174, "win": 0.07}, "h4": {"n": 500, "median": 0.0249, "win": 0.014}, "h2+3": {"n": 500, "median": 0.0168, "win": 0.068}, "h2+3+4": {"n": 500, "median": 0.0254, "win": 0.008}}, "0.3": {"h3": {"n": 500, "median": -0.0104, "win": 0.7}, "h4": {"n": 500, "median": -0.0076, "win": 0.586}, "h2+3": {"n": 500, "median": -0.0121, "win": 0.698}, "h2+3+4": {"n": 500, "median": -0.0062, "win": 0.602}}, "0.5": {"h3": {"n": 449, "median": -0.1165, "win": 0.831}, "h4": {"n": 424, "median": -0.1235, "win": 0.821}, "h2+3": {"n": 449, "median": -0.1143, "win": 0.846}, "h2+3+4": {"n": 405, "median": -0.1172, "win": 0.837}}}, "sc50": {"100": {"h2": {"False": 1.0, "True": 1.0}, "h3": {"False": 1.0, "True": 1.0}, "h4": {"False": 0.82, "True": 1.0}, "h2+3": {"False": 1.0, "True": 1.0}, "h2+3+4": {"False": 0.74, "True": 1.0}}, "200": {"h2": {"False": 1.0, "True": 1.0}, "h3": {"False": 1.0, "True": 1.0}, "h4": {"False": 0.96, "True": 1.0}, "h2+3": {"False": 1.0, "True": 1.0}, "h2+3+4": {"False": 0.88, "True": 1.0}}, "300": {"h2": {"False": 0.88, "True": 1.0}, "h3": {"False": 1.0, "True": 1.0}, "h4": {"False": 0.96, "True": 1.0}, "h2+3": {"False": 1.0, "True": 1.0}, "h2+3+4": {"False": 0.92, "True": 0.98}}, "400": {"h2": {"False": 0.74, "True": 1.0}, "h3": {"False": 1.0, "True": 1.0}, "h4": {"False": 0.78, "True": 1.0}, "h2+3": {"False": 1.0, "True": 1.0}, "h2+3+4": {"False": 0.74, "True": 1.0}}, "500": {"h2": {"False": 0.38, "True": 0.98}, "h3": {"False": 1.0, "True": 1.0}, "h4": {"False": 0.82, "True": 0.98}, "h2+3": {"False": 1.0, "True": 1.0}, "h2+3+4": {"False": 0.7, "True": 0.96}}}, "v500": {"h2": {"time_on": 127.7, "time_off": 131.9, "sub_on": 45.0, "vars_on": 889.0, "vars_off": 960.0}, "h3": {"time_on": 228.7, "time_off": 240.1, "sub_on": 213.0, "vars_on": 466.0, "vars_off": 508.0}, "h4": {"time_on": 545.8, "time_off": 552.5, "sub_on": 345.0, "vars_on": 346.0, "vars_off": 388.0}, "h2+3": {"time_on": 231.7, "time_off": 242.5, "sub_on": 213.0, "vars_on": 466.0, "vars_off": 508.0}, "h2+3+4": {"time_on": 554.3, "time_off": 562.1, "sub_on": 345.0, "vars_on": 356.0, "vars_off": 391.0}}, "time_by_v": {"h2": {"100": 2.1, "200": 11.8, "300": 30.6, "400": 71.9, "500": 127.7}, "h3": {"100": 3.5, "200": 16.7, "300": 50.5, "400": 121.6, "500": 228.7}, "h4": {"100": 6.8, "200": 36.5, "300": 116.2, "400": 283.8, "500": 545.8}, "h2+3": {"100": 3.8, "200": 17.5, "300": 51.7, "400": 123.3, "500": 231.7}, "h2+3+4": {"100": 7.8, "200": 39.1, "300": 120.8, "400": 290.8, "500": 554.3}}, "best_counts": {"h2": 159, "h3": 34, "h4": 11, "h2+3": 35, "h2+3+4": 12}, "best_of_k": {"h2": {"1": 1.499, "2": 1.4867, "3": 1.482, "4": 1.4784, "5": 1.4757}, "h3": {"1": 1.4836, "2": 1.4754, "3": 1.4719, "4": 1.4696, "5": 1.4673}, "h4": {"1": 1.4831, "2": 1.4751, "3": 1.4715, "4": 1.4694, "5": 1.4681}, "h2+3": {"1": 1.4844, "2": 1.4748, "3": 1.4721, "4": 1.4696, "5": 1.4665}, "h2+3+4": {"1": 1.4841, "2": 1.4748, "3": 1.472, "4": 1.4696, "5": 1.4682}}, "red_by_ratio": {"0.0": {"n": 1250, "diff_mean": 0.0, "diff_median": 0.0, "ratio_time_median": 1.002, "dvars_mean": 0.0, "vars_off_mean": 382.1}, "0.1": {"n": 1250, "diff_mean": 0.0002, "diff_median": 0.0, "ratio_time_median": 0.994, "dvars_mean": -1.2, "vars_off_mean": 372.8}, "0.3": {"n": 1250, "diff_mean": 0.0056, "diff_median": 0.0051, "ratio_time_median": 0.906, "dvars_mean": -25.1, "vars_off_mean": 342.6}, "0.5": {"n": 1240, "diff_mean": 0.0202, "diff_median": 0.0242, "ratio_time_median": 0.575, "dvars_mean": -89.3, "vars_off_mean": 289.8}}, "red_time_ratio": {"0.0": {"100": 1.004, "200": 1.0, "300": 1.002, "400": 1.003, "500": 1.0}, "0.1": {"100": 0.993, "200": 0.999, "300": 0.986, "400": 0.996, "500": 0.992}, "0.3": {"100": 0.893, "200": 0.9, "300": 0.899, "400": 0.919, "500": 0.927}, "0.5": {"100": 0.634, "200": 0.517, "300": 0.567, "400": 0.58, "500": 0.572}}, "vars500_by_ratio": {"0.0": {"False": 596.0, "True": 596.0}, "0.1": {"False": 578.0, "True": 585.0}, "0.3": {"False": 565.0, "True": 504.0}, "0.5": {"False": 465.0, "True": 333.0}}, "dnc_whole": {"0.0": {"h2": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0052, "ratio_time": 3.73}, "h3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0242, "ratio_time": 4.72}, "h4": {"n": 100, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 1.0, "median_diff": null, "ratio_time": 3.05}, "h2+3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0199, "ratio_time": 4.68}, "h2+3+4": {"n": 100, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 1.0, "median_diff": null, "ratio_time": 2.79}}, "0.1": {"h2": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0066, "ratio_time": 2.78}, "h3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0257, "ratio_time": 3.61}, "h4": {"n": 100, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 1.0, "median_diff": null, "ratio_time": 2.86}, "h2+3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0228, "ratio_time": 3.66}, "h2+3+4": {"n": 100, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 1.0, "median_diff": null, "ratio_time": 2.69}}, "0.3": {"h2": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": 0.0, "ratio_time": 1.13}, "h3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0249, "ratio_time": 1.81}, "h4": {"n": 100, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 1.0, "median_diff": null, "ratio_time": 2.58}, "h2+3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0219, "ratio_time": 1.84}, "h2+3+4": {"n": 100, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 1.0, "median_diff": null, "ratio_time": 2.64}}, "0.5": {"h2": {"n": 100, "n_sc": 91, "sc_whole": 0.91, "sc_dnc": 0.91, "median_diff": 0.0, "ratio_time": 1.13}, "h3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0428, "ratio_time": 2.14}, "h4": {"n": 99, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 0.949, "median_diff": null, "ratio_time": 2.75}, "h2+3": {"n": 100, "n_sc": 100, "sc_whole": 1.0, "sc_dnc": 1.0, "median_diff": -0.0558, "ratio_time": 2.3}, "h2+3+4": {"n": 99, "n_sc": 0, "sc_whole": 0.0, "sc_dnc": 0.889, "median_diff": null, "ratio_time": 2.87}}}, "whole_stretch": {"0.0": {"h2": 1.302, "h3": 1.339, "h4": null, "h2+3": 1.335, "h2+3+4": null}, "0.1": {"h2": 1.336, "h3": 1.369, "h4": null, "h2+3": 1.364, "h2+3+4": null}, "0.3": {"h2": 1.465, "h3": 1.477, "h4": null, "h2+3": 1.474, "h2+3+4": null}, "0.5": {"h2": 1.926, "h3": 1.838, "h4": null, "h2+3": 1.842, "h2+3+4": null}}, "n_error": 10, "n_ok": 9990, "total_time_h": 347.8};
+const HOPS=["h2","h3","h4","h2+3","h2+3+4"];
+const HC={"h2":"var(--s1)","h3":"var(--s2)","h4":"var(--s3)","h2+3":"var(--s4)","h2+3+4":"var(--s5)"};
+const RATIOS=["0.0","0.1","0.3","0.5"], RL={"0.0":"0%","0.1":"10%","0.3":"30%","0.5":"50%"};
+const RC={"0.0":"var(--o1)","0.1":"var(--o2)","0.3":"var(--o3)","0.5":"var(--o4)"};
+const VS=["100","200","300","400","500"];
+const NS="http://www.w3.org/2000/svg";
+const tip=document.getElementById("tip");
+function el(n,a={},t){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;}
+function h(n,a={},...c){const e=document.createElement(n);for(const k in a){if(k==="class")e.className=a[k];else e.setAttribute(k,a[k]);}for(const x of c){if(x==null)continue;e.append(x.nodeType?x:document.createTextNode(String(x)));}return e;}
+function fmt(v,d=3){return v==null?"–":Number(v).toFixed(d);}
+function sgn(v,d){return v==null?"–":(v>0?"+":"")+fmt(v,d);}
+function showTip(x,y,head,rows){
+  tip.replaceChildren();
+  tip.append(h("div",{class:"h"},head));
+  for(const r of rows){const i=h("i",{class:r.sq?"sq":""});i.style.background=r.c;tip.append(h("div",{class:"r"},h("span",{},i,r.l),h("b",{},r.v)));}
+  tip.style.display="block";
+  let tx=x+window.scrollX+16, ty=y+window.scrollY+12;
+  if(x+16+tip.offsetWidth>document.documentElement.clientWidth-8) tx=x+window.scrollX-tip.offsetWidth-12;
+  tip.style.left=tx+"px";tip.style.top=ty+"px";
+}
+function hideTip(){tip.style.display="none";}
+function card(id,title,sub,build,tableRows,legend){
+  const c=document.getElementById(id);
+  const btn=h("button",{class:"tbtn"},"표 보기");
+  btn.onclick=()=>{c.classList.toggle("show-table");btn.textContent=c.classList.contains("show-table")?"차트 보기":"표 보기";};
+  const chart=h("div",{class:"chart"}),tbl=h("div",{class:"tbl"});
+  c.append(h("div",{class:"hd"},h("div",{},h("div",{class:"t"},title),h("div",{class:"st"},sub)),btn),h("div",{class:"body"},chart,tbl));
+  build(chart);
+  if(legend){const lg=h("div",{class:"legend"});for(const l of legend){const i=h("i",{class:l.k||""});i.style.background=l.c;lg.append(h("span",{},i,l.l));}chart.append(lg);}
+  const t=h("table");const hr=h("tr");for(const x of tableRows.head)hr.append(h("th",{},x));t.append(hr);
+  for(const r of tableRows.rows){const tr=h("tr");r.forEach(x=>{const obj=(typeof x==="object"&&x!==null);const td=h("td",{},obj?x.v:x);if(obj&&x.best)td.className="best";tr.append(td);});t.append(tr);}
+  tbl.append(t);
+}
+function nice(lo,hi,n=5){const r=(hi-lo)||1;const s=Math.pow(10,Math.floor(Math.log10(r/n)));const m=[1,2,2.5,5,10].find(k=>r/(k*s)<=n+0.5)||10;const st=m*s;const a=Math.floor(lo/st)*st,b=Math.ceil(hi/st)*st;const t=[];for(let v=a;v<=b+1e-9;v+=st)t.push(+v.toFixed(10));return {lo:a,hi:b,ticks:t};}
+// ---- line chart with crosshair ----
+function lineChart(root,o){
+  const W=o.w||900,H=o.h||300,m={t:22,r:o.mr||90,b:44,l:56};
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`});
+  const xs=o.x, ys=o.series.flatMap(s=>s.y.filter(v=>v!=null));
+  const yn=o.yDomain?{lo:o.yDomain[0],hi:o.yDomain[1],ticks:o.yTicks}:nice(Math.min(...ys),Math.max(...ys));
+  const X=i=>m.l+(W-m.l-m.r)*(xs.length===1?0.5:i/(xs.length-1));
+  const Y=v=>m.t+(H-m.t-m.b)*(1-(v-yn.lo)/(yn.hi-yn.lo));
+  for(const t of yn.ticks){svg.append(el("line",{x1:m.l,x2:W-m.r,y1:Y(t),y2:Y(t),stroke:"var(--grid)"}));svg.append(el("text",{x:m.l-8,y:Y(t)+4,"text-anchor":"end","font-size":11,fill:"var(--muted)"},o.yfmt?o.yfmt(t):t));}
+  if(o.baseline!=null)svg.append(el("line",{x1:m.l,x2:W-m.r,y1:Y(o.baseline),y2:Y(o.baseline),stroke:"var(--ink2)","stroke-width":1}));
+  svg.append(el("line",{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:"var(--axis)"}));
+  xs.forEach((x,i)=>svg.append(el("text",{x:X(i),y:H-m.b+18,"text-anchor":"middle","font-size":11.5,fill:"var(--ink2)"},x)));
+  svg.append(el("text",{x:(m.l+W-m.r)/2,y:H-6,"text-anchor":"middle","font-size":11.5,fill:"var(--muted)"},o.xLabel));
+  svg.append(el("text",{x:8,y:m.t-8,"font-size":11.5,fill:"var(--muted)"},o.yLabel));
+  for(const s of o.series){
+    const pts=s.y.map((v,i)=>v==null?null:[X(i),Y(v)]).filter(Boolean);
+    svg.append(el("path",{d:pts.map((p,i)=>(i?"L":"M")+p[0]+","+p[1]).join(" "),fill:"none",stroke:s.c,"stroke-width":2,"stroke-linejoin":"round","stroke-linecap":"round"}));
+    for(const p of pts){svg.append(el("circle",{cx:p[0],cy:p[1],r:5.5,fill:"var(--surface)"}));svg.append(el("circle",{cx:p[0],cy:p[1],r:4,fill:s.c}));}
+    if(s.label&&pts.length){const p=pts[pts.length-1];svg.append(el("text",{x:p[0]+10,y:p[1]+4+(s.labelDy||0),"font-size":11.5,fill:"var(--ink2)"},s.label));}
+  }
+  const cross=el("line",{y1:m.t,y2:H-m.b,stroke:"var(--ink2)","stroke-width":1,opacity:0});svg.append(cross);
+  const hit=el("rect",{class:"hit",x:m.l,y:m.t,width:W-m.l-m.r,height:H-m.t-m.b});svg.append(hit);
+  hit.addEventListener("pointermove",e=>{const r=svg.getBoundingClientRect();const px=(e.clientX-r.left)/r.width*W;let bi=0,bd=1e9;xs.forEach((x,i)=>{const d=Math.abs(X(i)-px);if(d<bd){bd=d;bi=i;}});cross.setAttribute("x1",X(bi));cross.setAttribute("x2",X(bi));cross.setAttribute("opacity",.6);
+    showTip(e.clientX,e.clientY,(o.xLabel?o.xLabel+" ":"")+xs[bi],o.series.map(s=>({c:s.c,l:s.name,v:s.y[bi]==null?"–":(o.tfmt||fmt)(s.y[bi])})));});
+  hit.addEventListener("pointerleave",()=>{cross.setAttribute("opacity",0);hideTip();});
+  root.append(svg);
+}
+// ---- grouped (diverging) horizontal bars ----
+function hbars(root,o){
+  const W=o.w||900,rowH=o.rowH||18,gap=2,groupGap=14;
+  const groups=o.groups; const nrow=groups.reduce((a,g)=>a+g.bars.length,0);
+  const m={t:26,r:80,b:36,l:o.ml||110}; const H=m.t+m.b+nrow*(rowH+gap)+groups.length*groupGap;
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`});
+  const vals=groups.flatMap(g=>g.bars.map(b=>b.v)).filter(v=>v!=null);
+  const yn=nice(Math.min(0,...vals),Math.max(0,...vals),6);
+  const X=v=>m.l+(W-m.l-m.r)*((v-yn.lo)/(yn.hi-yn.lo));
+  for(const t of yn.ticks){svg.append(el("line",{x1:X(t),x2:X(t),y1:m.t,y2:H-m.b,stroke:Math.abs(t)<1e-9?"var(--ink2)":"var(--grid)"}));svg.append(el("text",{x:X(t),y:H-m.b+16,"text-anchor":"middle","font-size":11,fill:"var(--muted)"},o.xfmt?o.xfmt(t):t));}
+  svg.append(el("text",{x:(m.l+W-m.r)/2,y:H-4,"text-anchor":"middle","font-size":11.5,fill:"var(--muted)"},o.xLabel));
+  if(o.leftNote)svg.append(el("text",{x:m.l+2,y:m.t-10,"font-size":11,fill:"var(--muted)"},o.leftNote));
+  if(o.rightNote)svg.append(el("text",{x:W-m.r,y:m.t-10,"text-anchor":"end","font-size":11,fill:"var(--muted)"},o.rightNote));
+  let y=m.t;
+  for(const g of groups){
+    svg.append(el("text",{x:8,y:y+(rowH+gap)*g.bars.length/2+2,"font-size":12.5,"font-weight":600,fill:"var(--ink)"},g.name));
+    for(const b of g.bars){
+      svg.append(el("text",{x:m.l-8,y:y+rowH/2+4,"text-anchor":"end","font-size":11.5,fill:"var(--ink2)"},b.name));
+      let path=null;
+      if(b.v!=null){
+        const x0=X(0),x1=X(b.v);const bw=Math.abs(x1-x0);const r=Math.min(4,bw/2,rowH/2);const dir=b.v>=0?1:-1;
+        const p=dir>0?`M${x0},${y} H${x1-r} a${r},${r} 0 0 1 ${r},${r} V${y+rowH-r} a${r},${r} 0 0 1 -${r},${r} H${x0} Z`:`M${x0},${y} H${x1+r} a${r},${r} 0 0 0 -${r},${r} V${y+rowH-r} a${r},${r} 0 0 0 ${r},${r} H${x0} Z`;
+        path=el("path",{d:p,fill:b.c});svg.append(path);
+        if(b.label)svg.append(el("text",{x:dir>0?x1+6:x0+6,y:y+rowH/2+4,"text-anchor":"start","font-size":11,fill:"var(--ink2)"},b.label));
+      } else if(b.label){svg.append(el("text",{x:X(0)+6,y:y+rowH/2+4,"font-size":11,fill:"var(--muted)"},b.label));}
+      const hit=el("rect",{class:"hit",x:m.l,y:y-1,width:W-m.l-m.r,height:rowH+2});
+      hit.addEventListener("pointermove",e=>{if(path)path.setAttribute("opacity",.75);showTip(e.clientX,e.clientY,g.name+" · "+b.name,b.rows||[{c:b.c,l:o.xLabel,v:fmt(b.v,4),sq:1}]);});
+      hit.addEventListener("pointerleave",()=>{if(path)path.setAttribute("opacity",1);hideTip();});
+      svg.append(hit);
+      y+=rowH+gap;
+    }
+    y+=groupGap;
+  }
+  root.append(svg);
+}
+// ---- vertical bars (single series) ----
+function vbars(root,o){
+  const W=o.w||300,H=o.h||220,m={t:30,r:10,b:40,l:46};
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`});
+  const yn=nice(0,Math.max(...o.v,1e-9),4);const Y=v=>m.t+(H-m.t-m.b)*(1-v/yn.hi);
+  for(const t of yn.ticks){svg.append(el("line",{x1:m.l,x2:W-m.r,y1:Y(t),y2:Y(t),stroke:"var(--grid)"}));svg.append(el("text",{x:m.l-6,y:Y(t)+4,"text-anchor":"end","font-size":10.5,fill:"var(--muted)"},o.yfmt?o.yfmt(t):t));}
+  svg.append(el("text",{x:8,y:14,"font-size":12,"font-weight":600,fill:"var(--ink)"},o.title));
+  const n=o.v.length,slot=(W-m.l-m.r)/n,bw=Math.min(24,slot*.6);
+  o.v.forEach((v,i)=>{const x=m.l+slot*i+(slot-bw)/2,y=Y(v),hh=H-m.b-y;const r=Math.min(4,hh/2);
+    const p=el("path",{d:`M${x},${H-m.b} V${y+r} a${r},${r} 0 0 1 ${r},-${r} H${x+bw-r} a${r},${r} 0 0 1 ${r},${r} V${H-m.b} Z`,fill:o.c||"var(--s1)"});svg.append(p);
+    svg.append(el("text",{x:x+bw/2,y:y-5,"text-anchor":"middle","font-size":11,fill:"var(--ink2)"},o.lfmt?o.lfmt(v):v));
+    svg.append(el("text",{x:x+bw/2,y:H-m.b+15,"text-anchor":"middle","font-size":11,fill:"var(--ink2)"},o.x[i]));
+    const hit=el("rect",{class:"hit",x:m.l+slot*i,y:m.t,width:slot,height:H-m.t-m.b});
+    hit.addEventListener("pointermove",e=>{p.setAttribute("opacity",.75);showTip(e.clientX,e.clientY,o.title+" · "+o.x[i],[{c:o.c||"var(--s1)",l:o.unit||"",v:o.lfmt?o.lfmt(v):v,sq:1}]);});
+    hit.addEventListener("pointerleave",()=>{p.setAttribute("opacity",1);hideTip();});svg.append(hit);
+  });
+  svg.append(el("line",{x1:m.l,x2:W-m.r,y1:H-m.b,y2:H-m.b,stroke:"var(--axis)"}));
+  root.append(svg);
+}
+// ---- dumbbell (before -> after) ----
+function dumbbell(root,o){
+  const W=o.w||900,rowH=22,groupGap=14,m={t:22,r:60,b:34,l:120};
+  const nrow=o.groups.reduce((a,g)=>a+g.rows.length,0);const H=m.t+m.b+nrow*rowH+o.groups.length*groupGap;
+  const svg=el("svg",{viewBox:`0 0 ${W} ${H}`});
+  const X=v=>m.l+(W-m.l-m.r)*v;
+  for(const t of [0,.2,.4,.6,.8,1]){svg.append(el("line",{x1:X(t),x2:X(t),y1:m.t,y2:H-m.b,stroke:"var(--grid)"}));svg.append(el("text",{x:X(t),y:H-m.b+16,"text-anchor":"middle","font-size":11,fill:"var(--muted)"},Math.round(t*100)+"%"));}
+  svg.append(el("text",{x:(m.l+W-m.r)/2,y:H-4,"text-anchor":"middle","font-size":11.5,fill:"var(--muted)"},o.xLabel));
+  let y=m.t;
+  for(const g of o.groups){
+    svg.append(el("text",{x:8,y:y+rowH*g.rows.length/2+4,"font-size":12.5,"font-weight":600,fill:"var(--ink)"},g.name));
+    for(const r of g.rows){
+      const cy=y+rowH/2;
+      svg.append(el("text",{x:m.l-10,y:cy+4,"text-anchor":"end","font-size":11.5,fill:"var(--ink2)"},r.name));
+      svg.append(el("line",{x1:X(r.a),x2:X(r.b),y1:cy,y2:cy,stroke:"var(--axis)","stroke-width":2}));
+      for(const [v,c] of [[r.a,o.ca],[r.b,o.cb]]){svg.append(el("circle",{cx:X(v),cy:cy,r:6,fill:"var(--surface)"}));svg.append(el("circle",{cx:X(v),cy:cy,r:4.5,fill:c}));}
+      if(r.a<0.995)svg.append(el("text",{x:X(r.a)-9,y:cy+4,"text-anchor":"end","font-size":11,fill:"var(--ink2)"},Math.round(r.a*100)+"%"));
+      if(r.b<0.995)svg.append(el("text",{x:X(r.b)+9,y:cy+4,"font-size":11,fill:"var(--ink2)"},Math.round(r.b*100)+"%"));
+      const hit=el("rect",{class:"hit",x:m.l,y:y,width:W-m.l-m.r,height:rowH});
+      hit.addEventListener("pointermove",e=>showTip(e.clientX,e.clientY,g.name+" · "+r.name,[{c:o.ca,l:"축약 off",v:Math.round(r.a*100)+"%"},{c:o.cb,l:"축약 on",v:Math.round(r.b*100)+"%"}]));
+      hit.addEventListener("pointerleave",hideTip);svg.append(hit);
+      y+=rowH;
+    }
+    y+=groupGap;
+  }
+  root.append(svg);
+}
+const hopLegend=HOPS.map(k=>({l:k,c:HC[k]}));
+// ===== 2.1 stretch by ratio =====
+{
+  const best=RATIOS.map(r=>HOPS.reduce((a,b)=>D.tableA[r][a]<=D.tableA[r][b]?a:b));
+  card("c-stretch","표 A · 제거 비율별 평균 stretch (hop 별)","v·축약·반복 합산 평균, 강연결 해만. 낮을수록 좋음. 그림 fig_hop_stretch.pdf 대응",
+    root=>lineChart(root,{x:RATIOS.map(r=>RL[r]),xLabel:"간선 제거 비율",yLabel:"평균 stretch",
+      series:HOPS.map(k=>({name:k,c:HC[k],y:RATIOS.map(r=>D.tableA[r][k]),label:(k==="h2"||k==="h3")?k+" "+fmt(D.tableA["0.5"][k]):null,labelDy:k==="h3"?14:0}))}),
+    {head:["제거 비율",...HOPS],rows:RATIOS.map((r,i)=>[RL[r],...HOPS.map(k=>({v:fmt(D.tableA[r][k]),best:best[i]===k}))])},hopLegend);
+  const groups=RATIOS.map(r=>({name:"제거 "+RL[r],bars:HOPS.slice(1).map(k=>{const b=D.tableB[r][k];return {name:k,v:b.median,c:HC[k],label:Math.round(b.win*100)+"% 우세",rows:[{c:HC[k],l:"차이 중앙값 (hop − h2)",v:sgn(b.median,3),sq:1},{c:HC[k],l:"hop 이 이긴 비율",v:Math.round(b.win*100)+"%",sq:1},{c:HC[k],l:"짝 수",v:b.n,sq:1}]};})}));
+  card("c-diff","표 B · h2 대비 짝지은 stretch 차이 (Wilcoxon 부호순위)","같은 그래프·반복·축약 설정끼리 짝지음. diff = hop − h2, 음수(왼쪽)면 hop 이 좋음. 모든 셀 p < 10⁻⁴",
+    root=>hbars(root,{groups,xLabel:"stretch 차이 중앙값 (hop − h2)",xfmt:t=>(t>0?"+":"")+t,leftNote:"◀ hop 이 좋음",rightNote:"h2 가 좋음 ▶",ml:150}),
+    {head:["제거 비율","hop","짝 수","차이 중앙값","hop 이 이긴 비율"],rows:RATIOS.flatMap(r=>HOPS.slice(1).map(k=>{const b=D.tableB[r][k];return [RL[r],k,b.n,sgn(b.median,3),Math.round(b.win*100)+"%"];}))},hopLegend.slice(1));
+}
+// ===== 2.2 SC rate dumbbell + cost =====
+{
+  const vs=["300","400","500"];
+  card("c-sc","표 C · 50% 제거 그래프의 강연결 성공률 — 축약 off → on","0~30% 제거에서는 전 구성 ≈100% 라 생략(표에는 v=100·200 포함). 그림 fig_sc_rate_by_ratio.pdf 대응",
+    root=>dumbbell(root,{xLabel:"강연결 성공률 (50회 중)",ca:"var(--o1)",cb:"var(--o4)",groups:vs.map(v=>({name:"v = "+v,rows:HOPS.map(k=>({name:k,a:D.sc50[v][k]["False"],b:D.sc50[v][k]["True"]}))}))}),
+    {head:["v","hop","축약 off","축약 on"],rows:VS.flatMap(v=>HOPS.map(k=>[v,k,Math.round(D.sc50[v][k]["False"]*100)+"%",Math.round(D.sc50[v][k]["True"]*100)+"%"]))},
+    [{l:"축약 off",c:"var(--o1)",k:"dot"},{l:"축약 on",c:"var(--o4)",k:"dot"}]);
+  card("c-cost","표 D · v=500 의 비용 (축약 on, 제거 비율 평균)","실행 시간 · DnC 서브그래프 수 · QUBO 변수 수 합계. 그림 fig_reduction_time.pdf, fig_reduction_qubo_vars.pdf 대응",
+    root=>{const g=h("div",{class:"grid3"});const a=h("div"),b=h("div"),c=h("div");g.append(a,b,c);root.append(g);
+      vbars(a,{title:"실행 시간 (초)",x:HOPS,v:HOPS.map(k=>D.v500[k].time_on),lfmt:v=>Math.round(v),unit:"초"});
+      vbars(b,{title:"DnC 서브그래프 수",x:HOPS,v:HOPS.map(k=>D.v500[k].sub_on),lfmt:v=>Math.round(v),unit:"개"});
+      vbars(c,{title:"QUBO 변수 수 합계",x:HOPS,v:HOPS.map(k=>D.v500[k].vars_on),lfmt:v=>Math.round(v),unit:"변수"});},
+    {head:["hop","시간 on (초)","시간 off (초)","서브그래프 on","변수 on","변수 off"],rows:HOPS.map(k=>[k,fmt(D.v500[k].time_on,1),fmt(D.v500[k].time_off,1),D.v500[k].sub_on,D.v500[k].vars_on,D.v500[k].vars_off])});
+}
+// ===== 2.3 best counts + best-of-k =====
+{
+  card("c-best","표 H · 그래프별 최선 해를 낸 구성 (200 그래프, 동률 모두 셈)","축약 on/off 합산. 30~50% 제거 그래프에서 h3·h2+3 이 몰려 나온다",
+    root=>vbars(root,{w:440,h:240,title:"최선 해 횟수",x:HOPS,v:HOPS.map(k=>D.best_counts[k]),unit:"회"}),
+    {head:["hop","최선 해 횟수"],rows:HOPS.map(k=>[k,D.best_counts[k]])});
+  card("c-bok","표 F · best-of-k 수렴 (축약 on, v·제거 비율 평균)","반복 k 회까지의 최선 stretch 를 k=1 대비 개선율(%)로. 그림 fig_best_of_k.pdf 대응",
+    root=>lineChart(root,{w:440,h:240,mr:30,x:["1","2","3","4","5"],xLabel:"반복 수 k",yLabel:"k=1 대비 개선 (%)",yDomain:[0,2],yTicks:[0,0.5,1,1.5,2],tfmt:v=>fmt(v,2)+"%",
+      series:HOPS.map(k=>({name:k,c:HC[k],y:[1,2,3,4,5].map(i=>100*(1-D.best_of_k[k][String(i)]/D.best_of_k[k]["1"]))}))}),
+    {head:["hop","k=1","k=2","k=3","k=4","k=5","개선 k1→k5"],rows:HOPS.map(k=>[k,...[1,2,3,4,5].map(i=>fmt(D.best_of_k[k][String(i)],3)),fmt(100*(1-D.best_of_k[k]["5"]/D.best_of_k[k]["1"]),2)+"%"])},hopLegend);
+}
+// ===== 3 reduction =====
+{
+  card("c-redratio","축약 on / off 실행 시간 비율 (짝지은 중앙값)","같은 그래프·hop·반복끼리 짝지음. 1.0 아래면 축약이 빠름. 희소할수록 진한 파랑. 그림 fig_reduction_time_ratio.pdf 대응",
+    root=>lineChart(root,{x:VS,xLabel:"정점 수 v",yLabel:"실행 시간 비율 (on / off)",yDomain:[0.4,1.1],yTicks:[0.4,0.5,0.6,0.7,0.8,0.9,1.0,1.1],baseline:1.0,tfmt:v=>fmt(v,2),
+      series:RATIOS.map(r=>({name:"제거 "+RL[r],c:RC[r],y:VS.map(v=>D.red_time_ratio[r][v]),label:r==="0.5"?"50% 제거 "+fmt(D.red_time_ratio[r]["500"],2):null}))}),
+    {head:["제거 비율",...VS.map(v=>"v="+v)],rows:RATIOS.map(r=>["제거 "+RL[r],...VS.map(v=>fmt(D.red_time_ratio[r][v],2))])},
+    RATIOS.map(r=>({l:"제거 "+RL[r],c:RC[r]})));
+  card("c-redtable","표 D·E · 축약 on − off 짝지은 비교 (제거 비율별)","stretch 차이는 양쪽 다 강연결인 짝만. 변수 감소율 = 평균 감소 / 축약 off 평균 변수 수. 그림 fig_reduction_paired_stretch.pdf, fig_reduction_qubo_vars.pdf 대응",
+    root=>{const g=h("div",{class:"grid3"});const a=h("div"),b=h("div"),c=h("div");g.append(a,b,c);root.append(g);
+      vbars(a,{title:"stretch 차이 중앙값 (on − off)",x:RATIOS.map(r=>RL[r]),v:RATIOS.map(r=>D.red_by_ratio[r].diff_median),lfmt:v=>sgn(v,3),unit:"stretch"});
+      vbars(b,{title:"실행 시간 절감 (1 − on/off)",x:RATIOS.map(r=>RL[r]),v:RATIOS.map(r=>Math.max(0,100*(1-D.red_by_ratio[r].ratio_time_median))),lfmt:v=>Math.round(v)+"%",unit:"절감"});
+      vbars(c,{title:"QUBO 변수 감소",x:RATIOS.map(r=>RL[r]),v:RATIOS.map(r=>-100*D.red_by_ratio[r].dvars_mean/D.red_by_ratio[r].vars_off_mean),lfmt:v=>Math.round(v)+"%",unit:"감소"});},
+    {head:["제거 비율","짝 수","stretch 차이 평균","stretch 차이 중앙값","시간 비율 (on/off) 중앙값","QUBO 변수 감소 (평균)","변수 off 평균"],rows:RATIOS.map(r=>{const x=D.red_by_ratio[r];return [RL[r],x.n.toLocaleString(),sgn(x.diff_mean,4),sgn(x.diff_median,4),fmt(x.ratio_time_median,2),fmt(x.dvars_mean,1),fmt(x.vars_off_mean,0)];})});
+}
+// ===== 4 DnC vs whole =====
+{
+  card("c-h4","4.1 · 강연결 성공률 — 전체 그래프 QUBO-SA vs DnC (제거 비율 평균)","4-hop 계열은 DnC 없이 400회 중 0회. h2 는 50% 제거·v=500 에서만 91%",
+    root=>{const g=h("div",{class:"grid2"});const a=h("div"),b=h("div");g.append(a,b);root.append(g);
+      vbars(a,{w:300,h:230,title:"전체 그래프 (DnC 없음)",x:HOPS,v:HOPS.map(k=>100*RATIOS.reduce((s,r)=>s+D.dnc_whole[r][k].sc_whole,0)/4),lfmt:v=>Math.round(v)+"%",unit:"성공률",c:"var(--o2)"});
+      vbars(b,{w:300,h:230,title:"DnC (본 실행 rep 0)",x:HOPS,v:HOPS.map(k=>100*RATIOS.reduce((s,r)=>s+D.dnc_whole[r][k].sc_dnc,0)/4),lfmt:v=>Math.round(v)+"%",unit:"성공률",c:"var(--o4)"});},
+    {head:["hop",...RATIOS.map(r=>"전체 "+RL[r]),...RATIOS.map(r=>"DnC "+RL[r])],rows:HOPS.map(k=>[k,...RATIOS.map(r=>Math.round(D.dnc_whole[r][k].sc_whole*100)+"%"),...RATIOS.map(r=>Math.round(D.dnc_whole[r][k].sc_dnc*100)+"%")])},
+    [{l:"전체 그래프",c:"var(--o2)",k:"sq"},{l:"DnC",c:"var(--o4)",k:"sq"}]);
+  const hk=["h2","h3","h2+3"];
+  card("c-dnc","표 W · DnC − 전체 그래프 짝지은 stretch 차이 (중앙값)","음수면 DnC 가 좋음. h2 의 30~50% 는 서브그래프 1개라 동일 해. 막대 옆은 시간 비율 (DnC / 전체)",
+    root=>hbars(root,{w:440,rowH:16,ml:110,groups:RATIOS.map(r=>({name:"제거 "+RL[r],bars:hk.map(k=>{const x=D.dnc_whole[r][k];return {name:k,v:x.median_diff,c:HC[k],label:"×"+fmt(x.ratio_time,1),rows:[{c:HC[k],l:"차이 중앙값 (DnC − 전체)",v:sgn(x.median_diff,4),sq:1},{c:HC[k],l:"시간 비율 (DnC / 전체)",v:fmt(x.ratio_time,2),sq:1},{c:HC[k],l:"짝 수 (양쪽 강연결)",v:x.n_sc,sq:1}]};})})),xLabel:"stretch 차이 중앙값 (DnC − 전체)",xfmt:t=>(t>0?"+":"")+t,leftNote:"◀ DnC 가 좋음"}),
+    {head:["제거 비율","hop","짝 수","차이 중앙값","시간 비율 (DnC/전체)"],rows:RATIOS.flatMap(r=>hk.map(k=>{const x=D.dnc_whole[r][k];return [RL[r],k,x.n_sc,sgn(x.median_diff,4),fmt(x.ratio_time,2)];}))},hk.map(k=>({l:k,c:HC[k]})));
+  const best=RATIOS.map(r=>hk.reduce((a,b)=>D.whole_stretch[r][a]<=D.whole_stretch[r][b]?a:b));
+  card("c-whole","4.3 · 전체 그래프 방식의 평균 stretch (hop 별) — 2절과 같은 순서","DnC 없이도 0~30% 제거는 h2, 50% 제거는 h3·h2+3 이 낮다. h2+3 은 h3 과 거의 겹침. 4-hop 계열은 강연결 해가 없어 제외",
+    root=>lineChart(root,{h:260,x:RATIOS.map(r=>RL[r]),xLabel:"간선 제거 비율",yLabel:"평균 stretch (전체 그래프 QUBO-SA)",series:hk.map(k=>({name:k,c:HC[k],y:RATIOS.map(r=>D.whole_stretch[r][k]),label:k==="h2+3"?null:k+" "+fmt(D.whole_stretch["0.5"][k]),labelDy:k==="h3"?14:0}))}),
+    {head:["제거 비율",...HOPS],rows:RATIOS.map((r,i)=>[RL[r],...HOPS.map(k=>D.whole_stretch[r][k]==null?"– (강연결 0)":{v:fmt(D.whole_stretch[r][k]),best:best[i]===k})])},hk.map(k=>({l:k,c:HC[k]})));
+}
+// theme toggle
+document.getElementById("theme").onclick=()=>{const r=document.documentElement;const cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");r.setAttribute("data-theme",cur==="dark"?"light":"dark");};
+</script>
+</body>
+</html>
