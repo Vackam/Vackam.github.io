@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Delay Time &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/network-delay-time/question 그래프에서 전파될 수 있는 가장 최솟값을 구하시오 푸는 방법 …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Network Delay Time</h1>
+    <p class="meta">2026-08-31 <span class="tag">ps</span><span class="tag">Advanced-Graph</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/network-delay-time/question</p>
+<p>그래프에서 전파될 수 있는 가장 최솟값을 구하시오</p>
+
+<h1>푸는 방법</h1>
+
+<p>bfs로 최소 거리를 갱신하면서 풀었다.</p>
+<p>계속 돌면서 거리가 갱신될 가능성이 있는 경우 q에 푸쉬해준다.</p>
+<p>최종 끝났을 때, 처리되지 않은 노드가 있다면 에러 아니면 최댓값을 반환한다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
+
+class Solution {
+public:
+    int networkDelayTime(vector&lt;vector&lt;int&gt;&gt;&amp; times, int n, int k) {
+        // bfs 돌면서 자신의 최소를 찍어내면 되는 거 아닌가.
+
+        vector&lt;int&gt; visited(n + 1, -1);
+        vector&lt;vector&lt;pii&gt;&gt; adj(n+1);
+        queue&lt;int&gt; q;
+
+        for (const auto&amp; a : times) {
+            adj[a[0]].push_back({a[1], a[2]}); // (위치, 비용); 
+        }
+
+        q.push(k);
+        visited[k] = 0;
+
+        while (!q.empty()) {
+            auto a = q.front();
+            q.pop();
+
+            int target = visited[a];
+
+            for (const auto&amp; b : adj[a]) {
+                if (visited[b.first] == -1 ||
+                     visited[b.first] &gt; target + b.second) {
+                    visited[b.first] = target + b.second;
+                    q.push(b.first);
+                }
+            }
+        }
+
+        int result = 0;
+        for (int i=1; i&lt;=n; ++i) {
+            int a = visited[i];
+            if (a == -1) return -1;
+
+            result = max(result, a);
+        }
+
+        return result;
+    }
+};
+</code></pre>
+
+<p>문제는 거리가 음수일 때는 안 통한다는 점이다.</p>
+
+<p>다른 풀이는 그냥 다익스트라를 박는 방법이다.</p>
+<p>한 번 돌 때 최소임을 보장해주기 때문에, 꼼꼼하게 돌면서 체크하면 된다.</p>
+
+<h1>결론</h1>
+<p>bfs 응용으로도 풀 수 있고, 단순하게 다익스트라를 박아서 풀어도 된다.</p>
+
+    </article>
+
+    <hr>
+
+    
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

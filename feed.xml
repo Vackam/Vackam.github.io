@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Network Delay Time</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Network Delay Time.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Network Delay Time.html</guid>
+    <pubDate>Mon, 31 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>Advanced-Graph</category>
+    <description>서론 | https://neetcode.io/problems/network-delay-time/question 그래프에서 전파될 수 있는 가장 최솟값을 구하시오 푸는 방법 bfs로 최소 거리를 갱신하면서 풀었다. 계속 돌면서 거리가 갱신될 가능성이 있는 경우 q에 푸쉬해준다. 최종 끝났을 때, 처리되지 않은 노드가 있다면 에러 아니면 최댓값을 반환한다. 다음…</description>
+  </item>
+  <item>
     <title>Valid Parenthesis String</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Valid Parenthesis String.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Valid Parenthesis String.html</guid>
@@ -170,14 +179,6 @@
     <category>ps</category>
     <category>interval</category>
     <description>서론 | https://neetcode.io/problems/insert-new-interval/question 새로운 구간이 하나 왔을 때, 병합 가능할 시 병합된 구간을 구하라. 푸는 방법 새로운 구간의 시작(이후 start)보다 구간의 끝이 작은 것들은 result에 넣어두고 넘어간다. 이후 겹치는 부분이 시작되면 새로운 구간의 끝(이후 end)을 넘지 않는 구간을 계속 …</description>
-  </item>
-  <item>
-    <title>2026-08-11</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-11.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-11.html</guid>
-    <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>SELF BARGE-IN AI를 음성으로 사용할 때 출력 대답을 다시 입력으로 판단하여 사용하는 오류이다. 이를 어떻게 해결할까? 가장 단순한 방법은 출력을 할 때 마이크를 막는 방법이다. 이렇게 하면 출력 중에 AI의 대답이 들어갈 일이 없으므로 완전히 해결된다. 하지만, 이는 살짝 군대식 해결법이다. 통화하는 …</description>
   </item>
 </channel>
 </rss>
