@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconstruct Flight Path &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/reconstruct-flight-path/history?list=neetcode150&amp;submissionIndex=2 티켓을 모두 소진했을 때, 사전적…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Reconstruct Flight Path</h1>
+    <p class="meta">2026-09-01 <span class="tag">ps</span><span class="tag">Advanced-Graph</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/reconstruct-flight-path/history?list=neetcode150&submissionIndex=2</p>
+<p>티켓을 모두 소진했을 때, 사전적으로 가장 빠른 소진 방법을 제시하라</p>
+
+<h1>푸는 방법</h1>
+<p>티켓을 전부 소진하는 방법이 무조건 존재한다고 가정하니 예외 상황은 처리 안해도 된다.</p>
+<p>이게 숫자로 주어졌으면 굉장히 빠르게 풀 수 있을 거 같은데, 문자열로 주어져서 문제였다.</p>
+<p>그래서 인코딩 디코딩 함수를 만들어서 풀도록 하자.</p>
+<p>map을 하나 만들어서 출발지마다 갈 수 있는 곳을 티켓을 돌면서 확인하여 저장한다. 이때 저장할 때는 priority_queue 를 사용한다.</p>
+<p>이후 JFK 공항부터 하나씩 꺼내보면서 경로를 탐색한다.</p>
+<p>우선순위 큐 덕분에 사전 순으로 빠른 애들부터 나온다. 또한, 티켓을 다 소진하기 전에 더 이상 갈 수 없는 곳에 도착한다면, 이곳은 정황상 맨 마지막에 도착해야 하는 곳이므로 따로 저장한다. 이렇게 하나씩 제거하면서 나아가다 보면 답이 나온다.</p>
+
+<p>다음은 코드이다. </p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int enc(const string&amp; a) {
+        return (a[0] - 'A') * 676 + (a[1] - 'A') * 26 + (a[2] - 'A');
+    }
+    string dec(int x) {
+        return {char('A' + x/676), char('A' + x/26%26), char('A' + x%26)};
+    }
+    vector&lt;string&gt; findItinerary(vector&lt;vector&lt;string&gt;&gt;&amp; tickets) {
+        unordered_map&lt;int, priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt;&gt; g;
+        for (const auto&amp; t : tickets) {
+            g[enc(t[0])].push(enc(t[1]));
+        }
+
+        vector&lt;int&gt; route;
+        vector&lt;int&gt; st = { enc("JFK") };
+
+        while (!st.empty()) {
+            int cur = st.back();
+            auto it = g.find(cur); // it는 map 이터레이터임.
+            if (it == g.end() || it-&gt;second.empty()) {
+                route.push_back(cur);
+                st.pop_back();
+            } else {
+                st.push_back(it-&gt;second.top());
+                it-&gt;second.pop();
+            }
+        }
+
+        reverse(route.begin(), route.end());
+
+        vector&lt;string&gt; ans;
+        ans.reserve(route.size());
+        for (int x : route) ans.push_back(dec(x));
+
+        return ans;
+    }
+};
+</code></pre>
+
+
+<h1>결론</h1>
+<p>제일 고민이었던 부분이 만약 path가 여러 경우가 있을 때, 이때 정답 판정을 어떻게 할 것인가? 였다. 사전식이니까 1 -> 2 -> 5 가 1 -> 5 -> 2 보다 우선되어야 하는데, 이걸 또 encoding, decoding으로 표현할라니까 어려웠다.</p>
+<p>살짝은 그리디 형태로, 작은 것을 먼저 선택하는 방식을 항상 생각하자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Advanced Graph/Network Delay Time.html">Network Delay Time &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

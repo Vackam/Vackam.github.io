@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Reconstruct Flight Path</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Reconstruct Flight Path.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Reconstruct Flight Path.html</guid>
+    <pubDate>Tue, 01 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>Advanced-Graph</category>
+    <description>서론 | https://neetcode.io/problems/reconstruct-flight-path/history?list=neetcode150&amp;submissionIndex=2 티켓을 모두 소진했을 때, 사전적으로 가장 빠른 소진 방법을 제시하라 푸는 방법 티켓을 전부 소진하는 방법이 무조건 존재한다고 가정하니 예외 상황은 처리 안해도 된다. 이게 숫자로 주어졌으면 굉장히 빠르게 풀 수 있…</description>
+  </item>
+  <item>
     <title>Network Delay Time</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Network Delay Time.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Network Delay Time.html</guid>
@@ -170,15 +179,6 @@
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-12.html</guid>
     <pubDate>Wed, 12 Aug 2026 00:00:00 +0900</pubDate>
     <description>배틀 디펜스 관련 고정된 맵이 10개 정도 있고, 거기에 배치할 수 있는 칸을 정한다. 그 다음 각 맵마다 기믹을 랜덤으로 부여한다.(각 라운드?) 그래서 고정된 전략으로 못 깨게 한다. 이런 기획 어떨까? 그러면 맵에 대해서 랜덤 맵이 나오니까 재밌고, 기믹도 있으니까 기믹 해결하면서 풀어야 하니까 퍼…</description>
-  </item>
-  <item>
-    <title>Insert Interval</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Insert Interval.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Insert Interval.html</guid>
-    <pubDate>Wed, 12 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>interval</category>
-    <description>서론 | https://neetcode.io/problems/insert-new-interval/question 새로운 구간이 하나 왔을 때, 병합 가능할 시 병합된 구간을 구하라. 푸는 방법 새로운 구간의 시작(이후 start)보다 구간의 끝이 작은 것들은 result에 넣어두고 넘어간다. 이후 겹치는 부분이 시작되면 새로운 구간의 끝(이후 end)을 넘지 않는 구간을 계속 …</description>
   </item>
 </channel>
 </rss>
