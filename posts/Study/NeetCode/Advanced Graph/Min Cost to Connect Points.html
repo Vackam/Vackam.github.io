@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min Cost to Connect Points &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/min-cost-to-connect-points/question 모든 점을 갈 수 있는 최소 거리를 구하라. 푸는 방법 mst…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Min Cost to Connect Points</h1>
+    <p class="meta">2026-09-02 <span class="tag">ps</span><span class="tag">Advanced-Graph</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/min-cost-to-connect-points/question</p>
+<p>모든 점을 갈 수 있는 최소 거리를 구하라.</p>
+
+<h1>푸는 방법</h1>
+<p>mst를 구하는 문제이다.</p>
+<p>크루스칼 방식으로 풀었고, 이를 위해 union find를 사용했다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">using pipii = pair&lt;int, pair&lt;int, int&gt;&gt;;
+class Solution {
+public:
+    vector&lt;int&gt; mother;
+    pipii make_dis(const vector&lt;int&gt;&amp; a, const vector&lt;int&gt;&amp; b, int i, int j) {
+        return {
+            abs(a[0] - b[0]) + abs(a[1] - b[1]),
+            {
+                i, j 
+            }
+        };
+    }
+
+    int find(int x) {
+        if (x == mother[x]) return x;
+        return mother[x] = find(mother[x]);
+    }
+    
+    void merge(int u, int v) {
+        u = find(u);
+        v = find(v);
+
+        if (u == v) {
+            return;
+        }
+        mother[u] = v;
+    }
+
+    int minCostConnectPoints(vector&lt;vector&lt;int&gt;&gt;&amp; points) {
+        // 이거 mst 만드는 문제 같은데
+        // O(n^2) 으로 거리 다 만든 다음에
+        // 젤 작은 거 부터 계속 만들면 될 거 같은데
+        // 그리고 머지 때리면서 union find 하면 답 나오지 않을까?
+        int n = points.size();
+        mother.clear();
+        mother.resize(n);
+        iota(mother.begin(), mother.end(), 0);
+
+        priority_queue&lt;pipii, vector&lt;pipii&gt;, greater&lt;pipii&gt;&gt; q;
+
+        for (int i=0; i&lt;n; ++i) {
+            for (int j=i+1; j&lt;n; ++j) {
+                q.push(make_dis(points[i], points[j], i, j));
+            }
+        }
+
+        int result = 0;
+        int counter = 0;
+        while (!q.empty()) {
+            if (counter == n-1) break;
+            auto a = q.top();
+            q.pop();
+
+            auto [u, v] = a.second;
+
+            if (find(u) != find(v)) {
+                result += a.first;
+                merge(u, v);
+                counter++;
+            }
+        }
+
+        return result;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>솔직히 시험장 나오면 못 풀 듯 하다...</p>
+<p>보자마자 mst 문제인 거는 알았는데, 크루스칼을 생짜로 구현하기 위한 union find가 생각이 안나서 많이 헤맸다. </p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Advanced Graph/Reconstruct Flight Path.html">Reconstruct Flight Path &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

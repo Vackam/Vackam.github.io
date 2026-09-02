@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Min Cost to Connect Points</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Min Cost to Connect Points.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Min Cost to Connect Points.html</guid>
+    <pubDate>Wed, 02 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>Advanced-Graph</category>
+    <description>서론 | https://neetcode.io/problems/min-cost-to-connect-points/question 모든 점을 갈 수 있는 최소 거리를 구하라. 푸는 방법 mst를 구하는 문제이다. 크루스칼 방식으로 풀었고, 이를 위해 union find를 사용했다. 다음은 코드이다. using pipii = pair&amp;lt;int, pair&amp;lt;int, int&amp;gt;&amp;gt;; class Solution { public: vector&amp;lt;int&amp;gt; mother; pipii make_dis(co…</description>
+  </item>
+  <item>
     <title>Reconstruct Flight Path</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Reconstruct Flight Path.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Reconstruct Flight Path.html</guid>
@@ -172,13 +181,6 @@
     <category>ps</category>
     <category>interval</category>
     <description>서론 | https://neetcode.io/problems/merge-intervals/question 최종 병합된 상태를 순서에 상관없이 제시하라 푸는 방법 이번 문제는 저번 Insert Interval 과 달리 sorting이 안되어 있어서 sort를 하고 가야한다. 병합이 되어있는 가장 최신 것의 끝점보다 내 첫 점이 크다면 겹치지 않으므로 그냥 삽입, 그렇지 않다면 내 끝 …</description>
-  </item>
-  <item>
-    <title>2026-08-12</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-12.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-12.html</guid>
-    <pubDate>Wed, 12 Aug 2026 00:00:00 +0900</pubDate>
-    <description>배틀 디펜스 관련 고정된 맵이 10개 정도 있고, 거기에 배치할 수 있는 칸을 정한다. 그 다음 각 맵마다 기믹을 랜덤으로 부여한다.(각 라운드?) 그래서 고정된 전략으로 못 깨게 한다. 이런 기획 어떨까? 그러면 맵에 대해서 랜덤 맵이 나오니까 재밌고, 기믹도 있으니까 기믹 해결하면서 풀어야 하니까 퍼…</description>
   </item>
 </channel>
 </rss>
