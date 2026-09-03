@@ -11,7 +11,7 @@
 
 <h1>Lee YoHwan</h1>
 <p>Game developer & systems programmer. Writing about C++, rendering, and everything in between.</p>
-<p><a href="posts.html">Archive</a> &middot; <a href="about.html">About</a></p>
+<p><a href="posts.html">Archive</a> &middot; <a href="calendar.html">Calendar</a> &middot; <a href="about.html">About</a></p>
 
 <hr>
 
@@ -27,7 +27,7 @@
 <p><a href="posts.html">More posts &rarr;</a></p>
 
 <h2>Calendar</h2>
-<div id=c></div><script>((s,d)=>{var t=new Date,y=t.getFullYear(),m=t.getMonth(),g=new Date(s+"T00:00"),k=a=>d[(a-g)/864e5+.5|0]|0,h=new Date(t),i,n,o="<p class=hm>";h.setDate(h.getDate()-364-h.getDay());for(i=0;i<371;i++,h.setDate(h.getDate()+1))o+="<i style=opacity:"+((n=k(h))?.4+n/5:.1)+"></i>";o+="<table class=cal><caption>"+y+"-"+(m+1)+"</caption><tr>";for(i of"SMTWTFS")o+="<th>"+i;for(i=1-new Date(y,m,1).getDay();(h=new Date(y,m,i)).getMonth()==m||i<1;i++)o+=(h.getDay()?"":"<tr>")+"<td>"+(i>0?i+((n=k(h))?"<b>"+n:""):"");c.innerHTML=o})("2026-05-04","400000100000000000000000000012012000000000000000000000001222030331111121221203332120223311024222102322100222120100120101121")</script>
+<div id=c></div><script>((s,d)=>{var t=new Date,y=t.getFullYear(),m=t.getMonth(),g=new Date(s+"T00:00"),k=a=>d[(a-g)/864e5+.5|0]|0,h,i,n,o="<p class=hm>";t.setDate(t.getDate()-364-t.getDay());for(i=0;i<371;i++,t.setDate(t.getDate()+1))o+="<i style=opacity:"+((n=k(t))?.4+n/5:.1)+"></i>";o+="<table class=cal><caption>"+y+"-"+(m+1)+"</caption><tr>";for(i of"SMTWTFS")o+="<th>"+i;for(i=1-new Date(y,m,1).getDay();(h=new Date(y,m,i)).getMonth()==m||i<1;i++)o+=(h.getDay()?"":"<tr>")+"<td>"+(i>0?i+((n=k(h))?"<b>"+n:""):"");c.innerHTML=o})("2026-05-04","400000100000000000000000000012012000000000000000000000001222030331111121221203332120223311024222102322100222120100120101121")</script>
 
 <h2>Projects</h2>
 <p>See <a href="about.html">about</a> for projects and experience.</p>
