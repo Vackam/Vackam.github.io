@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swim in Rising Water &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/swim-in-rising-water/question 첫 칸부터 마지막 칸까지 가는 경로 중 큰 값이 가장 작은 길…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Swim in Rising Water</h1>
+    <p class="meta">2026-09-03 <span class="tag">ps</span><span class="tag">Advanced-Graph</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/swim-in-rising-water/question</p>
+<p>첫 칸부터 마지막 칸까지 가는 경로 중 큰 값이 가장 작은 길을 찾아서 큰 값을 반환하시오</p>
+
+<h1>푸는 방법</h1>
+<p>우선 dfs에 visited 배열 대신 자기가 가진 길 중에서 가장 작은 값을 들고 있는 best 배열로 분기를 판단해서 풀었다.</p>
+
+<p>내 코드는 더러우니 이것을 푸는 아름다운 방법을 공부하는 식으로 해보자.</p>
+
+<h2>1. 다익스트라</h2>
+<p>그래프에서 경로 찾기 문제로 바꿔 풀 수 있다. 그 값을 수위 최댓값으로 생각하면 된다.</p>
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int swimInWater(vector&lt;vector&lt;int&gt;&gt;&amp; grid) {
+        int n = grid.size();
+        const int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
+        vector&lt;vector&lt;int&gt;&gt; dist(n, vector&lt;int&gt;(n, INT_MAX));
+        priority_queue&lt;array&lt;int,3&gt;, vector&lt;array&lt;int,3&gt;&gt;, greater&lt;&gt;&gt; pq;
+
+        dist[0][0] = grid[0][0];
+        pq.push({dist[0][0], 0, 0});
+
+        while (!pq.empty()) {
+            auto [d, x, y] = pq.top();
+            pq.pop();
+            if (d &gt; dist[x][y]) continue;            // 낡은 항목
+            if (x == n-1 &amp;&amp; y == n-1) return d;      // 꺼낸 순간이 확정
+
+            for (int i = 0; i &lt; 4; ++i) {
+                int nx = x + dx[i], ny = y + dy[i];
+                if (nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= n) continue;
+                int nd = max(d, grid[nx][ny]);       // 덧셈이 아니라 최댓값
+                if (nd &lt; dist[nx][ny]) {
+                    dist[nx][ny] = nd;
+                    pq.push({nd, nx, ny});
+                }
+            }
+        }
+        return -1;
+    }
+};
+</code></pre>
+<p>우선순위 큐를 세워 계속 초기화를 할 수 있게 하고, 덧셈으로 판별하는 대신 max로 판별하게 한다. 이렇게 할 경우 <code>x == n-1 &amp;&amp; y == n-1</code>인 순간이 정답이 된다.(큐 성질에 의해)</p>
+
+<h2>2. 유니온 파인드</h2>
+<pre><code class="language-cpp">int m = n*n;
+vector&lt;bool&gt; active(m, false);
+
+for (int t = 0; t &lt; m; ++t) {                // 수위를 1씩 올린다
+	int id = pos[t], x = id / n, y = id % n;
+	active[id] = true;
+	for (int i = 0; i &lt; 4; ++i) {
+		int nx = x + dx[i], ny = y + dy[i];
+		if (nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= n) continue;
+		if (active[nx * n + ny]) unite(id, nx * n + ny);
+		}
+	if (find(0) == find(m - 1)) return t;    // 시작과 끝이 붙는 순간
+}
+return -1;
+</code></pre>
+
+<p>일부만 발췌했다.</p>
+<p>아이디어가 상당히 재밌는데, <code>[0, m)</code> 까지 숫자를 늘려가며 유니온 파인드를 진행한다.</p>
+<p>그러면 경로가 합쳐지다가 어느 시점에서 마지막 칸과 첫 칸이 합쳐지는 경우가 발생하는 데, 그때가 바로 정답인 수위이다.</p>
+<p>즉, 앞에서 작업만 해주면 리니어 서치 느낌으로 빠르게 된다.</p>
+
+<h1>결론</h1>
+<p>그래프에서 은근 유니온 파인드가 잘 쓰이는 것 같다.</p>
+<p>활용해서 잘 사용해보도록 하자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Advanced Graph/Min Cost to Connect Points.html">Min Cost to Connect Points &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
