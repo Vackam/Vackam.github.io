@@ -173,3 +173,19 @@ details.cat-tree > ul { margin-top: 0.25rem; margin-bottom: 0.25rem; }
 .cal{text-align:center}.cal td{padding:0 .4em}
 .cal b{color:#3a3;font-size:.7em;vertical-align:super}
 .cal a{text-decoration:none}
+
+/* about: 프로젝트 / 경력 */
+.project-card {
+  border-top: 1px solid var(--rule);
+  padding: 1rem 0;
+}
+
+.project-card p { margin: 0.25rem 0; }
+
+.project-name { font-weight: bold; }
+
+.timeline-item { margin-bottom: 0.75rem; }
+
+.timeline-item p { margin: 0; }
+
+.timeline-company { font-weight: bold; }
