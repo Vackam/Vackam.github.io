@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheapest Flights Within K Stops &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/cheapest-flight-path/question 정해진 횟수 안에 최솟값으로 src to dst 하는 값을 찾아라 푸는 …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Cheapest Flights Within K Stops</h1>
+    <p class="meta">2026-09-05 <span class="tag">ps</span><span class="tag">Advanced-Graph</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+
+<p>| https://neetcode.io/problems/cheapest-flight-path/question</p>
+<p>정해진 횟수 안에 최솟값으로 src to dst 하는 값을 찾아라</p>
+
+<h1>푸는 방법</h1>
+<p>처음에 dfs로 접근 했다가 시간초과로 에러가 났다.</p>
+
+<p>풀이는 벨만-포드 방식을 변형하는 것이다.</p>
+<p>기존 벨만-포드 알고리즘은 최단 거리를 찾기 위해 n-1번을 반복한다. 그 이유는 최단 거리기 때문에 같은 곳을 반복해서 가지 않을 것이기 때문이다. (?)</p>
+<p>이 문제에 적용하면 우리는 최대 k번을 지나다닐 수 있기 때문에 n-1이 아닌 k를 상한으로 두고 알고리즘을 돌리면 답이 나오게 된다.</p>
+
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
+class Solution {
+public:
+    int findCheapestPrice(int n, vector&lt;vector&lt;int&gt;&gt;&amp; flights, int src, int dst, int k) {
+        const int INF = 1e9;
+        vector&lt;int&gt; dist(n, INF);
+        dist[src] = 0;
+
+        for (int i=0; i&lt;=k; ++i) {
+            vector&lt;int&gt; next = dist;
+            for (const auto&amp; f : flights) {
+                int u = f[0], v = f[1], w = f[2];
+                if (dist[u] != INF &amp;&amp; dist[u] + w &lt; next[v])
+                    next[v] = dist[u] + w;
+            }
+            dist = next;
+        }
+        return dist[dst] == INF ? -1 : dist[dst];
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+
+<p>어렵다.. 그래프</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Advanced Graph/Alien Dictionary.html">Alien Dictionary &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

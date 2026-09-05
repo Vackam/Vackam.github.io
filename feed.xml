@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Cheapest Flights Within K Stops</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Cheapest Flights Within K Stops.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Cheapest Flights Within K Stops.html</guid>
+    <pubDate>Sat, 05 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>Advanced-Graph</category>
+    <description>서론 | https://neetcode.io/problems/cheapest-flight-path/question 정해진 횟수 안에 최솟값으로 src to dst 하는 값을 찾아라 푸는 방법 처음에 dfs로 접근 했다가 시간초과로 에러가 났다. 풀이는 벨만-포드 방식을 변형하는 것이다. 기존 벨만-포드 알고리즘은 최단 거리를 찾기 위해 n-1번을 반복한다. 그 이유는 최단 거…</description>
+  </item>
+  <item>
     <title>Alien Dictionary</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Alien Dictionary.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Alien Dictionary.html</guid>
@@ -172,15 +181,6 @@
     <category>ps</category>
     <category>interval</category>
     <description>서론 | https://neetcode.io/problems/meeting-schedule-ii/question 회의를 하기 위한 최소 개수를 구하시오 푸는 방법 미팅룸을 하나 넣고, 만약 겹친다면 새롭게 방을 추가하면 된다. 이 로직은 min-heap으로 만들면 된다. 다음은 코드이다. class Solution { public: int minMeetingRooms(vector&amp;lt;Interval&amp;gt;&amp;amp; intervals) { int n = intervals.size…</description>
-  </item>
-  <item>
-    <title>Meeting Rooms</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms.html</guid>
-    <pubDate>Mon, 17 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>interval</category>
-    <description>서론 | https://neetcode.io/problems/meeting-schedule/question 미팅 시간이 겹치는 지 확인해라. 푸는 방법 sort하고 겹치는 지 확인하면 된다. 이것도 대충하면 되는데, 전에 있는 end 값이 지금 값의 start 값보다 큰 지 확인하면 된다. 다음은 코드이다. class Solution { public: bool canAttendMeetings(vector&amp;lt;Interval&amp;gt;&amp;amp; intervals) { …</description>
   </item>
 </channel>
 </rss>
