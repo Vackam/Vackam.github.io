@@ -7,6 +7,24 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Longest Common Subsequence</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Longest Common Subsequence.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Longest Common Subsequence.html</guid>
+    <pubDate>Mon, 07 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/longest-common-subsequence/question LCS를 구하라 푸는 방법 아주 유명한 문제다. 이차원 dp를 세운 다음, 순회를 하면서 체크를 한다. 만약 s1과 s2가 같은 부분이 나온다면 대각성분에 +1을 해서 자신의 값으로 한다. 아니라면 왼쪽과 위쪽 중에서 가져온다. 다음은 코드이다. class Solution…</description>
+  </item>
+  <item>
+    <title>Unique Paths</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</guid>
+    <pubDate>Mon, 07 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/count-paths/question 끝 점에 도달하는 경우의 수를 세시오 푸는 방법 2d로 하면 아주 쉽다. 고등학생 때 했던 것처럼 하나씩 번호를 새기면서 가면 된다. 다시 돌아가는 경우는 없으므로(오른쪽, 아래 제한) 그대로 하면 된다. 다음은 코드이다. class Solution { public: int uniquePaths(int m, …</description>
+  </item>
+  <item>
     <title>Cheapest Flights Within K Stops</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Cheapest Flights Within K Stops.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Cheapest Flights Within K Stops.html</guid>
@@ -78,14 +96,6 @@
     <description>서론 | https://neetcode.io/problems/valid-parenthesis-string/question 괄호 문제를 \* 라는 무적 기호를 포함한 상태로 풀 수 있는 지 확인하시오 푸는 방법 한 칸씩 가면서 열린 괄호의 최소치와 최대치를 기록해나간다. 최대치는 모든 \*를 열린 괄호로 생각한 경우이다. 최소치는 모든 \*를 공백 또는 닫힌 괄호로 생각…</description>
   </item>
   <item>
-    <title>2026-08-27</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-27.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-27.html</guid>
-    <pubDate>Thu, 27 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>무중단 배포 하는 법 여러 고급진 방법이 있던데, 가장 단순한 방법을 이번에 배우게 되었다. 정답은 서버를 두 개를 띄워두는 것이다. 이를 A, B라고 가정하자. 우선 A만 사용하여 서버를 사용한다. 그러다가 수정된 버전이 필요하면, 이를 B로 올린다. A가 계속 돌고 있고, B가 배포가 끝날 때까지 기다린…</description>
-  </item>
-  <item>
     <title>Merge Triplets to Form Target</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Merge Triplets to Form Target.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Merge Triplets to Form Target.html</guid>
@@ -93,6 +103,14 @@
     <category>ps</category>
     <category>그리디</category>
     <description>서론 | https://neetcode.io/problems/merge-triplets-to-form-target/question 특별한 연산을 적용 했을 때 target을 만들 수 있는 지 판단하시오 푸는 방법 주어진 배열을 순회하면서 target보다 작은 것을 만족하면 연산을 적용한다. 이후 끝났을 때, target이 되면 참 아니면 거짓이다. 넘어가는 tuple은 답이 될 수 없으므로 신경…</description>
+  </item>
+  <item>
+    <title>2026-08-27</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-27.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-27.html</guid>
+    <pubDate>Thu, 27 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>무중단 배포 하는 법 여러 고급진 방법이 있던데, 가장 단순한 방법을 이번에 배우게 되었다. 정답은 서버를 두 개를 띄워두는 것이다. 이를 A, B라고 가정하자. 우선 A만 사용하여 서버를 사용한다. 그러다가 수정된 버전이 필요하면, 이를 B로 올린다. A가 계속 돌고 있고, B가 배포가 끝날 때까지 기다린…</description>
   </item>
   <item>
     <title>Hand of Straights</title>
@@ -140,6 +158,14 @@
     <description>서론 | https://neetcode.io/problems/jump-game/question 점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라. 푸는 방법 처음에는 bfs 방식으로 풀었다. 방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행. 이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. …</description>
   </item>
   <item>
+    <title>2026-08-19</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-19.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-19.html</guid>
+    <pubDate>Wed, 19 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>EXIF에 대하여 EXIF는 이미지 파일에 대한 메타데이터이다. 아마 핸드폰 앨범에서 사진을 위로 올리면 다양한 정보가 나오는 것을 경험했을 텐데, 그것이 EXIF를 해석해서 나온 것이다. 근데 개발자 관점에서, 얘네들이 사용자의 개인정보를 가지고 있을 수 있다. 휴대폰 GPS가 발전하면서 위치 정보도 기록…</description>
+  </item>
+  <item>
     <title>Maximum Subarray</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Maximum Subarray.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Maximum Subarray.html</guid>
@@ -149,38 +175,12 @@
     <description>서론 | https://neetcode.io/problems/maximum-subarray/question 가장 값이 큰 subarray의 합을 구하시오 푸는 방법 subarray 자체를 구하는 것이 아니라 값만 기억하면서 나오면 된다. 그리디 스타일로 내 차례가 되면 내가 무조건 포함되면 된다. 만약 전 값들이 음수로 나왔을 경우에는 나랑 합치면 무조건 손해니까 subarray…</description>
   </item>
   <item>
-    <title>2026-08-19</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-19.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-19.html</guid>
-    <pubDate>Wed, 19 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>EXIF에 대하여 EXIF는 이미지 파일에 대한 메타데이터이다. 아마 핸드폰 앨범에서 사진을 위로 올리면 다양한 정보가 나오는 것을 경험했을 텐데, 그것이 EXIF를 해석해서 나온 것이다. 근데 개발자 관점에서, 얘네들이 사용자의 개인정보를 가지고 있을 수 있다. 휴대폰 GPS가 발전하면서 위치 정보도 기록…</description>
-  </item>
-  <item>
-    <title>Minimum Interval to Include Each Query</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Minimum Interval to Include Each Query.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Minimum Interval to Include Each Query.html</guid>
-    <pubDate>Tue, 18 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>interval</category>
-    <description>서론 | https://neetcode.io/problems/minimum-interval-including-query/question 속한 구간 중 가장 작은 구간을 각각 구하시오 푸는 방법 주어진 queries, intervals가 정렬되어 있다고 하자. 최소힙을 하나 구현하고, 그것의 원소는 (구간 길이, 끝값)을 가진다고 하자. 하나의 쿼리마다 다음과 같은 과정을 거친다. 쿼리가 해당 …</description>
-  </item>
-  <item>
     <title>2026-08-18</title>
     <link>https://vackam.github.io/posts/Daily/8월/2026-08-18.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-18.html</guid>
     <pubDate>Tue, 18 Aug 2026 00:00:00 +0900</pubDate>
     <category>데일리</category>
     <description>CRLF, LF 이 윈도우하고 맥 환경을 같이 쓰는 사람들이 프로젝트를 하면 무조건 풀리 제목으로 하나 나오는 것이 LF 형식으로 변경이다. 대체 이게 뭘까? CR은 캐리지 리턴이란 뜻으로 커서를 맨 앞으로 이동하는 것이다. LF는 라인 피드로 커서를 아래로 이동하는 것이다. 윈도우에서는 CRLF를 동시에 써서, \r…</description>
-  </item>
-  <item>
-    <title>Meeting Rooms II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Intervals/Meeting Rooms II.html</guid>
-    <pubDate>Mon, 17 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>interval</category>
-    <description>서론 | https://neetcode.io/problems/meeting-schedule-ii/question 회의를 하기 위한 최소 개수를 구하시오 푸는 방법 미팅룸을 하나 넣고, 만약 겹친다면 새롭게 방을 추가하면 된다. 이 로직은 min-heap으로 만들면 된다. 다음은 코드이다. class Solution { public: int minMeetingRooms(vector&amp;lt;Interval&amp;gt;&amp;amp; intervals) { int n = intervals.size…</description>
   </item>
 </channel>
 </rss>

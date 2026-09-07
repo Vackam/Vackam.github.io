@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longest Palindromic Substring &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰…">
+    <title>Longest Common Subsequence &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/longest-common-subsequence/question LCS를 구하라 푸는 방법 아주 유명한 문제다. 이차원 dp를 …">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,57 +18,51 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Longest Palindromic Substring</h1>
-    <p class="meta">2026-08-04 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Longest Common Subsequence</h1>
+    <p class="meta">2026-09-07 <span class="tag">ps</span><span class="tag">dp</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/longest-palindromic-substring/question</p>
-<p>문자열 중 가장 긴 팰린드롬을 구하시오</p>
+<p>| https://neetcode.io/problems/longest-common-subsequence/question</p>
+<p>LCS를 구하라</p>
 
 <h1>푸는 방법</h1>
-<p>팰린드롬을 중앙에서부터 찾는 생각을 하면 된다.</p>
-<p>주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다.</p>
-<p>짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다.</p>
+<p>아주 유명한 문제다.</p>
+<p>이차원 dp를 세운 다음, 순회를 하면서 체크를 한다.</p>
+<p>만약 s1과 s2가 같은 부분이 나온다면 대각성분에 +1을 해서 자신의 값으로 한다.</p>
+<p>아니라면 왼쪽과 위쪽 중에서 가져온다.</p>
 
-<p>다음은 코드이다. </p>
+<p>다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
-    string longestPalindrome(string s) {
-        int n = s.size();
-        int start = 0, max_len = 1;
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.size(), n = text2.size();
+        vector&lt;vector&lt;int&gt;&gt; dp(m+1, vector&lt;int&gt;(n+1, 0));
 
-        auto expand = [&amp;](int l, int r) {
-            while (l &gt;= 0 &amp;&amp; r &lt; n &amp;&amp; s[l] == s[r]) {
-                if (r-l+1 &gt; max_len) {
-                    start = l;
-                    max_len = r-l+1;
-                }
-                l--;
-                r++;
+        for (int i=1; i&lt;=m; ++i) {
+            for (int j=1; j&lt;=n; ++j) {
+                if (text1[i-1] == text2[j-1])
+                    dp[i][j] = dp[i-1][j-1] + 1;
+                else 
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
             }
-        };
-
-        for (int i=0; i&lt;n; ++i) {
-            expand(i, i);
-            expand(i, i+1);
         }
 
-        return s.substr(start, max_len);
+        return dp[m][n];
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>dp라고 해서 dp 어떻게 세우지 했는데, 전혀 dp가 아니라 당황했다...</p>
+<p>오랜만에 봐서 기억이 잘 안났다. 저 점화식을 계속 생각하도록 하자.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/House Robber II.html">House Robber II &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Palindromic Substrings.html">&larr; Palindromic Substrings</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/2d_dp/Unique Paths.html">Unique Paths &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 

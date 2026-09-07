@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longest Palindromic Substring &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰…">
+    <title>Unique Paths &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/count-paths/question 끝 점에 도달하는 경우의 수를 세시오 푸는 방법 2d로 하면 아주 쉽다…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,57 +18,54 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Longest Palindromic Substring</h1>
-    <p class="meta">2026-08-04 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Unique Paths</h1>
+    <p class="meta">2026-09-07 <span class="tag">ps</span><span class="tag">dp</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/longest-palindromic-substring/question</p>
-<p>문자열 중 가장 긴 팰린드롬을 구하시오</p>
+<p>| https://neetcode.io/problems/count-paths/question</p>
+<p>끝 점에 도달하는 경우의 수를 세시오</p>
 
 <h1>푸는 방법</h1>
-<p>팰린드롬을 중앙에서부터 찾는 생각을 하면 된다.</p>
-<p>주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다.</p>
-<p>짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다.</p>
+<p>2d로 하면 아주 쉽다.</p>
+<p>고등학생 때 했던 것처럼 하나씩 번호를 새기면서 가면 된다.</p>
+<p>다시 돌아가는 경우는 없으므로(오른쪽, 아래 제한) 그대로 하면 된다.</p>
 
-<p>다음은 코드이다. </p>
+<p>다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
-    string longestPalindrome(string s) {
-        int n = s.size();
-        int start = 0, max_len = 1;
+    int uniquePaths(int m, int n) {
+        vector&lt;vector&lt;int&gt;&gt; v(m, vector&lt;int&gt;(n, 0));
 
-        auto expand = [&amp;](int l, int r) {
-            while (l &gt;= 0 &amp;&amp; r &lt; n &amp;&amp; s[l] == s[r]) {
-                if (r-l+1 &gt; max_len) {
-                    start = l;
-                    max_len = r-l+1;
-                }
-                l--;
-                r++;
-            }
-        };
-
+        for (int i=0; i&lt;m; ++i) {
+            v[i][0] = 1;
+        }
+        
         for (int i=0; i&lt;n; ++i) {
-            expand(i, i);
-            expand(i, i+1);
+            v[0][i] = 1;
+        }
+    
+        for (int i=1; i&lt;m; ++i) {
+            for (int j=1; j&lt;n; ++j) {
+                v[i][j] = v[i-1][j] + v[i][j-1];
+            }
         }
 
-        return s.substr(start, max_len);
+        return v[m-1][n-1];
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>dp라고 해서 dp 어떻게 세우지 했는데, 전혀 dp가 아니라 당황했다...</p>
+<p>사이트상 med라고 되어있는데, 한국인 기준 아주 쉬운 문제 같다. 왜냐하면 교과서에서 동일 내용을 다루고 있으니..</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/House Robber II.html">House Robber II &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Palindromic Substrings.html">&larr; Palindromic Substrings</a></span></nav>
+    <nav class="post-nav"><span></span><span><a href="../../../../posts/Study/NeetCode/2d_dp/Longest Common Subsequence.html">&larr; Longest Common Subsequence</a></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
