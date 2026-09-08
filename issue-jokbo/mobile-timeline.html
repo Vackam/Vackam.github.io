@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>모바일 · 타임라인 (보류) · 이슈 족보</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #F2F2F2; color: #1E2620; font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #3F6B2A; } a:hover { color: #689D4B; }
+    .serif { font-family: "Noto Serif KR", "Apple Myungjo", "Nanum Myeongjo", serif; }
+    .mono { font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace; font-feature-settings: "tnum" 1; }
+  </style>
+<style>
+  body { padding: 40px 24px 64px; }
+  .ij-nav { width: 390px; margin: 0 auto 16px; display: flex; align-items: baseline; justify-content: space-between; font-size: 12.5px; color: #5F675F; }
+  .ij-nav a { text-decoration: none; font-weight: 600; }
+  .ij-board { width: 390px; margin: 0 auto; border: 1px solid #CFD4CB; }
+</style>
+</head>
+<body>
+<div class="ij-nav"><a href="./">← 화면 목록</a><span>모바일 · 타임라인 (보류) · 390×1220</span></div>
+<div class="ij-board">
+<div style="width: 390px; min-height: 844px; background: #F2F2F2; display: flex; flex-direction: column;">
+
+  <!-- 상단 바 -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 10px; border-bottom: 1px solid #CFD4CB; background: #FFFFFF;">
+    <div style="display: flex; align-items: baseline; gap: 8px;">
+      <span class="serif" style="font-size: 18px; font-weight: 700; color: #3F6B2A;">이슈 족보</span>
+      <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">BETA</span>
+    </div>
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#5F675F" stroke-width="1.6" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+  </div>
+
+  <!-- 검색 -->
+  <div style="display: flex; gap: 8px; padding: 12px 16px 0;">
+    <div style="flex: 1; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 6px;">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5F675F" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+      <span style="font-size: 14px; color: #1E2620;">대장동</span>
+    </div>
+    <div style="height: 40px; padding: 0 14px; display: flex; align-items: center; background: #B04545; color: #FFFFFF; border-radius: 6px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;">족보 만들기</div>
+  </div>
+
+  <!-- 요약 헤더 -->
+  <div style="padding: 14px 16px 0; display: flex; flex-direction: column; gap: 4px;">
+    <h1 class="serif" style="margin: 0; font-size: 21px; line-height: 1.35; letter-spacing: -0.01em; color: #1E2620; text-wrap: balance;">대장동 개발 특혜 의혹, 어디서 시작됐나</h1>
+    <div class="mono" style="display: flex; gap: 10px; font-size: 11px; color: #5F675F;">
+      <span>2009 – 2025</span><span>챕터 6</span><span>기사 38,412건</span><span>언론사 87</span>
+    </div>
+  </div>
+
+  <!-- 시계열 -->
+  <div style="margin: 12px 16px 0; padding: 10px 12px 8px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px; display: flex; flex-direction: column; gap: 6px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <span style="font-size: 12.5px; font-weight: 600; color: #1E2620;">월별 기사량</span>
+      <div style="display: flex; gap: 10px; font-size: 10.5px; color: #5F675F;">
+        <span style="display: flex; align-items: center; gap: 4px;"><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: #D96868;"></i>급증 = 챕터</span>
+        <span style="display: flex; align-items: center; gap: 4px;"><i style="display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: repeating-linear-gradient(135deg, #91AE6E 0 1.5px, #FFFFFF 1.5px 3px);"></i>전사</span>
+      </div>
+    </div>
+    <svg viewBox="0 0 358 96" width="358" height="96" style="display: block;" role="img" aria-label="대장동 월별 기사량. 2009년 6월, 2013년 9월, 2015년 3월에 작은 전사 구간, 2021년 9월 급증">
+      <defs>
+        <pattern id="hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2" height="4" fill="#91AE6E"/></pattern>
+      </defs>
+      <line x1="0" y1="78" x2="358" y2="78" stroke="#E1E4DD" stroke-width="1"/>
+      <line x1="0" y1="45" x2="358" y2="45" stroke="#E1E4DD" stroke-width="1" stroke-dasharray="2 4"/>
+      <line x1="0" y1="12" x2="358" y2="12" stroke="#E1E4DD" stroke-width="1" stroke-dasharray="2 4"/>
+      <!-- 2009~2020: 반기 단위 24칸, 폭 9 간격 1 -->
+      <rect x="2"   y="72" width="8" height="6" rx="2" fill="url(#hatch)"/>
+      <rect x="12"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="22"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="32"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="42"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="52"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="62"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="72"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="82"  y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="92"  y="71" width="8" height="7" rx="2" fill="url(#hatch)"/>
+      <rect x="102" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="112" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="122" y="70" width="8" height="8" rx="2" fill="url(#hatch)"/>
+      <rect x="132" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="142" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="152" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="162" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="172" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="182" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="192" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="202" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="212" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="222" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <rect x="232" y="76" width="8" height="2" rx="1" fill="#DFE2DC"/>
+      <!-- 2021~2025: 분기 단위 -->
+      <rect x="242" y="74" width="8" height="4" rx="1" fill="#DFE2DC"/>
+      <rect x="252" y="72" width="8" height="6" rx="1" fill="#DFE2DC"/>
+      <rect x="262" y="12" width="8" height="66" rx="2" fill="#D96868"/>
+      <rect x="272" y="30" width="8" height="48" rx="2" fill="#D96868"/>
+      <rect x="282" y="46" width="8" height="32" rx="2" fill="#D96868"/>
+      <rect x="292" y="64" width="8" height="14" rx="2" fill="#DFE2DC"/>
+      <rect x="302" y="66" width="8" height="12" rx="2" fill="#DFE2DC"/>
+      <rect x="312" y="50" width="8" height="28" rx="2" fill="#D96868"/>
+      <rect x="322" y="68" width="8" height="10" rx="2" fill="#DFE2DC"/>
+      <rect x="332" y="66" width="8" height="12" rx="2" fill="#DFE2DC"/>
+      <rect x="342" y="54" width="8" height="24" rx="2" fill="#D96868"/>
+      <text x="6"   y="66" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5E7A45" text-anchor="middle">0</text>
+      <text x="266" y="8"  font-family="IBM Plex Mono, monospace" font-size="9" fill="#1E2620" text-anchor="middle">1</text>
+      <text x="286" y="42" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1E2620" text-anchor="middle">2</text>
+      <text x="316" y="46" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1E2620" text-anchor="middle">4</text>
+      <text x="346" y="50" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1E2620" text-anchor="middle">5</text>
+      <text x="2"   y="92" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5F675F">2009</text>
+      <text x="82"  y="92" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5F675F">2013</text>
+      <text x="162" y="92" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5F675F">2017</text>
+      <text x="242" y="92" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5F675F">2021</text>
+      <text x="322" y="92" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5F675F">2025</text>
+    </svg>
+  </div>
+
+  <!-- 챕터 척추 -->
+  <div style="position: relative; margin: 16px 16px 0; padding-left: 20px; display: flex; flex-direction: column; gap: 22px;">
+    <div style="position: absolute; left: 4px; top: 8px; bottom: 8px; width: 2px; background: #689D4B; opacity: 0.4;"></div>
+
+    <!-- 챕터 0 -->
+    <div style="position: relative; display: flex; flex-direction: column; gap: 6px;">
+      <div style="position: absolute; left: -20px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #F2F2F2; border: 2px solid #91AE6E; box-sizing: border-box;"></div>
+      <div style="display: flex; gap: 8px; align-items: baseline;">
+        <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5E7A45;">챕터 0 · 전사</span>
+        <span class="mono" style="font-size: 11px; color: #5F675F;">2009.06 – 2015.07</span>
+      </div>
+      <h2 class="serif" style="margin: 0; font-size: 19px; line-height: 1.35; color: #B04545; text-wrap: balance;">이름이 붙기 전, 개발 방식을 두고 오간 6년</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">LH가 추진하던 대장지구 공영개발이 2010년 사업성 문제로 철회되자 성남시가 직접 공영개발을 추진하겠다고 선언했다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2010-07-02 · 경기일보</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">성남도시개발공사가 2013년 9월 출범했고, 대장지구는 공사의 첫 대형 사업지로 거론됐다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2013-09-10 · 연합뉴스</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">2015년 민관 합동 개발로 방식이 정해지고 민간 사업자 공모에서 하나은행 컨소시엄이 선정됐다. 이때의 이익 배분 구조가 훗날 논란의 출발점이 됐다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2015-03-27 · 한국경제</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px;">
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D;">성남시</span>
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D;">성남도시개발공사</span>
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D;">LH</span>
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E9EBE7; color: #5F675F;">판교 대장지구</span>
+      </div>
+    </div>
+
+    <!-- 챕터 1 -->
+    <div style="position: relative; display: flex; flex-direction: column; gap: 6px;">
+      <div style="position: absolute; left: -20px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #D96868;"></div>
+      <div style="display: flex; gap: 8px; align-items: baseline;">
+        <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">챕터 1</span>
+        <span class="mono" style="font-size: 11px; color: #5F675F;">2021.09 – 2021.10</span>
+        <span class="mono" style="font-size: 11px; color: #B04545;">z 9.4 · 12,806건</span>
+      </div>
+      <h2 class="serif" style="margin: 0; font-size: 19px; line-height: 1.35; color: #3F6B2A; text-wrap: balance;">화천대유 배당 구조가 드러나다</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">출자금 5천만 원의 민간 참여사 화천대유가 수천억 원대 배당을 받았다는 보도가 나오면서 "누가 이 구조를 설계했나"가 전국 이슈로 번졌다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2021-09-13 · 경향신문</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">2015년 사업 협약의 초과이익 환수 조항 삭제 여부가 쟁점이 됐고, 성남시의회 회의록이 다시 읽히기 시작했다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2021-09-21 · 조선일보</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">국회 국정감사에서 여야가 인허가 과정과 공공 환수액 5,503억 원의 평가를 두고 공방을 벌였다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2021-10-18 · KBS</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px;">
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D;">화천대유</span>
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D;">성남의뜰</span>
+        <span style="font-size: 12px; padding: 3px 9px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D;">성남시의회</span>
+      </div>
+    </div>
+
+    <!-- 챕터 2 -->
+    <div style="position: relative; display: flex; flex-direction: column; gap: 6px;">
+      <div style="position: absolute; left: -20px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: #D96868;"></div>
+      <div style="display: flex; gap: 8px; align-items: baseline;">
+        <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">챕터 2</span>
+        <span class="mono" style="font-size: 11px; color: #5F675F;">2021.10 – 2022.01</span>
+        <span class="mono" style="font-size: 11px; color: #B04545;">z 6.1</span>
+      </div>
+      <h2 class="serif" style="margin: 0; font-size: 19px; line-height: 1.35; color: #3F6B2A; text-wrap: balance;">검찰 수사와 첫 구속</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">검찰이 전담수사팀을 꾸리고 성남도시개발공사 전 기획본부장을 배임·뇌물 혐의로 구속했다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2021-10-03 · 연합뉴스</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <p style="margin: 0; font-size: 14px; line-height: 1.55;">민간 사업자 측 핵심 인물들이 잇따라 기소되며 수사가 "설계"와 "로비" 두 갈래로 나뉘었다.</p>
+          <span class="mono" style="font-size: 10.5px; color: #B04545; border-left: 2px solid #D96868; padding-left: 6px;">출처 · 2021-11-22 · 한겨레</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 접힌 챕터 목록 -->
+    <div style="display: flex; flex-direction: column; gap: 0; border-top: 1px solid #CFD4CB; padding-top: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #E1E4DD;">
+        <div style="display: flex; gap: 8px; align-items: baseline;"><span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">챕터 3</span><span style="font-size: 14px; font-weight: 600; color: #3F6B2A;">대선 쟁점으로 부상</span></div>
+        <span class="mono" style="font-size: 11px; color: #5F675F;">2022.02</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #E1E4DD;">
+        <div style="display: flex; gap: 8px; align-items: baseline;"><span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">챕터 4</span><span style="font-size: 14px; font-weight: 600; color: #3F6B2A;">추가 기소와 재판 본격화</span></div>
+        <span class="mono" style="font-size: 11px; color: #5F675F;">2023.03</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
+        <div style="display: flex; gap: 8px; align-items: baseline;"><span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">챕터 5</span><span style="font-size: 14px; font-weight: 600; color: #3F6B2A;">1심 선고와 항소 논란</span></div>
+        <span class="mono" style="font-size: 11px; color: #5F675F;">2025.10</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 16px 16px 24px;">
+    <div style="height: 40px; display: flex; align-items: center; justify-content: center; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 6px; font-size: 12.5px; font-weight: 600; color: #3F6B2A;">1990년까지 더 과거 보기</div>
+  </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1400">
+<title>유저 플로우 · 이슈 족보</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #F2F2F2; color: #1E2620; font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #3F6B2A; } a:hover { color: #689D4B; }
+    .serif { font-family: "Noto Serif KR", "Apple Myungjo", "Nanum Myeongjo", serif; }
+    .mono { font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace; font-feature-settings: "tnum" 1; }
+    .node { position: absolute; width: 200px; display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px; }
+    .node .k { font-family: "IBM Plex Mono", Menlo, monospace; font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F; }
+    .node .t { font-size: 14px; font-weight: 600; color: #1E2620; line-height: 1.35; }
+    .node .d { font-size: 12px; color: #5F675F; line-height: 1.45; }
+    .pill { display: inline-flex; align-self: flex-start; padding: 2px 8px; border-radius: 9999px; font-family: "IBM Plex Mono", Menlo, monospace; font-size: 10.5px; letter-spacing: 0.08em; }
+    .edge-label { position: absolute; padding: 2px 6px; background: #F2F2F2; font-family: "IBM Plex Mono", Menlo, monospace; font-size: 10.5px; color: #5F675F; white-space: nowrap; }
+  </style>
+<style>
+  body { padding: 40px 24px 64px; }
+  .ij-nav { width: 1400px; margin: 0 auto 16px; display: flex; align-items: baseline; justify-content: space-between; font-size: 12.5px; color: #5F675F; }
+  .ij-nav a { text-decoration: none; font-weight: 600; }
+  .ij-board { width: 1400px; margin: 0 auto; border: 1px solid #CFD4CB; }
+</style>
+</head>
+<body>
+<div class="ij-nav"><a href="./">← 화면 목록</a><span>유저 플로우 · 1400×820</span></div>
+<div class="ij-board">
+<div style="position: relative; width: 1400px; height: 820px; background: #F2F2F2; overflow: hidden;">
+
+  <div style="position: absolute; left: 40px; top: 28px; display: flex; flex-direction: column; gap: 4px;">
+    <h1 class="serif" style="margin: 0; font-size: 21px; line-height: 1.35; letter-spacing: -0.01em;">유저 플로우 · 웹</h1>
+    <p style="margin: 0; font-size: 13px; color: #5F675F;">입구 두 개, 읽는 화면 하나. 나머지는 타임라인 위에 얹는 뷰다.</p>
+  </div>
+
+  <div style="position: absolute; right: 40px; top: 32px; display: flex; gap: 14px; align-items: center; font-size: 12px; color: #5F675F;">
+    <span style="display: flex; align-items: center; gap: 6px;"><i style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #D96868;"></i>본선 필수</span>
+    <span style="display: flex; align-items: center; gap: 6px;"><i style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #91AE6E;"></i>가능하면</span>
+    <span style="display: flex; align-items: center; gap: 6px;"><i style="display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #DFE2DC;"></i>로드맵</span>
+  </div>
+
+  <!-- 화살표 층 -->
+  <svg width="1400" height="820" viewBox="0 0 1400 820" style="position: absolute; left: 0; top: 0; display: block;" aria-hidden="true">
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0.5L7 4L0 7.5" fill="none" stroke="#5F675F" stroke-width="1.4" stroke-linejoin="round"/></marker>
+      <marker id="arrg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0.5L7 4L0 7.5" fill="none" stroke="#689D4B" stroke-width="1.4" stroke-linejoin="round"/></marker>
+    </defs>
+    <!-- 홈 → 키워드 입력 -->
+    <path d="M240 300 C280 300 280 176 320 176" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 홈 → 본문 붙여넣기 -->
+    <path d="M240 300 C280 300 280 496 320 496" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 키워드 → 다의어 분기 -->
+    <path d="M520 176 L600 176" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 다의어 → 생성 중 -->
+    <path d="M800 176 L880 176" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 생성 중 → 타임라인 -->
+    <path d="M1080 176 L1160 176" fill="none" stroke="#689D4B" stroke-width="2" marker-end="url(#arrg)"/>
+    <!-- 생성 중 → 결과 없음 -->
+    <path d="M980 268 L980 320" fill="none" stroke="#5F675F" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arr)"/>
+    <!-- 결과 없음 → 홈 (되돌아감) -->
+    <path d="M880 360 C700 360 700 420 240 340" fill="none" stroke="#5F675F" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#arr)"/>
+    <!-- 붙여넣기 → 선수지식 -->
+    <path d="M520 496 L600 496" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 선수지식 → 타임라인 (항목 클릭) -->
+    <path d="M800 496 C1000 496 1120 400 1120 220 C1120 200 1140 190 1160 190" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 타임라인 → 출처 패널 -->
+    <path d="M1260 232 L1260 300" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 출처 → 원문 (외부) -->
+    <path d="M1360 340 L1392 340" fill="none" stroke="#B04545" stroke-width="1.4" stroke-dasharray="3 3" marker-end="url(#arr)"/>
+    <!-- 타임라인 → 더 과거 (자기 순환) -->
+    <path d="M1360 160 C1392 160 1392 200 1360 200" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 출처 → 관계도 → 대화 카드 (탭 이동) -->
+    <path d="M1260 380 L1260 460" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <path d="M1260 540 L1260 620" fill="none" stroke="#5F675F" stroke-width="1.4" marker-end="url(#arr)"/>
+    <!-- 선수지식 → 관계도 없음: 탭은 타임라인이 있어야 열린다 -->
+  </svg>
+
+  <!-- 화살표 라벨 -->
+  <span class="edge-label" style="left: 246px; top: 214px;">키워드</span>
+  <span class="edge-label" style="left: 246px; top: 380px;">본문 텍스트</span>
+  <span class="edge-label" style="left: 528px; top: 156px;">연산자 지원</span>
+  <span class="edge-label" style="left: 806px; top: 156px;">분기 없으면 통과</span>
+  <span class="edge-label" style="left: 1090px; top: 156px;">챕터 1부터</span>
+  <span class="edge-label" style="left: 990px; top: 284px;">0건 · 오류</span>
+  <span class="edge-label" style="left: 560px; top: 372px;">검색어 바꿔 다시</span>
+  <span class="edge-label" style="left: 1000px; top: 420px;">항목 클릭 → 해당 챕터</span>
+  <span class="edge-label" style="left: 1270px; top: 252px;">요약 문장 클릭</span>
+  <span class="edge-label" style="left: 1270px; top: 408px;">탭</span>
+  <span class="edge-label" style="left: 1270px; top: 568px;">탭</span>
+  <span class="edge-label" style="left: 1318px; top: 124px;">1990년까지</span>
+  <span class="edge-label" style="left: 1362px; top: 316px; color: #B04545;">원문</span>
+
+  <!-- 노드 -->
+  <div class="node" style="left: 40px; top: 268px;">
+    <span class="k">0 · 홈</span>
+    <span class="t">입구 화면</span>
+    <span class="d">키워드 검색 · 본문 붙여넣기 · 예시 키워드 3개</span>
+  </div>
+
+  <div class="node" style="left: 320px; top: 144px; border-color: #D96868;">
+    <span class="k">1a · 입구 1</span>
+    <span class="t">키워드 입력</span>
+    <span class="d">AND OR NOT, "구문"</span>
+    <span class="pill" style="background: #FBE6E6; color: #7C2626;">필수</span>
+  </div>
+
+  <div class="node" style="left: 600px; top: 144px; border-style: dashed;">
+    <span class="k">1b · 조건부</span>
+    <span class="t">어느 이슈인가요?</span>
+    <span class="d">공동출현 2-means 유사도 &lt; 0.3일 때만</span>
+    <span class="pill" style="background: #FBE6E6; color: #7C2626;">필수 · 컷 2순위</span>
+  </div>
+
+  <div class="node" style="left: 880px; top: 144px; border-color: #D96868;">
+    <span class="k">2 · 생성 중</span>
+    <span class="t">파이프라인 진행</span>
+    <span class="d">시계열 → 급증 → 대표기사 → 전사 역추적. 60초 안</span>
+    <span class="pill" style="background: #FBE6E6; color: #7C2626;">필수</span>
+  </div>
+
+  <div class="node" style="left: 880px; top: 320px; height: 80px; justify-content: center;">
+    <span class="k">2x · 예외</span>
+    <span class="t">결과 없음 · 시간 초과</span>
+  </div>
+
+  <div class="node" style="left: 1160px; top: 144px; border: 2px solid #689D4B; background: #E3EDDA;">
+    <span class="k" style="color: #2C4D1D;">3 · 탭 1</span>
+    <span class="t" style="color: #2C4D1D;">타임라인</span>
+    <span class="d" style="color: #3A4E2C;">챕터 0 ~ N · 요약 3줄 · 등장인물</span>
+    <span class="pill" style="background: #FBE6E6; color: #7C2626;">필수 · 절대 안 뺌</span>
+  </div>
+
+  <div class="node" style="left: 1160px; top: 300px; height: 80px; justify-content: center;">
+    <span class="k">3a · 패널</span>
+    <span class="t">출처 기사</span>
+    <span class="d">제목 · 200자 발췌 · 원문 링크</span>
+  </div>
+
+  <div class="node" style="left: 320px; top: 464px; border-color: #91AE6E;">
+    <span class="k">1c · 입구 2</span>
+    <span class="t">기사 본문 붙여넣기</span>
+    <span class="d">URL은 받지 않음 (크롤링 규정)</span>
+    <span class="pill" style="background: #EEF3E8; color: #3A4E2C;">가능하면 · 컷 1순위</span>
+  </div>
+
+  <div class="node" style="left: 600px; top: 464px; border-color: #91AE6E;">
+    <span class="k">4 · 탭 2</span>
+    <span class="t">선수지식 5가지</span>
+    <span class="d">키워드별 마지막 급증 챕터 1개씩</span>
+    <span class="pill" style="background: #EEF3E8; color: #3A4E2C;">가능하면</span>
+  </div>
+
+  <div class="node" style="left: 1160px; top: 460px; height: 80px; justify-content: center; background: #E9EBE7;">
+    <span class="k">5 · 탭 3</span>
+    <span class="t" style="color: #5F675F;">관계도 · 언론사별 관점</span>
+    <span class="pill" style="background: #DFE2DC; color: #5F675F;">로드맵</span>
+  </div>
+
+  <div class="node" style="left: 1160px; top: 620px; height: 80px; justify-content: center; background: #E9EBE7;">
+    <span class="k">6 · 탭 4</span>
+    <span class="t" style="color: #5F675F;">대화 카드</span>
+    <span class="pill" style="background: #DFE2DC; color: #5F675F;">로드맵</span>
+  </div>
+
+  <!-- 하단 주석 -->
+  <div style="position: absolute; left: 40px; top: 620px; width: 1040px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+    <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+      <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #B04545;">규칙 1</span>
+      <span style="font-size: 13px; line-height: 1.5;">요약 한 줄은 기사 한 건에서만 나온다. 문장을 클릭하면 그 기사가 열린다.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+      <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #B04545;">규칙 2</span>
+      <span style="font-size: 13px; line-height: 1.5;">챕터 0(전사)은 챕터 1이 끝나야 나온다. 화면은 챕터 1부터 흐르고 챕터 0은 완성되면 위에 끼워진다.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+      <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #B04545;">규칙 3</span>
+      <span style="font-size: 13px; line-height: 1.5;">탭 2·3·4는 탭 1과 같은 파이프라인 결과 위에 얹는 뷰다. 키워드 결과는 7일 캐시된다.</span>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
