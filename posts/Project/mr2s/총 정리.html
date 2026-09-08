@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>졸업과제 총 정리 &mdash; devlog</title>
+    <meta name="description" content="서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 …">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']],
+           displayMath: [['$$','$$'],['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>졸업과제 총 정리</h1>
+    <p class="meta">2026-09-08 <span class="tag">mr2s</span><span class="tag">졸업과제</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+
+<p>졸업과제가 마무리 되어간다.</p>
+<p>한 것들을 정리하자.</p>
+
+<h2>메타데이터</h2>
+<ul>
+<li>기간: 2026-02 ~ 2026-09</li>
+<li>참여인원: 본인 이외 네 명</li>
+<li>깃헙 주소: https://github.com/quantum-guardians</li>
+</ul>
+
+<h1>본론</h1>
+<h2>연구 목적</h2>
+<p>+ 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함</p>
+<p>+ 이를 통해 혼잡한 상황(ex. 공연 후 퇴장, 축제 기간)에서 안전한 보행을 도모하고자 함</p>
+<p>+ QA를 이용해 변화하는 도로 상황을 반영하여 빠르게 계산하여 실질적인 이득을 보고자 함</p>
+<p>+ 정리: 그래프에서 모든 정점 사이의 거리가 최소가 되는 강연결 조합 찾기</p>
+<h2>기존 연구</h2>
+<p>+ 어떤 그래프에서 강연결이 존재하는 지는 Robbins 정리에 있음</p>
+<p>	+ 1939년 증명</p>
+<p>	+ 그래프가 연결되어 있고, 다리가 없을 시 존재</p>
+<p>	+ dfs로 구하기 가능</p>
+<p>+ 해당 문제는 NP-hard 임이 밝혀져 있음</p>
+<p>	+ ref: Burkard, R.E., Feldbacher, K., Klinz, B., Woeginger, G.J. (1999). Minimum-cost strong network orientation problems: Classification, complexity, and algorithms. _Networks_, 33(1), 57–70.</p>
+<p>+ Strong Network Orientation Problem(SNOP)이란 이름으로 간헐적으로 연구 진행 중</p>
+<p>	+ Duhamel and Santos (2022)</p>
+<p>	+ 수리 모형 정식화와 메타휴리스틱 함께 $제시</p>
+<p>+ 도로에 대해서는 연구가 많다</p>
+<p>	+ 간선을 특정 비율로 나누어서 생각하는 방식</p>
+<p>	+ 도로 통제 상황에서 도로망 방향 재설정</p>
+<p>	+ 격자형 도시 도로망의 일방통행 최적화</p>
+<h2>정리</h2>
+<p>+ 목적 함수 - 모든 정점 거리합의 최소</p>
+<p>+ 계산 방식 - qubo를 통한 qa 사용(이후 qubo 설명)</p>
+<p>+ 목표 - 고전적인 방식과 비교하여 짧은 시간과 합리적인 해 산출</p>
+<h2>문제점</h2>
+<ol>
+<li>모든 식을 qa 하드웨어에 올릴 수 없음<ol>
+<li>양자 하드웨어는 이진 변수로 이루어진 이차항만 올릴 수 있음<ol>
+<li>qubo(quadratic unconstrained binary operation) 아래와 같은 형태를 가짐</li>
+<li>\(f(x)=\sum_{i=1}^{N}\sum_{j=1}^{N} Q_{i,j}\,x_i x_j+\sum_{i=1}^{N} c_i x_i+d\)</li>
+<li>이와 같은 형태가 아니면 qa(quantum annealing)를 사용하지 못함</li>
+</ol>
+</li>
+<li>brute force 방식<ol>
+<li>강연결인 해 하나 구하기</li>
+<li>distance 합 구하기 (APSP)</li>
+<li>이를 반복하여 제일 좋은 해 찾기</li>
+<li>시간복잡도 - \(O\!\left(2^{|E|} \cdot |V|\,|E|\,\log|V|\right)\)</li>
+<li>\(V\): 정점 집합, \(|V|\): 정점 개수 </li>
+<li>\(E\): 간선 집합, \(|E|\): 간선 개수</li>
+<li>지수 시간이 걸리므로 큰 그래프에서 사실상 불가능</li>
+</ol>
+</li>
+<li>MILP 정식화 존재<ol>
+<li>목적함수 = All Pairs Shortest Path(APSP) 합</li>
+<li>Gurobi 등의 솔버로 해결 가능</li>
+<li>하지만, 여전히 지수시간 + qa에 못올리는 형식<ol>
+<li>치환 가능하나 변수가 폭증</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>APSP를 목적 함수로 사용 불가능<ol>
+<li>최단 거리는 출발점부터 도착점까지 가는 모든 경로의 변수를 한꺼번에 생각해야함</li>
+<li>이를 다항식으로 표현하면 차수가 간선 수 규모까지 상승</li>
+<li>보조 변수로 차수 낮추기는 가능하지만 MILP와 동일하게 변수 폭증</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>바뀌는 도로 상황에 맞추어 빠르게 계산이 가능해야 함.<ol>
+<li>한 간선에 대해 가중치가 변하면 고전적인 방식에선 전부 다시 계산 해야 함</li>
+</ol>
+</li>
+</ol>
+<h2>핵심 아이디어</h2>
+<p>+ n-hop 대리지표</p>
+<p>	+ APSP 합은 고차 다항식이므로, 이 자체를 qa의 목적함수로 사용할 수 없어서 이를 대리하는 목적함수가 필요</p>
+<p>	+ hop은 한 점 \(u\)에서 다른 점 \(v\)로 가는 데 거치는 간선을 표현</p>
+<p>		+ \(u \rightarrow v\)가 간선 2개를 거치면 2-hop </p>
+<p>	+ 다음과 같은 실험 결과로 대리 할 수 있음을 실험적으로 확인</p>
+<p>		+ 무작위 들뢰네 평면 그래프 (V = 50, E = 137) 생성</p>
+<p>		+ 이 중 강연결을 이루는 경우를 500개 선정</p>
+<p>		+ APSP 합(x축)이 낮아질 수록 n-hop의 도달 쌍 수(y축)가 많아지고 있음</p>
+<p>		+ 목적함수인 APSP 합과 n-hop이 음의 상관관계를 가지므로 대리함수로 적격 </p>
+<p>		+ 결론 - apsp 합 최소화 -> n-hop 수 최대화로 치환</p>
+<p>		+ 아래는 해당 결과<img src="assets/fig_nhop.png" alt="fig_nhop.png"></p>
+<p>	+ n-hop qubo 표현</p>
+<p>		+ 2-hop과 3-hop을 함수로 사용</p>
+<p>			+ 4-hop 이상부터는 표현은 가능하지만, 이차로 낮추기 위한 치환 작업에서 변수가 급증해서 효율이 떨어짐</p>
+<p>		+ 목적함수는 아래와 같이 표현 및 qubo 화</p>
+<p>		+ \(H_{\mathrm{dist}}= -\sum_{e_{ik},\, e_{kj}} I_{i \to k}\, I_{k \to j}\;-\; \sum_{e_{ij},\, e_{jk},\, e_{kl}} I_{i \to j}\, I_{j \to k}\, I_{k \to l}\)</p>
+<p>			+ 가중치 버전</p>
+<p>				+ \(H_{\mathrm{dist}} = -\sum_{e_{ik},\, e_{kj}} w_{ik}\, w_{kj}\, I_{i \to k}\, I_{k \to j} \;-\; \sum_{e_{ij},\, e_{jk},\, e_{kl}} w_{ij}\, w_{jk}\, w_{kl}\, I_{i \to j}\, I_{j \to k}\, I_{k \to l}\)</p>
+<p>				+ 가중치는 높을 수록 좋다고 가정</p>
+<p>				+ 3-hop이 과대평가 될 가능성 존재</p>
+<p>			+ 0/1 변수는 indicator 함수를 사용하여 각 정점의 번호 기준으로 0과 1로 표현</p>
+<p>				+ \(I_{i \to j} =\begin{cases}1 - x_{ij}, &amp; i &lt; j \\x_{ji}, &amp; i &gt; j\end{cases}\)</p>
+<p>		+ 3-hop으로 인한 식은 구조적으로 삭제</p>
+<p>			+ \((1-x_1)(1-x_2)(1-x_3) + x_1 x_2 x_3= 1 - x_1 - x_2 - x_3 + x_1 x_2 + x_1 x_3 + x_2 x_3\)</p>
+<p>		+ 2차식 qubo 표현 완료</p>
+<p>	+ 대리함수 최적화 이후 APSP 합 표현식</p>
+<p>		+ \(\mathrm{stretch} = \frac{1}{|P|} \sum_{(s,t) \in P} \frac{d_{G'}(s,t)}{d_{G}(s,t)} \;\in\; [1,\infty)\)</p>
+<p>		+ 시그마 안 분모는 무방향일 때 그래프의 APSP 합</p>
+<p>		+ 결과에서 강연결 실패 시 무한대로 발산</p>
+<p>	+ 최종 형태</p>
+<p>		+ \(H(x) = c + \sum_{a} h_a\, x_a + \sum_{a&lt;b} J_{ab}\, x_a x_b\)</p>
+<h2>파이프라인</h2>
+<pre class="mermaid">flowchart LR
+    A["그래프 전처리"] --&gt; B["QUBO화"] --&gt; C["QA 진행"] --&gt; D["결과 확인"]
+</pre>
+<h3>그래프 전처리</h3>
+<p>+ 큰 그래프는 한 번에 qa 하드웨어에 넣을 수 없음</p>
+<p>	+ TODO 결과 나오면 어디까지 통상적으로 넣을 수 있는 지 확인</p>
+<p>+ 그래서 면 단위로 그래프를 분할할 필요가 있음</p>
+<p>#### 면 분할</p>
+<p>+ 그래프를 \(k\)개의 면으로 분할</p>
+<p>	+ 면끼리 연결되어 면과 면 사이를 진행할 수 있다고 가정</p>
+<p>		+ 각각의 큰 면들을 정점으로 하여 생기는 쌍대 그래프 \(G^{\prime}\) 이라 가정</p>
+<p>		+ 면 분할 시에 해당 그래프가 dual partite 성질을 만족하도록 분할하여 면과 면 사이 도달을 보장</p>
+<p>			+ dual partite를 만족함으로 각 큰 면의 외곽선을 시계 방향, 반 시계 방향으로 방향을 선확정</p>
+<p>			+ 이렇게 되면 각 면에서 외곽에 도착하면 다른 면으로 갈 수 있음이 보장</p>
+<p>			+ 알고리즘은 다음을 이용</p>
+<p>			+ <a href="../../../posts/Project/mr2s/면 분할 알고리즘.html">면 분할 알고리즘</a></p>
+<p>	+ \(k\)개의 면 그래프를 qa를 진행하여 강연결을 보장</p>
+
+
+
+
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Project/mr2s/면 분할 알고리즘.html">쌍대 구조를 유지한 면분할 알고리즘 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'default' });
+</script>
+
+  </body>
+</html>

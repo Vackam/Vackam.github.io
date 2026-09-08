@@ -7,6 +7,12 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>무제</title>
+    <link>https://vackam.github.io/posts/무제.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/무제.html</guid>
+    <description>flowchart TB classDef fw fill:#e8f0fe,stroke:#4a6fa5,color:#111 classDef ext fill:#fff4e5,stroke:#c77d0a,color:#111 classDef store fill:#e6f4ea,stroke:#2e7d4f,color:#111 subgraph clients[&quot;클라이언트&quot;] direction LR flutter[&quot;Flutter 앱&amp;lt;br/&amp;gt;Authorization: Bearer JWT&quot;] web[&quot;웹 어드민 Cook-Pilot/web&amp;lt;br/&amp;gt;X-CookPilot-Service-Token&quot;] end subgraph edge[&quot;진입 (EC2 서울 호스트)&quot;]…</description>
+  </item>
+  <item>
     <title>Best Time to Buy and Sell Stock with Cooldown</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</guid>
@@ -14,6 +20,23 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown/question 쿨타임이 존재할 때, 사고 파는 것의 최대 이익을 구하시오. 푸는 방법 모든 칸에서는 3가지 경우가 가능한데, 코인 보유하고 있는 상태 코인을 판 상태 아무것도 안 한 상태(쿨타임일 수도 코인을 들고 있을 수도) 이 세 가지를 계속 들고 다니…</description>
+  </item>
+  <item>
+    <title>졸업과제 총 정리</title>
+    <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
+    <category>mr2s</category>
+    <category>졸업과제</category>
+    <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 + 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 + 이를 통해 혼잡한 상…</description>
+  </item>
+  <item>
+    <title>쌍대 구조를 유지한 면분할 알고리즘</title>
+    <link>https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
+    <category>졸업과제</category>
+    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 m</description>
   </item>
   <item>
     <title>Unique Paths</title>
@@ -105,14 +128,6 @@
     <description>서론 | https://neetcode.io/problems/valid-parenthesis-string/question 괄호 문제를 \* 라는 무적 기호를 포함한 상태로 풀 수 있는 지 확인하시오 푸는 방법 한 칸씩 가면서 열린 괄호의 최소치와 최대치를 기록해나간다. 최대치는 모든 \*를 열린 괄호로 생각한 경우이다. 최소치는 모든 \*를 공백 또는 닫힌 괄호로 생각…</description>
   </item>
   <item>
-    <title>2026-08-27</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-27.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-27.html</guid>
-    <pubDate>Thu, 27 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>무중단 배포 하는 법 여러 고급진 방법이 있던데, 가장 단순한 방법을 이번에 배우게 되었다. 정답은 서버를 두 개를 띄워두는 것이다. 이를 A, B라고 가정하자. 우선 A만 사용하여 서버를 사용한다. 그러다가 수정된 버전이 필요하면, 이를 B로 올린다. A가 계속 돌고 있고, B가 배포가 끝날 때까지 기다린…</description>
-  </item>
-  <item>
     <title>Merge Triplets to Form Target</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Merge Triplets to Form Target.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Merge Triplets to Form Target.html</guid>
@@ -120,6 +135,14 @@
     <category>ps</category>
     <category>그리디</category>
     <description>서론 | https://neetcode.io/problems/merge-triplets-to-form-target/question 특별한 연산을 적용 했을 때 target을 만들 수 있는 지 판단하시오 푸는 방법 주어진 배열을 순회하면서 target보다 작은 것을 만족하면 연산을 적용한다. 이후 끝났을 때, target이 되면 참 아니면 거짓이다. 넘어가는 tuple은 답이 될 수 없으므로 신경…</description>
+  </item>
+  <item>
+    <title>2026-08-27</title>
+    <link>https://vackam.github.io/posts/Daily/8월/2026-08-27.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-27.html</guid>
+    <pubDate>Thu, 27 Aug 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>무중단 배포 하는 법 여러 고급진 방법이 있던데, 가장 단순한 방법을 이번에 배우게 되었다. 정답은 서버를 두 개를 띄워두는 것이다. 이를 A, B라고 가정하자. 우선 A만 사용하여 서버를 사용한다. 그러다가 수정된 버전이 필요하면, 이를 B로 올린다. A가 계속 돌고 있고, B가 배포가 끝날 때까지 기다린…</description>
   </item>
   <item>
     <title>Hand of Straights</title>
@@ -140,15 +163,6 @@
     <description>서론 | https://neetcode.io/problems/gas-station/question 차를 타고 갈 때 원으로 되어있는 동네를 모두 들를 수 있는 시작 지점을 찾아라. 푸는 방법 우선 gas와 cost의 차를 minus라는 벡터에 저장해두자. 이후 한 칸씩 돌면서 minus의 값들을 result에 더해나간다. 만약 result가 0보다 작다면 가능한 경우가 없는 것이다. 이…</description>
   </item>
   <item>
-    <title>Jump Game II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</guid>
-    <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그리디</category>
-    <description>서론 | https://neetcode.io/problems/jump-game-ii/question 점프를 몇 번 뛰어야 하는 지 구하라 푸는 방법 이번에도 동일하게 bfs를 생각했다. 아래는 코드이다. class Solution { public: int jump(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); if (n == 1) return 0; queue&amp;lt;int&amp;gt; q; vector&amp;lt;bool&amp;gt; visited(n, false); q.push(0); visited[0] = true; int jump =…</description>
-  </item>
-  <item>
     <title>2026-08-21</title>
     <link>https://vackam.github.io/posts/Daily/8월/2026-08-21.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-21.html</guid>
@@ -157,31 +171,13 @@
     <description>클로드의 말투 요새 클로드를 자주 사용하다 보니 느끼는 것이 다음 문장을 많이 쓴다는 것이다. &quot;반은 맞고 반은 틀렸어&quot; 매일 마주하는 거 같은데, 왜 이렇게 답하는 것일까? 우선 실제로 반반인 경우가 있을 것이다. 어떤 아이디어의 장점을 설명했는데, 장점 속에 단점이 같이 드러날 수도 있고 그렇…</description>
   </item>
   <item>
-    <title>Jump Game</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</guid>
-    <pubDate>Thu, 20 Aug 2026 00:00:00 +0900</pubDate>
+    <title>Jump Game II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <category>그리디</category>
-    <category>bfs</category>
-    <description>서론 | https://neetcode.io/problems/jump-game/question 점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라. 푸는 방법 처음에는 bfs 방식으로 풀었다. 방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행. 이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. …</description>
-  </item>
-  <item>
-    <title>Maximum Subarray</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Maximum Subarray.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Maximum Subarray.html</guid>
-    <pubDate>Wed, 19 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그리디</category>
-    <description>서론 | https://neetcode.io/problems/maximum-subarray/question 가장 값이 큰 subarray의 합을 구하시오 푸는 방법 subarray 자체를 구하는 것이 아니라 값만 기억하면서 나오면 된다. 그리디 스타일로 내 차례가 되면 내가 무조건 포함되면 된다. 만약 전 값들이 음수로 나왔을 경우에는 나랑 합치면 무조건 손해니까 subarray…</description>
-  </item>
-  <item>
-    <title>2026-08-19</title>
-    <link>https://vackam.github.io/posts/Daily/8월/2026-08-19.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-19.html</guid>
-    <pubDate>Wed, 19 Aug 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>EXIF에 대하여 EXIF는 이미지 파일에 대한 메타데이터이다. 아마 핸드폰 앨범에서 사진을 위로 올리면 다양한 정보가 나오는 것을 경험했을 텐데, 그것이 EXIF를 해석해서 나온 것이다. 근데 개발자 관점에서, 얘네들이 사용자의 개인정보를 가지고 있을 수 있다. 휴대폰 GPS가 발전하면서 위치 정보도 기록…</description>
+    <description>서론 | https://neetcode.io/problems/jump-game-ii/question 점프를 몇 번 뛰어야 하는 지 구하라 푸는 방법 이번에도 동일하게 bfs를 생각했다. 아래는 코드이다. class Solution { public: int jump(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); if (n == 1) return 0; queue&amp;lt;int&amp;gt; q; vector&amp;lt;bool&amp;gt; visited(n, false); q.push(0); visited[0] = true; int jump =…</description>
   </item>
 </channel>
 </rss>
