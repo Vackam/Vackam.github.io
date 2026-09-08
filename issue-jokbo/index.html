@@ -2,46 +2,125 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>이슈 족보 · 화면</title>
+<meta name="viewport" content="width=1200">
+<title>이슈 족보</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #F2F2F2; color: #1E2620; font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #3F6B2A; } a:hover { color: #689D4B; }
+    .serif { font-family: "Noto Serif KR", "Apple Myungjo", "Nanum Myeongjo", serif; }
+    .mono { font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace; font-feature-settings: "tnum" 1; }
+  </style>
 <style>
-  body { margin: 0; background: #F2F2F2; color: #1E2620; font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  main { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
-  h1 { font-family: "Noto Serif KR", serif; font-size: 30px; line-height: 1.3; letter-spacing: -0.02em; margin: 0 0 8px; }
-  h2 { font-family: "Noto Serif KR", serif; font-size: 17px; line-height: 1.4; color: #3F6B2A; margin: 32px 0 8px; }
-  p { font-size: 14px; line-height: 1.6; color: #5F675F; margin: 0; max-width: 62ch; }
-  ol { list-style: none; padding: 0; margin: 0; border-top: 1px solid #CFD4CB; }
-  li { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid #E1E4DD; font-size: 14px; }
-  li a { color: #3F6B2A; text-decoration: none; font-weight: 600; } li a:hover { color: #689D4B; }
-  .size { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F; }
-  .foot { margin-top: 40px; font-size: 12.5px; color: #5F675F; }
+  body { min-height: 100vh; }
+  .ij-board { width: 1200px; margin: 0 auto;  }
+  .ij-board > div { min-height: 100vh; }
+  [data-link]:hover { filter: brightness(0.96); }
+  span[data-link]:hover, p[data-link]:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .ij-doc { width: 1200px; margin: 24px auto 0; font-size: 12.5px; color: #5F675F; display: flex; justify-content: space-between; }
+  .ij-doc a { color: #3F6B2A; font-weight: 600; text-decoration: none; }
 </style>
 </head>
-<body>
-<main>
-<h1>이슈 족보 · 화면</h1>
-<p>뉴스 아카이브에서 이슈의 시작을 찾아 챕터로 읽어주는 서비스의 화면 시안입니다. 화면은 정적 목업이며 기사 제목과 수치는 흐름을 보여주기 위한 예시입니다.</p>
-<h2>웹 화면 · 유저 플로우</h2>
-<ol>
-<li><a href="flow.html">유저 플로우</a><span class="size">1400×820</span></li>
-<li><a href="home.html">0 · 홈 (입구)</a><span class="size">1200×840</span></li>
-<li><a href="disambig.html">1b · 어느 이슈인가요?</a><span class="size">1200×640</span></li>
-<li><a href="loading.html">2 · 생성 중 (스트리밍)</a><span class="size">1200×960</span></li>
-<li><a href="main.html">3 · 타임라인 (탭 1 · 필수)</a><span class="size">1200×1300</span></li>
-<li><a href="source.html">3a · 출처 기사 패널</a><span class="size">1200×1300</span></li>
-<li><a href="paste.html">1c · 기사 본문 붙여넣기</a><span class="size">1200×840</span></li>
-<li><a href="prereq.html">4 · 선수지식 (탭 2 · 가능하면)</a><span class="size">1200×1260</span></li>
-<li><a href="relations.html">5 · 관계도 (탭 3 · 로드맵)</a><span class="size">1200×900</span></li>
-<li><a href="cards.html">6 · 대화 카드 (탭 4 · 로드맵)</a><span class="size">1200×760</span></li>
-<li><a href="states.html">예외 상태 3가지</a><span class="size">1200×560</span></li>
-</ol>
-<h2>모바일 (보류)</h2>
-<ol>
-<li><a href="mobile-timeline.html">모바일 · 타임라인 (보류)</a><span class="size">390×1220</span></li>
-<li><a href="mobile-prereq.html">모바일 · 선수지식 (보류)</a><span class="size">390×920</span></li>
-</ol>
-<p class="foot">2026 뉴스빅데이터 해커톤 출품 준비 · <a href="../">vackam.github.io</a></p>
-</main>
+<body data-page="index">
+
+<div class="ij-board">
+<div style="width: 1200px; min-height: 780px; background: #F2F2F2; display: flex; flex-direction: column;">
+
+  <!-- 상단 바 -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 52px; border-bottom: 1px solid #CFD4CB; background: #FFFFFF;">
+    <div style="display: flex; align-items: baseline; gap: 8px;">
+      <span class="serif" style="font-size: 18px; font-weight: 700; color: #3F6B2A;">이슈 족보</span>
+      <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">BETA</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px; font-size: 13px; font-weight: 600; color: #5F675F;">
+      <span>어떻게 만드나</span>
+      <span>최근 족보</span>
+      <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">빅카인즈 OpenAPI</span>
+    </div>
+  </div>
+
+  <!-- 히어로 -->
+  <div style="display: flex; flex-direction: column; gap: 8px; padding: 48px 32px 0; max-width: 760px;">
+    <h1 class="serif" style="margin: 0; font-size: 30px; line-height: 1.3; letter-spacing: -0.02em; text-wrap: balance;">오늘 뉴스가 왜 지금 이 모양인지, 시작부터 읽는다</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #5F675F; max-width: 62ch;">키워드 하나면 1990년부터 쌓인 빅카인즈 기사에서 이슈가 터진 지점을 찾아 챕터로 정리합니다. 이름이 붙기 전의 전사(前史)까지 거슬러 올라가고, 모든 문장에 출처 기사가 붙습니다.</p>
+  </div>
+
+  <!-- 입구 두 개 -->
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 28px 32px 0;">
+
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #B04545;">입구 1 · 키워드</span>
+        <span class="mono" style="font-size: 10.5px; color: #5F675F;">약 30초</span>
+      </div>
+      <h2 class="serif" style="margin: 0; font-size: 21px; line-height: 1.35; letter-spacing: -0.01em; color: #3F6B2A;">궁금한 이슈의 족보를 만든다</h2>
+      <div style="display: flex; gap: 8px;">
+        <div style="flex: 1; display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 6px;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5F675F" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg>
+          <span style="font-size: 14px; color: #5F675F;">예: 대장동, 의대 정원 AND 파업</span>
+        </div>
+        <div style="height: 40px; padding: 0 14px; display: flex; align-items: center; background: #B04545; color: #FFFFFF; border-radius: 6px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap;">족보 만들기</div>
+      </div>
+      <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: #5F675F;">AND · OR · NOT과 "구문" 검색을 지원합니다. 뜻이 갈리는 키워드는 만들기 전에 어느 이슈인지 묻습니다.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5E7A45;">입구 2 · 오늘 기사</span>
+        <span class="mono" style="font-size: 10.5px; color: #5F675F;">약 20초</span>
+      </div>
+      <h2 class="serif" style="margin: 0; font-size: 21px; line-height: 1.35; letter-spacing: -0.01em; color: #3F6B2A;">읽던 기사를 이해할 선수지식을 찾는다</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="height: 72px; padding: 10px 12px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 6px; font-size: 14px; line-height: 1.6; color: #5F675F;">기사 본문을 여기에 붙여넣으세요. 링크(URL)는 받지 않습니다.</div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span class="mono" style="font-size: 10.5px; color: #5F675F;">0자 · 300자 이상 권장</span>
+          <div style="height: 40px; padding: 0 14px; display: flex; align-items: center; background: #FFFFFF; color: #3F6B2A; border: 1px solid #CFD4CB; border-radius: 6px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;">선수지식 찾기</div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 12.5px; line-height: 1.55; color: #5F675F;">본문은 키워드 추출에만 쓰고 저장하지 않습니다. 링크 대신 본문을 받는 것은 저작권과 크롤링 규정 때문입니다.</p>
+    </div>
+  </div>
+
+  <!-- 바로 열어보기 -->
+  <div style="display: flex; align-items: center; gap: 12px; padding: 20px 32px 0;">
+    <span style="font-size: 12.5px; font-weight: 600; color: #5F675F;">바로 열어보기</span>
+    <div style="display: flex; gap: 8px;">
+      <span style="display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D; font-size: 12.5px;">대장동 <span class="mono" style="font-size: 10.5px; color: #5E7A45;">챕터 6</span></span>
+      <span style="display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D; font-size: 12.5px;">의대 정원 <span class="mono" style="font-size: 10.5px; color: #5E7A45;">챕터 5</span></span>
+      <span style="display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 9999px; background: #E3EDDA; color: #2C4D1D; font-size: 12.5px;">부동산 PF <span class="mono" style="font-size: 10.5px; color: #5E7A45;">챕터 4</span></span>
+    </div>
+    <span class="mono" style="font-size: 10.5px; color: #5F675F;">캐시됨 · 5초 안에 열림</span>
+  </div>
+
+  <!-- 어떻게 만드나 -->
+  <div style="display: flex; flex-direction: column; gap: 10px; padding: 36px 32px 40px;">
+    <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #5F675F;">어떻게 만드나</span>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+      <div style="display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+        <span class="mono" style="font-size: 20px; line-height: 1.1; color: #B04545;">1</span>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 14px; font-weight: 600; color: #3F6B2A;">기사량이 급증한 달이 챕터가 된다</span>
+          <span style="font-size: 12.5px; line-height: 1.55; color: #5F675F;">키워드별 월간 기사량을 받아 z-score 2.0을 넘는 구간을 잘라 최대 6개 챕터를 만든다.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+        <span class="mono" style="font-size: 20px; line-height: 1.1; color: #B04545;">2</span>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 14px; font-weight: 600; color: #3F6B2A;">이름이 붙기 전을 거슬러 찾는다</span>
+          <span style="font-size: 12.5px; line-height: 1.55; color: #5F675F;">첫 급증 기사에 나온 지명·기관명으로 그 이전 기사를 검색해 챕터 0 전사를 만든다.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 14px; background: #FFFFFF; border: 1px solid #CFD4CB; border-radius: 10px;">
+        <span class="mono" style="font-size: 20px; line-height: 1.1; color: #B04545;">3</span>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 14px; font-weight: 600; color: #3F6B2A;">문장마다 출처가 붙는다</span>
+          <span style="font-size: 12.5px; line-height: 1.55; color: #5F675F;">요약 한 줄은 기사 한 건에서만 만든다. 문장을 누르면 그 기사의 제목, 발췌, 원문 링크가 열린다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="app.js"></script>
 </body>
 </html>

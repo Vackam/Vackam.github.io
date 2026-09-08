@@ -12,14 +12,17 @@
     .mono { font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace; font-feature-settings: "tnum" 1; }
   </style>
 <style>
-  body { padding: 40px 24px 64px; }
-  .ij-nav { width: 390px; margin: 0 auto 16px; display: flex; align-items: baseline; justify-content: space-between; font-size: 12.5px; color: #5F675F; }
-  .ij-nav a { text-decoration: none; font-weight: 600; }
-  .ij-board { width: 390px; margin: 0 auto; border: 1px solid #CFD4CB; }
+  body { min-height: 100vh; }
+  .ij-board { width: 390px; margin: 0 auto; border: 1px solid #CFD4CB; margin-top: 40px; margin-bottom: 64px; }
+  
+  [data-link]:hover { filter: brightness(0.96); }
+  span[data-link]:hover, p[data-link]:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .ij-doc { width: 390px; margin: 24px auto 0; font-size: 12.5px; color: #5F675F; display: flex; justify-content: space-between; }
+  .ij-doc a { color: #3F6B2A; font-weight: 600; text-decoration: none; }
 </style>
 </head>
-<body>
-<div class="ij-nav"><a href="./">← 화면 목록</a><span>모바일 · 타임라인 (보류) · 390×1220</span></div>
+<body data-page="mobile-timeline">
+<div class="ij-doc"><a href="screens.html">← 화면 목록</a><span>모바일 · 타임라인 (보류) · 390×1220</span></div>
 <div class="ij-board">
 <div style="width: 390px; min-height: 844px; background: #F2F2F2; display: flex; flex-direction: column;">
 
@@ -222,5 +225,6 @@
   </div>
 </div>
 </div>
+<script src="app.js"></script>
 </body>
 </html>
