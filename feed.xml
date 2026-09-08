@@ -7,21 +7,6 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
-    <title>무제</title>
-    <link>https://vackam.github.io/posts/무제.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/무제.html</guid>
-    <description>flowchart TB classDef fw fill:#e8f0fe,stroke:#4a6fa5,color:#111 classDef ext fill:#fff4e5,stroke:#c77d0a,color:#111 classDef store fill:#e6f4ea,stroke:#2e7d4f,color:#111 subgraph clients[&quot;클라이언트&quot;] direction LR flutter[&quot;Flutter 앱&amp;lt;br/&amp;gt;Authorization: Bearer JWT&quot;] web[&quot;웹 어드민 Cook-Pilot/web&amp;lt;br/&amp;gt;X-CookPilot-Service-Token&quot;] end subgraph edge[&quot;진입 (EC2 서울 호스트)&quot;]…</description>
-  </item>
-  <item>
-    <title>Best Time to Buy and Sell Stock with Cooldown</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown/question 쿨타임이 존재할 때, 사고 파는 것의 최대 이익을 구하시오. 푸는 방법 모든 칸에서는 3가지 경우가 가능한데, 코인 보유하고 있는 상태 코인을 판 상태 아무것도 안 한 상태(쿨타임일 수도 코인을 들고 있을 수도) 이 세 가지를 계속 들고 다니…</description>
-  </item>
-  <item>
     <title>졸업과제 총 정리</title>
     <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
@@ -39,13 +24,13 @@
     <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 m</description>
   </item>
   <item>
-    <title>Unique Paths</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</guid>
-    <pubDate>Mon, 07 Sep 2026 00:00:00 +0900</pubDate>
+    <title>Best Time to Buy and Sell Stock with Cooldown</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/count-paths/question 끝 점에 도달하는 경우의 수를 세시오 푸는 방법 2d로 하면 아주 쉽다. 고등학생 때 했던 것처럼 하나씩 번호를 새기면서 가면 된다. 다시 돌아가는 경우는 없으므로(오른쪽, 아래 제한) 그대로 하면 된다. 다음은 코드이다. class Solution { public: int uniquePaths(int m, …</description>
+    <description>서론 | https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown/question 쿨타임이 존재할 때, 사고 파는 것의 최대 이익을 구하시오. 푸는 방법 모든 칸에서는 3가지 경우가 가능한데, 코인 보유하고 있는 상태 코인을 판 상태 아무것도 안 한 상태(쿨타임일 수도 코인을 들고 있을 수도) 이 세 가지를 계속 들고 다니…</description>
   </item>
   <item>
     <title>Longest Common Subsequence</title>
@@ -55,6 +40,15 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/longest-common-subsequence/question LCS를 구하라 푸는 방법 아주 유명한 문제다. 이차원 dp를 세운 다음, 순회를 하면서 체크를 한다. 만약 s1과 s2가 같은 부분이 나온다면 대각성분에 +1을 해서 자신의 값으로 한다. 아니라면 왼쪽과 위쪽 중에서 가져온다. 다음은 코드이다. class Solution…</description>
+  </item>
+  <item>
+    <title>Unique Paths</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</guid>
+    <pubDate>Mon, 07 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/count-paths/question 끝 점에 도달하는 경우의 수를 세시오 푸는 방법 2d로 하면 아주 쉽다. 고등학생 때 했던 것처럼 하나씩 번호를 새기면서 가면 된다. 다시 돌아가는 경우는 없으므로(오른쪽, 아래 제한) 그대로 하면 된다. 다음은 코드이다. class Solution { public: int uniquePaths(int m, …</description>
   </item>
   <item>
     <title>Cheapest Flights Within K Stops</title>
@@ -163,6 +157,15 @@
     <description>서론 | https://neetcode.io/problems/gas-station/question 차를 타고 갈 때 원으로 되어있는 동네를 모두 들를 수 있는 시작 지점을 찾아라. 푸는 방법 우선 gas와 cost의 차를 minus라는 벡터에 저장해두자. 이후 한 칸씩 돌면서 minus의 값들을 result에 더해나간다. 만약 result가 0보다 작다면 가능한 경우가 없는 것이다. 이…</description>
   </item>
   <item>
+    <title>Jump Game II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</guid>
+    <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>그리디</category>
+    <description>서론 | https://neetcode.io/problems/jump-game-ii/question 점프를 몇 번 뛰어야 하는 지 구하라 푸는 방법 이번에도 동일하게 bfs를 생각했다. 아래는 코드이다. class Solution { public: int jump(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); if (n == 1) return 0; queue&amp;lt;int&amp;gt; q; vector&amp;lt;bool&amp;gt; visited(n, false); q.push(0); visited[0] = true; int jump =…</description>
+  </item>
+  <item>
     <title>2026-08-21</title>
     <link>https://vackam.github.io/posts/Daily/8월/2026-08-21.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Daily/8월/2026-08-21.html</guid>
@@ -171,13 +174,14 @@
     <description>클로드의 말투 요새 클로드를 자주 사용하다 보니 느끼는 것이 다음 문장을 많이 쓴다는 것이다. &quot;반은 맞고 반은 틀렸어&quot; 매일 마주하는 거 같은데, 왜 이렇게 답하는 것일까? 우선 실제로 반반인 경우가 있을 것이다. 어떤 아이디어의 장점을 설명했는데, 장점 속에 단점이 같이 드러날 수도 있고 그렇…</description>
   </item>
   <item>
-    <title>Jump Game II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game II.html</guid>
-    <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
+    <title>Jump Game</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</guid>
+    <pubDate>Thu, 20 Aug 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <category>그리디</category>
-    <description>서론 | https://neetcode.io/problems/jump-game-ii/question 점프를 몇 번 뛰어야 하는 지 구하라 푸는 방법 이번에도 동일하게 bfs를 생각했다. 아래는 코드이다. class Solution { public: int jump(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); if (n == 1) return 0; queue&amp;lt;int&amp;gt; q; vector&amp;lt;bool&amp;gt; visited(n, false); q.push(0); visited[0] = true; int jump =…</description>
+    <category>bfs</category>
+    <description>서론 | https://neetcode.io/problems/jump-game/question 점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라. 푸는 방법 처음에는 bfs 방식으로 풀었다. 방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행. 이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. …</description>
   </item>
 </channel>
 </rss>
