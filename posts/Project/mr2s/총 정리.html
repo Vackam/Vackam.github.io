@@ -132,6 +132,7 @@
 <li>\(\text{stretch}(\vec G)=\frac{1}{n(n-1)}\sum_{u\neq v}\frac{d_{\vec G}(u,v)}{d_G(u,v)},\qquad \ell(e)=\frac{1}{w(e)}\)</li>
 <li>단순하게 무방향일 때 최단거리 합을 기준으로 현재의 최단거리합을 평가</li>
 <li>대리 지표에서 실 지표로 최종 검증</li>
+<li>제일 좋은 값 제외 버림</li>
 </ul>
 </li>
 </ul>
@@ -145,10 +146,8 @@
 </ul>
 </li>
 <li>Robbin은 무작위 강연결 path 기준</li>
-<li>QA로 푼 것이 SA와 ILS보다 낮았지만, stretch 0.06~0.11 차이 뿐 안남<ul>
-<li>SA는 v = 400, v = 500에서 실패</li>
-</ul>
-</li>
+<li>SA는 정점 400, 500에서 해를 내지 못함</li>
+<li>QA로 푼 것이 SA와 ILS보다 낮았지만, stretch 0.06~0.11 차이로 유의미하지 않음</li>
 <li>아래는 결과 그림<img src="assets/apsp_stretch.png" alt="apsp_stretch.png"></li>
 </ul>
 </li>
@@ -193,6 +192,11 @@
 </li>
 <li>d-wave API 사용량이 적었음<ul>
 <li>비싼 것을 감안하더라도 실 테스트 한 번만 돌려서 아쉬웠음</li>
+</ul>
+</li>
+<li>시뮬레이션에서 얻은 문제점도 존재<ul>
+<li>만약 정말 좋은 간선이 있어서, 모든 최적화 path가 이 간선을 지난다면?</li>
+<li>그러면 초기에 막고자 한 흐름이 해당 간선으로 몰릴 것이고, 최적화의 의미가 줄어듬</li>
 </ul>
 </li>
 </ul>

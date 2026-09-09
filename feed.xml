@@ -21,7 +21,7 @@
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
     <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
     <category>졸업과제</category>
-    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 m</description>
+    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 전제 우선 쌍대 그래프가 dual par…</description>
   </item>
   <item>
     <title>졸업과제 총 정리</title>
