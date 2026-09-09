@@ -7,13 +7,13 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
-    <title>졸업과제 총 정리</title>
-    <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>mr2s</category>
-    <category>졸업과제</category>
-    <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 이를 통해 혼잡한 상황(ex…</description>
+    <title>Coin Change II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Coin Change II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Coin Change II.html</guid>
+    <pubDate>Wed, 09 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/coin-change-ii/question 동전을 중복 조합으로 뽑아서 가능한 경우를 서술하시오 푸는 방법 dp로 풀어야 하는 데 축을 잘 잡아야 한다. for문을 어떻게 도느냐가 중요한데, 코인을 기준으로 돌았다. 코인을 기준으로 돌면서, 1, ... i - 1, i, ... amount 가 있다고 했을 때, i - 1번 코인까지 …</description>
   </item>
   <item>
     <title>쌍대 구조를 유지한 면분할 알고리즘</title>
@@ -22,6 +22,15 @@
     <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
     <category>졸업과제</category>
     <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 m</description>
+  </item>
+  <item>
+    <title>졸업과제 총 정리</title>
+    <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
+    <category>mr2s</category>
+    <category>졸업과제</category>
+    <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 이를 통해 혼잡한 상황(ex…</description>
   </item>
   <item>
     <title>Best Time to Buy and Sell Stock with Cooldown</title>
@@ -78,14 +87,6 @@
     <description>서론 | https://neetcode.io/problems/swim-in-rising-water/question 첫 칸부터 마지막 칸까지 가는 경로 중 큰 값이 가장 작은 길을 찾아서 큰 값을 반환하시오 푸는 방법 우선 dfs에 visited 배열 대신 자기가 가진 길 중에서 가장 작은 값을 들고 있는 best 배열로 분기를 판단해서 풀었다. 내 코드는 더러우니 이것을 푸는 …</description>
   </item>
   <item>
-    <title>2026-09-02</title>
-    <link>https://vackam.github.io/posts/Daily/9월/2026-09-02.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-02.html</guid>
-    <pubDate>Wed, 02 Sep 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>hindsight 여전히 과도기에 있어서 이런 프레임 워크가 생기는 거 같다. 만약 모델이 좋아져서 이전 대화를 전부 기억할 수 있다면? 이런 기억 부분이 전혀 필요 없어질 것이다. 대화를 정리할 필요 없이 이전 대화를 전부 덤핑시키면, 그냥 성능이 좋게 나올 것이다...</description>
-  </item>
-  <item>
     <title>Min Cost to Connect Points</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Min Cost to Connect Points.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Min Cost to Connect Points.html</guid>
@@ -93,6 +94,14 @@
     <category>ps</category>
     <category>Advanced-Graph</category>
     <description>서론 | https://neetcode.io/problems/min-cost-to-connect-points/question 모든 점을 갈 수 있는 최소 거리를 구하라. 푸는 방법 mst를 구하는 문제이다. 크루스칼 방식으로 풀었고, 이를 위해 union find를 사용했다. 다음은 코드이다. using pipii = pair&amp;lt;int, pair&amp;lt;int, int&amp;gt;&amp;gt;; class Solution { public: vector&amp;lt;int&amp;gt; mother; pipii make_dis(co…</description>
+  </item>
+  <item>
+    <title>2026-09-02</title>
+    <link>https://vackam.github.io/posts/Daily/9월/2026-09-02.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-02.html</guid>
+    <pubDate>Wed, 02 Sep 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>hindsight 여전히 과도기에 있어서 이런 프레임 워크가 생기는 거 같다. 만약 모델이 좋아져서 이전 대화를 전부 기억할 수 있다면? 이런 기억 부분이 전혀 필요 없어질 것이다. 대화를 정리할 필요 없이 이전 대화를 전부 덤핑시키면, 그냥 성능이 좋게 나올 것이다...</description>
   </item>
   <item>
     <title>Reconstruct Flight Path</title>
@@ -172,16 +181,6 @@
     <pubDate>Fri, 21 Aug 2026 00:00:00 +0900</pubDate>
     <category>데일리</category>
     <description>클로드의 말투 요새 클로드를 자주 사용하다 보니 느끼는 것이 다음 문장을 많이 쓴다는 것이다. &quot;반은 맞고 반은 틀렸어&quot; 매일 마주하는 거 같은데, 왜 이렇게 답하는 것일까? 우선 실제로 반반인 경우가 있을 것이다. 어떤 아이디어의 장점을 설명했는데, 장점 속에 단점이 같이 드러날 수도 있고 그렇…</description>
-  </item>
-  <item>
-    <title>Jump Game</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Jump Game.html</guid>
-    <pubDate>Thu, 20 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그리디</category>
-    <category>bfs</category>
-    <description>서론 | https://neetcode.io/problems/jump-game/question 점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라. 푸는 방법 처음에는 bfs 방식으로 풀었다. 방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행. 이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. …</description>
   </item>
 </channel>
 </rss>

@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kth Largest Element in an Array &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/kth-largest-element-in-an-array/question 정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라. 푸…">
+    <title>Coin Change II &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/coin-change-ii/question 동전을 중복 조합으로 뽑아서 가능한 경우를 서술하시오 푸는 방…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,56 +18,51 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Kth Largest Element in an Array</h1>
-    <p class="meta">2026-07-21 <span class="tag">ps</span><span class="tag">힙</span><span class="tag">우선순위큐</span></p>
+    <h1>Coin Change II</h1>
+    <p class="meta">2026-09-09 <span class="tag">ps</span><span class="tag">dp</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/kth-largest-element-in-an-array/question</p>
-<p>정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라.</p>
+<p>| https://neetcode.io/problems/coin-change-ii/question</p>
+<p>동전을 중복 조합으로 뽑아서 가능한 경우를 서술하시오</p>
 
 <h1>푸는 방법</h1>
-<p>당연히 sort를 하면 풀린다.</p>
-<p>다음은 코드이다</p>
-<pre><code class="language-cpp">class Solution {
-public:
-    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
-        sort(nums.rbegin(), nums.rend());
-        return nums[k-1];    
-    }
-};
-</code></pre>
+<p>dp로 풀어야 하는 데 축을 잘 잡아야 한다.</p>
+<p>for문을 어떻게 도느냐가 중요한데, 코인을 기준으로 돌았다.</p>
+<p>코인을 기준으로 돌면서, 1, ... i - 1, i, ... amount 가 있다고 했을 때,</p>
+<p>i - 1번 코인까지 탐색한 것은 i-1번 코인까지 사용해서 만들 수 있는 경우를 다 센 것이다.</p>
 
-<p>물론 이렇게 하라고 만든 것이 아니다. </p>
-<p>우선순위큐를 만들어서 k가 넘어갈 시 계속 pop 해주면서 트래킹 해주면 된다.</p>
 <p>다음은 코드이다.</p>
-
 <pre><code class="language-cpp">class Solution {
 public:
-    int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
-        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;
-
-        for (auto&amp; a : nums) {
-            pq.push(a);
-
-            if (pq.size() &gt; k) pq.pop();
-        } 
-
-        return pq.top();
+    int change(int amount, vector&lt;int&gt;&amp; coins) {
+        // 이건 1차원 dp 해서 해야하는 걸 텐데 
+        vector&lt;int&gt; dp(amount + 1, 0);
+        dp[0] = 1;
+        for (int c : coins) {
+            for (int i=c; i&lt;=amount; ++i) {
+                dp[i] += dp[i-c];
+            }
+        }
+        
+        return dp[amount];
     }
 };
 </code></pre>
+<p>dp는 i를 만드는 방법 수로 해석한다.</p>
+<p>dp[0]를 아무것도 안세는 경우로 하나 세우고, 코인을 가장 바깥에 두어 탐색을 시작한다.</p>
+<p>이렇게 되면 중복 없이 해결할 수 있다.</p>
 
 <h1>결론</h1>
-<p>계속 백준이 그립다. 문제에서 O(nlogn)을 쓰면 바로 아웃되도록 만들어 놨을 텐데...</p>
+<p>점화식이 어렵다. 이게 dp는 진짜 생각나면 1분 컷이고 생각 안나는 순간 망하는 거 같다.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Heap-Priority Queue/Last Stone Weight.html">Last Stone Weight &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Heap-Priority Queue/Task Scheduler.html">&larr; Task Scheduler</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html">Best Time to Buy and Sell Stock with Cooldown &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
