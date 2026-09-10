@@ -47,7 +47,6 @@
 <li>무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함</li>
 <li>이를 통해 혼잡한 상황(ex. 공연 후 퇴장, 축제 기간)에서 안전한 보행을 도모하고자 함</li>
 <li>QA를 이용해 변화하는 도로 상황을 반영하여 빠르게 계산하여 실질적인 이득을 보고자 함</li>
-<li>정리: 그래프에서 모든 정점 사이의 거리가 최소가 되는 강연결 조합 찾기</li>
 </ul>
 <h2>기존 연구</h2>
 <ul>
@@ -69,7 +68,158 @@
 <li>도로에 대해서는 연구가 많다<ul>
 <li>간선을 특정 비율로 나누어서 생각하는 방식</li>
 <li>도로 통제 상황에서 도로망 방향 재설정</li>
-<li>격자름</li>
+<li>격자형 도시 도로망의 일방통행 최적화</li>
+<li>https://github.com/quantum-guardians/mr2s-module/issues/95</li>
+</ul>
+</li>
+</ul>
+<h2>정리</h2>
+<ul>
+<li>목적 함수 - 모든 정점 거리합의 최소</li>
+<li>계산 방식 - qubo를 통한 qa 사용(이후 qubo 설명)</li>
+<li>목표 - 고전적인 방식과 비교하여 짧은 시간과 합리적인 해 산출</li>
+</ul>
+<h2>문제점</h2>
+<ol>
+<li>모든 식을 qa 하드웨어에 올릴 수 없음<ol>
+<li>양자 하드웨어는 이진 변수로 이루어진 이차항만 올릴 수 있음<ol>
+<li>qubo(quadratic unconstrained binary operation) 아래와 같은 형태를 가짐</li>
+<li>\(f(x)=\sum_{i=1}^{N}\sum_{j=1}^{N} Q_{i,j}\,x_i x_j+\sum_{i=1}^{N} c_i x_i+d\)</li>
+<li>이와 같은 형태가 아니면 qa(quantum annealing)를 사용하지 못함</li>
+</ol>
+</li>
+<li>brute force 방식<ol>
+<li>강연결인 해 하나 구하기</li>
+<li>distance 합 구하기 (APSP)</li>
+<li>이를 반복하여 제일 좋은 해 찾기</li>
+<li>시간복잡도 - \(O\!\left(2^{|E|} \cdot |V|\,|E|\,\log|V|\right)\)</li>
+<li>\(V\): 정점 집합, \(|V|\): 정점 개수 </li>
+<li>\(E\): 간선 집합, \(|E|\): 간선 개수</li>
+<li>지수 시간이 걸리므로 큰 그래프에서 사실상 불가능</li>
+</ol>
+</li>
+<li>MILP 정식화 존재<ol>
+<li>목적함수 = All Pairs Shortest Path(APSP) 합</li>
+<li>Gurobi 등의 솔버로 해결 가능</li>
+<li>하지만, 여전히 지수시간 + qa에 못올리는 형식<ol>
+<li>치환 가능하나 변수가 폭증</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>APSP를 목적 함수로 사용 불가능<ol>
+<li>최단 거리는 출발점부터 도착점까지 가는 모든 경로의 변수를 한꺼번에 생각해야함</li>
+<li>이를 다항식으로 표현하면 차수가 간선 수 규모까지 상승</li>
+<li>보조 변수로 차수 낮추기는 가능하지만 MILP와 동일하게 변수 폭증</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>바뀌는 도로 상황에 맞추어 빠르게 계산이 가능해야 함.<ol>
+<li>한 간선에 대해 가중치가 변하면 고전적인 방식에선 전부 다시 계산 해야 함</li>
+</ol>
+</li>
+</ol>
+<h2>핵심 아이디어</h2>
+<ul>
+<li>n-hop 대리지표<ul>
+<li>APSP 합은 고차 다항식이므로, 이 자체를 qa의 목적함수로 사용할 수 없어서 이를 대리하는 목적함수가 필요</li>
+<li>hop은 한 점 \(u\)에서 다른 점 \(v\)로 가는 데 거치는 간선을 표현<ul>
+<li>\(u \rightarrow v\)가 간선 2개를 거치면 2-hop </li>
+</ul>
+</li>
+<li>다음과 같은 실험 결과로 대리 할 수 있음을 실험적으로 확인<ul>
+<li>무작위 들뢰네 평면 그래프 (V = 50, E = 137) 생성</li>
+<li>이 중 강연결을 이루는 경우를 500개 선정</li>
+<li>APSP 합(x축)이 낮아질 수록 n-hop의 도달 쌍 수(y축)가 많아지고 있음</li>
+<li>목적함수인 APSP 합과 n-hop이 음의 상관관계를 가지므로 대리함수로 적격 </li>
+<li>결론 - apsp 합 최소화 -> n-hop 수 최대화로 치환</li>
+<li>아래는 해당 결과<img src="assets/fig_nhop.png" alt="fig_nhop.png"></li>
+</ul>
+</li>
+<li>n-hop qubo 표현<ul>
+<li>2-hop과 3-hop을 함수로 사용<ul>
+<li>4-hop 이상부터는 표현은 가능하지만, 이차로 낮추기 위한 치환 작업에서 변수가 급증해서 효율이 떨어짐</li>
+</ul>
+</li>
+<li>목적함수는 아래와 같이 표현 및 qubo 화</li>
+<li>\(H_{\mathrm{dist}}= -\sum_{e_{ik},\, e_{kj}} I_{i \to k}\, I_{k \to j}\;-\; \sum_{e_{ij},\, e_{jk},\, e_{kl}} I_{i \to j}\, I_{j \to k}\, I_{k \to l}\)<ul>
+<li>가중치 버전<ul>
+<li>\(H_{\mathrm{dist}} = -\sum_{e_{ik},\, e_{kj}} w_{ik}\, w_{kj}\, I_{i \to k}\, I_{k \to j} \;-\; \sum_{e_{ij},\, e_{jk},\, e_{kl}} w_{ij}\, w_{jk}\, w_{kl}\, I_{i \to j}\, I_{j \to k}\, I_{k \to l}\)</li>
+<li>가중치는 높을 수록 좋다고 가정</li>
+<li>3-hop이 과대평가 될 가능성 존재</li>
+</ul>
+</li>
+<li>0/1 변수는 indicator 함수를 사용하여 각 정점의 번호 기준으로 0과 1로 표현<ul>
+<li>\(I_{i \to j} =\begin{cases}1 - x_{ij}, &amp; i &lt; j \\x_{ji}, &amp; i &gt; j\end{cases}\)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>3-hop으로 인한 식은 구조적으로 삭제<ul>
+<li>\((1-x_1)(1-x_2)(1-x_3) + x_1 x_2 x_3= 1 - x_1 - x_2 - x_3 + x_1 x_2 + x_1 x_3 + x_2 x_3\)</li>
+</ul>
+</li>
+<li>2차식 qubo 표현 완료</li>
+</ul>
+</li>
+<li>대리함수 최적화 이후 APSP 합 표현식<ul>
+<li>\(\mathrm{stretch} = \frac{1}{|P|} \sum_{(s,t) \in P} \frac{d_{G'}(s,t)}{d_{G}(s,t)} \;\in\; [1,\infty)\)</li>
+<li>시그마 안 분모는 무방향일 때 그래프의 APSP 합</li>
+<li>결과에서 강연결 실패 시 무한대로 발산</li>
+</ul>
+</li>
+<li>최종 형태<ul>
+<li>\(H(x) = c + \sum_{a} h_a\, x_a + \sum_{a&lt;b} J_{ab}\, x_a x_b\)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>파이프라인</h2>
+<pre class="mermaid">flowchart LR
+    A["그래프 전처리"] --&gt; B["QUBO화"] --&gt; C["QA 진행"] --&gt; D["결과 확인"]
+</pre>
+<h3>그래프 전처리</h3>
+<ul>
+<li>큰 그래프는 한 번에 qa 하드웨어에 넣을 수 없음<ul>
+<li>테스트 결과<ul>
+<li>2-hop만 사용하면 테스트 그래프에서 정점 개수 400까지 커버</li>
+<li>2+3-hop 사용 시 테스트 그래프에서 정점 개수 175까지 커버</li>
+<li>https://github.com/quantum-guardians/mr2s-module/issues/93</li>
+</ul>
+</li>
+<li>또한, 한 번에 다 올라가도 체인 길이가 길어지면 중간에 깨져 해 품질이 떨어질 수 있음</li>
+</ul>
+</li>
+<li>그래서 면 단위로 그래프를 분할할 필요가 있음</li>
+</ul>
+<h4>체인 축약</h4>
+<ul>
+<li>그래프를 강연결을 유지하면서 방향화를 진행한다고 하면 방향이 종속되는 간선들이 존재<ul>
+<li>예를 들어, (다른 정점들) - a - 1 - 2 - 3 - b - (다른 정점들) 에 대하여</li>
+<li>1, 2, 3의 간선의 방향은 a-b와 다를 게 없음</li>
+<li>양자 변수만 늘려 해 품질을 떨어뜨릴 수 있음</li>
+</ul>
+</li>
+<li>그래서 이런 간선들을 하나의 초간선으로 압축하는 전처리 방식<ul>
+<li>차수가 2인 무방향 간선들을 탐지하여 축약</li>
+<li>축약 후 두 가지 경우<ul>
+<li>초간선이 self-loop (a - a) 인 경우는 없는 간선으로 취급</li>
+<li>초간선이 (a - b) 인 경우<ul>
+<li>가중치는 조화평균에 개수(n)을 나눈 값을 사용함<ul>
+<li>그래프 분할 시 지표로 사용</li>
+<li>랭킹 측정 시에 활용 -> #TODO 문제 존재</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>체인 축약의 효과<ul>
+<li>희소한 그래프에서 강연결 보장을 잘 함</li>
 <li>https://github.com/quantum-guardians/mr2s-module/issues/95</li>
 </ul>
 </li>
@@ -241,6 +391,11 @@
 </script>
 
 
-    
+    <script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+  mermaid.initialize({ startOnLoad: true, theme: dark ? 'dark' : 'default' });
+</script>
+
   </body>
 </html>
