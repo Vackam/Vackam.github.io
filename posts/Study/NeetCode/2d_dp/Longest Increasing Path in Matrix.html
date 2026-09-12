@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longest Increasing Path in Matrix &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/longest-increasing-path-in-matrix/question 가장 긴 증가하는 path를 찾으시오 푸는 방법 큰 값부…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Longest Increasing Path in Matrix</h1>
+    <p class="meta">2026-09-12 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/longest-increasing-path-in-matrix/question</p>
+<p>가장 긴 증가하는 path를 찾으시오</p>
+
+<h1>푸는 방법</h1>
+<p>큰 값부터 하나씩 더해가면서 dp로 풀었다.</p>
+<p>다음은 코드이다.</p>
+
+<pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
+
+class Solution {
+public:
+    int longestIncreasingPath(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        int n = matrix.size(), m = matrix[0].size();
+        int dx[] = {1, -1, 0, 0};
+        int dy[] = {0, 0, 1, -1};
+
+        priority_queue&lt;pair&lt;int, pii&gt;&gt; q;
+
+        for (int i=0; i&lt;n; ++i) {
+            for (int j=0; j&lt;m; ++j) {
+                q.push({ matrix[i][j], {i, j} });
+            }
+        } 
+
+        vector&lt;vector&lt;int&gt;&gt; v(n, vector&lt;int&gt;(m, 1));
+
+        while (!q.empty()) {
+            auto a = q.top(); q.pop();
+            auto [x, y] = a.second;
+
+            for (int i=0; i&lt;4; ++i) {
+                int nx = x + dx[i];
+                int ny = y + dy[i];
+
+                if (nx &lt; 0 || nx &gt;= n || ny &lt; 0 || ny &gt;= m || (a.first) &lt;= matrix[nx][ny]) continue;
+
+                v[nx][ny] = max(v[nx][ny], v[x][y] + 1);
+            }
+        }
+
+        int result = 0;
+        for (int i=0; i&lt;n; ++i) {
+            for (int j=0; j&lt;m; ++j) {
+                result = max(result, v[i][j]);
+            }
+        } 
+
+        return result;
+    }
+};
+</code></pre>
+<p>순회하면서 큐에 값을 집어넣은 다음, 큰 값에서 계속 내려오도록 하였다.</p>
+<p>path는 증가하는 path이지만, 문제가 작은 값을 하게 되면 생길 거 같아서 맘 편하게 큰값에서 내려왔다.</p>
+
+<p>다만 우선순위 큐를 씀으로 최적이 아니게 되었다. 최적 코드는 다음과 같다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    int n, m;
+    int dx[4] = {1,-1,0,0};
+    int dy[4] = {0,0,1,-1};
+    
+    int dfs(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, vector&lt;vector&lt;int&gt;&gt;&amp; memo, int x, int y) {
+        if (memo[x][y]) return memo[x][y];
+        memo[x][y] = 1;
+        for (int i = 0; i &lt; 4; ++i) {
+            int nx = x+dx[i], ny = y+dy[i];
+            if (nx&lt;0||nx&gt;=n||ny&lt;0||ny&gt;=m||matrix[nx][ny]&lt;=matrix[x][y]) continue;
+            memo[x][y] = max(memo[x][y], dfs(matrix, memo, nx, ny) + 1);
+        }
+        return memo[x][y];
+    }
+
+    int longestIncreasingPath(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        n = matrix.size(); m = matrix[0].size();
+        vector&lt;vector&lt;int&gt;&gt; memo(n, vector&lt;int&gt;(m, 0));
+        int res = 0;
+        for (int i=0; i&lt;n; ++i)
+            for (int j=0; j&lt;m; ++j)
+                res = max(res, dfs(matrix, memo, i, j));
+        return res;
+    }
+};
+</code></pre>
+<p>dp를 채우면서 dfs를 도는 것이다. </p>
+
+<h1>결론</h1>
+<p>굉장히 재밌는 문제였다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/2d_dp/Interleaving String.html">Interleaving String &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

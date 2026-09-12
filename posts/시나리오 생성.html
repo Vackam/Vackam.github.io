@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시나리오 생성 &mdash; devlog</title>
+    <meta name="description" content="서론 매추리 프로젝트에서 제일 중요한 시나리오를 어떻게 생성하는 지 서술한다. 본론 모든 것을 자동화하길 원…">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../posts.html">&larr; back</a></p>
+
+    <h1>시나리오 생성</h1>
+    <p class="meta">2026-09-11 <span class="tag">매추리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>매추리 프로젝트에서 제일 중요한 시나리오를 어떻게 생성하는 지 서술한다.</p>
+
+<h1>본론</h1>
+<p>모든 것을 자동화하길 원하기 때문에 시나리오를 생성하는 것은 아주 중요한 일이다. 여기서 말하는 시나리오는 사건의 전반적인 모든 것을 의미하는데, 범인, 증거, 맵(사건 현장), 가구들, 용의자 등이 있다. 한 번에 출력해내면 그것만큼 좋은 게 없을 것이지만, 시도해 본 결과 출력이 잘려 사용할 수 없었다. 그래서 분할하여 출력하는 파이프라인을 제시하였다.</p>
+
+<h2>분할</h2>
+<p>첫째로 랜덤한 테마를 하나 잡고 사건을 생성한다. 테마는 굉장히 광범휘하게 잡을 수 있었다. 테스트 상 우주 관련, 또는 초능력 관련도 가능했으나 현실적이지 못한 것들은 디테일이 더욱 떨어지는 것을 확인했다.</p>
+<p>그래서 테마에서 사건을 생성하면 마치 영화의 줄거리처럼 나오게 된다.</p>
+
+<p>예시)</p>
+<p><code>1998년 11월, 서울 변두리의 지역 민영 방송국 '한별방송' 사옥 5층. 자정이 넘으면 5층을 제외한 모든 층의 전원이 내려가고 낡은 엘리베이터도 멈춘다. 그날 밤 5층에 남아 있던 사람은 다섯이었다. 새벽 2시부터 ...</code></p>
+
+<p>그 다음에는 해당 줄거리를 가지고 디테일을 잡아나가기 시작한다.</p>
+<p>원래는 한 입력에 모두 나오도록 설계를 했었는데, 이 또한 출력이 끊기는 문제가 발생하여(output token 증가 로직을 넣어도 동일 발생) 이 곳을 두 가지 파트로 나눴다.</p>
+
+
+    </article>
+
+    <hr>
+
+    
+
+    <p><a href="../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
