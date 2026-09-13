@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>시나리오 생성 &mdash; devlog</title>
     <meta name="description" content="서론 매추리 프로젝트에서 제일 중요한 시나리오를 어떻게 생성하는 지 서술한다. 본론 모든 것을 자동화하길 원…">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="alternate" type="application/rss+xml" title="devlog" href="../feed.xml">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
     
   </head>
   <body>
 
-    <p><a href="../posts.html">&larr; back</a></p>
+    <p><a href="../../../posts.html">&larr; back</a></p>
 
     <h1>시나리오 생성</h1>
     <p class="meta">2026-09-11 <span class="tag">매추리</span></p>
@@ -35,15 +35,36 @@
 
 <p>그 다음에는 해당 줄거리를 가지고 디테일을 잡아나가기 시작한다.</p>
 <p>원래는 한 입력에 모두 나오도록 설계를 했었는데, 이 또한 출력이 끊기는 문제가 발생하여(output token 증가 로직을 넣어도 동일 발생) 이 곳을 두 가지 파트로 나눴다.</p>
+<h3>Skeleton 파트</h3>
+<p>사건의 시각, 장소, 범인 수 같은 뼈대를 구조화한다.</p>
+<p>스켈레톤에서 만들어진 정보들은 구체적이지만 시나리오 상에서 추상적인 부분들이 많다. 이후 파트를 위한 밑작업이다.</p>
+<h3>Expansion 파트</h3>
+<p>skeleton에서 받은 정보를 가지고 세세하게 도입한다. </p>
+<p>세계관 규칙, 추리의 상세한 부분, 용의자,  단서 등을 확장하는 파트이다.</p>
 
+<p>이후 이들을 judge하는 파트가 있다.</p>
+<h3>Critic 파트</h3>
+<p>위에서 나온 expansion의 결과가 정당한 지 살펴본다.</p>
+<p>logic, detective, directive 3인방이 각 파트에서 합리적인 지를 살펴보고 합리적이지 않을 경우 다시 skeleton 파트부터 생성하게 한다.</p>
+
+<p>해당 파트에서 고</p>
+
+<p>catcacatcacacat</p>
+<p>맨 앞 글자는 그냥 1로 치고</p>
+<p>처음 만난 다음 글자 \<em> 다음 글자 \</em> 다음 글자 </p>
+<p>하면 될 거 같은데?</p>
+
+<p>1 1 3 2 1 1 1</p>
+
+<p>1 \<em> 1 \</em> </p>
 
     </article>
 
     <hr>
 
-    
+    <nav class="post-nav"><span><a href="../../../posts/Project/매추리/매추리 메인.html">매추리 메인 &rarr;</a></span><span></span></nav>
 
-    <p><a href="../posts.html">&larr; back</a></p>
+    <p><a href="../../../posts.html">&larr; back</a></p>
 
     <h2 class="comments-title">댓글</h2>
 <script src="https://giscus.app/client.js"
