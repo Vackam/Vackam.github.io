@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>용의자 심문 &mdash; devlog</title>
+    <meta name="description" content="서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. …">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>용의자 심문</h1>
+    <p class="meta">2026-09-15 <span class="tag">매추리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>매추리 게임에서 용의자 심문에 대해 서술한 문서이다.</p>
+
+<h1>본론</h1>
+<p>AI 심문에서 문제되는 점은 크게 3가지가 있다.</p>
+<ol>
+<li>협박에 너무 쉽게 넘어가는 것</li>
+<li>말하면 안되는 정보까지 말하는 것</li>
+<li>할루시네이션</li>
+</ol>
+
+<p>하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자.</p>
+<h2>1. 협박</h2>
+<p>AI를 심문할 때 가장 좋은 방법이 뭘까? 창의적이게 욕하면서 협박하는 것이다. 실제로 협박에 대한 대처가 없었던 초기 버전의 경우 누가누가 욕을 잘하나 게임이었다. 다른 steam 게임에서도 이와 같은 문제점이 발생했다.</p>
+<p>현실 세계에서도 협박은 가능하지만, 어떤 탐정이 "대답을 하지 않으면 당신과 관련있는 인물이 전부 죽습니다. 그래도 괜찮습니까?"와 같은 말도 안되는 협박이 통하진 않는다.</p>
+<p>그래서 해결책으로 <code>pressure</code>를 도입했다.</p>
+<p><code>pressure</code>는 각 용의자마다 가지고 있는 압박 수치로 이 수치가 100이 되게 되면 자백을 하게 된다.</p>
+<p>수치를 올릴 수 있는 경우는 증거를 가지고 합리적인 추리를 보이면 올라가고 이상한 추리를 하면 내려간다.</p>
+<p>특히, 생으로 협박을 하면 <code>pressure</code>가 추락하도록 설정했다. </p>
+<p>그래서 유저들이 새롭게 새롭게 욕하기 게임이 아니라 추리를 즐길 수 있도록 구현했다.</p>
+<h2>2. 정보 과다 분출</h2>
+<p>해당 사건에 기저가 되는 정보가 있다. 사망 시각, 피해자 등 용의자 모두가 알고 있어야 하는 정보가 있다. 또, 용의자만 알고 있어야 하는 정보들이 있다. 자기가 범인 이거나, 아니면 해당 시각에 어디에 있었다거나, 피해자랑 사이가 나쁘거나 등이 있다.</p>
+<p>용의자 agent에게 이런 기저가 되는 정보를 포함해 모두를 넣게 되면 유저가 얻을 수 없는 정보를 대화를 오래 끌면 말할 가능성이 높아진다.</p>
+<p>그래서 데이터를 다음과 같이 구성했다.</p>
+<ol>
+<li>ground_truth<ol>
+<li>기저가 되는 정보들이다</li>
+</ol>
+</li>
+<li>용의자별 fact<ol>
+<li>용의자가 경험한 사실들이다</li>
+<li><code>pressure</code>마다 해금되며 그 전까지는 발설하지 않는다</li>
+</ol>
+</li>
+<li>대화<ol>
+<li>용의자를 실제 심문해서 대화 기록</li>
+</ol>
+</li>
+</ol>
+
+<p>대화를 할 때, ground_truth는 절대로 넣지 않는다. 여기에는 범인의 정보가 담겨있기 때문이다. 대신 범인은 자기 자신이 범인인 것은 알아야 하므로 넣어준다. 대신 <code>pressure</code>가 90이 넘지 않으면 절대로 자백하지 않도록 했다.</p>
+
+<p>용의자별 fact는 해금된 것만 전부 넣는다. 이렇게 함으로 자기가 알고 있는 정보를 유저에게 아낌없이 주는 경우를 방지하고자 했다.</p>
+
+<p>대화 기록은 최근 4턴 대화 내역과 RAG를 통해 유저의 질의와 관련있는 대화를 3개 불러와서 넣어준다. 모든 기록을 넣으면 에러를 일으킬 가능성이 크므로, 사용자의 해당 심문과 관련있는 대화들을 가져온다.</p>
+
+<h2>3. 할루시네이션</h2>
+<p>이 부분이 고민이 가장 많았다.</p>
+<p>사건 시간이 20:00 ~ 24:00 라고 하자. 생성된 fact들은 전부 해당 시간에 속해 있을 것이다. 그렇다면, 만약 유저가 18:00에 관련한 것을 질문하면 어떻게 되는가?</p>
+<p>용의자는 정보가 없으므로 대답을 하지 못하거나 거짓말을 하게 된다. 이렇게 추궁하게 된다면 없는 사실에 대해 이상한 말을 하게 되고 아무나 범인을 만들어버릴 수 있는 아주 이상한 결론에 해당되게 된다.</p>
+<p><code>18:00에 뭐했어 -&gt; (agent는 해당 시각에 정보 없음) 잘 모르겠어요 -&gt; 말이 돼? -&gt; ... -&gt; 저는 범인입니다.</code></p>
+<p>그래서 이를 막기 위해 다음과 같은 해결책을 만들었다.</p>
+<ol>
+<li>자신에 대한 질문을 받았을 때, 기록 어디에도 답이 없을 경우 시나리오 전체와 용의자 정보를 참고하여 llm이 즉시 fact를 생성한다.</li>
+<li>이 정보는 <code>pressure</code>가 0일 때도 발설할 수 있는 새로운 fact로 구성한다.</li>
+</ol>
+<p>이렇게 할루시네이션을 막을 수 없다면 차라리 즐기는 방법으로 시도를 했다. 새로운 정보를 넣음으로 유저가 많이 플레이할 수록 비어있는 fact를 채워감으로 완성도 있는 게임이 된다.</p>
+
+<p>또한, 숨기는 것과 진짜 모르는 것을 구분시켜야 하는데 fact를 전해들은 것, 비밀, 평범 등으로 구분해서 전해들은 것은 "이렇게 들었는데요..." 등과 같이 표시를 하고 비밀과 평범은 비슷하게 대답하도록 했다.</p>
+<p>이 이유는 현실에서도 발생하는 <code>내가 들은 것이 진짜라고 믿는 경우</code>에 대한 추리 오류를 막기 위해서이다. 물론 이런 포인트가 있으면 재밌긴 하겠지만, 도입을 하기에는 이르다고 판단해 구분지어 놨다.</p>
+
+
+<h1>결론</h1>
+<p>협박에 대한 경험을 하고 나니 ai 추리 게임을 보면 일단 협박부터 하고 본다. 뭔가 게임 버그 테스트하는 사람이 된 기분이다.</p>
+
+<p>언커버더스모킹건에서는 할루시네이션이 일어나면 솔직히 인정하고 이것을 <code>과부화</code>라는 시스템으로 보여준다. 이렇게 할루시네이션을 회피하기 위해서 노력하는 것보다 시스템으로 인정하고 이용하는 게 좋아보여서 우리도 즐기는 방법을 찾아봤다.</p>
+
+<p>정보 과다 분출을 막기 위해서 <code>pressure</code>가 안되면 자기가 알고 있는 지식도 안 넣어줌으로 나름 논리적으로 추론했을 때도 <code>pressure</code>가 충족이 안되면 자백을 하지 않았다. 이런 문제점이 남아서 아쉽다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Project/매추리/결과 채점.html">결과 채점 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
