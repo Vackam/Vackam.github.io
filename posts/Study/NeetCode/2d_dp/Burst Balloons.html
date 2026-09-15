@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burst Balloons &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Burst Balloons</h1>
+    <p class="meta">2026-09-15 <span class="tag">ps</span><span class="tag">dp</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/burst-balloons/question</p>
+<p>풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오</p>
+
+<h1>푸는 방법</h1>
+<p>보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다.</p>
+<p>만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp를 할 수가 없다.</p>
+<p>그래서 다음과 같이 dp를 정의한다.</p>
+<p><code>dp[l][r] = l~r 까지 모든 풍선을 터뜨린 경우 중 가장 큰 경우</code></p>
+<p>이렇게 하고, <code>l~r</code> 사이 마지막으로 터뜨리는 풍선을 <code>k (l &lt;= k &lt;= r)</code>라고 하자.</p>
+<p>그럼 마지막으로 터뜨리는 값이므로, </p>
+<p><code>dp[l][r] = dp[l][k-1] + dp[k+1][r] + nums[k]*nums[l-1]*nums[r+1]</code>이 되겠다.</p>
+<p>그래서 작은 값부터 돌면 <code>dp[1][end]</code>에 답이 나오게 된다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int maxCoins(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        vector&lt;int&gt; a(n+2, 1);
+        for (int i=0; i&lt;n; ++i) a[i+1] = nums[i];
+
+        // dp[l][r]: l-1, r+1이 살아있을 때, [l, r]을 다 터뜨린 최대값
+        // 즉, 마지막 요소를 터뜨리면 l-1 * r+1 * num
+        vector&lt;vector&lt;int&gt;&gt; dp(n+2, vector&lt;int&gt;(n+2, 0));
+
+        for (int len=1; len&lt;=n; ++len) {
+            for (int l=1; l+len-1 &lt;= n; ++l) {
+                int r = l + len - 1;
+                for (int k=l; k&lt;=r; ++k) {
+                    dp[l][r] = max(dp[l][r], dp[l][k-1] + dp[k+1][r] + a[l-1] * a[k] * a[r+1]);
+                }
+            }
+        }
+
+        return dp[1][n];
+    }
+};
+</code></pre>
+
+<p><code>nums[0 - 1]</code>을 써야 하므로 패딩을 준 <code>a</code>로 이전시켰다.</p>
+<p>그래서 for문을 3개를 돌면서 작은 값부터 채워나가준다. 여기서 작은 값은 구간의 길이 기준이다. </p>
+
+<h1>결론</h1>
+<p>좀 어려운 dp는 다 이런 식이다. </p>
+<p>아 기록 해볼까? -> 값이 오염됨.</p>
+<p>뒤에서 돌아볼까? -> 뒤에서 돌면 값이 팽창해서 찾을 수가 없음</p>
+
+<p>dp까지 하는데 <code>O(n^3)</code>인 것도 풀이에 걸림돌이 되었다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/2d_dp/Edit Distance.html">Edit Distance &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

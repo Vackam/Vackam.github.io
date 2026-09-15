@@ -7,6 +7,24 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Burst Balloons</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</guid>
+    <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
+  </item>
+  <item>
+    <title>Edit Distance</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Edit Distance.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Edit Distance.html</guid>
+    <pubDate>Mon, 14 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/edit-distance/question 문자열 a, b가 있을 때 삽입, 삭제, 대체가 무한번 가능한 경우 a로 b를 만드는 최소 변경 횟수를 구하시오 푸는 방법 dp와 dfs를 섞어서 풀어야 한다. 우선 2d-dp를 세우고 이거에 대한 해석을 다음과 같이 한다. dp[i][j]는 a에서 i만큼 탐색하고, b에서 j만큼 탐색했…</description>
+  </item>
+  <item>
     <title>Distinct Subsequences</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Distinct Subsequences.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Distinct Subsequences.html</guid>
@@ -78,14 +96,6 @@
     <description>서론 | https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown/question 쿨타임이 존재할 때, 사고 파는 것의 최대 이익을 구하시오. 푸는 방법 모든 칸에서는 3가지 경우가 가능한데, 코인 보유하고 있는 상태 코인을 판 상태 아무것도 안 한 상태(쿨타임일 수도 코인을 들고 있을 수도) 이 세 가지를 계속 들고 다니…</description>
   </item>
   <item>
-    <title>쌍대 구조를 유지한 면분할 알고리즘</title>
-    <link>https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>졸업과제</category>
-    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 전제 우선 쌍대 그래프가 dual par…</description>
-  </item>
-  <item>
     <title>졸업과제 총 정리</title>
     <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
@@ -95,13 +105,12 @@
     <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 이를 통해 혼잡한 상황(ex…</description>
   </item>
   <item>
-    <title>Unique Paths</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</guid>
-    <pubDate>Mon, 07 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/count-paths/question 끝 점에 도달하는 경우의 수를 세시오 푸는 방법 2d로 하면 아주 쉽다. 고등학생 때 했던 것처럼 하나씩 번호를 새기면서 가면 된다. 다시 돌아가는 경우는 없으므로(오른쪽, 아래 제한) 그대로 하면 된다. 다음은 코드이다. class Solution { public: int uniquePaths(int m, …</description>
+    <title>쌍대 구조를 유지한 면분할 알고리즘</title>
+    <link>https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
+    <category>졸업과제</category>
+    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 전제 우선 쌍대 그래프가 dual par…</description>
   </item>
   <item>
     <title>Longest Common Subsequence</title>
@@ -111,6 +120,15 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/longest-common-subsequence/question LCS를 구하라 푸는 방법 아주 유명한 문제다. 이차원 dp를 세운 다음, 순회를 하면서 체크를 한다. 만약 s1과 s2가 같은 부분이 나온다면 대각성분에 +1을 해서 자신의 값으로 한다. 아니라면 왼쪽과 위쪽 중에서 가져온다. 다음은 코드이다. class Solution…</description>
+  </item>
+  <item>
+    <title>Unique Paths</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Unique Paths.html</guid>
+    <pubDate>Mon, 07 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/count-paths/question 끝 점에 도달하는 경우의 수를 세시오 푸는 방법 2d로 하면 아주 쉽다. 고등학생 때 했던 것처럼 하나씩 번호를 새기면서 가면 된다. 다시 돌아가는 경우는 없으므로(오른쪽, 아래 제한) 그대로 하면 된다. 다음은 코드이다. class Solution { public: int uniquePaths(int m, …</description>
   </item>
   <item>
     <title>Cheapest Flights Within K Stops</title>
@@ -164,24 +182,6 @@
     <category>ps</category>
     <category>Advanced-Graph</category>
     <description>서론 | https://neetcode.io/problems/reconstruct-flight-path/history?list=neetcode150&amp;submissionIndex=2 티켓을 모두 소진했을 때, 사전적으로 가장 빠른 소진 방법을 제시하라 푸는 방법 티켓을 전부 소진하는 방법이 무조건 존재한다고 가정하니 예외 상황은 처리 안해도 된다. 이게 숫자로 주어졌으면 굉장히 빠르게 풀 수 있…</description>
-  </item>
-  <item>
-    <title>Network Delay Time</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Network Delay Time.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Advanced Graph/Network Delay Time.html</guid>
-    <pubDate>Mon, 31 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>Advanced-Graph</category>
-    <description>서론 | https://neetcode.io/problems/network-delay-time/question 그래프에서 전파될 수 있는 가장 최솟값을 구하시오 푸는 방법 bfs로 최소 거리를 갱신하면서 풀었다. 계속 돌면서 거리가 갱신될 가능성이 있는 경우 q에 푸쉬해준다. 최종 끝났을 때, 처리되지 않은 노드가 있다면 에러 아니면 최댓값을 반환한다. 다음…</description>
-  </item>
-  <item>
-    <title>Valid Parenthesis String</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/greedy/Valid Parenthesis String.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/greedy/Valid Parenthesis String.html</guid>
-    <pubDate>Sat, 29 Aug 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>그리디</category>
-    <description>서론 | https://neetcode.io/problems/valid-parenthesis-string/question 괄호 문제를 \* 라는 무적 기호를 포함한 상태로 풀 수 있는 지 확인하시오 푸는 방법 한 칸씩 가면서 열린 괄호의 최소치와 최대치를 기록해나간다. 최대치는 모든 \*를 열린 괄호로 생각한 경우이다. 최소치는 모든 \*를 공백 또는 닫힌 괄호로 생각…</description>
   </item>
 </channel>
 </rss>
