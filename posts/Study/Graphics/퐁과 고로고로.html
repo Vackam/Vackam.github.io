@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퐁과 고로 방식 &mdash; devlog</title>
+    <meta name="description" content="서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>퐁과 고로 방식</h1>
+    <p class="meta">2026-09-17 <span class="tag">그래픽스</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.)</p>
+
+<h1>본론</h1>
+<p>렌더링 파이프라인에 대해 생각해보자.</p>
+<p><code>Input Assembler -&gt; Vertex Shader -&gt; Tessellation -&gt; Geometry Shader -&gt; Rasterization -&gt; Fragment shader</code></p>
+<p>여기서 Geometry Shader는 최근에 거의 사용하지 않는다고 한다. </p>
+<p>우리는 여기서 Vertex Shader와 Rasterization, 이후 Fragment Shader를 생각해보자.</p>
+
+<p>Vertex Shader는 단순히 3차원 공간 좌표였던 정보들을 우리의 world에 가져온다. model은 로컬 좌표계를 월드 좌표계로, view는 카메라의 시점 좌표계로, Projection은 투영 공간인 clip space로 변환한다.</p>
+
+<p>이 부분</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Study/Graphics/그래픽스 시작 모어 데이터.html">9. More Data! &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
