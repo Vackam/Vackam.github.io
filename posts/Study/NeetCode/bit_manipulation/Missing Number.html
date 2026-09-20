@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Longest Palindromic Substring &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/longest-palindromic-substring/question 문자열 중 가장 긴 팰린드롬을 구하시오 푸는 방법 팰…">
+    <title>Missing Number &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/missing-number/question 배열에서 빠진 숫자가 하나 있는데, 이를 찾아라 푸는 방법 1~n까지…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -12,63 +12,57 @@
       href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
 <link rel="stylesheet" media="(prefers-color-scheme: dark)"
       href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']],
+           displayMath: [['$$','$$'],['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   </head>
   <body>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>Longest Palindromic Substring</h1>
-    <p class="meta">2026-08-04 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Missing Number</h1>
+    <p class="meta">2026-09-20 <span class="tag">ps</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/longest-palindromic-substring/question</p>
-<p>문자열 중 가장 긴 팰린드롬을 구하시오</p>
+<p>| https://neetcode.io/problems/missing-number/question</p>
+<p>배열에서 빠진 숫자가 하나 있는데, 이를 찾아라</p>
 
 <h1>푸는 방법</h1>
-<p>팰린드롬을 중앙에서부터 찾는 생각을 하면 된다.</p>
-<p>주어진 s를 한 칸씩 전진시키면서 얘가 중앙일 경우에 가능한 지를 판단한다.</p>
-<p>짝수형태와 홀수형태가 있는데, 이를 유의하여 진행하면 된다.</p>
+<p>1~n까지 더한 다음 배열을 탐색하면서 하나씩 빼면 답이 나온다.</p>
 
-<p>다음은 코드이다. </p>
+<p>다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
-    string longestPalindrome(string s) {
-        int n = s.size();
-        int start = 0, max_len = 1;
+    int missingNumber(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        int result = ((n + 1) * n) / 2;
 
-        auto expand = [&amp;](int l, int r) {
-            while (l &gt;= 0 &amp;&amp; r &lt; n &amp;&amp; s[l] == s[r]) {
-                if (r-l+1 &gt; max_len) {
-                    start = l;
-                    max_len = r-l+1;
-                }
-                l--;
-                r++;
-            }
-        };
+        for (const auto&amp; a : nums) result -= a;
 
-        for (int i=0; i&lt;n; ++i) {
-            expand(i, i);
-            expand(i, i+1);
-        }
-
-        return s.substr(start, max_len);
+        return result;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>dp라고 해서 dp 어떻게 세우지 했는데, 전혀 dp가 아니라 당황했다...</p>
+<p>n이 홀수건 짝수건 공식은 \(\frac{n(n+1)}{2}\) 이다. n이 홀수면 n+1이 짝수이고, n이 짝수면 자동으로 나눠지기 때문에 가능하다. 하지만, 알다시피 코드에서는 순서가 중요하므로 저 값을 괄호로 감싸줘야 한다. 괄호가 없어지는 순간 에러가 난다.</p>
+
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/dp/House Robber II.html">House Robber II &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/dp/Palindromic Substrings.html">&larr; Palindromic Substrings</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/bit_manipulation/Reverse Bits.html">Reverse Bits &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 

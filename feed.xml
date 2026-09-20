@@ -7,6 +7,14 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Missing Number</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Missing Number.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Missing Number.html</guid>
+    <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <description>서론 | https://neetcode.io/problems/missing-number/question 배열에서 빠진 숫자가 하나 있는데, 이를 찾아라 푸는 방법 1~n까지 더한 다음 배열을 탐색하면서 하나씩 빼면 답이 나온다. 다음은 코드이다. class Solution { public: int missingNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); int result = ((n + 1) * n) / 2; for (const auto&amp;amp; a …</description>
+  </item>
+  <item>
     <title>Reverse Bits</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Bits.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Bits.html</guid>
@@ -23,6 +31,15 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/counting-bits/question bit 개수를 세는 배열을 반환하라 푸는 방법 관건은 1이 추가되었을 때 판정인데, 아예 이걸 회피해 버리면 편하다. 자기 것에서 2를 나눈 dp에서 판정하면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; countBits(int n) { vector&amp;lt;int&amp;gt; dp(n+1, 0); for (int i=1…</description>
+  </item>
+  <item>
+    <title>Number of 1 Bits</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
+    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>bit-wise</category>
+    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
   </item>
   <item>
     <title>퐁과 고로 방식</title>
@@ -42,15 +59,6 @@
     <description>서론 | https://neetcode.io/problems/single-number/question 배열에서 다 두 번씩 나오는데, 한 번만 나오는 숫자를 찾으시오. 푸는 방법 XOR 연산으로 누적해서 풀면 된다. 다음은 코드이다. class Solution { public: int singleNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = 0; for (const auto&amp;amp; a : nums) { target ^= a; } return target; } }; 결론 오…</description>
   </item>
   <item>
-    <title>Number of 1 Bits</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
-  </item>
-  <item>
     <title>Regular Expression Matching</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Regular Expression Matching.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Regular Expression Matching.html</guid>
@@ -60,13 +68,12 @@
     <description>서론 | https://neetcode.io/problems/regular-expression-matching/question .과\*가 있는 문자열이 매칭 되는 지 확인하라 푸는 방법 .은 한 글자 조커이고, \*는 앞의 글자를 [0, inf) 까지 반복할 수 있는 것이다. 앞에서부터 탐색하면서 dp 테이블을 채워나가는데, \*인 경우 한 번 더 사용할 수 있는 지를 체크하고, 아닌 경우…</description>
   </item>
   <item>
-    <title>Burst Balloons</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</guid>
+    <title>용의자 심문</title>
+    <link>https://vackam.github.io/posts/Project/매추리/용의자 심문.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/용의자 심문.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
+    <category>매추리</category>
+    <description>서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. 협박에 너무 쉽게 넘어가는 것 말하면 안되는 정보까지 말하는 것 할루시네이션 하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자. 1. 협박 AI를 심문할 때 가장 좋은 방법이 뭘까? …</description>
   </item>
   <item>
     <title>결과 채점</title>
@@ -77,12 +84,13 @@
     <description>서론 추리 게임 매추리는 결국 추리를 끝내야만 한다. 추리가 맞았음을 어떻게 판단하는가? 이것에 대한 고민을 서술한다. 본론 게임에서 용의자는 4~5명이다. 만약 범인만 맞추는 게임이라면 단순하게 4번 정도 답을 제출하면 답을 찾게 된다. 이는 우리가 원하는 방향이 아니었다. 유저가 직접 추리하여…</description>
   </item>
   <item>
-    <title>용의자 심문</title>
-    <link>https://vackam.github.io/posts/Project/매추리/용의자 심문.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/용의자 심문.html</guid>
+    <title>Burst Balloons</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>매추리</category>
-    <description>서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. 협박에 너무 쉽게 넘어가는 것 말하면 안되는 정보까지 말하는 것 할루시네이션 하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자. 1. 협박 AI를 심문할 때 가장 좋은 방법이 뭘까? …</description>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
   </item>
   <item>
     <title>Edit Distance</title>
@@ -156,23 +164,6 @@
     <description>서론 | https://neetcode.io/problems/coin-change-ii/question 동전을 중복 조합으로 뽑아서 가능한 경우를 서술하시오 푸는 방법 dp로 풀어야 하는 데 축을 잘 잡아야 한다. for문을 어떻게 도느냐가 중요한데, 코인을 기준으로 돌았다. 코인을 기준으로 돌면서, 1, ... i - 1, i, ... amount 가 있다고 했을 때, i - 1번 코인까지 …</description>
   </item>
   <item>
-    <title>쌍대 구조를 유지한 면분할 알고리즘</title>
-    <link>https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>졸업과제</category>
-    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 전제 우선 쌍대 그래프가 dual par…</description>
-  </item>
-  <item>
-    <title>Best Time to Buy and Sell Stock with Cooldown</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Best Time to Buy and Sell Stock with Cooldown.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/buy-and-sell-crypto-with-cooldown/question 쿨타임이 존재할 때, 사고 파는 것의 최대 이익을 구하시오. 푸는 방법 모든 칸에서는 3가지 경우가 가능한데, 코인 보유하고 있는 상태 코인을 판 상태 아무것도 안 한 상태(쿨타임일 수도 코인을 들고 있을 수도) 이 세 가지를 계속 들고 다니…</description>
-  </item>
-  <item>
     <title>졸업과제 총 정리</title>
     <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
@@ -180,6 +171,14 @@
     <category>mr2s</category>
     <category>졸업과제</category>
     <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 이를 통해 혼잡한 상황(ex…</description>
+  </item>
+  <item>
+    <title>쌍대 구조를 유지한 면분할 알고리즘</title>
+    <link>https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
+    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
+    <category>졸업과제</category>
+    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 전제 우선 쌍대 그래프가 dual par…</description>
   </item>
 </channel>
 </rss>
