@@ -47,7 +47,8 @@
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
     <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
     <category>그래픽스</category>
-    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 본론 렌더링 파이프라인에 대해 생각해보자. Input Assembler -&amp;gt; Vertex Shader -&amp;gt; Tessellation -&amp;gt; Geometry Shader -&amp;gt; Rasterization -&amp;gt; Fragment shader 여기서 …</description>
+    <category>셰이더</category>
+    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
   </item>
   <item>
     <title>Single Number</title>
