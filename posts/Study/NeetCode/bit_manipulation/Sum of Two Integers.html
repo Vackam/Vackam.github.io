@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Robber &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/house-robber/question 인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시…">
+    <title>Sum of Two Integers &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/sum-of-two-integers/question 덧셈과 뺄셈 없이 두 정수의 합을 구하시오 푸는 방법 전가산…">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,54 +18,54 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>House Robber</h1>
-    <p class="meta">2026-08-03 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Sum of Two Integers</h1>
+    <p class="meta">2026-09-21 <span class="tag">ps</span><span class="tag">bit-wise</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/house-robber/question</p>
-<p>인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시오</p>
+<p>| https://neetcode.io/problems/sum-of-two-integers/question</p>
+<p>덧셈과 뺄셈 없이 두 정수의 합을 구하시오</p>
 
 <h1>푸는 방법</h1>
-<p>dp로 풀면 된다.</p>
-<p>내 위치에서 내가 최대인 방법은</p>
-<ol>
-<li>전 집에서 털고 우리 집을 쉰다</li>
-<li>전 집에서 쉬고 우리 집을 턴다</li>
-</ol>
-<p>둘 중에 최고인 하나를 찾으면 된다.</p>
+<p>전가산기를 만들면 된다.</p>
+<p><img src="assets/Pasted image 20260921123107.png" alt="Pasted image 20260921123107.png"></p>
+<p>(그림 1. 전가산기 수식, 출처: https://namu.wiki/w/%EA%B0%80%EC%82%B0%EA%B8%B0)</p>
 
 <p>다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
-    int rob(vector&lt;int&gt;&amp; nums) {
-        int n = nums.size();
-        if (n&lt;=2) return *max_element(nums.begin(), nums.end());
-        vector&lt;int&gt; dp(n+1, 0);
+    int getSum(int a, int b) {
+        int ranker = 0;
+        int result = 0;
+        for (int i=0; i&lt;32; ++i) {
+            int a_temp = a &amp; 1;
+            int b_temp = b &amp; 1;
 
-        dp[0] = nums[0];        
-        dp[1] = max(nums[0], nums[1]);        
+            int sum = a_temp ^ b_temp ^ ranker;
+            result |= sum &lt;&lt; i;
 
-        for (int i=2; i&lt;n; ++i) {
-            dp[i] = max(dp[i-2] + nums[i], dp[i-1]);
+            ranker = (a_temp &amp; b_temp) | (a_temp &amp; ranker) | (b_temp &amp; ranker);
+            
+            a = a &gt;&gt; 1;
+            b = b &gt;&gt; 1;
         }
 
-        return dp[n-1];
+        return result;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>저 위 두 경우 말고 다른 경우가 있나 싶었는데, 제출해보니까 됐다. ㅋㅋㅋㅋㅋ.</p>
+<p>좋긴 좋은데, 이게 코테에 나올까 싶다...</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span></span><span><a href="../../../../posts/Study/NeetCode/dp/Min Cost Climbing Stairs.html">&larr; Min Cost Climbing Stairs</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/bit_manipulation/Missing Number.html">Missing Number &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 

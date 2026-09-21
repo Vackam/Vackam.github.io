@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Sum of Two Integers</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</guid>
+    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>bit-wise</category>
+    <description>서론 | https://neetcode.io/problems/sum-of-two-integers/question 덧셈과 뺄셈 없이 두 정수의 합을 구하시오 푸는 방법 전가산기를 만들면 된다. (그림 1. 전가산기 수식, 출처: https://namu.wiki/w/%EA%B0%80%EC%82%B0%EA%B8%B0) 다음은 코드이다. class Solution { public: int getSum(int a, int b) { int ranker = 0; int result = 0; for (int i=0; i&amp;lt;32; ++i) { …</description>
+  </item>
+  <item>
     <title>Missing Number</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Missing Number.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Missing Number.html</guid>
@@ -42,15 +51,6 @@
     <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
   </item>
   <item>
-    <title>퐁과 고로 방식</title>
-    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>그래픽스</category>
-    <category>셰이더</category>
-    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
-  </item>
-  <item>
     <title>Single Number</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Single Number.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Single Number.html</guid>
@@ -58,6 +58,15 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/single-number/question 배열에서 다 두 번씩 나오는데, 한 번만 나오는 숫자를 찾으시오. 푸는 방법 XOR 연산으로 누적해서 풀면 된다. 다음은 코드이다. class Solution { public: int singleNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = 0; for (const auto&amp;amp; a : nums) { target ^= a; } return target; } }; 결론 오…</description>
+  </item>
+  <item>
+    <title>퐁과 고로 방식</title>
+    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
+    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
+    <category>그래픽스</category>
+    <category>셰이더</category>
+    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
   </item>
   <item>
     <title>Regular Expression Matching</title>
@@ -69,20 +78,20 @@
     <description>서론 | https://neetcode.io/problems/regular-expression-matching/question .과\*가 있는 문자열이 매칭 되는 지 확인하라 푸는 방법 .은 한 글자 조커이고, \*는 앞의 글자를 [0, inf) 까지 반복할 수 있는 것이다. 앞에서부터 탐색하면서 dp 테이블을 채워나가는데, \*인 경우 한 번 더 사용할 수 있는 지를 체크하고, 아닌 경우…</description>
   </item>
   <item>
-    <title>용의자 심문</title>
-    <link>https://vackam.github.io/posts/Project/매추리/용의자 심문.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/용의자 심문.html</guid>
-    <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>매추리</category>
-    <description>서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. 협박에 너무 쉽게 넘어가는 것 말하면 안되는 정보까지 말하는 것 할루시네이션 하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자. 1. 협박 AI를 심문할 때 가장 좋은 방법이 뭘까? …</description>
-  </item>
-  <item>
     <title>결과 채점</title>
     <link>https://vackam.github.io/posts/Project/매추리/결과 채점.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/결과 채점.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
     <category>매추리</category>
     <description>서론 추리 게임 매추리는 결국 추리를 끝내야만 한다. 추리가 맞았음을 어떻게 판단하는가? 이것에 대한 고민을 서술한다. 본론 게임에서 용의자는 4~5명이다. 만약 범인만 맞추는 게임이라면 단순하게 4번 정도 답을 제출하면 답을 찾게 된다. 이는 우리가 원하는 방향이 아니었다. 유저가 직접 추리하여…</description>
+  </item>
+  <item>
+    <title>용의자 심문</title>
+    <link>https://vackam.github.io/posts/Project/매추리/용의자 심문.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/용의자 심문.html</guid>
+    <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
+    <category>매추리</category>
+    <description>서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. 협박에 너무 쉽게 넘어가는 것 말하면 안되는 정보까지 말하는 것 할루시네이션 하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자. 1. 협박 AI를 심문할 때 가장 좋은 방법이 뭘까? …</description>
   </item>
   <item>
     <title>Burst Balloons</title>
@@ -172,14 +181,6 @@
     <category>mr2s</category>
     <category>졸업과제</category>
     <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 이를 통해 혼잡한 상황(ex…</description>
-  </item>
-  <item>
-    <title>쌍대 구조를 유지한 면분할 알고리즘</title>
-    <link>https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/면 분할 알고리즘.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>졸업과제</category>
-    <description>서론 거대 그래프를 \(k\)개의 면으로 분할하는 방법을 제시한다. 이때 만족해야 하는 조건은 다음과 같다. 면에 속한 정점의 수는 최대한 균등해야 한다. 외곽선이 명확하게 다른 면과 구분되어야 한다. 분할된 면을 정점으로 하는 쌍대 그래프는 dual partite여야 한다. 본론 전제 우선 쌍대 그래프가 dual par…</description>
   </item>
 </channel>
 </rss>
