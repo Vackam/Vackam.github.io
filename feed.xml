@@ -7,6 +7,22 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Reverse Integer</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Integer.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Integer.html</guid>
+    <pubDate>Tue, 22 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <description>서론 | https://neetcode.io/problems/reverse-integer/question?list=neetcode150 주어진 정수를 뒤집는데, 32bit 표현에서 벗어나면 0을 리턴하라 푸는 방법 stoi를 적극적으로 사용하고 에러가 나면 0을 반환한다. 다음은 코드이다. class Solution { public: int reverse(int x) { bool neg = x&amp;lt;0; string s = to_string(x); if (neg) s = s.substr(1); std::reve…</description>
+  </item>
+  <item>
+    <title>2026-09-21</title>
+    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
+    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
+  </item>
+  <item>
     <title>Sum of Two Integers</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</guid>
@@ -42,13 +58,13 @@
     <description>서론 | https://neetcode.io/problems/counting-bits/question bit 개수를 세는 배열을 반환하라 푸는 방법 관건은 1이 추가되었을 때 판정인데, 아예 이걸 회피해 버리면 편하다. 자기 것에서 2를 나눈 dp에서 판정하면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; countBits(int n) { vector&amp;lt;int&amp;gt; dp(n+1, 0); for (int i=1…</description>
   </item>
   <item>
-    <title>Number of 1 Bits</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
+    <title>퐁과 고로 방식</title>
+    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
     <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
+    <category>그래픽스</category>
+    <category>셰이더</category>
+    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
   </item>
   <item>
     <title>Single Number</title>
@@ -60,13 +76,13 @@
     <description>서론 | https://neetcode.io/problems/single-number/question 배열에서 다 두 번씩 나오는데, 한 번만 나오는 숫자를 찾으시오. 푸는 방법 XOR 연산으로 누적해서 풀면 된다. 다음은 코드이다. class Solution { public: int singleNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = 0; for (const auto&amp;amp; a : nums) { target ^= a; } return target; } }; 결론 오…</description>
   </item>
   <item>
-    <title>퐁과 고로 방식</title>
-    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
+    <title>Number of 1 Bits</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
     <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>그래픽스</category>
-    <category>셰이더</category>
-    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
+    <category>ps</category>
+    <category>bit-wise</category>
+    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
   </item>
   <item>
     <title>Regular Expression Matching</title>
@@ -78,12 +94,13 @@
     <description>서론 | https://neetcode.io/problems/regular-expression-matching/question .과\*가 있는 문자열이 매칭 되는 지 확인하라 푸는 방법 .은 한 글자 조커이고, \*는 앞의 글자를 [0, inf) 까지 반복할 수 있는 것이다. 앞에서부터 탐색하면서 dp 테이블을 채워나가는데, \*인 경우 한 번 더 사용할 수 있는 지를 체크하고, 아닌 경우…</description>
   </item>
   <item>
-    <title>결과 채점</title>
-    <link>https://vackam.github.io/posts/Project/매추리/결과 채점.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/결과 채점.html</guid>
+    <title>Burst Balloons</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>매추리</category>
-    <description>서론 추리 게임 매추리는 결국 추리를 끝내야만 한다. 추리가 맞았음을 어떻게 판단하는가? 이것에 대한 고민을 서술한다. 본론 게임에서 용의자는 4~5명이다. 만약 범인만 맞추는 게임이라면 단순하게 4번 정도 답을 제출하면 답을 찾게 된다. 이는 우리가 원하는 방향이 아니었다. 유저가 직접 추리하여…</description>
+    <category>ps</category>
+    <category>dp</category>
+    <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
   </item>
   <item>
     <title>용의자 심문</title>
@@ -94,13 +111,12 @@
     <description>서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. 협박에 너무 쉽게 넘어가는 것 말하면 안되는 정보까지 말하는 것 할루시네이션 하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자. 1. 협박 AI를 심문할 때 가장 좋은 방법이 뭘까? …</description>
   </item>
   <item>
-    <title>Burst Balloons</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</guid>
+    <title>결과 채점</title>
+    <link>https://vackam.github.io/posts/Project/매추리/결과 채점.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/결과 채점.html</guid>
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
+    <category>매추리</category>
+    <description>서론 추리 게임 매추리는 결국 추리를 끝내야만 한다. 추리가 맞았음을 어떻게 판단하는가? 이것에 대한 고민을 서술한다. 본론 게임에서 용의자는 4~5명이다. 만약 범인만 맞추는 게임이라면 단순하게 4번 정도 답을 제출하면 답을 찾게 된다. 이는 우리가 원하는 방향이 아니었다. 유저가 직접 추리하여…</description>
   </item>
   <item>
     <title>Edit Distance</title>
@@ -147,15 +163,6 @@
     <description>서론 매추리 프로젝트에서 제일 중요한 시나리오를 어떻게 생성하는 지 서술한다. 본론 모든 것을 자동화하길 원하기 때문에 시나리오를 생성하는 것은 아주 중요한 일이다. 여기서 말하는 시나리오는 사건의 전반적인 모든 것을 의미하는데, 범인, 증거, 맵(사건 현장), 가구들, 용의자 등이 있다. 한 번…</description>
   </item>
   <item>
-    <title>Target Sum</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Target Sum.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Target Sum.html</guid>
-    <pubDate>Thu, 10 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/target-sum/question 숫자 배열에서 모든 값을 더하거나 빼야할 때 target을 만드는 경우를 세시오. 단 순서가 중요합니다. 푸는 방법 i번째까지 가능한 숫자를 만드는 방법을 기록한다. 이후 i+1을 볼 때 이를 반영해서 만든다. 만약 i번째까지 3을 만드는 방법이 6가지면 i+1번째 값이 …</description>
-  </item>
-  <item>
     <title>매추리 메인</title>
     <link>https://vackam.github.io/posts/Project/매추리/매추리 메인.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/매추리 메인.html</guid>
@@ -165,22 +172,13 @@
     <description>서론 진행했던 프로젝트인 매추리를 복기한다. 하면서 어려웠던 점이나 얻엇던 점들을 정리하자. 메타데이터 기간: 2025.12 ~ 2026.03 인원: 나 포함 두 명 사용 기술: RAG, LangGraph, React, API 호출, 임베딩 도메인: maechuri.com (현재 동작 안함) 본론 왜 만들었는가? AI가 잘되니까 자동 추리 게임을 만들고 싶었다. …</description>
   </item>
   <item>
-    <title>Coin Change II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Coin Change II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Coin Change II.html</guid>
-    <pubDate>Wed, 09 Sep 2026 00:00:00 +0900</pubDate>
+    <title>Target Sum</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Target Sum.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Target Sum.html</guid>
+    <pubDate>Thu, 10 Sep 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/coin-change-ii/question 동전을 중복 조합으로 뽑아서 가능한 경우를 서술하시오 푸는 방법 dp로 풀어야 하는 데 축을 잘 잡아야 한다. for문을 어떻게 도느냐가 중요한데, 코인을 기준으로 돌았다. 코인을 기준으로 돌면서, 1, ... i - 1, i, ... amount 가 있다고 했을 때, i - 1번 코인까지 …</description>
-  </item>
-  <item>
-    <title>졸업과제 총 정리</title>
-    <link>https://vackam.github.io/posts/Project/mr2s/총 정리.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/mr2s/총 정리.html</guid>
-    <pubDate>Tue, 08 Sep 2026 00:00:00 +0900</pubDate>
-    <category>mr2s</category>
-    <category>졸업과제</category>
-    <description>서론 졸업과제가 마무리 되어간다. 한 것들을 정리하자. 메타데이터 기간: 2026-02 ~ 2026-09 참여인원: 본인 이외 네 명 깃헙 주소: https://github.com/quantum-guardians 본론 연구 목적 무방향 그래프의 방향화를 통해 강연결을 유지하면서 모든 정점 간의 거리를 최소로 하는 해를 찾고자 함 이를 통해 혼잡한 상황(ex…</description>
+    <description>서론 | https://neetcode.io/problems/target-sum/question 숫자 배열에서 모든 값을 더하거나 빼야할 때 target을 만드는 경우를 세시오. 단 순서가 중요합니다. 푸는 방법 i번째까지 가능한 숫자를 만드는 방법을 기록한다. 이후 i+1을 볼 때 이를 반영해서 만든다. 만약 i번째까지 3을 만드는 방법이 6가지면 i+1번째 값이 …</description>
   </item>
 </channel>
 </rss>

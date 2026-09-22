@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026-09-21 &mdash; devlog</title>
+    <meta name="description" content="SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>2026-09-21</h1>
+    <p class="meta">2026-09-21 <span class="tag">데일리</span></p>
+
+    <hr>
+
+    <article>
+      <h1>SDL</h1>
+<p>다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다.</p>
+<p>크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다.</p>
+
+<p>모든 프로그램은 <code>while (true)</code>문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지 보수가 불가능한 지경까지 갈 수 있다. </p>
+
+<p>그래서 SDL에서는 프레임워크 자체가 main()을 가지고 있게 하고 이것이 정해준 4개의 함수에서만 조작할 수 있도록 한다. 아두이노 함수 두 개와 비슷하다.</p>
+
+<p>이렇게 하는 이유는 유지보수도 있지만, 플랫폼 때문이다. 브라우저와 ios, 일부 콘솔은 앱이 <code>while (true)</code>로 잡고 있는 것을 허용하지 않는다고 한다. 이것을 sdl이 가지게 하면서 플랫폼 루프에 끼워넣는 등 유연하게 대처할 수 있다고 한다.</p>
+
+
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Daily/9월/2026-09-02.html">2026-09-02 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
