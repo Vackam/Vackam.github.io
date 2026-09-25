@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiral Matrix &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/spiral-matrix/question 행렬을 나선으로 돌아라 푸는 방법 열심히 돌아보자. 다음은 코드…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Spiral Matrix</h1>
+    <p class="meta">2026-09-25 <span class="tag">ps</span><span class="tag">math</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/spiral-matrix/question</p>
+<p>행렬을 나선으로 돌아라</p>
+
+<h1>푸는 방법</h1>
+<p>열심히 돌아보자.</p>
+<p>다음은 코드이다</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+  vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+    vector&lt;int&gt; result;
+
+    int n = matrix.size(), m = matrix[0].size();
+
+    int row_step = m, col_step = n-1;
+    int x = 0, y = -1;
+    int dir = 0;
+
+    // 0 - 오른쪽
+    // 1 - 아래쪽
+    // 2 - 왼쪽
+    // 3 - 위쪽
+
+    while (result.size() &lt; m * n) {
+      switch (dir) {
+        case 0:
+          for (int i=y+1; i&lt;=y+row_step; ++i) {
+            result.push_back(matrix[x][i]);
+          }
+          y += row_step;
+          row_step -= 1;
+          dir = 1;
+          break;
+        case 1:
+          for (int i=x+1; i&lt;=x+col_step; ++i) {
+            result.push_back(matrix[i][y]);
+          }
+          x += col_step;
+          col_step -= 1;
+          dir = 2;
+          break;
+        case 2:
+          for (int i=y-1; i&gt;=y-row_step; --i) {
+            result.push_back(matrix[x][i]);
+          }
+          y -= row_step;
+          row_step -= 1;
+          dir = 3;
+          break;
+        case 3:
+          for (int i=x-1; i&gt;=x-col_step; --i) {
+            result.push_back(matrix[i][y]);
+          }
+          x -= col_step;
+          col_step -= 1;
+          dir = 0;
+          break;
+      }
+    }
+    return result;
+  }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>대체 왜 수학하고 연관있는 건지 모르겠다...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Math&Geometry/Rotate Image.html">Rotate Image &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
