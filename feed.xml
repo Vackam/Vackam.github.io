@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Set Matrix Zeroes</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Set Matrix Zeroes.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Set Matrix Zeroes.html</guid>
+    <pubDate>Sat, 26 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>math</category>
+    <description>서론 | https://neetcode.io/problems/set-zeroes-in-matrix/question 0으로 크레이지 아케이드를 해보자. 푸는 방법 새로 덮어쓴 0을 카운팅 안하고 어떻게 영향을 끼칠 것인지 고민해야 한다. 당연히 단순하게 queue에 전부 박아 놓은 다음 푸는 방식이 있다. 하지만, 문제에서는 공간복잡도 O(1) 을 하라고 권장하기에 더 생…</description>
+  </item>
+  <item>
     <title>Spiral Matrix</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Spiral Matrix.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Spiral Matrix.html</guid>
@@ -112,14 +121,6 @@
     <description>서론 | https://neetcode.io/problems/regular-expression-matching/question .과\*가 있는 문자열이 매칭 되는 지 확인하라 푸는 방법 .은 한 글자 조커이고, \*는 앞의 글자를 [0, inf) 까지 반복할 수 있는 것이다. 앞에서부터 탐색하면서 dp 테이블을 채워나가는데, \*인 경우 한 번 더 사용할 수 있는 지를 체크하고, 아닌 경우…</description>
   </item>
   <item>
-    <title>결과 채점</title>
-    <link>https://vackam.github.io/posts/Project/매추리/결과 채점.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/결과 채점.html</guid>
-    <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>매추리</category>
-    <description>서론 추리 게임 매추리는 결국 추리를 끝내야만 한다. 추리가 맞았음을 어떻게 판단하는가? 이것에 대한 고민을 서술한다. 본론 게임에서 용의자는 4~5명이다. 만약 범인만 맞추는 게임이라면 단순하게 4번 정도 답을 제출하면 답을 찾게 된다. 이는 우리가 원하는 방향이 아니었다. 유저가 직접 추리하여…</description>
-  </item>
-  <item>
     <title>용의자 심문</title>
     <link>https://vackam.github.io/posts/Project/매추리/용의자 심문.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/용의자 심문.html</guid>
@@ -135,6 +136,14 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
+  </item>
+  <item>
+    <title>결과 채점</title>
+    <link>https://vackam.github.io/posts/Project/매추리/결과 채점.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/매추리/결과 채점.html</guid>
+    <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
+    <category>매추리</category>
+    <description>서론 추리 게임 매추리는 결국 추리를 끝내야만 한다. 추리가 맞았음을 어떻게 판단하는가? 이것에 대한 고민을 서술한다. 본론 게임에서 용의자는 4~5명이다. 만약 범인만 맞추는 게임이라면 단순하게 4번 정도 답을 제출하면 답을 찾게 된다. 이는 우리가 원하는 방향이 아니었다. 유저가 직접 추리하여…</description>
   </item>
   <item>
     <title>Edit Distance</title>
@@ -162,15 +171,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/longest-increasing-path-in-matrix/question 가장 긴 증가하는 path를 찾으시오 푸는 방법 큰 값부터 하나씩 더해가면서 dp로 풀었다. 다음은 코드이다. using pii = pair&amp;lt;int, int&amp;gt;; class Solution { public: int longestIncreasingPath(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; matrix) { int n = matrix.size(), m = matrix[0].size(); in…</description>
-  </item>
-  <item>
-    <title>Interleaving String</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Interleaving String.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Interleaving String.html</guid>
-    <pubDate>Fri, 11 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/interleaving-string/question 주어진 두 개의 문자열을 모두 소진하여 목표하는 문자열을 만들 수 있는 지 판별하라 푸는 방법 2차원 dp로 풀면 된다. dp[i][j] = a[i]와 b[j]까지 써서 target[i+j-1] 까지 만들 수 있는가? 로 생각하고 풀면 된다. 이렇게 풀어야 하는 이유는 동일 문자가 나왔을…</description>
   </item>
   <item>
     <title>시나리오 생성</title>

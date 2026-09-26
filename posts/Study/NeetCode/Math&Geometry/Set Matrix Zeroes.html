@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Matrix Zeroes &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/set-zeroes-in-matrix/question 0으로 크레이지 아케이드를 해보자. 푸는 방법 새로 덮어쓴 0…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Set Matrix Zeroes</h1>
+    <p class="meta">2026-09-26 <span class="tag">ps</span><span class="tag">math</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/set-zeroes-in-matrix/question</p>
+<p>0으로 크레이지 아케이드를 해보자.</p>
+
+<h1>푸는 방법</h1>
+<p>새로 덮어쓴 0을 카운팅 안하고 어떻게 영향을 끼칠 것인지 고민해야 한다.</p>
+<p>당연히 단순하게 queue에 전부 박아 놓은 다음 푸는 방식이 있다.</p>
+<p>하지만, 문제에서는 공간복잡도<code>O(1)</code>을 하라고 권장하기에 더 생각을 해보자.</p>
+
+<p>queue로 가면 최악의 경우 <code>O(m*n)</code>이다. <code>O(m+n)</code>으로 풀려면 <code>rows[i], cols[i]</code>로 배열을 만들어서 여기가 0인 지 아닌 지를 판단하게 하면 된다.</p>
+<p>이걸 활용해서 주어진 <code>matrix</code> 자체를 체커로 사용하면 된다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    void setZeroes(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
+        int m = matrix.size(), n = matrix[0].size();
+        bool col0 = false;  // 0번 열 전체를 0으로 만들어야 하는지
+
+        // 1) 마킹
+        for (int i = 0; i &lt; m; ++i) {
+            if (matrix[i][0] == 0) col0 = true;
+            for (int j = 1; j &lt; n; ++j) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+
+        // 2) 역순으로 채우기 (0행이 마지막에 처리되도록)
+        for (int i = m - 1; i &gt;= 0; --i) {
+            for (int j = n - 1; j &gt;= 1; --j) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                    matrix[i][j] = 0;
+            }
+            if (col0) matrix[i][0] = 0;
+        }
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>이게 왜 수학일까 궁금하다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Math&Geometry/Spiral Matrix.html">Spiral Matrix &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
