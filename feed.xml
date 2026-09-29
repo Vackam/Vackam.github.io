@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Pow(x, n)</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Pow(x, n).html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Pow(x, n).html</guid>
+    <pubDate>Tue, 29 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>math</category>
+    <description>서론 | https://neetcode.io/problems/pow-x-n/question 거듭제곱하는 함수를 만들어라 푸는 방법 정석은 재귀로 풀어야 한다. 재귀로 풀게 되면 곱하는 횟수가 log(n)회가 되므로 시간도 줄고 정확하게 판정할 수 있게 된다. 하지만, neet code는 조금 널널해서 조금은 더럽게 풀어봤다. 1인 특이케이스를 제외하고, INT_MIN…</description>
+  </item>
+  <item>
     <title>Plus One</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Plus One.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Plus One.html</guid>
@@ -171,15 +180,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/edit-distance/question 문자열 a, b가 있을 때 삽입, 삭제, 대체가 무한번 가능한 경우 a로 b를 만드는 최소 변경 횟수를 구하시오 푸는 방법 dp와 dfs를 섞어서 풀어야 한다. 우선 2d-dp를 세우고 이거에 대한 해석을 다음과 같이 한다. dp[i][j]는 a에서 i만큼 탐색하고, b에서 j만큼 탐색했…</description>
-  </item>
-  <item>
-    <title>Distinct Subsequences</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Distinct Subsequences.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Distinct Subsequences.html</guid>
-    <pubDate>Sun, 13 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/count-subsequences/question 만들 수 있는 구별되는 subsequence의 개수를 세어라 푸는 방법 dp[j] = 타겟 문자열의 j번째까지 만드는 경우의 수 라고 가정하고, dp를 거꾸로 돌면서 순회하면 된다. dp를 거꾸로 순회하는 이유는 같은 문자의 경우 업뎃이 값의 영향을 끼치기 때문이다. 다음…</description>
   </item>
 </channel>
 </rss>

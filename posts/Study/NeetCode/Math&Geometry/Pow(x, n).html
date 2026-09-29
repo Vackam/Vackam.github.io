@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pow(x, n) &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/pow-x-n/question 거듭제곱하는 함수를 만들어라 푸는 방법 정석은 재귀로 풀어야 한다. …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']],
+           displayMath: [['$$','$$'],['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Pow(x, n)</h1>
+    <p class="meta">2026-09-29 <span class="tag">ps</span><span class="tag">math</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://neetcode.io/problems/pow-x-n/question</p>
+<p>거듭제곱하는 함수를 만들어라</p>
+
+<h1>푸는 방법</h1>
+<p>정석은 재귀로 풀어야 한다.</p>
+<p>재귀로 풀게 되면 곱하는 횟수가 log(n)회가 되므로 시간도 줄고 정확하게 판정할 수 있게 된다.</p>
+<p>하지만, neet code는 조금 널널해서 조금은 더럽게 풀어봤다.</p>
+
+<p>1인 특이케이스를 제외하고, INT_MIN의 절대값과 INT_MAX의 절대값이 차이나는 경우만 해결해 주었다.</p>
+
+<p>다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    double myPow(double x, int n) {
+        // 예외
+        if (x == 1.0) return x;
+        if (x == -1.0) {
+            if (n % 2 == 0) return 1.0;
+            else return -1.0;
+        }
+
+        if (n == 0) {
+            return 1.0;
+        } else if (n &lt; 0) {
+            double result = 1;
+            if (n == INT_MIN) {
+                // 이때는 치환이 안되니까, MAX까지 돌고 해야함.
+                // 근데 1보다 작은 값은 어차피 0이 되니까 값을 보고 판단하자.
+                if (1/x &lt; 1) return 0.0;
+            }
+            n = -n;
+            x = 1/x;
+            for (int i=0; i&lt;n; ++i) {
+                result *= x;
+            }
+            return result;
+        } else {
+            double result = 1;
+            for (int i=0; i&lt;n; ++i) {
+                result *= x;
+            }
+
+            return result;
+        } 
+
+        return 1.0;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p>이상한 게, \(1^{INT\_MAX}\)는 시간 초과가 나고, \(2^{INT\_MIN}\)은 시간 초과가 안난다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Math&Geometry/Plus One.html">Plus One &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
