@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Multiply Strings</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Multiply Strings.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Multiply Strings.html</guid>
+    <pubDate>Wed, 30 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>math</category>
+    <description>서론 | https://neetcode.io/problems/multiply-strings/question 내장된 함수를 사용하지 말고 곱셈을 구현하라 푸는 방법 num1[i] * num2[j] 의 결과는 i+j+1 자리에 기여하는 것을 염두에 두고 풀면 된다. 다음은 코드이다 class Solution { public: string multiply(const string&amp;amp; num1, const string&amp;amp; num2) { if (num1 == &quot;0&quot; || num2 == &quot;0&quot;) return &quot;0&quot;; i…</description>
+  </item>
+  <item>
     <title>Pow(x, n)</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Pow(x, n).html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Pow(x, n).html</guid>
@@ -69,6 +78,14 @@
     <description>서론 | https://neetcode.io/problems/reverse-integer/question?list=neetcode150 주어진 정수를 뒤집는데, 32bit 표현에서 벗어나면 0을 리턴하라 푸는 방법 stoi를 적극적으로 사용하고 에러가 나면 0을 반환한다. 다음은 코드이다. class Solution { public: int reverse(int x) { bool neg = x&amp;lt;0; string s = to_string(x); if (neg) s = s.substr(1); std::reve…</description>
   </item>
   <item>
+    <title>2026-09-21</title>
+    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
+    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
+  </item>
+  <item>
     <title>Sum of Two Integers</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</guid>
@@ -76,14 +93,6 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/sum-of-two-integers/question 덧셈과 뺄셈 없이 두 정수의 합을 구하시오 푸는 방법 전가산기를 만들면 된다. (그림 1. 전가산기 수식, 출처: https://namu.wiki/w/%EA%B0%80%EC%82%B0%EA%B8%B0) 다음은 코드이다. class Solution { public: int getSum(int a, int b) { int ranker = 0; int result = 0; for (int i=0; i&amp;lt;32; ++i) { …</description>
-  </item>
-  <item>
-    <title>2026-09-21</title>
-    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
-    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
   </item>
   <item>
     <title>Missing Number</title>
@@ -112,15 +121,6 @@
     <description>서론 | https://neetcode.io/problems/counting-bits/question bit 개수를 세는 배열을 반환하라 푸는 방법 관건은 1이 추가되었을 때 판정인데, 아예 이걸 회피해 버리면 편하다. 자기 것에서 2를 나눈 dp에서 판정하면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; countBits(int n) { vector&amp;lt;int&amp;gt; dp(n+1, 0); for (int i=1…</description>
   </item>
   <item>
-    <title>Number of 1 Bits</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
-  </item>
-  <item>
     <title>퐁과 고로 방식</title>
     <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
@@ -137,6 +137,15 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/single-number/question 배열에서 다 두 번씩 나오는데, 한 번만 나오는 숫자를 찾으시오. 푸는 방법 XOR 연산으로 누적해서 풀면 된다. 다음은 코드이다. class Solution { public: int singleNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = 0; for (const auto&amp;amp; a : nums) { target ^= a; } return target; } }; 결론 오…</description>
+  </item>
+  <item>
+    <title>Number of 1 Bits</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
+    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>bit-wise</category>
+    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
   </item>
   <item>
     <title>Regular Expression Matching</title>
@@ -171,15 +180,6 @@
     <category>ps</category>
     <category>dp</category>
     <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
-  </item>
-  <item>
-    <title>Edit Distance</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Edit Distance.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Edit Distance.html</guid>
-    <pubDate>Mon, 14 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/edit-distance/question 문자열 a, b가 있을 때 삽입, 삭제, 대체가 무한번 가능한 경우 a로 b를 만드는 최소 변경 횟수를 구하시오 푸는 방법 dp와 dfs를 섞어서 풀어야 한다. 우선 2d-dp를 세우고 이거에 대한 해석을 다음과 같이 한다. dp[i][j]는 a에서 i만큼 탐색하고, b에서 j만큼 탐색했…</description>
   </item>
 </channel>
 </rss>
