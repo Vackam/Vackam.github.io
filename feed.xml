@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Detect Squares</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Detect Squares.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Detect Squares.html</guid>
+    <pubDate>Fri, 02 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>math</category>
+    <description>서론 | https://neetcode.io/problems/count-squares/question 만들 수 있는 정사각형의 개수를 세라 푸는 방법 1000이 상한선 이므로, 1000 * 1000 이차원 배열을 구성한다. 이후 점을 축적하고, count 시에는 각 점의 개수를 곱함으로 가능한 정사각형의 개수를 구할 수 있다. 다음은 코드이다. class CountSquares { vector&amp;lt;vector&amp;lt;i…</description>
+  </item>
+  <item>
     <title>Multiply Strings</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Multiply Strings.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Multiply Strings.html</guid>
@@ -121,15 +130,6 @@
     <description>서론 | https://neetcode.io/problems/counting-bits/question bit 개수를 세는 배열을 반환하라 푸는 방법 관건은 1이 추가되었을 때 판정인데, 아예 이걸 회피해 버리면 편하다. 자기 것에서 2를 나눈 dp에서 판정하면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; countBits(int n) { vector&amp;lt;int&amp;gt; dp(n+1, 0); for (int i=1…</description>
   </item>
   <item>
-    <title>퐁과 고로 방식</title>
-    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>그래픽스</category>
-    <category>셰이더</category>
-    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
-  </item>
-  <item>
     <title>Single Number</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Single Number.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Single Number.html</guid>
@@ -146,6 +146,15 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
+  </item>
+  <item>
+    <title>퐁과 고로 방식</title>
+    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
+    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
+    <category>그래픽스</category>
+    <category>셰이더</category>
+    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
   </item>
   <item>
     <title>Regular Expression Matching</title>
@@ -171,15 +180,6 @@
     <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
     <category>매추리</category>
     <description>서론 매추리 게임에서 용의자 심문에 대해 서술한 문서이다. 본론 AI 심문에서 문제되는 점은 크게 3가지가 있다. 협박에 너무 쉽게 넘어가는 것 말하면 안되는 정보까지 말하는 것 할루시네이션 하나하나 뜯어보며 우리가 어떻게 풀어냈는 지 제시해보자. 1. 협박 AI를 심문할 때 가장 좋은 방법이 뭘까? …</description>
-  </item>
-  <item>
-    <title>Burst Balloons</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/2d_dp/Burst Balloons.html</guid>
-    <pubDate>Tue, 15 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>dp</category>
-    <description>서론 | https://neetcode.io/problems/burst-balloons/question 풍선을 터뜨리면 터뜨린 풍선과 양 옆 값을 곱한 값을 얻을 수 있는데, 모든 풍선을 터뜨리어 해당 값의 최댓값을 찾으시오 푸는 방법 보자마자 dp 지만, 어려운 dp 답게 거꾸로 생각해야 한다. 만약 dp 테이블을 터뜨리면서 채워나가고자 하면 값이 뒤섞여 dp…</description>
   </item>
 </channel>
 </rss>
