@@ -7,6 +7,33 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Majority Element</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
+  </item>
+  <item>
+    <title>Design Hashset</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design Hashset.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design Hashset.html</guid>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/design-hashset/question 해쉬셋을 만들어라 푸는 방법 그냥 unordered_set을 사용해서 풀었다. 정석 풀이는 set은 중복값을 허용하지 않으므로, vector&amp;lt;bool&amp;gt; 을 사용해서 해결하면 된다. 결론 간단하다. 뭔가 더 제약이 있으면 좋겠다.</description>
+  </item>
+  <item>
+    <title>Design HashMap</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design HashMap.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design HashMap.html</guid>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/design-hashmap/question 해쉬맵을 만들어라 푸는 방법 Design Hashset 과 동일하게 풀었다. 다음은 코드이다. class MyHashMap { vector&amp;lt;int&amp;gt; v; public: MyHashMap() : v(1000001, -1) {} void put(int key, int value) { v[key] = value; } int get(int key) { return v[key]; } void remove(int key) { v[key] = -1; } }; 결론</description>
+  </item>
+  <item>
     <title>Remove Element</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Remove Element.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Remove Element.html</guid>
@@ -114,6 +141,14 @@
     <description>서론 | https://neetcode.io/problems/reverse-integer/question?list=neetcode150 주어진 정수를 뒤집는데, 32bit 표현에서 벗어나면 0을 리턴하라 푸는 방법 stoi를 적극적으로 사용하고 에러가 나면 0을 반환한다. 다음은 코드이다. class Solution { public: int reverse(int x) { bool neg = x&amp;lt;0; string s = to_string(x); if (neg) s = s.substr(1); std::reve…</description>
   </item>
   <item>
+    <title>2026-09-21</title>
+    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
+    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
+  </item>
+  <item>
     <title>Sum of Two Integers</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</guid>
@@ -121,14 +156,6 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/sum-of-two-integers/question 덧셈과 뺄셈 없이 두 정수의 합을 구하시오 푸는 방법 전가산기를 만들면 된다. (그림 1. 전가산기 수식, 출처: https://namu.wiki/w/%EA%B0%80%EC%82%B0%EA%B8%B0) 다음은 코드이다. class Solution { public: int getSum(int a, int b) { int ranker = 0; int result = 0; for (int i=0; i&amp;lt;32; ++i) { …</description>
-  </item>
-  <item>
-    <title>2026-09-21</title>
-    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
-    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
   </item>
   <item>
     <title>Missing Number</title>
@@ -155,33 +182,6 @@
     <category>ps</category>
     <category>bit-wise</category>
     <description>서론 | https://neetcode.io/problems/counting-bits/question bit 개수를 세는 배열을 반환하라 푸는 방법 관건은 1이 추가되었을 때 판정인데, 아예 이걸 회피해 버리면 편하다. 자기 것에서 2를 나눈 dp에서 판정하면 된다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; countBits(int n) { vector&amp;lt;int&amp;gt; dp(n+1, 0); for (int i=1…</description>
-  </item>
-  <item>
-    <title>Single Number</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Single Number.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Single Number.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/single-number/question 배열에서 다 두 번씩 나오는데, 한 번만 나오는 숫자를 찾으시오. 푸는 방법 XOR 연산으로 누적해서 풀면 된다. 다음은 코드이다. class Solution { public: int singleNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = 0; for (const auto&amp;amp; a : nums) { target ^= a; } return target; } }; 결론 오…</description>
-  </item>
-  <item>
-    <title>Number of 1 Bits</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Number of 1 Bits.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/number-of-one-bits/question bit에서 1인 bit의 개수를 세시오 푸는 방법 정직하게 세면 된다. 다음은 코드이다 class Solution { public: int hammingWeight(uint32_t n) { int counter = 0; while (n &amp;gt; 0) { if (n &amp;amp; 1) counter++; n = n &amp;gt;&amp;gt; 1; } return counter; } }; 결론 단순한 비트 연산이다.</description>
-  </item>
-  <item>
-    <title>퐁과 고로 방식</title>
-    <link>https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/Graphics/퐁과 고로고로.html</guid>
-    <pubDate>Thu, 17 Sep 2026 00:00:00 +0900</pubDate>
-    <category>그래픽스</category>
-    <category>셰이더</category>
-    <description>서론 그래픽스를 공부하면서 퐁 셰이딩과 고로 셰이딩 방식을 공부했다. 이를 전반적으로 정리해보자. (사실 아직 몰라서 이해가 안 가는 부분이 대부분이다.) 셰이더가 필요한 부분을 설명하고, 퐁과 고로가 서로 어떻게 셰이딩하는 지 서술한다. 본론 셰이더는 무엇이고 왜 필요할까? 셰이더는 3차원에…</description>
   </item>
 </channel>
 </rss>

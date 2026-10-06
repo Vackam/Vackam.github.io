@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>House Robber &mdash; devlog</title>
-    <meta name="description" content="서론 | https://neetcode.io/problems/house-robber/question 인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시…">
+    <title>Majority Element &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 …">
     <link rel="stylesheet" href="../../../../style.css">
     <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
     <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
@@ -18,54 +18,54 @@
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
-    <h1>House Robber</h1>
-    <p class="meta">2026-08-03 <span class="tag">ps</span><span class="tag">dp</span></p>
+    <h1>Majority Element</h1>
+    <p class="meta">2026-10-06 <span class="tag">ps</span><span class="tag">array</span></p>
 
     <hr>
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/house-robber/question</p>
-<p>인접한 집을 강탈할 수 없을 때, 최대한 집을 강탈할 방법을 찾으시오</p>
+<p>| https://neetcode.io/problems/majority-element/question</p>
+<p>과반수 넘게 존재하는 원소를 찾아라</p>
 
 <h1>푸는 방법</h1>
-<p>dp로 풀면 된다.</p>
-<p>내 위치에서 내가 최대인 방법은</p>
-<ol>
-<li>전 집에서 털고 우리 집을 쉰다</li>
-<li>전 집에서 쉬고 우리 집을 턴다</li>
-</ol>
-<p>둘 중에 최고인 하나를 찾으면 된다.</p>
+<p>무조건 과반수 넘는 게 있다고 한다.</p>
+<p>이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다.</p>
 
-<p>다음은 코드이다.</p>
-
+<p>다음은 코드이다</p>
 <pre><code class="language-cpp">class Solution {
 public:
-    int rob(vector&lt;int&gt;&amp; nums) {
-        int n = nums.size();
-        if (n&lt;=2) return *max_element(nums.begin(), nums.end());
-        vector&lt;int&gt; dp(n+1, 0);
+    int majorityElement(vector&lt;int&gt;&amp; nums) {
+        int target = nums[0];
+        int count = 1;
+        
+        for (int i=1; i&lt;nums.size(); ++i) {
+            if (target == nums[i]) {
+                count++;
+            } else {
+                count--;
+            }
 
-        dp[0] = nums[0];        
-        dp[1] = max(nums[0], nums[1]);        
-
-        for (int i=2; i&lt;n; ++i) {
-            dp[i] = max(dp[i-2] + nums[i], dp[i-1]);
+            if (count == 0) {
+                target = nums[i];
+                count = 1;
+            }
         }
 
-        return dp[n-1];
+        return target;
     }
 };
 </code></pre>
 
 <h1>결론</h1>
-<p>저 위 두 경우 말고 다른 경우가 있나 싶었는데, 제출해보니까 됐다. ㅋㅋㅋㅋㅋ.</p>
+<p>저 알고리즘이 과반수 넘는 수에 대해서 무조건 가능하기 때문에 성립한다.</p>
+<p><code>Boyer-Moore Majority Vote Algorithm</code> 이라고 한다.</p>
 
     </article>
 
     <hr>
 
-    <nav class="post-nav"><span></span><span><a href="../../../../posts/Study/NeetCode/dp/Min Cost Climbing Stairs.html">&larr; Min Cost Climbing Stairs</a></span></nav>
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Array&Hashing/Design Hashset.html">Design Hashset &rarr;</a></span><span></span></nav>
 
     <p><a href="../../../../posts.html">&larr; back</a></p>
 
