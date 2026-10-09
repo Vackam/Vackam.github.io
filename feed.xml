@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Best Time to Buy and Sell Stock II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Best Time to Buy and Sell Stock II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Best Time to Buy and Sell Stock II.html</guid>
+    <pubDate>Fri, 09 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/best-time-to-buy-and-sell-stock-ii/question 주식을 잘 살 수 있도록 하자 푸는 방법 당일에 사고 파는 것이 가능하다. 그러므로 최대 이익은 숫자가 오르는 구간의 모든 값을 더하면 된다. 다음은 코드이다. class Solution { public: int maxProfit(vector&amp;lt;int&amp;gt;&amp;amp; prices) { int profit = 0; for (int i=1; i&amp;…</description>
+  </item>
+  <item>
     <title>Range Sum Query 2D Immutable</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Range Sum Query 2D Immutable.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Range Sum Query 2D Immutable.html</guid>
@@ -150,14 +159,6 @@
     <description>서론 | https://neetcode.io/problems/reverse-integer/question?list=neetcode150 주어진 정수를 뒤집는데, 32bit 표현에서 벗어나면 0을 리턴하라 푸는 방법 stoi를 적극적으로 사용하고 에러가 나면 0을 반환한다. 다음은 코드이다. class Solution { public: int reverse(int x) { bool neg = x&amp;lt;0; string s = to_string(x); if (neg) s = s.substr(1); std::reve…</description>
   </item>
   <item>
-    <title>2026-09-21</title>
-    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
-    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
-    <category>데일리</category>
-    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
-  </item>
-  <item>
     <title>Sum of Two Integers</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</guid>
@@ -167,21 +168,20 @@
     <description>서론 | https://neetcode.io/problems/sum-of-two-integers/question 덧셈과 뺄셈 없이 두 정수의 합을 구하시오 푸는 방법 전가산기를 만들면 된다. (그림 1. 전가산기 수식, 출처: https://namu.wiki/w/%EA%B0%80%EC%82%B0%EA%B8%B0) 다음은 코드이다. class Solution { public: int getSum(int a, int b) { int ranker = 0; int result = 0; for (int i=0; i&amp;lt;32; ++i) { …</description>
   </item>
   <item>
+    <title>2026-09-21</title>
+    <link>https://vackam.github.io/posts/Daily/9월/2026-09-21.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/9월/2026-09-21.html</guid>
+    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>SDL 다양한 기기에 접근하게 해줄 수 있는 유용한 도구이다. 크로스 플랫폼이 가능하여 다양한 곳에 많이 활용된다고 한다. 모든 프로그램은 while (true) 문이 존재한다. 그래야지 프로그램이 꺼지지 않고 동작할 수 있다. 하지만, main에 선언한 뒤에 코드를 추가하다 보면 너무 길어지고 무거워져 결국 유지…</description>
+  </item>
+  <item>
     <title>Missing Number</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Missing Number.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Missing Number.html</guid>
     <pubDate>Sun, 20 Sep 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <description>서론 | https://neetcode.io/problems/missing-number/question 배열에서 빠진 숫자가 하나 있는데, 이를 찾아라 푸는 방법 1~n까지 더한 다음 배열을 탐색하면서 하나씩 빼면 답이 나온다. 다음은 코드이다. class Solution { public: int missingNumber(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); int result = ((n + 1) * n) / 2; for (const auto&amp;amp; a …</description>
-  </item>
-  <item>
-    <title>Reverse Bits</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Bits.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Bits.html</guid>
-    <pubDate>Sat, 19 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/reverse-bits/question bit를 거울 반전 시키시오 푸는 방법 마스킹 밀고 앤드 연산 하기 이걸 정직하게 하면 된다. class Solution { public: uint32_t reverseBits(uint32_t n) { uint32_t result = 0; for (int i=0; i&amp;lt;32; ++i) { result = (result &amp;lt;&amp;lt; 1) | (n &amp;amp; 1); n &amp;gt;&amp;gt;= 1; } return result; } }; 결론 bit 마스킹 하는…</description>
   </item>
 </channel>
 </rss>
