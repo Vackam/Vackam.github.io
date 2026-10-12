@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소프트 뱅크 해커톤 프로젝트 &mdash; devlog</title>
+    <meta name="description" content="서론 | https://github.com/SoftBank-Hackathon-2026-in-Korea-Gold/SoftBank-Hackathon-2026-in-Korea 소프트뱅크 해커톤 2026 부산에서 진행…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>소프트 뱅크 해커톤 프로젝트</h1>
+    <p class="meta">2026-10-12 <span class="tag">소프트뱅크</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p>| https://github.com/SoftBank-Hackathon-2026-in-Korea-Gold/SoftBank-Hackathon-2026-in-Korea</p>
+
+<p>소프트뱅크 해커톤 2026 부산에서 진행한 프로젝트 중 analyzer 파트와 에러 탐지에 부분에 대한 설명을 적는다. </p>
+
+<p>본 프로젝트는 다음과 같은 기능을 한다.</p>
+<ol>
+<li>사용자 코드 정적 분석</li>
+<li>적절한 서비스로 자동 배포</li>
+<li>LB 자동 시스템 및 GCP, AWS, Oracle 중 여유로운 곳에 자동 배포</li>
+<li>블루 - 그린 배포 지원</li>
+<li>배포 이후 지속적 관리 지원</li>
+</ol>
+
+<p>이 중 코드 분석, 서비스, 에러 탐지 파트에 대해서 설명한다.</p>
+
+<h1>본론</h1>
+<p>클라우드 서비스는 현대 사회에서 아주 중요하다. 24시간 항상 모든 자원을 사용하여 불필요한 낭비를 만드는 것보다, 사용한 만큼 비용을 지불하는 것이 합리적이기 때문이다. 물론 이 밖에 이유도 많을 것이다.</p>
+<p>그럼 초보 개발자 입장에서 어떤 서비스를 이용해야 하는 지 바로 판단할 수 있을까? </p>
+
+<p>다음은 구글에서 정리한 서비스 목록이다.</p>
+<p>https://cloud.google.com/learn/paas-vs-iaas-vs-saas?hl=ko</p>
+
+<p>각 서비스에는 장단점이 존재한다. 그리고 당연히 개인의 취향도 존재하기 때문에 어떤 서비스를 강하게 추천할 수는 없다. 그렇기 때문에 이런 문제를 해결하고자 analyzer 파트가 본 프로젝트에 존재한다.</p>
+
+<p>Analyzer는 프로젝트 코드를 입력 받으면 정적 규칙으로 탐색해 해당 서비스가 어떤 제약 조건을 달고 있는 지 확인한다. 예를 들어 Os 의존적인 코드가 있는 지, 정적 path 가 존재하여 이를 사용하는 지 등을 파악한다.</p>
+<p>이렇게 파악한 결과를 Jev API에 넘겨주어 빠르게 해당 서비스가 어디에 적합한 지를 판단하게 된다.</p>
+<p>이후 Dockerfile과 코드를 다시 한 번 분석하여 해당 코드가 악성 코드인 지, 배포에서 막힐 만한 부분들을 판단하게 된다.</p>
+
+<p>장애 대처에서도 Jev를 사용하여 빠르게 판단하게 된다.</p>
+
+<p>우리 서비스에서 배포된 앱에 3초마다 한 번씩 신호를 보내게 되어 잘 작동되고 있는 지를 확인한다. 만약 에러가 발생했으면, 해당 에러가 심각한 지, 고칠 수 있는 지, 어떤 방식으로 고치는 지를 Jev가 세 번 돌아서 확인하게 된다.</p>
+
+<h1>결론</h1>
+<p>사실 바이브 코딩이 거의 대부분이라서 말로 설명하는 것이 조금 부끄럽다. </p>
+
+<p>지금와서 생각하는 문제점은 Analyzer가 너무 당연한 것들을 판단한다는 점이다. 정적 path, web-socket 등으로 어떤 서비스를 띄울 것인 지 결정하는 것은 굳이 llm이 하지 않아도 된다. 사람이 ctrl+f 로 찾으면 되는 거 아닌가. </p>
+<p>그래서 이런 정적인 기준 보다도, 사용자의 예산, 어떤 방식으로 사용될 것인 지 등을 입력 받아서 고려한 후 출력하는 것이 보다 더 좋은 방향이었다고 생각이 된다.</p>
+
+<p>그리고 내 파트는 아니지만, 이후 배포된 앱 관리 파트가 아쉬웠다.</p>
+<p>처음 본인의 기획은 배포 되어 있는 것들을 레고와 같이 조립하여서 하나로 다시 배포하는 기능을 기획했었다. 예를 들어 local에서 작업하고 있는 레고 블록 하나를 drag & drop으로 클라우드에 두면 바로 배포가 되고, 자동으로 해당 db와 붙여지는 그런 그림을 원했다. </p>
+<p>또한, 어떤 s3와 같은 db를 원할 때는 db를 선으로 연결하면 바로 접속이 되는 형태를 생각했다.</p>
+<p>하지만, 현 프로젝트는 그냥 떠있다는 것만 알려주고 끝나서 그 부분이 아쉽다.</p>
+
+<p>좋은 경험이었다. 클라우드 배포에 대해 아무 생각이 없이 이용만 하고 있었는데, 더욱 깊게 생각하게 해주는 좋은 경험이었다.</p>
+
+    </article>
+
+    <hr>
+
+    
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>

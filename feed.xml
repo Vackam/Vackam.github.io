@@ -16,6 +16,14 @@
     <description>서론 부산에서 열린 소프트뱅크 해커톤 2026 참가 후기이다. 본론 대회는 사전 안내인 킥오프 포함 일주일 정도 진행되었다. 킥오프에서 팀이 선정되고, 이후 알아서 개발하다가 토요일, 일요일 양일 대면으로 진행하는 방식이다. 해커톤 치고는 개발 시간이 많은 게 특징이다. 우리 팀은 양일만 대면으로…</description>
   </item>
   <item>
+    <title>소프트 뱅크 해커톤 프로젝트</title>
+    <link>https://vackam.github.io/posts/Project/SoftBank-Hackathon/소뱅 해커톤 기술 정리.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Project/SoftBank-Hackathon/소뱅 해커톤 기술 정리.html</guid>
+    <pubDate>Mon, 12 Oct 2026 00:00:00 +0900</pubDate>
+    <category>소프트뱅크</category>
+    <description>서론 | https://github.com/SoftBank-Hackathon-2026-in-Korea-Gold/SoftBank-Hackathon-2026-in-Korea 소프트뱅크 해커톤 2026 부산에서 진행한 프로젝트 중 analyzer 파트와 에러 탐지에 부분에 대한 설명을 적는다. 본 프로젝트는 다음과 같은 기능을 한다. 사용자 코드 정적 분석 적절한 서비스로 자동 배포 LB 자동 시스템 및 GCP, AWS,…</description>
+  </item>
+  <item>
     <title>Majority Element II</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element II.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element II.html</guid>
@@ -43,15 +51,6 @@
     <description>서론 | https://neetcode.io/problems/range-sum-query-2d-immutable/question 주어진 사각형의 합을 구하라 푸는 방법 sumRegion 이 들어오면 계산을 하면 되겠지만, 이 문제에서는 O(1) 을 요구한다. 그러면 누적합으로 풀면 된다. 다음은 코드이다. class NumMatrix { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; numeric_sum; public: NumMatrix(vector&amp;lt;vector&amp;lt;int…</description>
   </item>
   <item>
-    <title>Majority Element</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
-    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
-  </item>
-  <item>
     <title>Design Hashset</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design Hashset.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design Hashset.html</guid>
@@ -68,6 +67,15 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/design-hashmap/question 해쉬맵을 만들어라 푸는 방법 Design Hashset 과 동일하게 풀었다. 다음은 코드이다. class MyHashMap { vector&amp;lt;int&amp;gt; v; public: MyHashMap() : v(1000001, -1) {} void put(int key, int value) { v[key] = value; } int get(int key) { return v[key]; } void remove(int key) { v[key] = -1; } }; 결론</description>
+  </item>
+  <item>
+    <title>Majority Element</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
   </item>
   <item>
     <title>Remove Element</title>
@@ -175,15 +183,6 @@
     <pubDate>Tue, 22 Sep 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <description>서론 | https://neetcode.io/problems/reverse-integer/question?list=neetcode150 주어진 정수를 뒤집는데, 32bit 표현에서 벗어나면 0을 리턴하라 푸는 방법 stoi를 적극적으로 사용하고 에러가 나면 0을 반환한다. 다음은 코드이다. class Solution { public: int reverse(int x) { bool neg = x&amp;lt;0; string s = to_string(x); if (neg) s = s.substr(1); std::reve…</description>
-  </item>
-  <item>
-    <title>Sum of Two Integers</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Sum of Two Integers.html</guid>
-    <pubDate>Mon, 21 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>bit-wise</category>
-    <description>서론 | https://neetcode.io/problems/sum-of-two-integers/question 덧셈과 뺄셈 없이 두 정수의 합을 구하시오 푸는 방법 전가산기를 만들면 된다. (그림 1. 전가산기 수식, 출처: https://namu.wiki/w/%EA%B0%80%EC%82%B0%EA%B8%B0) 다음은 코드이다. class Solution { public: int getSum(int a, int b) { int ranker = 0; int result = 0; for (int i=0; i&amp;lt;32; ++i) { …</description>
   </item>
 </channel>
 </rss>
