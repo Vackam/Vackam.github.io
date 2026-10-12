@@ -25,19 +25,19 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/implement-prefix-tree/question?list=neetcode150</p>
-<p>prefix tree, trie를 구성하라</p>
+<p class="indent">| https://neetcode.io/problems/implement-prefix-tree/question?list=neetcode150</p>
+<p class="indent">prefix tree, trie를 구성하라</p>
 
 <h1>푸는 방법</h1>
-<p>정말 깡 구현이다.</p>
-<p>쉽게 풀기 vs 어렵게 풀기가 있는데, 전자는 한 글자씩 찾아나가는 방식이고 후자는 공통되는 부분을 최대로 묶어놓는 방식이다.</p>
+<p class="indent">정말 깡 구현이다.</p>
+<p class="indent">쉽게 풀기 vs 어렵게 풀기가 있는데, 전자는 한 글자씩 찾아나가는 방식이고 후자는 공통되는 부분을 최대로 묶어놓는 방식이다.</p>
 
-<p>이번에는 어렵게 풀어보자.</p>
+<p class="indent">이번에는 어렵게 풀어보자.</p>
 
-<p>app -> apple -> apply 순으로 입력이 들어오면</p>
-<p>첫번째로 app가 구성되고, 이후 app 아래 노드로 le를 가진 노드가 들어오고, apply가 들어오면 l에서 쪼개져서 e와 y가 결정되는 형식이다.</p>
+<p class="indent">app -> apple -> apply 순으로 입력이 들어오면</p>
+<p class="indent">첫번째로 app가 구성되고, 이후 app 아래 노드로 le를 가진 노드가 들어오고, apply가 들어오면 l에서 쪼개져서 e와 y가 결정되는 형식이다.</p>
 
-<p>아래는 코드이다.</p>
+<p class="indent">아래는 코드이다.</p>
 
 <pre><code class="language-cpp">class PrefixTree {
 private:
@@ -135,10 +135,10 @@ public:
     }
 };
 </code></pre>
-<p>묶고 쪼개는 과정이 추가되어 아주 복잡해졌지만, 효율성이 좋다.</p>
+<p class="indent">묶고 쪼개는 과정이 추가되어 아주 복잡해졌지만, 효율성이 좋다.</p>
 
 <h1>결론</h1>
-<p>점점 깡구현을 못해가는 몸이 되가는 것 같다. 사실 문제보자마자 못 풀겠다 싶어서 바로 도움을 받았다. 좀 더 고민하는 습관을 가지자.</p>
+<p class="indent">점점 깡구현을 못해가는 몸이 되가는 것 같다. 사실 문제보자마자 못 풀겠다 싶어서 바로 도움을 받았다. 좀 더 고민하는 습관을 가지자.</p>
 
     </article>
 

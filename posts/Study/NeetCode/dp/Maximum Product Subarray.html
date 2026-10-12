@@ -25,14 +25,14 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/maximum-product-subarray/question</p>
-<p>곱이 가장 큰 부분배열을 찾아라</p>
+<p class="indent">| https://neetcode.io/problems/maximum-product-subarray/question</p>
+<p class="indent">곱이 가장 큰 부분배열을 찾아라</p>
 
 <h1>푸는 방법</h1>
-<p>핵심은 0과 음수를 어떻게 처리하냐이다. 저것들만 없으면 무조건 풀 배열이 정답이다.</p>
+<p class="indent">핵심은 0과 음수를 어떻게 처리하냐이다. 저것들만 없으면 무조건 풀 배열이 정답이다.</p>
 
-<p>첫번째 풀이는 상한과 하한을 들고 다니는 방법이다. 음수로 생긴 값도 들고 다니면서 다시 나올 음수를 기다리는 느낌이다. </p>
-<p>다음은 코드이다</p>
+<p class="indent">첫번째 풀이는 상한과 하한을 들고 다니는 방법이다. 음수로 생긴 값도 들고 다니면서 다시 나올 음수를 기다리는 느낌이다. </p>
+<p class="indent">다음은 코드이다</p>
 <pre><code class="language-cpp">class Solution {
 public:
     int maxProduct(vector&lt;int&gt;&amp; nums) {
@@ -53,8 +53,8 @@ public:
 };
 </code></pre>
 
-<p>다른 풀이로는 0을 기준점으로 앞에서 탐색하고 뒤에서 탐색하는 방식이다.</p>
-<p>다음은 코드이다.</p>
+<p class="indent">다른 풀이로는 0을 기준점으로 앞에서 탐색하고 뒤에서 탐색하는 방식이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     int maxProduct(vector&lt;int&gt;&amp; nums) {
@@ -75,7 +75,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>dp는 확실히 어렵다. 아무 생각 없이 어느정도 까지는 코드가 작성되길 바라는데 그것이 아예 안되는 거 같다...</p>
+<p class="indent">dp는 확실히 어렵다. 아무 생각 없이 어느정도 까지는 코드가 작성되길 바라는데 그것이 아예 안되는 거 같다...</p>
 
     </article>
 

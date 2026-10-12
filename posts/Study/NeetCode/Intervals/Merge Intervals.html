@@ -26,15 +26,15 @@
     <article>
       <h1>서론</h1>
 
-<p>| https://neetcode.io/problems/merge-intervals/question</p>
-<p>최종 병합된 상태를 순서에 상관없이 제시하라</p>
+<p class="indent">| https://neetcode.io/problems/merge-intervals/question</p>
+<p class="indent">최종 병합된 상태를 순서에 상관없이 제시하라</p>
 
 <h1>푸는 방법</h1>
 
-<p>이번 문제는 저번 <a href="../../../../posts/Study/NeetCode/Intervals/Insert Interval.html">Insert Interval</a>과 달리 sorting이 안되어 있어서 sort를 하고 가야한다.</p>
-<p>병합이 되어있는 가장 최신 것의 끝점보다 내 첫 점이 크다면 겹치지 않으므로 그냥 삽입, 그렇지 않다면 내 끝 점과 비교하여 큰 것을 선택하여 값을 취하면 된다. 병합된 것과 동일하게 동작한다.</p>
+<p class="indent">이번 문제는 저번 <a href="../../../../posts/Study/NeetCode/Intervals/Insert Interval.html">Insert Interval</a>과 달리 sorting이 안되어 있어서 sort를 하고 가야한다.</p>
+<p class="indent">병합이 되어있는 가장 최신 것의 끝점보다 내 첫 점이 크다면 겹치지 않으므로 그냥 삽입, 그렇지 않다면 내 끝 점과 비교하여 큰 것을 선택하여 값을 취하면 된다. 병합된 것과 동일하게 동작한다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     vector&lt;vector&lt;int&gt;&gt; merge(vector&lt;vector&lt;int&gt;&gt;&amp; intervals) {
@@ -56,16 +56,16 @@ public:
 };
 </code></pre>
 
-<p>vector의 함수 중 back을 통해 가장 최신값을 불러오고, 이의 끝 점과 나의 첫 점 또는 끝 점을 비교한다.</p>
+<p class="indent">vector의 함수 중 back을 통해 가장 최신값을 불러오고, 이의 끝 점과 나의 첫 점 또는 끝 점을 비교한다.</p>
 
 <h1>결론</h1>
-<p>처음에는 슬라이딩 윈도우로 풀 수 있을 줄 알았는데, 겹침 판정이 빡셌다.</p>
-<p>또한, 값을 수정하고 push_back으로 풀려하니 중복값에 대해서 대처가 어려웠다.</p>
-<p>그래서 병합된 값에 추가할 때 -> 값 수정</p>
-<p>새로 넣어야 할 때 -> push_back</p>
-<p>이렇게 하니 잘 풀렸다.</p>
+<p class="indent">처음에는 슬라이딩 윈도우로 풀 수 있을 줄 알았는데, 겹침 판정이 빡셌다.</p>
+<p class="indent">또한, 값을 수정하고 push_back으로 풀려하니 중복값에 대해서 대처가 어려웠다.</p>
+<p class="indent">그래서 병합된 값에 추가할 때 -> 값 수정</p>
+<p class="indent">새로 넣어야 할 때 -> push_back</p>
+<p class="indent">이렇게 하니 잘 풀렸다.</p>
 
-<p>어떤 연산을 사용할 지를 정의하는 게 중요한 거 같다.</p>
+<p class="indent">어떤 연산을 사용할 지를 정의하는 게 중요한 거 같다.</p>
 
     </article>
 

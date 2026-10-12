@@ -34,17 +34,17 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/pow-x-n/question</p>
-<p>거듭제곱하는 함수를 만들어라</p>
+<p class="indent">| https://neetcode.io/problems/pow-x-n/question</p>
+<p class="indent">거듭제곱하는 함수를 만들어라</p>
 
 <h1>푸는 방법</h1>
-<p>정석은 재귀로 풀어야 한다.</p>
-<p>재귀로 풀게 되면 곱하는 횟수가 log(n)회가 되므로 시간도 줄고 정확하게 판정할 수 있게 된다.</p>
-<p>하지만, neet code는 조금 널널해서 조금은 더럽게 풀어봤다.</p>
+<p class="indent">정석은 재귀로 풀어야 한다.</p>
+<p class="indent">재귀로 풀게 되면 곱하는 횟수가 log(n)회가 되므로 시간도 줄고 정확하게 판정할 수 있게 된다.</p>
+<p class="indent">하지만, neet code는 조금 널널해서 조금은 더럽게 풀어봤다.</p>
 
-<p>1인 특이케이스를 제외하고, INT_MIN의 절대값과 INT_MAX의 절대값이 차이나는 경우만 해결해 주었다.</p>
+<p class="indent">1인 특이케이스를 제외하고, INT_MIN의 절대값과 INT_MAX의 절대값이 차이나는 경우만 해결해 주었다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     double myPow(double x, int n) {
@@ -85,7 +85,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>이상한 게, \(1^{INT\_MAX}\)는 시간 초과가 나고, \(2^{INT\_MIN}\)은 시간 초과가 안난다.</p>
+<p class="indent">이상한 게, \(1^{INT\_MAX}\)는 시간 초과가 나고, \(2^{INT\_MIN}\)은 시간 초과가 안난다.</p>
 
     </article>
 

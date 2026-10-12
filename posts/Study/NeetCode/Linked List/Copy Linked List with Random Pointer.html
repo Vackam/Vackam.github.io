@@ -34,18 +34,18 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/copy-linked-list-with-random-pointer/question</p>
+<p class="indent">| https://neetcode.io/problems/copy-linked-list-with-random-pointer/question</p>
 
-<p>링크드 리스트인데, 랜덤포인터가 하나 더 있는 것을 deep copy 하시오</p>
+<p class="indent">링크드 리스트인데, 랜덤포인터가 하나 더 있는 것을 deep copy 하시오</p>
 
 
 <h1>푸는 방법</h1>
 
-<p>해싱이 중요하다. linear search를 하면서 풀고 싶었기에 해싱을 해서 바로 찾으면 되겠다고 생각하여 각 노드의 val 값을 기준으로 해싱하려 했는데, 문제 조건에 val은 유일하지 않을 수 있다고 하여 실패했다.</p>
-<p>그러면 어쩔 수 없이 Node* 그 자체를 해싱해야 한다.</p>
-<p>그래서 map을 세우고, 이를 해싱하면서 풀었더니 답이 나왔다.</p>
+<p class="indent">해싱이 중요하다. linear search를 하면서 풀고 싶었기에 해싱을 해서 바로 찾으면 되겠다고 생각하여 각 노드의 val 값을 기준으로 해싱하려 했는데, 문제 조건에 val은 유일하지 않을 수 있다고 하여 실패했다.</p>
+<p class="indent">그러면 어쩔 수 없이 Node* 그 자체를 해싱해야 한다.</p>
+<p class="indent">그래서 map을 세우고, 이를 해싱하면서 풀었더니 답이 나왔다.</p>
 
-<p>아래는 코드이다.</p>
+<p class="indent">아래는 코드이다.</p>
 <pre><code class="language-cpp">    Node* copyRandomList(Node* head) {
         // 람다함수 만들어서 하고 싶은데
         unordered_map&lt;Node* , Node*&gt; m;
@@ -66,9 +66,9 @@
     
 </code></pre>
 
-<p>그리고 람다 함수를 recursive 하게 쓰려고 했다가 문제가 생겼다. auto를 사용하여 처음에 작성하였는데, auto가 되어있는 람다 함수를 재귀적으로 사용하면 에러가 났다. 그래서 저렇게 function ... 부분을 작성하였다.</p>
+<p class="indent">그리고 람다 함수를 recursive 하게 쓰려고 했다가 문제가 생겼다. auto를 사용하여 처음에 작성하였는데, auto가 되어있는 람다 함수를 재귀적으로 사용하면 에러가 났다. 그래서 저렇게 function ... 부분을 작성하였다.</p>
 
-<p>이후에 찾아보니 다음과 같은 식으로도 회피가 가능하다고 한다.</p>
+<p class="indent">이후에 찾아보니 다음과 같은 식으로도 회피가 가능하다고 한다.</p>
 <pre><code class="language-cpp">auto recursive_find = [&amp;](auto&amp; self, Node* target) -&gt; Node* {
 	if (!target) return nullptr;
 	if (m.find(target) != m.end()) return m[target];
@@ -83,18 +83,18 @@
 	return new_target;
 };
 </code></pre>
-<p>이렇게 self로 변수를 직접 받아서 하는 형식이다. 꼬리재귀처럼 계산해야 하는 것을 직접 넣어주는 느낌이다.</p>
+<p class="indent">이렇게 self로 변수를 직접 받아서 하는 형식이다. 꼬리재귀처럼 계산해야 하는 것을 직접 넣어주는 느낌이다.</p>
 
 <hr>
-<p>이후에 답지를 봤는데, 재밌는 풀이가 있어서 가져왔다.</p>
-<p>map과 같이 해싱을 위해 자료형을 쓰게 되면 아무래도 공간 복잡도가 상승하게 된다.</p>
-<p>그래서 공간복잡도를 줄이는 방법이, 자신의 복사본을 자신의 다음으로 설정하는 것이다.</p>
-<p>예를들어,</p>
-<p>\(A-&gt;B-&gt;C\) 는 복사본 프라임에 대해 \(A-&gt;A'-&gt;B-&gt;B'-&gt;C-&gt;C'\)을 가지게 된다.</p>
-<p>이렇게 처음 세팅을 해 두고 랜덤을 찾을 때,</p>
-<p>\(A.random.next == A'.random == A.next.random\) 과 같은 형태가 되어 계산과 공간이 절약되게 된다.</p>
+<p class="indent">이후에 답지를 봤는데, 재밌는 풀이가 있어서 가져왔다.</p>
+<p class="indent">map과 같이 해싱을 위해 자료형을 쓰게 되면 아무래도 공간 복잡도가 상승하게 된다.</p>
+<p class="indent">그래서 공간복잡도를 줄이는 방법이, 자신의 복사본을 자신의 다음으로 설정하는 것이다.</p>
+<p class="indent">예를들어,</p>
+<p class="indent">\(A-&gt;B-&gt;C\) 는 복사본 프라임에 대해 \(A-&gt;A'-&gt;B-&gt;B'-&gt;C-&gt;C'\)을 가지게 된다.</p>
+<p class="indent">이렇게 처음 세팅을 해 두고 랜덤을 찾을 때,</p>
+<p class="indent">\(A.random.next == A'.random == A.next.random\) 과 같은 형태가 되어 계산과 공간이 절약되게 된다.</p>
 
-<p>아래는 코드이다.</p>
+<p class="indent">아래는 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     Node* copyRandomList(Node* head) {
@@ -136,7 +136,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>직관적으로 떠올리기 좋은 풀이는 내 풀이이다. 아래의 솔루션은 확실한 이 점이 있지만, 떠올리기 어렵다. 그래도 알고 있으면 언젠가 써먹지 않을까?</p>
+<p class="indent">직관적으로 떠올리기 좋은 풀이는 내 풀이이다. 아래의 솔루션은 확실한 이 점이 있지만, 떠올리기 어렵다. 그래도 알고 있으면 언젠가 써먹지 않을까?</p>
 
     </article>
 

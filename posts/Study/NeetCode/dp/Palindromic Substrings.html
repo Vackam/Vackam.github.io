@@ -25,17 +25,17 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/palindromic-substrings/question</p>
-<p>팰린드롬인 서브스트링의 개수를 세라</p>
+<p class="indent">| https://neetcode.io/problems/palindromic-substrings/question</p>
+<p class="indent">팰린드롬인 서브스트링의 개수를 세라</p>
 
 <h1>푸는 방법</h1>
-<p><a href="../../../../posts/Study/NeetCode/dp/Longest Palindromic Substring.html">Longest Palindromic Substring</a></p>
-<p>처음에 중복을 체크해야 할 거 같아서 set으로 하고 map으로 체크해보고 했는데, 전부다 시간 초과로 실패했다.</p>
+<p class="indent"><a href="../../../../posts/Study/NeetCode/dp/Longest Palindromic Substring.html">Longest Palindromic Substring</a></p>
+<p class="indent">처음에 중복을 체크해야 할 거 같아서 set으로 하고 map으로 체크해보고 했는데, 전부다 시간 초과로 실패했다.</p>
 
-<p>그래서 문제를 자세히 보니 중복을 허용하더라...</p>
-<p>위 링크에서 푸는 방법 대로 돈다고 가정하면, 겹치는 {l, r} 쌍이 없다. 그러므로, 그냥 돌면서 하나하나 세면 정답이다.</p>
+<p class="indent">그래서 문제를 자세히 보니 중복을 허용하더라...</p>
+<p class="indent">위 링크에서 푸는 방법 대로 돈다고 가정하면, 겹치는 {l, r} 쌍이 없다. 그러므로, 그냥 돌면서 하나하나 세면 정답이다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     int countSubstrings(string s) {
@@ -63,7 +63,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>문제 풀 때 감각이 중요하긴 한데, 이렇게 이상하게 찍어버리는 경우에 큰일이 자주 일어난다... 좀 더 생각하고 풀자.</p>
+<p class="indent">문제 풀 때 감각이 중요하긴 한데, 이렇게 이상하게 찍어버리는 경우에 큰일이 자주 일어난다... 좀 더 생각하고 풀자.</p>
 
     </article>
 

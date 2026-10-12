@@ -25,23 +25,23 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/task-scheduling/question</p>
-<p>cpu 스케쥴러를 작성하라. 대신 같은 작업을 바로 반복할 수 없다.</p>
+<p class="indent">| https://neetcode.io/problems/task-scheduling/question</p>
+<p class="indent">cpu 스케쥴러를 작성하라. 대신 같은 작업을 바로 반복할 수 없다.</p>
 
 <h1>푸는 방법</h1>
-<p>생각해보면 가장 많이 나오는 친구를 기준으로 판별하면 된다.</p>
-<p>문제 예제 중 AAABBC에 k=3인 경우를 생각해보자.</p>
+<p class="indent">생각해보면 가장 많이 나오는 친구를 기준으로 판별하면 된다.</p>
+<p class="indent">문제 예제 중 AAABBC에 k=3인 경우를 생각해보자.</p>
 <pre><code>A _ _ | A _ _ | A
 </code></pre>
-<p>이 구조는 우선 확정이다. 이후 B와 C를 걸리지 않게만 넣어버리면 된다.</p>
+<p class="indent">이 구조는 우선 확정이다. 이후 B와 C를 걸리지 않게만 넣어버리면 된다.</p>
 
-<p>공식화 하면</p>
-<p>블록 하나당 크기가 n+1, 블록이 총 mx -1, 만약 A와 빈도가 동일한 놈이 있으면 뒤에 몇 번 더 붙여야 하므로 count.</p>
-<p>최빈값이 아닌 애들은 _ 자리에 그냥 넣으면 된다.</p>
+<p class="indent">공식화 하면</p>
+<p class="indent">블록 하나당 크기가 n+1, 블록이 총 mx -1, 만약 A와 빈도가 동일한 놈이 있으면 뒤에 몇 번 더 붙여야 하므로 count.</p>
+<p class="indent">최빈값이 아닌 애들은 _ 자리에 그냥 넣으면 된다.</p>
 
-<p>그리고 위에서 구한 값과 tasks의 사이즈를 분석해야 하는데, 사이즈가 그냥 크다면 이렇게 복잡하게 알 것 없이 그냥 집어 넣으면 되기 때문이다.</p>
+<p class="indent">그리고 위에서 구한 값과 tasks의 사이즈를 분석해야 하는데, 사이즈가 그냥 크다면 이렇게 복잡하게 알 것 없이 그냥 집어 넣으면 되기 때문이다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -56,7 +56,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>처음에는 하나하나 트래킹하면서 세야하는 줄 알았는데, 칸막이 이론 들고 와서 빠르게 처리할 수 있었던 문제이다.</p>
+<p class="indent">처음에는 하나하나 트래킹하면서 세야하는 줄 알았는데, 칸막이 이론 들고 와서 빠르게 처리할 수 있었던 문제이다.</p>
 
     </article>
 

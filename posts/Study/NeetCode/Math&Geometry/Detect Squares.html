@@ -25,13 +25,13 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/count-squares/question</p>
-<p>만들 수 있는 정사각형의 개수를 세라</p>
+<p class="indent">| https://neetcode.io/problems/count-squares/question</p>
+<p class="indent">만들 수 있는 정사각형의 개수를 세라</p>
 
 <h1>푸는 방법</h1>
-<p>1000이 상한선 이므로, <code>1000 * 1000</code> 이차원 배열을 구성한다. 이후 점을 축적하고, count 시에는 각 점의 개수를 곱함으로 가능한 정사각형의 개수를 구할 수 있다.</p>
+<p class="indent">1000이 상한선 이므로, <code>1000 * 1000</code> 이차원 배열을 구성한다. 이후 점을 축적하고, count 시에는 각 점의 개수를 곱함으로 가능한 정사각형의 개수를 구할 수 있다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class CountSquares {
     vector&lt;vector&lt;int&gt;&gt; cnt;
 public:
@@ -62,8 +62,8 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>약간 dp랑도 비슷한 느낌이다.</p>
-<p>직사각형도 가능하다면 마지막 if문 두 개에서 for문을 돌면서 체크하면 되겠다.</p>
+<p class="indent">약간 dp랑도 비슷한 느낌이다.</p>
+<p class="indent">직사각형도 가능하다면 마지막 if문 두 개에서 for문을 돌면서 체크하면 되겠다.</p>
 
     </article>
 

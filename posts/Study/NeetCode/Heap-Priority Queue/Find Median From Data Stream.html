@@ -25,16 +25,16 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/find-median-in-a-data-stream/question?list=neetcode150</p>
-<p>중앙값을 찾아라</p>
+<p class="indent">| https://neetcode.io/problems/find-median-in-a-data-stream/question?list=neetcode150</p>
+<p class="indent">중앙값을 찾아라</p>
 
 <h1>푸는 방법</h1>
-<p>가장 간단한 방법은 정렬해서 중앙값을 찾는 것이다. </p>
-<p>당연히 각 시도마다 O(nlogn)의 시간 복잡도를 가진다.</p>
+<p class="indent">가장 간단한 방법은 정렬해서 중앙값을 찾는 것이다. </p>
+<p class="indent">당연히 각 시도마다 O(nlogn)의 시간 복잡도를 가진다.</p>
 
-<p>여기서 원하는 풀이는 아마도 두 개의 힙을 세우는 것이다</p>
-<p>low heap과 max heap을 세워서 편하게 찾는 것이다.</p>
-<p>이는 코드를 보면 명확하니 다음 코드를 보자.</p>
+<p class="indent">여기서 원하는 풀이는 아마도 두 개의 힙을 세우는 것이다</p>
+<p class="indent">low heap과 max heap을 세워서 편하게 찾는 것이다.</p>
+<p class="indent">이는 코드를 보면 명확하니 다음 코드를 보자.</p>
 
 <pre><code class="language-cpp">class MedianFinder {
 public:
@@ -64,11 +64,11 @@ private:
     priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; hi;
 };
 </code></pre>
-<p>절반의 작은 쪽은 lo에 큰 쪽은 hi에 넣는다.</p>
-<p>그리고 lo >= hi를 항상 유지한다. (1개 차이)</p>
+<p class="indent">절반의 작은 쪽은 lo에 큰 쪽은 hi에 넣는다.</p>
+<p class="indent">그리고 lo >= hi를 항상 유지한다. (1개 차이)</p>
 
 <h1>결론</h1>
-<p>첫 풀이 때 두 개 힙을 생각은 했는데, 이걸 밸런스 있게 넣는 방법을 생각해내지 못해서 포기했었다. 이번 풀이를 통해 밸런스 있게 만드는 방법을 배워 좋다.</p>
+<p class="indent">첫 풀이 때 두 개 힙을 생각은 했는데, 이걸 밸런스 있게 넣는 방법을 생각해내지 못해서 포기했었다. 이번 풀이를 통해 밸런스 있게 만드는 방법을 배워 좋다.</p>
 
     </article>
 

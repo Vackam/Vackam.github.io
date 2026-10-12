@@ -25,13 +25,13 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150</p>
-<p>보물에 도착할 수 있는 최소 거리를 구하라</p>
+<p class="indent">| https://neetcode.io/problems/islands-and-treasure/question?list=neetcode150</p>
+<p class="indent">보물에 도착할 수 있는 최소 거리를 구하라</p>
 
 <h1>푸는 방법</h1>
-<p>성실하게 bfs로 탐색해 주면 된다.</p>
-<p>뭔가 단순 덧셈으로 푸는 방식이 있어서 이상한 INF 값으로 막아둔 것 같은데, bfs로 성실하게 풀면 바로 풀린다.</p>
-<p>다음은 코드이다.</p>
+<p class="indent">성실하게 bfs로 탐색해 주면 된다.</p>
+<p class="indent">뭔가 단순 덧셈으로 푸는 방식이 있어서 이상한 INF 값으로 막아둔 것 같은데, bfs로 성실하게 풀면 바로 풀린다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">constexpr int INF = 2147483647;
 
@@ -85,8 +85,8 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>INF라고 문제에서 설명해주길래 상수 취급을 어떻게 해줬나 싶었더니만 처리를 안해놔서 직접 constexpr로 정의했다.</p>
-<p>이런 문제들은 그래프 쪽이 아니라 탐색 쪽으로 가야하는 게 아닐까? 싶다.</p>
+<p class="indent">INF라고 문제에서 설명해주길래 상수 취급을 어떻게 해줬나 싶었더니만 처리를 안해놔서 직접 constexpr로 정의했다.</p>
+<p class="indent">이런 문제들은 그래프 쪽이 아니라 탐색 쪽으로 가야하는 게 아닐까? 싶다.</p>
 
     </article>
 

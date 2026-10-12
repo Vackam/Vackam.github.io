@@ -25,18 +25,18 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/set-zeroes-in-matrix/question</p>
-<p>0으로 크레이지 아케이드를 해보자.</p>
+<p class="indent">| https://neetcode.io/problems/set-zeroes-in-matrix/question</p>
+<p class="indent">0으로 크레이지 아케이드를 해보자.</p>
 
 <h1>푸는 방법</h1>
-<p>새로 덮어쓴 0을 카운팅 안하고 어떻게 영향을 끼칠 것인지 고민해야 한다.</p>
-<p>당연히 단순하게 queue에 전부 박아 놓은 다음 푸는 방식이 있다.</p>
-<p>하지만, 문제에서는 공간복잡도<code>O(1)</code>을 하라고 권장하기에 더 생각을 해보자.</p>
+<p class="indent">새로 덮어쓴 0을 카운팅 안하고 어떻게 영향을 끼칠 것인지 고민해야 한다.</p>
+<p class="indent">당연히 단순하게 queue에 전부 박아 놓은 다음 푸는 방식이 있다.</p>
+<p class="indent">하지만, 문제에서는 공간복잡도<code>O(1)</code>을 하라고 권장하기에 더 생각을 해보자.</p>
 
-<p>queue로 가면 최악의 경우 <code>O(m*n)</code>이다. <code>O(m+n)</code>으로 풀려면 <code>rows[i], cols[i]</code>로 배열을 만들어서 여기가 0인 지 아닌 지를 판단하게 하면 된다.</p>
-<p>이걸 활용해서 주어진 <code>matrix</code> 자체를 체커로 사용하면 된다.</p>
+<p class="indent">queue로 가면 최악의 경우 <code>O(m*n)</code>이다. <code>O(m+n)</code>으로 풀려면 <code>rows[i], cols[i]</code>로 배열을 만들어서 여기가 0인 지 아닌 지를 판단하게 하면 된다.</p>
+<p class="indent">이걸 활용해서 주어진 <code>matrix</code> 자체를 체커로 사용하면 된다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     void setZeroes(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
@@ -67,7 +67,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>이게 왜 수학일까 궁금하다.</p>
+<p class="indent">이게 왜 수학일까 궁금하다.</p>
 
     </article>
 

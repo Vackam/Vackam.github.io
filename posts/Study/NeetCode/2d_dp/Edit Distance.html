@@ -26,29 +26,29 @@
     <article>
       <h1>서론</h1>
 
-<p>| https://neetcode.io/problems/edit-distance/question</p>
-<p>문자열 a, b가 있을 때 삽입, 삭제, 대체가 무한번 가능한 경우 a로 b를 만드는 최소 변경 횟수를 구하시오</p>
+<p class="indent">| https://neetcode.io/problems/edit-distance/question</p>
+<p class="indent">문자열 a, b가 있을 때 삽입, 삭제, 대체가 무한번 가능한 경우 a로 b를 만드는 최소 변경 횟수를 구하시오</p>
 
 <h1>푸는 방법</h1>
-<p>dp와 dfs를 섞어서 풀어야 한다.</p>
-<p>우선 2d-dp를 세우고 이거에 대한 해석을 다음과 같이 한다.</p>
-<p><code>dp[i][j]는 a에서 i만큼 탐색하고, b에서 j만큼 탐색했을 때의 최솟값</code></p>
+<p class="indent">dp와 dfs를 섞어서 풀어야 한다.</p>
+<p class="indent">우선 2d-dp를 세우고 이거에 대한 해석을 다음과 같이 한다.</p>
+<p class="indent"><code>dp[i][j]는 a에서 i만큼 탐색하고, b에서 j만큼 탐색했을 때의 최솟값</code></p>
 
-<p>이렇게 정의를 한다면 연산 세 개를 다음과 같이 해석할 수 있는데</p>
+<p class="indent">이렇게 정의를 한다면 연산 세 개를 다음과 같이 해석할 수 있는데</p>
 <ol>
 <li>삭제 - i를 1 더하기</li>
 <li>삽입 - j를 1 더하기</li>
 <li>교체 - i와 j 모두 1 더하기</li>
 </ol>
-<p>로 볼 수 있다. 이것은 위치에 대한 기준이다.</p>
+<p class="indent">로 볼 수 있다. 이것은 위치에 대한 기준이다.</p>
 
-<p>그렇다면 이것을 기준으로 dfs를 돌면된다.</p>
-<p>내가 있는 위치에서 문자열이 동일하다면 그냥 탐색하고, 아닌 경우 세 개의 operation 중에서 가장 싼 놈을 찾아서 사용하면 된다.</p>
+<p class="indent">그렇다면 이것을 기준으로 dfs를 돌면된다.</p>
+<p class="indent">내가 있는 위치에서 문자열이 동일하다면 그냥 탐색하고, 아닌 경우 세 개의 operation 중에서 가장 싼 놈을 찾아서 사용하면 된다.</p>
 
-<p>만약 i가 먼저 끝에 도달하게 된다면 나머지는 전부 삽입해야 되므로 n-j,</p>
-<p>j가 먼저 끝에 도달하게 된다면 나머지는 전부 삭제해야 하므로 m-i를 반환한다.</p>
+<p class="indent">만약 i가 먼저 끝에 도달하게 된다면 나머지는 전부 삽입해야 되므로 n-j,</p>
+<p class="indent">j가 먼저 끝에 도달하게 된다면 나머지는 전부 삭제해야 하므로 m-i를 반환한다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     int minDistance(string word1, string word2) {
@@ -80,8 +80,8 @@ public:
 </code></pre>
 
 <h1>결론 </h1>
-<p>dp에 대한 해석이 어렵다. dp로 풀어야 함은 바로 잡았는데, dp의 각 값이 무엇을 의미해야 하는 지를 잘 정의하지 못하여 어려웠다.</p>
-<p>또한, 삭제 연산 때문에 배열을 축소 시키면 통과를 못할 거 같아서 1차원에서 헤매어 시간이 오래걸렸다.</p>
+<p class="indent">dp에 대한 해석이 어렵다. dp로 풀어야 함은 바로 잡았는데, dp의 각 값이 무엇을 의미해야 하는 지를 잘 정의하지 못하여 어려웠다.</p>
+<p class="indent">또한, 삭제 연산 때문에 배열을 축소 시키면 통과를 못할 거 같아서 1차원에서 헤매어 시간이 오래걸렸다.</p>
 
     </article>
 

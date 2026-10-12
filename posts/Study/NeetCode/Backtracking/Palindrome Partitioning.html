@@ -25,15 +25,15 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/palindrome-partitioning/question</p>
-<p>주어진 문자열을 잘랐을 때 나올 수 있는 모든 팰린드롬을 구하라.</p>
+<p class="indent">| https://neetcode.io/problems/palindrome-partitioning/question</p>
+<p class="indent">주어진 문자열을 잘랐을 때 나올 수 있는 모든 팰린드롬을 구하라.</p>
 
 <h1>푸는 방법</h1>
-<p>칸막이 방식을 생각하면 된다.</p>
-<p>n번째까지 보고 칸막이를 세운 다음 그 다음부터 또 자를 준비를 한다.</p>
-<p>이거를 구현하는 방법은 아주 단순하게 칸막이를 세우고 dfs를 호출하면 된다.</p>
+<p class="indent">칸막이 방식을 생각하면 된다.</p>
+<p class="indent">n번째까지 보고 칸막이를 세운 다음 그 다음부터 또 자를 준비를 한다.</p>
+<p class="indent">이거를 구현하는 방법은 아주 단순하게 칸막이를 세우고 dfs를 호출하면 된다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     bool is_palindrome(string s, int start, int end) {
@@ -69,13 +69,13 @@ public:
 };
 </code></pre>
 
-<p>주목할 부분은 dfs 파트이다. </p>
-<p>시작 지점에서 출발하여 주어진 문자열의 끝까지 탐색해보면서 현재 위치에 칸막이를 세울 수 있는 지 확인한다.</p>
-<p>가능한 경우 -> 칸막이를 세우고 문자열을 저장한 다음, dfs를 돌린다.</p>
-<p>불가능한 경우 -> 무시하고 다음 가능성을 탐구한다.</p>
+<p class="indent">주목할 부분은 dfs 파트이다. </p>
+<p class="indent">시작 지점에서 출발하여 주어진 문자열의 끝까지 탐색해보면서 현재 위치에 칸막이를 세울 수 있는 지 확인한다.</p>
+<p class="indent">가능한 경우 -> 칸막이를 세우고 문자열을 저장한 다음, dfs를 돌린다.</p>
+<p class="indent">불가능한 경우 -> 무시하고 다음 가능성을 탐구한다.</p>
 
 <h1>결론</h1>
-<p>칸막이는 빠르게 생각해냈는데, 구현하는 데 어려웠다.. 이렇게 문제를 풀면서 무기를 닦아나가자.</p>
+<p class="indent">칸막이는 빠르게 생각해냈는데, 구현하는 데 어려웠다.. 이렇게 문제를 풀면서 무기를 닦아나가자.</p>
 
     </article>
 

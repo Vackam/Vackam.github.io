@@ -25,21 +25,21 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/combination-target-sum/question</p>
-<p>중복 조합으로 target을 만드는 경우를 찾아라.</p>
+<p class="indent">| https://neetcode.io/problems/combination-target-sum/question</p>
+<p class="indent">중복 조합으로 target을 만드는 경우를 찾아라.</p>
 
 <h1>푸는 방법</h1>
-<p>백트래킹으로 작성하면 풀린다.</p>
-<p>나는 하나의 index에서 넣을 수 있는 모든 가능성을 시도해보는 식으로 접근했다.</p>
-<p>예를 들어 처음이 2라는 값을 가지고 목표 값이 9라고 했을 때,</p>
-<p>0 -> dfs</p>
-<p>2 -> dfs</p>
-<p>4 -> dfs</p>
-<p>6 -> dfs</p>
-<p>8 -> dfs</p>
-<p>로 풀었다.</p>
+<p class="indent">백트래킹으로 작성하면 풀린다.</p>
+<p class="indent">나는 하나의 index에서 넣을 수 있는 모든 가능성을 시도해보는 식으로 접근했다.</p>
+<p class="indent">예를 들어 처음이 2라는 값을 가지고 목표 값이 9라고 했을 때,</p>
+<p class="indent">0 -> dfs</p>
+<p class="indent">2 -> dfs</p>
+<p class="indent">4 -> dfs</p>
+<p class="indent">6 -> dfs</p>
+<p class="indent">8 -> dfs</p>
+<p class="indent">로 풀었다.</p>
 
-<p>다음은 코드이다</p>
+<p class="indent">다음은 코드이다</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -80,11 +80,11 @@ public:
 };
 </code></pre>
 
-<p>이것보다 더욱 단순하게 풀 수 있는데 자신을 포함할 것인지 아닌지만 정하면 되는 코드가 있다.</p>
-<p>즉, 인덱스는 순서대로 가되 이것을 사용 여부를 판단하여 푸는 것이다.</p>
-<p>또한, 중복해서 사용할 수 있으므로 인덱스를 업데이트 안하는 것이 핵심이다.</p>
+<p class="indent">이것보다 더욱 단순하게 풀 수 있는데 자신을 포함할 것인지 아닌지만 정하면 되는 코드가 있다.</p>
+<p class="indent">즉, 인덱스는 순서대로 가되 이것을 사용 여부를 판단하여 푸는 것이다.</p>
+<p class="indent">또한, 중복해서 사용할 수 있으므로 인덱스를 업데이트 안하는 것이 핵심이다.</p>
 
-<p>다음은 해당 내용의 dfs 람다 코드이다.</p>
+<p class="indent">다음은 해당 내용의 dfs 람다 코드이다.</p>
 
 <pre><code class="language-cpp">auto dfs = [&amp;](auto&amp; self, int idx, int remain) -&gt; void {
 	if (remain == 0) { result.push_back(cur); return; }
@@ -100,7 +100,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>어떻게 추적할 지가 핵심인 문제이다.</p>
+<p class="indent">어떻게 추적할 지가 핵심인 문제이다.</p>
 
     </article>
 

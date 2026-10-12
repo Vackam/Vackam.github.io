@@ -163,6 +163,10 @@ div.callout-danger { border-color: #a00; }
 
 img { max-width: 100%; height: auto; }
 
+/* 문단 들여쓰기: 원문에 없으면 자동 1em, 있으면 원문 공백 폭 그대로 */
+p.indent { text-indent: 1em; }
+span.lead { white-space: pre; tab-size: 4; }
+
 /* 디스플레이 수식: 길면 가로 스크롤 */
 .math { overflow-x: auto; margin: 1rem 0; }
 

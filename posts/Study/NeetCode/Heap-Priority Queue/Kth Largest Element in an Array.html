@@ -25,12 +25,12 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/kth-largest-element-in-an-array/question</p>
-<p>정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라.</p>
+<p class="indent">| https://neetcode.io/problems/kth-largest-element-in-an-array/question</p>
+<p class="indent">정렬되어 있지 않은 배열의 k 번째 큰 값을 찾아라.</p>
 
 <h1>푸는 방법</h1>
-<p>당연히 sort를 하면 풀린다.</p>
-<p>다음은 코드이다</p>
+<p class="indent">당연히 sort를 하면 풀린다.</p>
+<p class="indent">다음은 코드이다</p>
 <pre><code class="language-cpp">class Solution {
 public:
     int findKthLargest(vector&lt;int&gt;&amp; nums, int k) {
@@ -40,9 +40,9 @@ public:
 };
 </code></pre>
 
-<p>물론 이렇게 하라고 만든 것이 아니다. </p>
-<p>우선순위큐를 만들어서 k가 넘어갈 시 계속 pop 해주면서 트래킹 해주면 된다.</p>
-<p>다음은 코드이다.</p>
+<p class="indent">물론 이렇게 하라고 만든 것이 아니다. </p>
+<p class="indent">우선순위큐를 만들어서 k가 넘어갈 시 계속 pop 해주면서 트래킹 해주면 된다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -61,7 +61,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>계속 백준이 그립다. 문제에서 O(nlogn)을 쓰면 바로 아웃되도록 만들어 놨을 텐데...</p>
+<p class="indent">계속 백준이 그립다. 문제에서 O(nlogn)을 쓰면 바로 아웃되도록 만들어 놨을 텐데...</p>
 
     </article>
 

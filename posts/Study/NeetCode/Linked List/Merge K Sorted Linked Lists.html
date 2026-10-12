@@ -26,21 +26,21 @@
     <article>
       <h1>서론</h1>
 
-<p>| https://neetcode.io/problems/merge-k-sorted-linked-lists/question</p>
-<p>정렬되어 있는 여러 링크드리스트를 머지 sort 하라.</p>
+<p class="indent">| https://neetcode.io/problems/merge-k-sorted-linked-lists/question</p>
+<p class="indent">정렬되어 있는 여러 링크드리스트를 머지 sort 하라.</p>
 
 <h1>푸는 방법</h1>
-<p>이걸 풀면서 c++ 문법에 대해 다시 알게 되었다.</p>
+<p class="indent">이걸 풀면서 c++ 문법에 대해 다시 알게 되었다.</p>
 <div class="callout callout-note">
   <p class="callout-title"></p>
   <p>c++ 참조(&)는 한 번 초기화되면 가리키는 대상을 다른 곳을 변경할 수  없다.</p>
 </div>
 
-<p>한 번 참조를 시작하고 다른 곳으로 바꾸었다고 생각했지만, 사실 해당 주소에 있는 값을 변경하는 것이다. </p>
+<p class="indent">한 번 참조를 시작하고 다른 곳으로 바꾸었다고 생각했지만, 사실 해당 주소에 있는 값을 변경하는 것이다. </p>
 
-<p>단순하게 풀었다. 리스트마다 제일 작은 것을 찾고 넣고, 한 칸 밀고 ... 이걸 반복했다.</p>
+<p class="indent">단순하게 풀었다. 리스트마다 제일 작은 것을 찾고 넣고, 한 칸 밀고 ... 이걸 반복했다.</p>
 
-<p>코드는 다음과 같다.</p>
+<p class="indent">코드는 다음과 같다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     ListNode* mergeKLists(vector&lt;ListNode*&gt;&amp; lists) {
@@ -78,11 +78,11 @@ public:
 
 </code></pre>
 
-<p>하지만, 이건 리스트에 있는 값들을 추출하여 sorting 하는 것보다 느리다. </p>
+<p class="indent">하지만, 이건 리스트에 있는 값들을 추출하여 sorting 하는 것보다 느리다. </p>
 
-<p>그래서 위 방식과 비슷하지만, 우선순위 큐를 사용하는 방법이 있다.</p>
-<p>우선 순위 큐를 만들어서 첫 값을 넣어두고, 꺼내고 밀어 넣는 방식을 똑같이 진행하는 것이다. </p>
-<p>코드는 다음과 같다.</p>
+<p class="indent">그래서 위 방식과 비슷하지만, 우선순위 큐를 사용하는 방법이 있다.</p>
+<p class="indent">우선 순위 큐를 만들어서 첫 값을 넣어두고, 꺼내고 밀어 넣는 방식을 똑같이 진행하는 것이다. </p>
+<p class="indent">코드는 다음과 같다.</p>
 
 <pre><code class="language-cpp">class Solution {
     // 우선순위 큐를 최소 힙(Min-Heap)으로 만들기 위한 비교 구조체
@@ -123,7 +123,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>linked list에서 특히 그런 것 같은데, 생각은 되는데 자료형하고 연결이 잘 안되는 것 같다. 이번 문제들을 통해서 그거를 배우자.</p>
+<p class="indent">linked list에서 특히 그런 것 같은데, 생각은 되는데 자료형하고 연결이 잘 안되는 것 같다. 이번 문제들을 통해서 그거를 배우자.</p>
 
     </article>
 

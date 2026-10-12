@@ -25,16 +25,16 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/network-delay-time/question</p>
-<p>그래프에서 전파될 수 있는 가장 최솟값을 구하시오</p>
+<p class="indent">| https://neetcode.io/problems/network-delay-time/question</p>
+<p class="indent">그래프에서 전파될 수 있는 가장 최솟값을 구하시오</p>
 
 <h1>푸는 방법</h1>
 
-<p>bfs로 최소 거리를 갱신하면서 풀었다.</p>
-<p>계속 돌면서 거리가 갱신될 가능성이 있는 경우 q에 푸쉬해준다.</p>
-<p>최종 끝났을 때, 처리되지 않은 노드가 있다면 에러 아니면 최댓값을 반환한다.</p>
+<p class="indent">bfs로 최소 거리를 갱신하면서 풀었다.</p>
+<p class="indent">계속 돌면서 거리가 갱신될 가능성이 있는 경우 q에 푸쉬해준다.</p>
+<p class="indent">최종 끝났을 때, 처리되지 않은 노드가 있다면 에러 아니면 최댓값을 반환한다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
 
 class Solution {
@@ -81,13 +81,13 @@ public:
 };
 </code></pre>
 
-<p>문제는 거리가 음수일 때는 안 통한다는 점이다.</p>
+<p class="indent">문제는 거리가 음수일 때는 안 통한다는 점이다.</p>
 
-<p>다른 풀이는 그냥 다익스트라를 박는 방법이다.</p>
-<p>한 번 돌 때 최소임을 보장해주기 때문에, 꼼꼼하게 돌면서 체크하면 된다.</p>
+<p class="indent">다른 풀이는 그냥 다익스트라를 박는 방법이다.</p>
+<p class="indent">한 번 돌 때 최소임을 보장해주기 때문에, 꼼꼼하게 돌면서 체크하면 된다.</p>
 
 <h1>결론</h1>
-<p>bfs 응용으로도 풀 수 있고, 단순하게 다익스트라를 박아서 풀어도 된다.</p>
+<p class="indent">bfs 응용으로도 풀 수 있고, 단순하게 다익스트라를 박아서 풀어도 된다.</p>
 
     </article>
 

@@ -26,17 +26,17 @@
     <article>
       <h1>서론</h1>
 
-<p>| https://neetcode.io/problems/cheapest-flight-path/question</p>
-<p>정해진 횟수 안에 최솟값으로 src to dst 하는 값을 찾아라</p>
+<p class="indent">| https://neetcode.io/problems/cheapest-flight-path/question</p>
+<p class="indent">정해진 횟수 안에 최솟값으로 src to dst 하는 값을 찾아라</p>
 
 <h1>푸는 방법</h1>
-<p>처음에 dfs로 접근 했다가 시간초과로 에러가 났다.</p>
+<p class="indent">처음에 dfs로 접근 했다가 시간초과로 에러가 났다.</p>
 
-<p>풀이는 벨만-포드 방식을 변형하는 것이다.</p>
-<p>기존 벨만-포드 알고리즘은 최단 거리를 찾기 위해 n-1번을 반복한다. 그 이유는 최단 거리기 때문에 같은 곳을 반복해서 가지 않을 것이기 때문이다. (?)</p>
-<p>이 문제에 적용하면 우리는 최대 k번을 지나다닐 수 있기 때문에 n-1이 아닌 k를 상한으로 두고 알고리즘을 돌리면 답이 나오게 된다.</p>
+<p class="indent">풀이는 벨만-포드 방식을 변형하는 것이다.</p>
+<p class="indent">기존 벨만-포드 알고리즘은 최단 거리를 찾기 위해 n-1번을 반복한다. 그 이유는 최단 거리기 때문에 같은 곳을 반복해서 가지 않을 것이기 때문이다. (?)</p>
+<p class="indent">이 문제에 적용하면 우리는 최대 k번을 지나다닐 수 있기 때문에 n-1이 아닌 k를 상한으로 두고 알고리즘을 돌리면 답이 나오게 된다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
 class Solution {
@@ -62,7 +62,7 @@ public:
 
 <h1>결론</h1>
 
-<p>어렵다.. 그래프</p>
+<p class="indent">어렵다.. 그래프</p>
 
     </article>
 

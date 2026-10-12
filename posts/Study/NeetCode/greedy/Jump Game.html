@@ -25,14 +25,14 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/jump-game/question</p>
-<p>점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라.</p>
+<p class="indent">| https://neetcode.io/problems/jump-game/question</p>
+<p class="indent">점프를 뛰어서 마지막 칸에 도달할 수 있는 지 확인하라.</p>
 
 <h1>푸는 방법</h1>
-<p>처음에는 bfs 방식으로 풀었다.</p>
-<p>방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행.</p>
-<p>이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. </p>
-<p>다음은 코드이다.</p>
+<p class="indent">처음에는 bfs 방식으로 풀었다.</p>
+<p class="indent">방문한 칸인 지 확인하고, 그 칸에서 갈 수 있는 칸을 전부 삽입해서 다음 라운드에 진행.</p>
+<p class="indent">이렇게 해서 q를 전부 비우기 전에 도달하면 true, 아니면 false로 했다. </p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -64,11 +64,11 @@ public:
 };
 </code></pre>
 
-<p>다른 풀이로는 그리디하게 푸는 방법이 있다.</p>
-<p>도달할 수 있는 칸을 보고, 가장 끝까지 가서 생각하는 것이다. </p>
-<p>그렇게 마지막까지 순회를 하면 성공, 아니면 실패로 한다.</p>
+<p class="indent">다른 풀이로는 그리디하게 푸는 방법이 있다.</p>
+<p class="indent">도달할 수 있는 칸을 보고, 가장 끝까지 가서 생각하는 것이다. </p>
+<p class="indent">그렇게 마지막까지 순회를 하면 성공, 아니면 실패로 한다.</p>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -84,7 +84,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>bfs 풀이도 시간이 그리 오래걸리지 않아서 괜찮다고 생각했는데, 그리디가 확실히 더 깔끔했다. bfs로 푼 이유는 만약 5칸 앞으로 갈 수 있는데 정답이 2칸만 가서 다른 칸을 들렀다 가는 경우가 있을 거 같아서 그랬는데, 넘어가는 거를 아예 신경 안써도 되니까 그리디 풀이가 더욱 좋은 거 같다.</p>
+<p class="indent">bfs 풀이도 시간이 그리 오래걸리지 않아서 괜찮다고 생각했는데, 그리디가 확실히 더 깔끔했다. bfs로 푼 이유는 만약 5칸 앞으로 갈 수 있는데 정답이 2칸만 가서 다른 칸을 들렀다 가는 경우가 있을 거 같아서 그랬는데, 넘어가는 거를 아예 신경 안써도 되니까 그리디 풀이가 더욱 좋은 거 같다.</p>
 
     </article>
 

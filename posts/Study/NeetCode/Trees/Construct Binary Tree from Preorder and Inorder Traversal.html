@@ -25,26 +25,26 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal/</p>
-<p>Inorder 순회와 Preorder 순회가 주어졌을 때 트리를 구성하시오.</p>
+<p class="indent">| https://neetcode.io/problems/binary-tree-from-preorder-and-inorder-traversal/</p>
+<p class="indent">Inorder 순회와 Preorder 순회가 주어졌을 때 트리를 구성하시오.</p>
 
 <h1>푸는 방법</h1>
 
-<p>백준에도 동일한 문제가 있었던 걸로 기억한다.</p>
-<p>이는 각 순회의 특징을 알면 쉽게 풀 수 있다.</p>
+<p class="indent">백준에도 동일한 문제가 있었던 걸로 기억한다.</p>
+<p class="indent">이는 각 순회의 특징을 알면 쉽게 풀 수 있다.</p>
 
-<p>Preorder의 경우 "자기자신 -> L -> R" 순으로 간다. </p>
-<p>즉, 맨 앞에 있는 값이 root 값이다.</p>
+<p class="indent">Preorder의 경우 "자기자신 -> L -> R" 순으로 간다. </p>
+<p class="indent">즉, 맨 앞에 있는 값이 root 값이다.</p>
 
-<p>Inorder의 경우 "L -> 자기자신 -> R" 순으로 간다.</p>
-<p>Preorder에서 얻은 root 값을 알면 L과 R의 크기를 알 수 있다.</p>
+<p class="indent">Inorder의 경우 "L -> 자기자신 -> R" 순으로 간다.</p>
+<p class="indent">Preorder에서 얻은 root 값을 알면 L과 R의 크기를 알 수 있다.</p>
 
-<p>L의 크기를 x라고 한다면,</p>
-<p>Preorder에서 R의 위치를 알 수 있고, L의 root와 R의 root는 처음 값이다.</p>
+<p class="indent">L의 크기를 x라고 한다면,</p>
+<p class="indent">Preorder에서 R의 위치를 알 수 있고, L의 root와 R의 root는 처음 값이다.</p>
 
-<p>이를 재귀로 풀면 된다.</p>
+<p class="indent">이를 재귀로 풀면 된다.</p>
 
-<p>코드는 다음과 같다.</p>
+<p class="indent">코드는 다음과 같다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -74,7 +74,7 @@ public:
 };
 </code></pre>
 <h1>결론</h1>
-<p>한 번 풀어봤던 거라 개념은 빠르게 캐치 했는데, 구현에서 오래 걸렸다. index 세고 기준 세우는 게 너무 어렵다. 이런 부분을 명시적으로 연습을 해야겠다.</p>
+<p class="indent">한 번 풀어봤던 거라 개념은 빠르게 캐치 했는데, 구현에서 오래 걸렸다. index 세고 기준 세우는 게 너무 어렵다. 이런 부분을 명시적으로 연습을 해야겠다.</p>
 
     </article>
 

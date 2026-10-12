@@ -26,22 +26,22 @@
     <article>
       
 <h1>Auto Hot Key</h1>
-<p>요새 노트북에는 코파일럿 키가 박혀져 있다.</p>
-<p>근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다.</p>
-<p>그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다.</p>
-<p>그래서 Auto Hot Key를 사용하여 power toys run을 연결해 놓았다.</p>
+<p class="indent">요새 노트북에는 코파일럿 키가 박혀져 있다.</p>
+<p class="indent">근데 문제는 나는 이 코파일럿을 전혀 안쓰고, 극 미니멀을 추구하는 나로써 이상한 창이 하나 뜨면 정신이 너무 사납다는 것이다.</p>
+<p class="indent">그래서 power toys를 썼었는데, 얘는 갑자기 씹히는 경우가 너무 많았다.</p>
+<p class="indent">그래서 Auto Hot Key를 사용하여 power toys run을 연결해 놓았다.</p>
 
-<p>근데 왜 power toys는 안됐을까?</p>
-<p>클로드에게 물어본 결과 키보드 하드웨어는 다음과 같은 우선순위를 가진다고 한다.</p>
+<p class="indent">근데 왜 power toys는 안됐을까?</p>
+<p class="indent">클로드에게 물어본 결과 키보드 하드웨어는 다음과 같은 우선순위를 가진다고 한다.</p>
 <pre><code>키보드 하드웨어
   → 드라이버 / Raw Input Thread
   → 저수준 키보드 훅 (WH_KEYBOARD_LL)   ← AHK, PowerToys 둘 다 여기
   → 등록된 전역 단축키 (RegisterHotKey)  ← 셸/코파일럿이 여기
   → 포그라운드 앱의 메시지 큐            ← 일반 프로그램
 </code></pre>
-<p>powet toys도 ahk와 같은 단에서 처리하기 때문에 코파일럿보다 앞설 수 있지만, 뭔가 우선순위가 꼬여서 또는 작업을 코파일럿 단보다 늦게 해서 꼬였던 것 같다. 확실히 할 수 있는 ahk를 사용하자.</p>
-<p>\+ 추가 </p>
-<p>그냥 뭔가 씹히고 잘 작동되지 않는다... 나중에 </p>
+<p class="indent">powet toys도 ahk와 같은 단에서 처리하기 때문에 코파일럿보다 앞설 수 있지만, 뭔가 우선순위가 꼬여서 또는 작업을 코파일럿 단보다 늦게 해서 꼬였던 것 같다. 확실히 할 수 있는 ahk를 사용하자.</p>
+<p class="indent">\+ 추가 </p>
+<p class="indent">그냥 뭔가 씹히고 잘 작동되지 않는다... 나중에 </p>
 
     </article>
 

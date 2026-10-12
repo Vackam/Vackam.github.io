@@ -25,14 +25,14 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/minimum-interval-including-query/question</p>
-<p>속한 구간 중 가장 작은 구간을 각각 구하시오</p>
+<p class="indent">| https://neetcode.io/problems/minimum-interval-including-query/question</p>
+<p class="indent">속한 구간 중 가장 작은 구간을 각각 구하시오</p>
 
 <h1>푸는 방법</h1>
 
-<p>주어진 queries, intervals가 정렬되어 있다고 하자.</p>
-<p>최소힙을 하나 구현하고, 그것의 원소는 (구간 길이, 끝값)을 가진다고 하자.</p>
-<p>하나의 쿼리마다 다음과 같은 과정을 거친다.</p>
+<p class="indent">주어진 queries, intervals가 정렬되어 있다고 하자.</p>
+<p class="indent">최소힙을 하나 구현하고, 그것의 원소는 (구간 길이, 끝값)을 가진다고 하자.</p>
+<p class="indent">하나의 쿼리마다 다음과 같은 과정을 거친다.</p>
 
 <ol>
 <li>쿼리가 해당 구간의 첫 값보다 크거나 같다면(속할 것이라 생각되면) 최소 힙에 넣는다.</li>
@@ -41,14 +41,14 @@
 <li>힙이 비어있을 경우 쿼리값은 -1, 비어있지 않을 경우 해당 값의 구간이다.</li>
 </ol>
 
-<p>이게 왜 되나면 </p>
+<p class="indent">이게 왜 되나면 </p>
 <ol>
 <li>최소힙이기 때문에 조건을 만족하면서 처음 만나는 값이 최소라고 할 수 있다.</li>
 <li>쿼리가 정렬되어 있다고 생각하기 때문에 자기보다 작은 끝값을 가지는 구간은 없앨 수 있다. 즉, 다신 안봐도 된다.</li>
 <li>동일 값에 대해서는 한 번 더 힙에 남김으로 볼 수 있으므로 가능하다. </li>
 </ol>
 
-<p>다음은 코드이다.</p>
+<p class="indent">다음은 코드이다.</p>
 <pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
 class Solution {
 public:
@@ -82,7 +82,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>아주 어려웠다. 사실 설명을 적으면서도 내가 이해를 하긴 했지만 설명을 잘 못하겠다...</p>
+<p class="indent">아주 어려웠다. 사실 설명을 적으면서도 내가 이해를 하긴 했지만 설명을 잘 못하겠다...</p>
 
     </article>
 

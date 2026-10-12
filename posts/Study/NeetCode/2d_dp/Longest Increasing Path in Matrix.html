@@ -25,12 +25,12 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/longest-increasing-path-in-matrix/question</p>
-<p>가장 긴 증가하는 path를 찾으시오</p>
+<p class="indent">| https://neetcode.io/problems/longest-increasing-path-in-matrix/question</p>
+<p class="indent">가장 긴 증가하는 path를 찾으시오</p>
 
 <h1>푸는 방법</h1>
-<p>큰 값부터 하나씩 더해가면서 dp로 풀었다.</p>
-<p>다음은 코드이다.</p>
+<p class="indent">큰 값부터 하나씩 더해가면서 dp로 풀었다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">using pii = pair&lt;int, int&gt;;
 
@@ -76,10 +76,10 @@ public:
     }
 };
 </code></pre>
-<p>순회하면서 큐에 값을 집어넣은 다음, 큰 값에서 계속 내려오도록 하였다.</p>
-<p>path는 증가하는 path이지만, 문제가 작은 값을 하게 되면 생길 거 같아서 맘 편하게 큰값에서 내려왔다.</p>
+<p class="indent">순회하면서 큐에 값을 집어넣은 다음, 큰 값에서 계속 내려오도록 하였다.</p>
+<p class="indent">path는 증가하는 path이지만, 문제가 작은 값을 하게 되면 생길 거 같아서 맘 편하게 큰값에서 내려왔다.</p>
 
-<p>다만 우선순위 큐를 씀으로 최적이 아니게 되었다. 최적 코드는 다음과 같다.</p>
+<p class="indent">다만 우선순위 큐를 씀으로 최적이 아니게 되었다. 최적 코드는 다음과 같다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -109,10 +109,10 @@ public:
     }
 };
 </code></pre>
-<p>dp를 채우면서 dfs를 도는 것이다. </p>
+<p class="indent">dp를 채우면서 dfs를 도는 것이다. </p>
 
 <h1>결론</h1>
-<p>굉장히 재밌는 문제였다.</p>
+<p class="indent">굉장히 재밌는 문제였다.</p>
 
     </article>
 

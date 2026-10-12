@@ -34,13 +34,13 @@
 
     <article>
       <h1>서론</h1>
-<p>뒤에서 n 번째에 있는 숫자를 지운 링크드 리스트를 제시하시오</p>
+<p class="indent">뒤에서 n 번째에 있는 숫자를 지운 링크드 리스트를 제시하시오</p>
 
 <h1>푸는 방법</h1>
-<p>제일 처음에 푼 방식은 단순히 length를 구한 다음 푸는 방식이다.</p>
-<p>탐색은 \(O(n)\) 이고, 제거하는 곳까지 가는 것도 \(O(n)\) 이므로 상관없다고 판단.</p>
+<p class="indent">제일 처음에 푼 방식은 단순히 length를 구한 다음 푸는 방식이다.</p>
+<p class="indent">탐색은 \(O(n)\) 이고, 제거하는 곳까지 가는 것도 \(O(n)\) 이므로 상관없다고 판단.</p>
 
-<p>아래는 코드이다.</p>
+<p class="indent">아래는 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -72,14 +72,14 @@ public:
 </code></pre>
 
 
-<p>다른 풀이 방식은 투 포인터 방식이 있다.</p>
-<p>slow 변수와 fast 변수를 두고, 이를 dummy를 가리키도록 한다.</p>
-<p>dummy는 문제에서 주어진 head를 next로 가지는 변수이다.</p>
-<p>(dummy.next = head)</p>
-<p>그리고 slow와 fast의 거리 차이를 n만큼 벌려준 상태로, fast가 끝에 도달할 때까지 fast와 slow를 한 칸씩 이동시킨다.</p>
-<p>끝에 도달하게 되면, slow의 next가 지워야 할 변수가 된다. </p>
+<p class="indent">다른 풀이 방식은 투 포인터 방식이 있다.</p>
+<p class="indent">slow 변수와 fast 변수를 두고, 이를 dummy를 가리키도록 한다.</p>
+<p class="indent">dummy는 문제에서 주어진 head를 next로 가지는 변수이다.</p>
+<p class="indent">(dummy.next = head)</p>
+<p class="indent">그리고 slow와 fast의 거리 차이를 n만큼 벌려준 상태로, fast가 끝에 도달할 때까지 fast와 slow를 한 칸씩 이동시킨다.</p>
+<p class="indent">끝에 도달하게 되면, slow의 next가 지워야 할 변수가 된다. </p>
 
-<p>아래는 코드이다.</p>
+<p class="indent">아래는 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -103,7 +103,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>링크드리스트는 문제 풀이 많지 않은 것 같다. 결국 어떻게 짜르고 붙일 지만 고민하면 문제가 단순해진다.</p>
+<p class="indent">링크드리스트는 문제 풀이 많지 않은 것 같다. 결국 어떻게 짜르고 붙일 지만 고민하면 문제가 단순해진다.</p>
 
     </article>
 

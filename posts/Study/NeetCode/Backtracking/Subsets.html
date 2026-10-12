@@ -25,12 +25,12 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/subsets/question?list=neetcode150</p>
-<p>가능한 모든 조합을 구하라</p>
+<p class="indent">| https://neetcode.io/problems/subsets/question?list=neetcode150</p>
+<p class="indent">가능한 모든 조합을 구하라</p>
 
 <h1>푸는 방법</h1>
-<p>정석적인 백트래킹으로 풀면 된다.</p>
-<p>다음은 코드이다.</p>
+<p class="indent">정석적인 백트래킹으로 풀면 된다.</p>
+<p class="indent">다음은 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -64,10 +64,10 @@ public:
     }
 };
 </code></pre>
-<p>배열을 만들고 공유하는 것이 시간이 오래 걸릴 것 같아 사용하지 않는 값을 11로 체크하며 결과가 되었을 때만 배열을 생성하도록 했다.</p>
+<p class="indent">배열을 만들고 공유하는 것이 시간이 오래 걸릴 것 같아 사용하지 않는 값을 11로 체크하며 결과가 되었을 때만 배열을 생성하도록 했다.</p>
 
-<p>정답 코드를 보니 더욱 단순하게 만들었다. </p>
-<p>다음은 정답 코드이다.</p>
+<p class="indent">정답 코드를 보니 더욱 단순하게 만들었다. </p>
+<p class="indent">다음은 정답 코드이다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -92,10 +92,10 @@ public:
     }
 };
 </code></pre>
-<p>그냥 path를 넘기면서 하니 더욱 코드가 깔끔해졌다.</p>
+<p class="indent">그냥 path를 넘기면서 하니 더욱 코드가 깔끔해졌다.</p>
 
 <h1>결론</h1>
-<p>백트래킹에서 visited를 두어 하는 방법 밖에 몰랐는데, 그냥 넘기는 방식도 배워가는 좋은 문제였다.</p>
+<p class="indent">백트래킹에서 visited를 두어 하는 방법 밖에 몰랐는데, 그냥 넘기는 방식도 배워가는 좋은 문제였다.</p>
 
     </article>
 

@@ -25,12 +25,12 @@
 
     <article>
       <h1>서론</h1>
-<p>| https://neetcode.io/problems/jump-game-ii/question</p>
-<p>점프를 몇 번 뛰어야 하는 지 구하라</p>
+<p class="indent">| https://neetcode.io/problems/jump-game-ii/question</p>
+<p class="indent">점프를 몇 번 뛰어야 하는 지 구하라</p>
 
 <h1>푸는 방법</h1>
-<p>이번에도 동일하게 bfs를 생각했다.</p>
-<p>아래는 코드이다.</p>
+<p class="indent">이번에도 동일하게 bfs를 생각했다.</p>
+<p class="indent">아래는 코드이다.</p>
 <pre><code class="language-cpp">class Solution {
 public:
     int jump(vector&lt;int&gt;&amp; nums) {
@@ -67,9 +67,9 @@ public:
 };
 </code></pre>
 
-<p>이것보다 더 단순한 버전이 있다.</p>
-<p>그리디로 구간을 넓힌다고 생각하면 된다. 위에서는 각 갈 수 있는 칸을 queue로 저장해서 풀었으면, 여기서는 가능성을 넓혀 놓는 것이다.</p>
-<p>한 칸에서 갈 수 있는 범위를 curEnd로 하고 curEnd에 속하는 칸들은 이미 접근이 가능한 범위니까 무시한다. 이후 범위가 벗어나면 그때 curEnd를 수정해나가면서 진행한다.</p>
+<p class="indent">이것보다 더 단순한 버전이 있다.</p>
+<p class="indent">그리디로 구간을 넓힌다고 생각하면 된다. 위에서는 각 갈 수 있는 칸을 queue로 저장해서 풀었으면, 여기서는 가능성을 넓혀 놓는 것이다.</p>
+<p class="indent">한 칸에서 갈 수 있는 범위를 curEnd로 하고 curEnd에 속하는 칸들은 이미 접근이 가능한 범위니까 무시한다. 이후 범위가 벗어나면 그때 curEnd를 수정해나가면서 진행한다.</p>
 
 <pre><code class="language-cpp">class Solution {
 public:
@@ -89,7 +89,7 @@ public:
 </code></pre>
 
 <h1>결론</h1>
-<p>아래 간단한 풀이도 bfs이기에 너무 queue만 사용하는 것에 국한되어 있지 말자.</p>
+<p class="indent">아래 간단한 풀이도 bfs이기에 너무 queue만 사용하는 것에 국한되어 있지 말자.</p>
 
     </article>
 
