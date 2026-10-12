@@ -9,3 +9,5 @@ Disallow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://vackam.github.io/sitemap.xml
