@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Subarray Sum Equals K</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Subarray Sum Equals K.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Subarray Sum Equals K.html</guid>
+    <pubDate>Tue, 13 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/subarray-sum-equals-k/question subarray 중 합이 k인 것들의 개수를 찾으시오 푸는 방법 현재 값을 갱신시키며, 원하는 타겟 값이 있는 지 확인한다. 이때 확인한 것을 기록하면서 지나가면 된다. 다음은 코드이다. class Solution { public: int subarraySum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { unordered_map&amp;l…</description>
+  </item>
+  <item>
     <title>소프트뱅크 해커톤 2026 부산 참가 후기</title>
     <link>https://vackam.github.io/posts/Contest/소프트뱅크 해커톤 2026 부산 참가 후기.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Contest/소프트뱅크 해커톤 2026 부산 참가 후기.html</guid>
@@ -51,6 +60,15 @@
     <description>서론 | https://neetcode.io/problems/range-sum-query-2d-immutable/question 주어진 사각형의 합을 구하라 푸는 방법 sumRegion 이 들어오면 계산을 하면 되겠지만, 이 문제에서는 O(1) 을 요구한다. 그러면 누적합으로 풀면 된다. 다음은 코드이다. class NumMatrix { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; numeric_sum; public: NumMatrix(vector&amp;lt;vector&amp;lt;int…</description>
   </item>
   <item>
+    <title>Majority Element</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
+    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
+  </item>
+  <item>
     <title>Design Hashset</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design Hashset.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design Hashset.html</guid>
@@ -67,15 +85,6 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/design-hashmap/question 해쉬맵을 만들어라 푸는 방법 Design Hashset 과 동일하게 풀었다. 다음은 코드이다. class MyHashMap { vector&amp;lt;int&amp;gt; v; public: MyHashMap() : v(1000001, -1) {} void put(int key, int value) { v[key] = value; } int get(int key) { return v[key]; } void remove(int key) { v[key] = -1; } }; 결론</description>
-  </item>
-  <item>
-    <title>Majority Element</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
-    <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
   </item>
   <item>
     <title>Remove Element</title>
@@ -175,14 +184,6 @@
     <category>ps</category>
     <category>math</category>
     <description>서론 | https://neetcode.io/problems/rotate-matrix/question 90도 회전한 행렬을 구하시오 푸는 방법 traspose 한 후 row 마다 reverse 해주면 된다. 다음은 코드이다 class Solution { public: void rotate(vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt;&amp;amp; matrix) { int n = matrix.size(); for (int i=0; i&amp;lt;n; ++i) { for (int j=i+1; j&amp;lt;n; ++j) { swap(matrix[i][j], matrix[j][i]); } } for …</description>
-  </item>
-  <item>
-    <title>Reverse Integer</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Integer.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/bit_manipulation/Reverse Integer.html</guid>
-    <pubDate>Tue, 22 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <description>서론 | https://neetcode.io/problems/reverse-integer/question?list=neetcode150 주어진 정수를 뒤집는데, 32bit 표현에서 벗어나면 0을 리턴하라 푸는 방법 stoi를 적극적으로 사용하고 에러가 나면 0을 반환한다. 다음은 코드이다. class Solution { public: int reverse(int x) { bool neg = x&amp;lt;0; string s = to_string(x); if (neg) s = s.substr(1); std::reve…</description>
   </item>
 </channel>
 </rss>
