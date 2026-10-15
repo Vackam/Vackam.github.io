@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baseball Game &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/baseball-game/question 대충 점수를 재봐라 푸는 방법 정직하게 하드코딩으로 풀자. 다음…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Baseball Game</h1>
+    <p class="meta">2026-10-15 <span class="tag">ps</span><span class="tag">stack</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/baseball-game/question</p>
+<p class="indent">대충 점수를 재봐라</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">정직하게 하드코딩으로 풀자.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int calPoints(vector&lt;string&gt;&amp; op) {
+        stack&lt;int&gt; st;
+        for (const auto&amp; a : op) {
+            if (a == "C") {
+                st.pop();
+            } else if (a == "D") {
+                int target = st.top();
+                st.push(target * 2);
+            } else if (a == "+") {
+                int first = st.top(); st.pop();
+                int second = st.top();
+
+                int target = first + second;
+
+                st.push(first);
+                st.push(target);
+            } else {
+                int target = stoi(a);
+                st.push(target);
+            }
+        } 
+
+        int result = 0;
+        while (!st.empty()) {
+            result += st.top(); st.pop();
+        }
+
+        return result;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p class="indent">딱 stack 연습하기에 좋은 문제이다.3</p>
+
+    </article>
+
+    <hr>
+
+    
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
