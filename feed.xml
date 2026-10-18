@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Simplify Path</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Stack/Simplify Path.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Stack/Simplify Path.html</guid>
+    <pubDate>Sun, 18 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>stack</category>
+    <description>서론 | https://neetcode.io/problems/simplify-path/question path를 잘 만들어봐라. 푸는 방법 .. 연산 때문에 deque를 활용하였다. 또한, 중첩해서 / 가 가능하기 때문에 그것을 걸러주기 위하여 크게 if/else 로 나누어서 풀었다. 다음은 코드이다. class Solution { public: string simplifyPath(string path) { deque&amp;lt;string&amp;gt; s; int n = path.size…</description>
+  </item>
+  <item>
     <title>Online Stock Span</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Stack/Online Stock Span.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Stack/Online Stock Span.html</guid>
@@ -97,13 +106,13 @@
     <description>서론 | https://neetcode.io/problems/range-sum-query-2d-immutable/question 주어진 사각형의 합을 구하라 푸는 방법 sumRegion 이 들어오면 계산을 하면 되겠지만, 이 문제에서는 O(1) 을 요구한다. 그러면 누적합으로 풀면 된다. 다음은 코드이다. class NumMatrix { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; numeric_sum; public: NumMatrix(vector&amp;lt;vector&amp;lt;int…</description>
   </item>
   <item>
-    <title>Design HashMap</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design HashMap.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design HashMap.html</guid>
+    <title>Majority Element</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
     <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <category>array</category>
-    <description>서론 | https://neetcode.io/problems/design-hashmap/question 해쉬맵을 만들어라 푸는 방법 Design Hashset 과 동일하게 풀었다. 다음은 코드이다. class MyHashMap { vector&amp;lt;int&amp;gt; v; public: MyHashMap() : v(1000001, -1) {} void put(int key, int value) { v[key] = value; } int get(int key) { return v[key]; } void remove(int key) { v[key] = -1; } }; 결론</description>
+    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
   </item>
   <item>
     <title>Design Hashset</title>
@@ -115,13 +124,13 @@
     <description>서론 | https://neetcode.io/problems/design-hashset/question 해쉬셋을 만들어라 푸는 방법 그냥 unordered_set을 사용해서 풀었다. 정석 풀이는 set은 중복값을 허용하지 않으므로, vector&amp;lt;bool&amp;gt; 을 사용해서 해결하면 된다. 결론 간단하다. 뭔가 더 제약이 있으면 좋겠다.</description>
   </item>
   <item>
-    <title>Majority Element</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element.html</guid>
+    <title>Design HashMap</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design HashMap.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Design HashMap.html</guid>
     <pubDate>Tue, 06 Oct 2026 00:00:00 +0900</pubDate>
     <category>ps</category>
     <category>array</category>
-    <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
+    <description>서론 | https://neetcode.io/problems/design-hashmap/question 해쉬맵을 만들어라 푸는 방법 Design Hashset 과 동일하게 풀었다. 다음은 코드이다. class MyHashMap { vector&amp;lt;int&amp;gt; v; public: MyHashMap() : v(1000001, -1) {} void put(int key, int value) { v[key] = value; } int get(int key) { return v[key]; } void remove(int key) { v[key] = -1; } }; 결론</description>
   </item>
   <item>
     <title>Remove Element</title>
@@ -133,15 +142,6 @@
     <description>서론 | https://neetcode.io/problems/remove-element/question 배열에서 val 값을 전부 제거하라. 푸는 방법 제거가 아예 없던 것처럼 해야 한다. 그래서 새로운 배열을 만드는 것으로 해결하기로 했다. 다음은 코드이다. class Solution { public: int removeElement(vector&amp;lt;int&amp;gt;&amp;amp; nums, int val) { vector&amp;lt;int&amp;gt; result; for (const auto&amp;amp; a …</description>
   </item>
   <item>
-    <title>Concatenation of Array</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Concatenation of Array.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Concatenation of Array.html</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/concatenation-of-array/question 배열을 2배 해라 푸는 방법 정직하게 하자. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; getConcatenation(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); for (int i=0; i&amp;lt;n; ++i) { nums.push_back(nums[i]); } return nums; } }; 결론 쉽다. insert를 활용하면 한 번 도는 것보다 …</description>
-  </item>
-  <item>
     <title>Longest Common Prefix</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Longest Common Prefix.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Longest Common Prefix.html</guid>
@@ -149,6 +149,15 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/longest-common-prefix/question prefix를 찾아라 푸는 방법 정직하게 찾아보자. 다음은 코드이다. class Solution { public: string longestCommonPrefix(vector&amp;lt;string&amp;gt;&amp;amp; strs) { string result = &quot;&quot;; int i = 0; while (true) { char target = strs[0][i]; for (const auto&amp;amp; a : strs) { if (a.size() &amp;lt;= i) return result; if (a[i] != target…</description>
+  </item>
+  <item>
+    <title>Concatenation of Array</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Concatenation of Array.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Concatenation of Array.html</guid>
+    <pubDate>Sat, 03 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>array</category>
+    <description>서론 | https://neetcode.io/problems/concatenation-of-array/question 배열을 2배 해라 푸는 방법 정직하게 하자. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; getConcatenation(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); for (int i=0; i&amp;lt;n; ++i) { nums.push_back(nums[i]); } return nums; } }; 결론 쉽다. insert를 활용하면 한 번 도는 것보다 …</description>
   </item>
   <item>
     <title>Detect Squares</title>
@@ -176,15 +185,6 @@
     <category>ps</category>
     <category>math</category>
     <description>서론 | https://neetcode.io/problems/pow-x-n/question 거듭제곱하는 함수를 만들어라 푸는 방법 정석은 재귀로 풀어야 한다. 재귀로 풀게 되면 곱하는 횟수가 log(n)회가 되므로 시간도 줄고 정확하게 판정할 수 있게 된다. 하지만, neet code는 조금 널널해서 조금은 더럽게 풀어봤다. 1인 특이케이스를 제외하고, INT_MIN…</description>
-  </item>
-  <item>
-    <title>Plus One</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Plus One.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Plus One.html</guid>
-    <pubDate>Mon, 28 Sep 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>math</category>
-    <description>서론 | https://neetcode.io/problems/plus-one/question 1을 더해봐라 푸는 방법 정직하게 해보자 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; plusOne(vector&amp;lt;int&amp;gt;&amp;amp; digits) { int n = digits.size(); int upper = 1; for (int i=n-1; i&amp;gt;=0; --i) { auto&amp;amp; target = digits[i]; if (upper + target == 10) { upper = 1; target = 0; } else { target += upper; uppe…</description>
   </item>
 </channel>
 </rss>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplify Path &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/simplify-path/question path를 잘 만들어봐라. 푸는 방법 .. 연산 때문에 deque를 활용하였다. …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Simplify Path</h1>
+    <p class="meta">2026-10-18 <span class="tag">ps</span><span class="tag">stack</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/simplify-path/question</p>
+<p class="indent">path를 잘 만들어봐라.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent"><code>..</code> 연산 때문에 deque를 활용하였다.</p>
+<p class="indent">또한, 중첩해서 <code>/</code>가 가능하기 때문에 그것을 걸러주기 위하여 크게 <code>if/else</code>로 나누어서 풀었다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    string simplifyPath(string path) {
+        deque&lt;string&gt; s;
+        int n = path.size();
+        int i = 0;
+        while (i &lt; n) {
+            if (path[i] == '/') {
+                while (i &lt; n &amp;&amp; path[i] == '/') {
+                    ++i;
+                }
+
+                if (i == n) break;
+                else continue;
+            } else {
+                int old_i = i;
+                while (i &lt; n &amp;&amp; path[i] != '/') {
+                    ++i;
+                }
+
+                string new_s = path.substr(old_i, i - old_i);
+
+                if (new_s == "..") {
+                    if (!s.empty()) s.pop_back();
+                } else if (new_s == ".") {
+                    continue;
+                } else {
+                    s.push_back(new_s);
+                }
+            }
+        }
+
+        string result = "/";
+
+        while (!s.empty()) {
+            result += s.front() + "/"; s.pop_front();
+        }
+
+        // 이거 슬래쉬 하나 지울려고 이렇게 함.
+        return result.substr(0, result.size() - 1 &gt; 0 ? result.size() - 1 : 1);
+    }
+};
+</code></pre>
+
+<p class="indent">마지막 <code>/</code>가 하나 더 들어가기 때문에 지우기 위하여 다음과 같이 진행하였다.</p>
+
+<h1>결론</h1>
+<p class="indent">정직하게 열심히 풀어야 되는 문제다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Stack/Online Stock Span.html">Online Stock Span &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
