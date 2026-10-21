@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Valid Palindrome II</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Valid Palindrome II.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Valid Palindrome II.html</guid>
+    <pubDate>Wed, 21 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>two_pointer</category>
+    <description>서론 | https://neetcode.io/problems/valid-palindrome-ii/question 한 문자를 지워서 팰린드롬을 만들 수 있는 지 확인하라. 푸는 방법 앞이랑 뒤에서 비교하면서 나아가되, 일치하지 않는 부분이 나오는 경우 그때부터 가능한 두 가지 경우를 비교하여 결론을 찾으면 된다. 다음은 코드이다. class Solution { bool is_pal(const st…</description>
+  </item>
+  <item>
     <title>Maximum Frequency Stack</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Stack/Maximum Frequency Stack.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Stack/Maximum Frequency Stack.html</guid>
@@ -80,15 +89,6 @@
     <description>서론 | https://neetcode.io/problems/subarray-sum-equals-k/question subarray 중 합이 k인 것들의 개수를 찾으시오 푸는 방법 현재 값을 갱신시키며, 원하는 타겟 값이 있는 지 확인한다. 이때 확인한 것을 기록하면서 지나가면 된다. 다음은 코드이다. class Solution { public: int subarraySum(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { unordered_map&amp;l…</description>
   </item>
   <item>
-    <title>소프트뱅크 해커톤 2026 부산 참가 후기</title>
-    <link>https://vackam.github.io/posts/Contest/소프트뱅크 해커톤 2026 부산 참가 후기.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Contest/소프트뱅크 해커톤 2026 부산 참가 후기.html</guid>
-    <pubDate>Mon, 12 Oct 2026 00:00:00 +0900</pubDate>
-    <category>후기</category>
-    <category>대회</category>
-    <description>서론 부산에서 열린 소프트뱅크 해커톤 2026 참가 후기이다. 본론 대회는 사전 안내인 킥오프 포함 일주일 정도 진행되었다. 킥오프에서 팀이 선정되고, 이후 알아서 개발하다가 토요일, 일요일 양일 대면으로 진행하는 방식이다. 해커톤 치고는 개발 시간이 많은 게 특징이다. 우리 팀은 양일만 대면으로…</description>
-  </item>
-  <item>
     <title>Majority Element II</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element II.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Majority Element II.html</guid>
@@ -96,6 +96,15 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/majority-element-ii/question 원소의 개수가 전체의 3분의 1을 넘는 것들을 전부 찾아라 푸는 방법 1/3 이 중점이므로, 정렬을 한 뒤에 2/3 지점까지 탐색하여 가능한 경우만 추출했다. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { vector&amp;lt;int&amp;gt; …</description>
+  </item>
+  <item>
+    <title>소프트뱅크 해커톤 2026 부산 참가 후기</title>
+    <link>https://vackam.github.io/posts/Contest/소프트뱅크 해커톤 2026 부산 참가 후기.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Contest/소프트뱅크 해커톤 2026 부산 참가 후기.html</guid>
+    <pubDate>Mon, 12 Oct 2026 00:00:00 +0900</pubDate>
+    <category>후기</category>
+    <category>대회</category>
+    <description>서론 부산에서 열린 소프트뱅크 해커톤 2026 참가 후기이다. 본론 대회는 사전 안내인 킥오프 포함 일주일 정도 진행되었다. 킥오프에서 팀이 선정되고, 이후 알아서 개발하다가 토요일, 일요일 양일 대면으로 진행하는 방식이다. 해커톤 치고는 개발 시간이 많은 게 특징이다. 우리 팀은 양일만 대면으로…</description>
   </item>
   <item>
     <title>소프트 뱅크 해커톤 프로젝트</title>
@@ -176,15 +185,6 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/longest-common-prefix/question prefix를 찾아라 푸는 방법 정직하게 찾아보자. 다음은 코드이다. class Solution { public: string longestCommonPrefix(vector&amp;lt;string&amp;gt;&amp;amp; strs) { string result = &quot;&quot;; int i = 0; while (true) { char target = strs[0][i]; for (const auto&amp;amp; a : strs) { if (a.size() &amp;lt;= i) return result; if (a[i] != target…</description>
-  </item>
-  <item>
-    <title>Detect Squares</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Detect Squares.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Math&amp;Geometry/Detect Squares.html</guid>
-    <pubDate>Fri, 02 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>math</category>
-    <description>서론 | https://neetcode.io/problems/count-squares/question 만들 수 있는 정사각형의 개수를 세라 푸는 방법 1000이 상한선 이므로, 1000 * 1000 이차원 배열을 구성한다. 이후 점을 축적하고, count 시에는 각 점의 개수를 곱함으로 가능한 정사각형의 개수를 구할 수 있다. 다음은 코드이다. class CountSquares { vector&amp;lt;vector&amp;lt;i…</description>
   </item>
 </channel>
 </rss>

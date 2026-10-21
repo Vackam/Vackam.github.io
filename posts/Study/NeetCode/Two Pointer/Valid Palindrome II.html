@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valid Palindrome II &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/valid-palindrome-ii/question 한 문자를 지워서 팰린드롬을 만들 수 있는 지 확인하라. 푸는 …">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Valid Palindrome II</h1>
+    <p class="meta">2026-10-21 <span class="tag">ps</span><span class="tag">two_pointer</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/valid-palindrome-ii/question</p>
+<p class="indent">한 문자를 지워서 팰린드롬을 만들 수 있는 지 확인하라.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">앞이랑 뒤에서 비교하면서 나아가되, 일치하지 않는 부분이 나오는 경우 그때부터 가능한 두 가지 경우를 비교하여 결론을 찾으면 된다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+    bool is_pal(const string&amp; s, int l, int r) {
+        while (l&lt;r) if(s[l++] != s[r--]) return false;
+        return true;
+    }
+public:
+    bool validPalindrome(string s) {
+        int l = 0, r = s.size() - 1;
+        while (l&lt;r) {
+            if (s[l] != s[r]) return is_pal(s, l+1, r) || is_pal(s, l, r-1);
+            l++; r--;
+        }
+        return true;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p class="indent">처음에는 start 부분에 있는 걸 지우는 걸 선택하고, 안되면 end를 지우는 것을 했었는데, 둘 다 가능한 경우이면서 end를 지우는 것이 맞는 경우를 찾지 못했다. 그래서 이런 세계선이 여러 개로 나뉘는 경우에는 모든 경우를 탐색할 수 있도록 하는 게 중요하다.</p>
+
+    </article>
+
+    <hr>
+
+    
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
