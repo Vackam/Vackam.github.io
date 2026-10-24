@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Remove Duplicates From Sorted Array</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Remove Duplicates From Sorted Array.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Remove Duplicates From Sorted Array.html</guid>
+    <pubDate>Sat, 24 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>two_pointer</category>
+    <description>서론 | https://neetcode.io/problems/remove-duplicates-from-sorted-array/question 증가하는 수열에서 중복된 값을 제거하라. 푸는 방법 k 를 두어 이를 [0..k) 까지는 중복이 없는 상태라고 가정하자. nums[i] 와 nums[k-1] 을 비교한다. 값이 같다면, 중복되는 값이므로 i 를 증가시킨다. 다르다면, 새로운 값이 나온 것이므로 k 위…</description>
+  </item>
+  <item>
     <title>Valid Palindrome II</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Valid Palindrome II.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Valid Palindrome II.html</guid>
@@ -176,15 +185,6 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/concatenation-of-array/question 배열을 2배 해라 푸는 방법 정직하게 하자. 다음은 코드이다. class Solution { public: vector&amp;lt;int&amp;gt; getConcatenation(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); for (int i=0; i&amp;lt;n; ++i) { nums.push_back(nums[i]); } return nums; } }; 결론 쉽다. insert를 활용하면 한 번 도는 것보다 …</description>
-  </item>
-  <item>
-    <title>Longest Common Prefix</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Longest Common Prefix.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Longest Common Prefix.html</guid>
-    <pubDate>Sat, 03 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/longest-common-prefix/question prefix를 찾아라 푸는 방법 정직하게 찾아보자. 다음은 코드이다. class Solution { public: string longestCommonPrefix(vector&amp;lt;string&amp;gt;&amp;amp; strs) { string result = &quot;&quot;; int i = 0; while (true) { char target = strs[0][i]; for (const auto&amp;amp; a : strs) { if (a.size() &amp;lt;= i) return result; if (a[i] != target…</description>
   </item>
 </channel>
 </rss>
