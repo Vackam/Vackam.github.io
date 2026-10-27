@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4 Sum &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/4sum/question 4개의 합을 찾아보자. 푸는 방법 순서가 상관없기 때문에 우선 정렬을 한…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>4 Sum</h1>
+    <p class="meta">2026-10-27 <span class="tag">ps</span><span class="tag">two_pointer</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/4sum/question</p>
+<p class="indent">4개의 합을 찾아보자.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">순서가 상관없기 때문에 우선 정렬을 한다.</p>
+<p class="indent">이후 <code>i, j, l, r</code>을 세워서 풀이를 시작한다.</p>
+
+<p class="indent">각각의 역할을 다음과 같다.</p>
+<ol>
+<li>i는 정답 배열의 첫 값을 의미한다.</li>
+<li>j는 정답 배열의 둘째 값을 의미한다.</li>
+<li>l은 정답 배열의 셋째 값을 의미한다.</li>
+<li>r은 정답 배열의 넷째 값을 의미한다.</li>
+</ol>
+
+<p class="indent">이때, i와 j는 이중 for문을 돌면서 값을 바꿔준다.</p>
+<p class="indent">i가 <code>[0, n-3)</code>을 돌면서 값을 잡고, j는 <code>[i+1, n-2)</code>를 돈다.</p>
+<p class="indent">이후 <code>l = j+1, r = n-1</code>로 선언하며 이 둘이 투 포인터 역할을 하게 된다.</p>
+
+<p class="indent"><code>i, j</code>는 값이 중복되면 넘어가는 로직이 필요한데, 이는 두 값이 확정된 이후로 모든 경우를 살펴보기에 무조건 중복되는 값이 나오기 때문이다.</p>
+
+<p class="indent">또한, 중복을 방지하기 위해 동일하게 <code>l, r</code>도 중복 스킵 로직이 필요하다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+
+<pre><code class="language-cpp">class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) {
+        vector&lt;vector&lt;int&gt;&gt; res;
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i &lt; n - 3; i++) {
+            if (i &gt; 0 &amp;&amp; nums[i] == nums[i-1]) continue;          // i 중복 skip
+            for (int j = i + 1; j &lt; n - 2; j++) {
+                if (j &gt; i + 1 &amp;&amp; nums[j] == nums[j-1]) continue;  // j 중복 skip
+                int l = j + 1, r = n - 1;
+                while (l &lt; r) {
+                    long long s = (long long)nums[i] + nums[j] + nums[l] + nums[r];
+                    if (s &lt; target) l++;
+                    else if (s &gt; target) r--;
+                    else {
+                        res.push_back({nums[i], nums[j], nums[l], nums[r]});
+                        while (l &lt; r &amp;&amp; nums[l] == nums[l+1]) l++;  // l 중복 skip
+                        while (l &lt; r &amp;&amp; nums[r] == nums[r-1]) r--;  // r 중복 skip
+                        l++; r--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p class="indent">솔직히 시험장에서는 풀지 못할 것 같다.</p>
+<p class="indent">4 변수를 컨트롤하는 시점부터 머리가 아프다. 그래도 축 2개 잡고 투 포인터 개념을 알고 넘어가자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Two Pointer/Remove Duplicates From Sorted Array.html">Remove Duplicates From Sorted Array &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
