@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a2a 프로토콜 &mdash; devlog</title>
+    <meta name="description" content="서론 mcp와 함께 질문이 들어오고, 비슷한 개념인 듯한, 구글에서 제시한 a2a 프로토콜에 대해서 알아보자. 본론 A2A…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>a2a 프로토콜</h1>
+    <p class="meta">2026-10-28 <span class="tag">공부</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">mcp와 함께 질문이 들어오고, 비슷한 개념인 듯한,</p>
+<p class="indent">구글에서 제시한</p>
+<p class="indent">a2a 프로토콜에 대해서 알아보자.</p>
+
+<h1>본론</h1>
+
+<h2>A2A란?</h2>
+<p class="indent">a2a는 Agent to Agent의 약어로, 에이전트끼리 통신하기 위한 표준 규약이다.</p>
+
+<h2>왜 씀?</h2>
+<p class="indent">현재 여러 agent를 동시에 사용하는 것은 당연한 일이 되었다. 하나의 agent가 모든 일을 다 하면 좋겠지만, 그렇게 될 시 컨텍스트가 부족하거나 할루시네이션이 일어날 수 있는 등, 여러 문제가 발생할 수 있다.</p>
+
+<p class="indent">멀티 agent 자체는 하나의 프레임워크 안에서 잘 돌아간다. 하지만, 서로 다른 벤더나 프레임워크(LangGraph, ADK, CrewAI 등)로 만든 에이전트끼리 통신할 표준이 없었다. 그래서 연동할 때마다 매번 커스텀으로 붙여야 했는데, A2A는 이 부분을 표준화 하였다.</p>
+
+<h2>어떻게 동작함?</h2>
+<p class="indent">이것을 서버와 비슷하게 진행하면 어떨까? 하는 것이 A2A 프로토콜이다.</p>
+
+<p class="indent">동일하게 클라이언트와 서버가 있다. 클라이언트는 유저로부터 요청을 받으면 그 요청을 해결할 수 있는 서버에게 해결하라고 지시를 한다. 그 서버가 해결할 수 있는 것을 아는 것은 각자 자신이 할 수 있는 일을 적은 카드를 지니고 있는다. 그래서 작업을 요청하고, 산출물을 받아서 클라이언트에게 뿌려주는 방식이다.</p>
+
+<p class="indent">즉, 클라이언트 에이전트와 서버 에이전트인 것만 빼면 정말 서버와 클라이언트와 다를 게 없다. </p>
+
+<h2>일반적인 서버랑 뭐가 다름?</h2>
+<ol>
+<li>Opaque: 서버 에이전트는 내부 도구, 메모리, 프롬프트를 노출하지 않고 결과만 출력</li>
+<li>Task 생명주기: 기존 서버는 한 번 입력 받고 결과를 내지만, 다른 입력이 필요하다고 판단되면 추가 인풋을 요구할 수 있다.</li>
+</ol>
+
+<p class="indent">클라와 서버가 소통하는 데 있어서 인증, 커뮤니케이션과 같은 절차가 있다. 이런 것들을 통해 개인 정보 보호, 원활한 통합, 보안 등을 유지할 수 있다고 한다.</p>
+
+<p class="indent">정리하면, 단순 agent를 호출하는 데 그치지 않고 남이 서비스하는 agent도 위와 같은 규약으로 호출할 수 있고, agent 끼리의 소통을 체계화 시킬 수 있다.</p>
+
+<h1>결론</h1>
+
+<p class="indent">규칙이 없던 agent 끼리의 소통을 잘 정리해 놓은 듯 하다. 하지만, ai 모델이 발전함에 따라 이런 규칙을 인간이 쥐어주는 것보다 스스로 판단하여 하는 것이 더 좋을 것 같다는 생각이 든다. 아마 이것도 해당 개념을 통해 ai가 스스로 패턴을 찾아서 최적으로 진행할 듯 하다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span></span><span><a href="../../../posts/Study/AI/mcp 프로토콜.html">&larr; mcp 프로토콜</a></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>
