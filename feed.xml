@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Rotate Array</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Rotate Array.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Rotate Array.html</guid>
+    <pubDate>Wed, 28 Oct 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>two_pointer</category>
+    <description>서론 | https://neetcode.io/problems/rotate-array/question 오른쪽으로 밀어보자. 푸는 방법 k 를 n 안으로 한 다음, 전체 배열을 뒤집고, 앞의 k 개를 뒤집고, 이후 나머지를 뒤집으면 된다. 다음은 코드이다. class Solution { public: void rotate(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { int n = nums.size(); k %= n; reverse(nums.begin(), nums.end()); // 전…</description>
+  </item>
+  <item>
     <title>4 Sum</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Two Pointer/4 Sum.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Two Pointer/4 Sum.html</guid>
@@ -176,15 +185,6 @@
     <category>ps</category>
     <category>array</category>
     <description>서론 | https://neetcode.io/problems/majority-element/question 과반수 넘게 존재하는 원소를 찾아라 푸는 방법 무조건 과반수 넘는 게 있다고 한다. 이때 사용하는 알고리즘이 있다는 데, 그것을 적용하면 된다. 다음은 코드이다 class Solution { public: int majorityElement(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int target = nums[0]; int count = 1; for (…</description>
-  </item>
-  <item>
-    <title>Remove Element</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Remove Element.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Remove Element.html</guid>
-    <pubDate>Mon, 05 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/remove-element/question 배열에서 val 값을 전부 제거하라. 푸는 방법 제거가 아예 없던 것처럼 해야 한다. 그래서 새로운 배열을 만드는 것으로 해결하기로 했다. 다음은 코드이다. class Solution { public: int removeElement(vector&amp;lt;int&amp;gt;&amp;amp; nums, int val) { vector&amp;lt;int&amp;gt; result; for (const auto&amp;amp; a …</description>
   </item>
 </channel>
 </rss>

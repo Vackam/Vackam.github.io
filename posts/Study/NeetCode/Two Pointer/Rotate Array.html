@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate Array &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/rotate-array/question 오른쪽으로 밀어보자. 푸는 방법 k 를 n 안으로 한 다음, 전체 배열을…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Rotate Array</h1>
+    <p class="meta">2026-10-28 <span class="tag">ps</span><span class="tag">two_pointer</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/rotate-array/question</p>
+<p class="indent">오른쪽으로 밀어보자.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent"><code>k</code>를 <code>n</code>안으로 한 다음, 전체 배열을 뒤집고, 앞의 k 개를 뒤집고, 이후 나머지를 뒤집으면 된다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    void rotate(vector&lt;int&gt;&amp; nums, int k) {
+        int n = nums.size();
+        k %= n;
+        reverse(nums.begin(), nums.end());          // 전체 뒤집기
+        reverse(nums.begin(), nums.begin() + k);    // 앞 k개 뒤집기
+        reverse(nums.begin() + k, nums.end());      // 나머지 뒤집기
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p class="indent">처음에 <code>O(n)</code> space 로 풀었다가 이 풀이로 풀었는데, 시간은 동일하게 나온다. 솔직히 공간 <code>O(n)</code>까지는 괜찮지 않나 싶다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Two Pointer/4 Sum.html">4 Sum &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
