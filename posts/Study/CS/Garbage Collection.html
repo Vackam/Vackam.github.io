@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage Collection에 대해 알아보자 &mdash; devlog</title>
+    <meta name="description" content="서론 메모리 관리 기법인 Garbage Collection(GC)에 대해 알아보자. 본론 정적 메모리는 프로그램이 stack으로 자신의 공…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>Garbage Collection에 대해 알아보자</h1>
+    <p class="meta">2026-10-29 <span class="tag">공부</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">메모리 관리 기법인 Garbage Collection(GC)에 대해 알아보자.</p>
+
+<h1>본론</h1>
+
+<p class="indent">정적 메모리는 프로그램이 stack으로 자신의 공간을 차지한다. </p>
+<p class="indent">동적 메모리는 이와 다르게 생성 시에 자신의 자리를 만들며 heap으로 점점 자라게 된다. 그래서 이 동적 메모리를 관리하지 않게 되면 heap이 너무 많이 자라게 되어 segmetation fault 등이 일어날 수 있다.</p>
+
+<p class="indent">그래서 메모리 할당을 해제해주는 것이 아주 중요하다. <code>C</code>에서는 명시적으로 이를 해제해주었어야 했다. 하지만, 코드가 복잡해질 수록 이런 할당을 하나하나 신경쓰는 것은 어려워 지므로, 이를 자연스럽게 해결해주기 위해서 GC 개념이 나왔다.</p>
+
+<p class="indent">GC는 단순하게 런타임에서 스레드를 하나 잡아, 각 언어가 구현한 방식대로 사용하지 않는 것들을 자동으로 해제 시킨다. Java는 JVM, C# 은 .NET의 CLR, Python은 CPython이 진행한다. 유저가 해제를 신경쓰지 않아도 되고, 자동으로 넘치지 않도록 관리해주기 때문에 유용하다.</p>
+
+<p class="indent">하지만, GC에도 Stop-the-World 라는 문제가 생긴다. GC가 수집하는 동안 애플리케이션 스레드를 모두 멈추는 행위이다. 이는 살아 있는 객체를 잘못 지울 수 있어서 멈추는데, 게임 서버에서 틱 간격보다 길게 멈추게 되면, 모든 유저가 렉을 겪을 수 있다.</p>
+
+<h1>결론</h1>
+<p class="indent">C++, Rust에는 GC가 없다.</p>
+
+<p class="indent">C++에서는 RAII, unique_ptr, shared_ptr을 사용하여 어느 정도 막지만, 런타임 검사 도구 등을 사용해야 한다.</p>
+<p class="indent">Rust는 이를 막기 위해 여러 규칙들을 만들어서 해결한다. 단순하게 말해서, 주인은 하나, 가변 참조는 동시에 하나, 참조는 원본보다 오래 못 산다는 규칙을 컴파일러가 강제한다. </p>
+
+<p class="indent">사실 게임 서버가 아니라면 GC가 진행하는 렉 정도는 감안할 수 있기에 안전한 언어를 사용하는 것이 중요하다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../posts/Study/CS/클로저에 대해서.html">클로저에 대해서 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    
+  </body>
+</html>

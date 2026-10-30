@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클로저에 대해서 &mdash; devlog</title>
+    <meta name="description" content="서론 클로저에 대해서 알아보자. 언어 클로저(Clojure)가 아니고, 클로저(Closure)이다. 언어는 함수형 언어의 정석이…">
+    <link rel="stylesheet" href="../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h1>클로저에 대해서</h1>
+    <p class="meta">2026-10-29 <span class="tag">공부</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">클로저에 대해서 알아보자.</p>
+<p class="indent">언어 클로저(Clojure)가 아니고, 클로저(Closure)이다.</p>
+<p class="indent">언어는 함수형 언어의 정석이라서 다음에 게시글로 함께 공부해보도록 하자.</p>
+
+<h1>본론</h1>
+
+<p class="indent">함수를 작성할 때, 함수 안에 함수를 정의하는 경우가 있다. 이 경우 대부분 함수 내부 동작을 간단하게 하려고 하는 경우가 대부분이지만, 가끔 내부 함수 자체를 반환하는 경우가 있다. </p>
+
+<p class="indent">다음과 같은 경우를 생각해보자.</p>
+
+<pre><code class="language-Python">def make_counter():
+    count = 0             
+    def counter():
+        nonlocal count
+        count += 1       
+        return count
+    return counter      
+
+c = make_counter()     
+print(c())  
+print(c()) 
+</code></pre>
+
+<p class="indent"><code>make_counter()</code>는 내부 함수인 <code>counter()</code>를 반환한다. 이후 <code>c = make_counter()</code>를 통해 함수를 대입한 이후 <code>print</code>를 하고 있다.</p>
+
+<p class="indent">만약 <code>c = make_counter</code>에 <code>print(c())</code>라면 <code>counter()</code>에 대한 정보를 출력할 것이다. <code>c = make_counter() \n print(c())</code> 이기에, 동작을 생각해봐야 한다.</p>
+
+<p class="indent">단순하게 생각하면, <code>print</code> 호출 시 마다 <code>make_counter()()</code>가 실행되어, 두 출력문 모두 값이 1이 나올 것이다. 일반적으로 함수 호출 후 지역 변수는 사라지니까, count가 매 호출 시 0일 것이니 1로 다시 시작할 것 같다.</p>
+
+<p class="indent">하지만, 실제 출력을 <code>1 \n 2</code>가 나온다. <code>count</code>는 사라지지 않고, 호출할 때마다 값이 누적된다.</p>
+
+<h2>클로저(Closure)</h2>
+
+<p class="indent">이유는 내부 함수인 <code>counter</code>가 만들어질 때 자신이 사용하는 바깥 변수 <code>count</code>를 붙잡아 두기 때문이다. <code>make_counter</code>가 종료되어도 내부 함수가 변수를 참조하고 있으므로 메모리에서 값이 사라지지 않는다. </p>
+
+<p class="indent">이처럼 <strong>자신을 감싼 함수의 변수를 기억하고 있는 함수</strong>를 클로저라고 한다. </p>
+
+<p class="indent">클로저는 두 부분으로 이루어져 있다.</p>
+<ul>
+<li>함수의 코드</li>
+<li>함수가 만들어질 때 붙잡아 둔 바깥 변수들</li>
+</ul>
+
+<p class="indent">그래서 위 코드의 동작을 확인해보면 다음과 같다.</p>
+
+<ol>
+<li><code>c = make_counter()</code> 함수 한 번 호출 후, <code>count = 0</code>가 만들어지고, 이를 붙잡은 함수인 <code>counter</code>가 <code>c</code>에 저장된다.</li>
+<li><code>c()</code>는 <code>make_counter()</code>를 실행시키지 않고, <code>counter</code>를 실행시킨다. 메모리에 있는 <code>count</code>를 1 증가 시킨다.</li>
+<li><code>c()</code>도 동일하게 1 증가시킨다.</li>
+</ol>
+
+<p class="indent">그럼 다음과 같은 코드에서는 어떻게 될까?</p>
+
+<pre><code class="language-Python">a = make_counter()
+b = make_counter()
+a()
+a()
+print(a()) # 3
+print(b()) # 1 ​
+</code></pre>
+
+<p class="indent"><code>make_counter()</code>가 호출될 때마다 새로운 <code>count</code>가 만들어진다. 그래서 <code>a</code>와 <code>b</code>의 값이 다르게 된다.</p>
+
+<p class="indent"><code>Python</code>에서는 <code>nonlocal</code> 을 붙이지 않으면 에러가 발생한다. 함수 안에서 처음 보는 변수에 <code>+= 1</code>이라는 행위를 하려고 하니 에러가 발생한다. 즉, 바깥 변수를 참조하겠다는 선언을 하지 않으면 에러가 나는 것이다. </p>
+
+<h2>가장 익숙한 사용법</h2>
+
+<p class="indent">가장 익숙한 사용법은 데코레이터이다.</p>
+
+<p class="indent">함수를 실행할 때, 부가적인 정보들을 넣어주고 싶을 때, 이 클로저의 개념이 없으면 성립하지 않는다.</p>
+
+<h1>결론</h1>
+<p class="indent">각 함수는 독립적으로 실행되지만, 실행할 때마다 어떤 정보를 저장하거나 참조해야 할 때 사용할 수 있도록 만든 기능이다.</p>
+
+<p class="indent">단순한 코딩에서는 그리 사용할 일이 없겠지만, 복잡한 로직 등이 들어가면 편리한 기능일 것 같다. 실제로 데코레이터는 실험하는 사람들에게 필수적인 기능이니까 더욱 그러하다.</p>
+
+<p class="indent"><code>C++</code>도 11부터 지원을 시작했고, 다른 언어들도 지원을 하니, 만약 필요한 경우 적극적으로 사용해보도록 하자. </p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span></span><span><a href="../../../posts/Study/CS/Garbage Collection.html">&larr; Garbage Collection에 대해 알아보자</a></span></nav>
+
+    <p><a href="../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

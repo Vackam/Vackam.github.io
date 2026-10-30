@@ -7,12 +7,28 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
-    <title>ReAct와 Function Calling</title>
-    <link>https://vackam.github.io/posts/Study/AI/ReAct와 Function Calling.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/AI/ReAct와 Function Calling.html</guid>
+    <title>Garbage Collection에 대해 알아보자</title>
+    <link>https://vackam.github.io/posts/Study/CS/Garbage Collection.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/Garbage Collection.html</guid>
+    <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    <category>공부</category>
+    <description>서론 메모리 관리 기법인 Garbage Collection(GC)에 대해 알아보자. 본론 정적 메모리는 프로그램이 stack으로 자신의 공간을 차지한다. 동적 메모리는 이와 다르게 생성 시에 자신의 자리를 만들며 heap으로 점점 자라게 된다. 그래서 이 동적 메모리를 관리하지 않게 되면 heap이 너무 많이 자라게 되어 segmetation f…</description>
+  </item>
+  <item>
+    <title>클로저에 대해서</title>
+    <link>https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</guid>
+    <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    <category>공부</category>
+    <description>서론 클로저에 대해서 알아보자. 언어 클로저(Clojure)가 아니고, 클로저(Closure)이다. 언어는 함수형 언어의 정석이라서 다음에 게시글로 함께 공부해보도록 하자. 본론 함수를 작성할 때, 함수 안에 함수를 정의하는 경우가 있다. 이 경우 대부분 함수 내부 동작을 간단하게 하려고 하는 경우가 대부분이지…</description>
+  </item>
+  <item>
+    <title>a2a 프로토콜</title>
+    <link>https://vackam.github.io/posts/Study/AI/a2a 프로토콜.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/AI/a2a 프로토콜.html</guid>
     <pubDate>Wed, 28 Oct 2026 00:00:00 +0900</pubDate>
     <category>공부</category>
-    <description>서론 에이전트에서 많이 사용하는 ReAct 방식과 Function Calling에 대해 알아보자. 본론 ReAct Reasoning + Acting - 추론과 행동을 하는 것이다. 유저에게 입력을 받으면, 이 입력에 대해 필요한 정보가 있는 지 추론하고 모델이 필요한 도구를 찾아서 실행 한 뒤 결과를 해석해서 답변한다. 즉, 이것을 하기 위해서는…</description>
+    <description>서론 mcp와 함께 질문이 들어오고, 비슷한 개념인 듯한, 구글에서 제시한 a2a 프로토콜에 대해서 알아보자. 본론 A2A란? a2a는 Agent to Agent의 약어로, 에이전트끼리 통신하기 위한 표준 규약이다. 왜 씀? 현재 여러 agent를 동시에 사용하는 것은 당연한 일이 되었다. 하나의 agent가 모든 일을 다 하면 좋겠지만, …</description>
   </item>
   <item>
     <title>Rotate Array</title>
@@ -32,12 +48,12 @@
     <description>서론 MCP에 대해서 알아보자. Anthropic이 24년 11월에 공개했으며, 특정 벤더에 묶이지 않은 오픈 표준으로 운영되고 있다. 본론 MCP Model Context Protocol로 AI 애플리케이션이 도구, 데이터베이스 및 사전 정의된 템플릿과 같은 외부 서비스와 효과적으로 통신하기 위한 표준화 계층 역할을 합니다. 위와 같은 정…</description>
   </item>
   <item>
-    <title>a2a 프로토콜</title>
-    <link>https://vackam.github.io/posts/Study/AI/a2a 프로토콜.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/AI/a2a 프로토콜.html</guid>
+    <title>ReAct와 Function Calling</title>
+    <link>https://vackam.github.io/posts/Study/AI/ReAct와 Function Calling.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/AI/ReAct와 Function Calling.html</guid>
     <pubDate>Wed, 28 Oct 2026 00:00:00 +0900</pubDate>
     <category>공부</category>
-    <description>서론 mcp와 함께 질문이 들어오고, 비슷한 개념인 듯한, 구글에서 제시한 a2a 프로토콜에 대해서 알아보자. 본론 A2A란? a2a는 Agent to Agent의 약어로, 에이전트끼리 통신하기 위한 표준 규약이다. 왜 씀? 현재 여러 agent를 동시에 사용하는 것은 당연한 일이 되었다. 하나의 agent가 모든 일을 다 하면 좋겠지만, …</description>
+    <description>서론 에이전트에서 많이 사용하는 ReAct 방식과 Function Calling에 대해 알아보자. 본론 ReAct Reasoning + Acting - 추론과 행동을 하는 것이다. 유저에게 입력을 받으면, 이 입력에 대해 필요한 정보가 있는 지 추론하고 모델이 필요한 도구를 찾아서 실행 한 뒤 결과를 해석해서 답변한다. 즉, 이것을 하기 위해서는…</description>
   </item>
   <item>
     <title>4 Sum</title>
@@ -164,24 +180,6 @@
     <category>후기</category>
     <category>대회</category>
     <description>서론 부산에서 열린 소프트뱅크 해커톤 2026 참가 후기이다. 본론 대회는 사전 안내인 킥오프 포함 일주일 정도 진행되었다. 킥오프에서 팀이 선정되고, 이후 알아서 개발하다가 토요일, 일요일 양일 대면으로 진행하는 방식이다. 해커톤 치고는 개발 시간이 많은 게 특징이다. 우리 팀은 양일만 대면으로…</description>
-  </item>
-  <item>
-    <title>Best Time to Buy and Sell Stock II</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Best Time to Buy and Sell Stock II.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Best Time to Buy and Sell Stock II.html</guid>
-    <pubDate>Fri, 09 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/best-time-to-buy-and-sell-stock-ii/question 주식을 잘 살 수 있도록 하자 푸는 방법 당일에 사고 파는 것이 가능하다. 그러므로 최대 이익은 숫자가 오르는 구간의 모든 값을 더하면 된다. 다음은 코드이다. class Solution { public: int maxProfit(vector&amp;lt;int&amp;gt;&amp;amp; prices) { int profit = 0; for (int i=1; i&amp;…</description>
-  </item>
-  <item>
-    <title>Range Sum Query 2D Immutable</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Range Sum Query 2D Immutable.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Array&amp;Hashing/Range Sum Query 2D Immutable.html</guid>
-    <pubDate>Thu, 08 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>array</category>
-    <description>서론 | https://neetcode.io/problems/range-sum-query-2d-immutable/question 주어진 사각형의 합을 구하라 푸는 방법 sumRegion 이 들어오면 계산을 하면 되겠지만, 이 문제에서는 O(1) 을 요구한다. 그러면 누적합으로 풀면 된다. 다음은 코드이다. class NumMatrix { vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; numeric_sum; public: NumMatrix(vector&amp;lt;vector&amp;lt;int…</description>
   </item>
 </channel>
 </rss>
