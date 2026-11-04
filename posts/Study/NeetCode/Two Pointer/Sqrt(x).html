@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sqrt(x) &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/sqrtx/question 제곱근을 찾아보자. 푸는 방법 만들어진 함수를 사용하는 것이 제일 좋다…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Sqrt(x)</h1>
+    <p class="meta">2026-11-04 <span class="tag">ps</span><span class="tag">two_pointer</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/sqrtx/question</p>
+<p class="indent">제곱근을 찾아보자.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">만들어진 함수를 사용하는 것이 제일 좋다.</p>
+<p class="indent">그게 아니라면, 매개변수를 이용한 binary search가 가능한 방법이다.</p>
+
+<p class="indent">자주 나오는 포인트인데, binary search를 하되, 실제 판별하는 기준은 해당 값이 아니라 어떤 함수를 거친 값이라는 점이다. </p>
+<p class="indent">이것이 가능하려면 어떤 함수가 선형적이어야 한다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    int mySqrt(int x) {
+        if (x &lt;= 1) return x;
+        int s = 1, e = x;
+
+        while (s &lt; e) {
+            long long mid = (s + e) / 2;
+
+            long long mid_times = mid * mid;
+
+            if (mid_times == x) {
+                return mid;
+            } else if (mid_times &lt; x) {
+                s = mid + 1;
+            } else {
+                e = mid;
+            }
+        } 
+
+        return s - 1;
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p class="indent">오랜만에 보는 유형이라 좋았다.</p>
+
+<p class="indent">이게 복잡하게 나오면 한 없이 복잡해져서 연습을 많이 해야 한다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Two Pointer/Guess Number Higher Or Lower.html">Guess Number Higher Or Lower &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
