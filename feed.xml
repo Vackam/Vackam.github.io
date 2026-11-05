@@ -48,6 +48,8 @@
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/Dapr에 대해 알아보자.html</guid>
     <pubDate>Sat, 31 Oct 2026 00:00:00 +0900</pubDate>
     <category>공부</category>
+    <category>Dapr</category>
+    <category>MSA</category>
     <description>서론 Dapr(&apos;대퍼&apos;라고 읽는다고 한다), Distributed Application Runtime에 대해 알아보자. 마이크로 서비스 아키텍처에서 필요하며, event-driven 형식을 가지고 있다. 대충 한 번 알아보자. 본론 (그림 1. Dapr 개요, 출처: https://docs.dapr.io/overview/) 대퍼는 다음과 같은 형태로 되어있다. App 과 HTTP 또는 gRPC 통신을 통해 대…</description>
   </item>
   <item>
