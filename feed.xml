@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Split Array Largest Sum</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Binary Search/Split Array Largest Sum.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Binary Search/Split Array Largest Sum.html</guid>
+    <pubDate>Mon, 09 Nov 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>binary_search</category>
+    <description>서론 | https://neetcode.io/problems/split-array-largest-sum/question 연속적인 sub-array로 자를 때, 가장 큰 값이 최소가 되게 하는 큰 값을 구하라. 푸는 방법 이진 탐색으로 전형적이게 풀면 된다. 초기 상한 값은 배열의 전체합으로 한다. 이후 이진 탐색을 돌면서 칸을 어디를 자를 지를 확인하고, 칸막이가 부족하면 st…</description>
+  </item>
+  <item>
     <title>Capacity to Ship Packages Within D Days</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Binary Search/Capacity to Ship Packages Within D Days.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Binary Search/Capacity to Ship Packages Within D Days.html</guid>
@@ -53,20 +62,20 @@
     <description>서론 Dapr(&apos;대퍼&apos;라고 읽는다고 한다), Distributed Application Runtime에 대해 알아보자. 마이크로 서비스 아키텍처에서 필요하며, event-driven 형식을 가지고 있다. 대충 한 번 알아보자. 본론 (그림 1. Dapr 개요, 출처: https://docs.dapr.io/overview/) 대퍼는 다음과 같은 형태로 되어있다. App 과 HTTP 또는 gRPC 통신을 통해 대…</description>
   </item>
   <item>
-    <title>Garbage Collection에 대해 알아보자</title>
-    <link>https://vackam.github.io/posts/Study/CS/Garbage Collection.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/Garbage Collection.html</guid>
-    <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
-    <category>공부</category>
-    <description>서론 메모리 관리 기법인 Garbage Collection(GC)에 대해 알아보자. 본론 정적 메모리는 프로그램이 stack으로 자신의 공간을 차지한다. 동적 메모리는 이와 다르게 생성 시에 자신의 자리를 만들며 heap으로 점점 자라게 된다. 그래서 이 동적 메모리를 관리하지 않게 되면 heap이 너무 많이 자라게 되어 segmetation f…</description>
-  </item>
-  <item>
     <title>클로저에 대해서</title>
     <link>https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</guid>
     <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
     <category>공부</category>
     <description>서론 클로저에 대해서 알아보자. 언어 클로저(Clojure)가 아니고, 클로저(Closure)이다. 언어는 함수형 언어의 정석이라서 다음에 게시글로 함께 공부해보도록 하자. 본론 함수를 작성할 때, 함수 안에 함수를 정의하는 경우가 있다. 이 경우 대부분 함수 내부 동작을 간단하게 하려고 하는 경우가 대부분이지…</description>
+  </item>
+  <item>
+    <title>Garbage Collection에 대해 알아보자</title>
+    <link>https://vackam.github.io/posts/Study/CS/Garbage Collection.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/Garbage Collection.html</guid>
+    <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    <category>공부</category>
+    <description>서론 메모리 관리 기법인 Garbage Collection(GC)에 대해 알아보자. 본론 정적 메모리는 프로그램이 stack으로 자신의 공간을 차지한다. 동적 메모리는 이와 다르게 생성 시에 자신의 자리를 만들며 heap으로 점점 자라게 된다. 그래서 이 동적 메모리를 관리하지 않게 되면 heap이 너무 많이 자라게 되어 segmetation f…</description>
   </item>
   <item>
     <title>Rotate Array</title>
@@ -173,15 +182,6 @@
     <category>queue</category>
     <category>stack</category>
     <description>서론 | https://neetcode.io/problems/asteroid-collision/question 소행성 충돌 후 결과를 기술하라. 푸는 방법 같은 방향인 것들은 절대로 만나지 않는다. 0부터 탐색했을 때, 처음 양수를 만날 때까지 앞에 있는 값들은 전부 충돌이 일어나지 않는다. 그러므로 바로 정답에 넣어주면 된다. 이후 정답의 top을 항상 양수로 …</description>
-  </item>
-  <item>
-    <title>Baseball Game</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Stack/Baseball Game.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Stack/Baseball Game.html</guid>
-    <pubDate>Thu, 15 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>stack</category>
-    <description>서론 | https://neetcode.io/problems/baseball-game/question 대충 점수를 재봐라 푸는 방법 정직하게 하드코딩으로 풀자. 다음은 코드이다. class Solution { public: int calPoints(vector&amp;lt;string&amp;gt;&amp;amp; op) { stack&amp;lt;int&amp;gt; st; for (const auto&amp;amp; a : op) { if (a == &quot;C&quot;) { st.pop(); } else if (a == &quot;D&quot;) { int target = st.top(); st.push(target * 2); } else if (a == &quot;+…</description>
   </item>
 </channel>
 </rss>
