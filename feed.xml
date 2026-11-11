@@ -7,6 +7,15 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Minimum Size Subarray Sum</title>
+    <link>https://vackam.github.io/posts/Study/NeetCode/Sliding Window/Minimum Size Subarray Sum.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Sliding Window/Minimum Size Subarray Sum.html</guid>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0900</pubDate>
+    <category>ps</category>
+    <category>slidingWindow</category>
+    <description>서론 | https://neetcode.io/problems/minimum-size-subarray-sum/question target 보다 큰 값을 가지는 부분 수열 중 가장 작은 길이를 반환하라 푸는 방법 누적합을 구하고, 이후 two pointer 방식으로 풀면 된다. 다음은 코드이다. class Solution { public: int minSubArrayLen(int target, vector&amp;lt;int&amp;gt;&amp;amp; nums) { int n = nums.size(); vector&amp;lt;int&amp;gt; gu…</description>
+  </item>
+  <item>
     <title>Find in Mountain Array</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Binary Search/Find in Mountain Array.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Binary Search/Find in Mountain Array.html</guid>
@@ -71,20 +80,20 @@
     <description>서론 Dapr(&apos;대퍼&apos;라고 읽는다고 한다), Distributed Application Runtime에 대해 알아보자. 마이크로 서비스 아키텍처에서 필요하며, event-driven 형식을 가지고 있다. 대충 한 번 알아보자. 본론 (그림 1. Dapr 개요, 출처: https://docs.dapr.io/overview/) 대퍼는 다음과 같은 형태로 되어있다. App 과 HTTP 또는 gRPC 통신을 통해 대…</description>
   </item>
   <item>
-    <title>클로저에 대해서</title>
-    <link>https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</guid>
-    <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
-    <category>공부</category>
-    <description>서론 클로저에 대해서 알아보자. 언어 클로저(Clojure)가 아니고, 클로저(Closure)이다. 언어는 함수형 언어의 정석이라서 다음에 게시글로 함께 공부해보도록 하자. 본론 함수를 작성할 때, 함수 안에 함수를 정의하는 경우가 있다. 이 경우 대부분 함수 내부 동작을 간단하게 하려고 하는 경우가 대부분이지…</description>
-  </item>
-  <item>
     <title>Garbage Collection에 대해 알아보자</title>
     <link>https://vackam.github.io/posts/Study/CS/Garbage Collection.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/Garbage Collection.html</guid>
     <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
     <category>공부</category>
     <description>서론 메모리 관리 기법인 Garbage Collection(GC)에 대해 알아보자. 본론 정적 메모리는 프로그램이 stack으로 자신의 공간을 차지한다. 동적 메모리는 이와 다르게 생성 시에 자신의 자리를 만들며 heap으로 점점 자라게 된다. 그래서 이 동적 메모리를 관리하지 않게 되면 heap이 너무 많이 자라게 되어 segmetation f…</description>
+  </item>
+  <item>
+    <title>클로저에 대해서</title>
+    <link>https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/CS/클로저에 대해서.html</guid>
+    <pubDate>Thu, 29 Oct 2026 00:00:00 +0900</pubDate>
+    <category>공부</category>
+    <description>서론 클로저에 대해서 알아보자. 언어 클로저(Clojure)가 아니고, 클로저(Closure)이다. 언어는 함수형 언어의 정석이라서 다음에 게시글로 함께 공부해보도록 하자. 본론 함수를 작성할 때, 함수 안에 함수를 정의하는 경우가 있다. 이 경우 대부분 함수 내부 동작을 간단하게 하려고 하는 경우가 대부분이지…</description>
   </item>
   <item>
     <title>Rotate Array</title>
@@ -172,15 +181,6 @@
     <category>ps</category>
     <category>stack</category>
     <description>서론 | https://neetcode.io/problems/simplify-path/question path를 잘 만들어봐라. 푸는 방법 .. 연산 때문에 deque를 활용하였다. 또한, 중첩해서 / 가 가능하기 때문에 그것을 걸러주기 위하여 크게 if/else 로 나누어서 풀었다. 다음은 코드이다. class Solution { public: string simplifyPath(string path) { deque&amp;lt;string&amp;gt; s; int n = path.size…</description>
-  </item>
-  <item>
-    <title>Online Stock Span</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Stack/Online Stock Span.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Stack/Online Stock Span.html</guid>
-    <pubDate>Sat, 17 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>stack</category>
-    <description>서론 | https://neetcode.io/problems/online-stock-span/question 하나씩 주어지는 값에서, 지금까지 보다 작은 게 몇 개인지 세라 푸는 방법 그냥 vector 세우고 들어올 때마다 작은 것을 세려 하면 O(n^2) 을 가지게 된다. 그래서 어떻게든 기억을 하면서 가야 한다. 그리고 span은 자기보다 큰 값에 막히니까 stack 을 활용하…</description>
   </item>
 </channel>
 </rss>
