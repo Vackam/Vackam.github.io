@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFU Cache &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/lfu-cache/question?list=neetcode250 LFU 를 구현하라. 푸는 방법 자료형을 두 개를 운용해야 한…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>LFU Cache</h1>
+    <p class="meta">2026-11-19 <span class="tag">ps</span><span class="tag">Linked_List</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/lfu-cache/question?list=neetcode250</p>
+<p class="indent">LFU 를 구현하라.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">자료형을 두 개를 운용해야 한다.</p>
+<p class="indent"><code>(key, {value, freq, iterator}</code>를 들고 다니는 map 하나와</p>
+<p class="indent"><code>(freq, list&lt;int&gt;)</code>를 들고 다니는 map을 운용해야 한다.</p>
+
+<p class="indent">전자를 A 후자를 B라고 하자.</p>
+
+<p class="indent">B는 <code>freq</code>별로 해당하는 값이 무엇이 있는 지를 저장하고 다닌다.</p>
+<p class="indent">빈도수가 1인 애들의 집합을 <code>list&lt;int&gt;</code>, 2인 애들을 <code>list&lt;int&gt;</code>... 이렇게 저장하고 다닌다.</p>
+<p class="indent">빈도수에 새로운 값이 들어올 때는 문제 조건에서 동일한 빈도수의 경우 <code>LRU</code>를 사용하라 했으므로 앞에 넣어주는 <code>push_front</code>를 진행한다.</p>
+
+<p class="indent">이를 통해 A는 B의 <code>list&lt;int&gt;</code>에서 자기 자신의 위치를 기억하게 한다. 이것이 <code>iterator</code>이다.</p>
+<p class="indent">그래서 A는 <code>key</code>를 주게 되면 <code>value, freq, iterator</code>를 가지고 있으므로 이를 수정하여서 빈도수를 체크하면 된다.</p>
+
+<p class="indent">이를 위해 보조 함수 <code>touch</code>를 사용한다.</p>
+<p class="indent"><code>touch(key)</code>는 <code>key</code>에 대한 <code>get, put</code> 연산이 들어왔을 때 그것의 <code>freq</code>를 업데이트 해주고, B에 있는 <code>list&lt;int&gt;</code>에서 제거하면서 최소 빈도수를 체크하는 역할을 한다.</p>
+<p class="indent">이때 최소 빈도수는 조건에서 단순히 전 값에서 <code>+1</code>만 하면 되는데, 이는 전의 값이 한 칸 올라가므로 무조건 존재하기 때문이다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class LFUCache {
+    struct Node {
+        int value, freq;
+        list&lt;int&gt;::iterator it;
+    };
+
+    int cap, min_freq = 0;
+    unordered_map&lt;int, Node&gt; nodes;
+    unordered_map&lt;int, list&lt;int&gt;&gt; freq_list;
+
+    void touch(int key) {
+        Node&amp; n = nodes[key];
+        auto&amp; old_list = freq_list[n.freq];
+        old_list.erase(n.it);
+        if (old_list.empty()) {
+            freq_list.erase(n.freq);
+            if (min_freq == n.freq) min_freq++;
+        }
+        n.freq++;
+        freq_list[n.freq].push_front(key);
+        n.it = freq_list[n.freq].begin();
+    }
+public:
+    LFUCache(int capacity) : cap(capacity) {
+        
+    }
+    
+    int get(int key) {
+        auto f = nodes.find(key);
+        if (f == nodes.end()) return -1;
+        touch(key);
+        return f-&gt;second.value; 
+    }
+    
+    void put(int key, int value) {
+        if (cap == 0) return;
+
+        auto f = nodes.find(key);
+        if (f != nodes.end()) {
+            f-&gt;second.value = value;
+            touch(key);
+            return;
+        } 
+
+        if ((int) nodes.size() == cap) {
+            auto&amp; lst = freq_list[min_freq];
+            int victim = lst.back();
+            lst.pop_back();
+            if (lst.empty()) freq_list.erase(min_freq);
+            nodes.erase(victim);
+        }
+
+        min_freq = 1;
+        freq_list[1].push_front(key);
+        nodes[key] = {value, 1, freq_list[1].begin()};
+    }
+};
+</code></pre>
+
+<h1>결론</h1>
+<p class="indent">여러 자료형을 운용해야 하는 경우에 어려움을 많이 겪는다.</p>
+<p class="indent">뭘 어떻게 저장할 지를 잘 생각하자.</p>
+<p class="indent">또한, iterator를 적극 활용하도록 하자.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Linked List/Design Circular Queue.html">Design Circular Queue &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>

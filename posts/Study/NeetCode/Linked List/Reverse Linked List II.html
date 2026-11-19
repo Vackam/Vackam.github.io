@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Linked List II &mdash; devlog</title>
+    <meta name="description" content="서론 | https://neetcode.io/problems/reverse-linked-list-ii/question?list=neetcode250 연결 리스트에서 정해진 구간만 반전시켜라. 푸…">
+    <link rel="stylesheet" href="../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h1>Reverse Linked List II</h1>
+    <p class="meta">2026-11-13 <span class="tag">ps</span><span class="tag">Linked_List</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://neetcode.io/problems/reverse-linked-list-ii/question?list=neetcode250</p>
+<p class="indent">연결 리스트에서 정해진 구간만 반전시켜라.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">전형적인 연결리스트 문제이다. 이러한 문제는 총 3개를 동시에 다룬다고 생각하면 된다. 전의 값, 현재 값, 다음 값. </p>
+<p class="indent">그래서 반전 자체는 단순하게 진행하면 된다. 세 개를 들고 있으면서 방향만 바꾸어주면 된다.</p>
+<p class="indent">문제는 3가지 케이스가 나온다는 점인데 반전시키는 경우가</p>
+<ol>
+<li><code>head</code>가 시작점일 경우</li>
+<li><code>tail</code>이 끝점일 경우</li>
+<li>중간에 잘 있는 경우</li>
+</ol>
+
+<p class="indent">위와 같은 경우를 나누어서, 마지막 포인터 처리만 잘 해주면 간단하게 풀린다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">class Solution {
+public:
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        if (left == right) return head;
+        ListNode* previous = nullptr;
+        ListNode* copy_head = head;
+
+        int i = 1;
+        while (i != left) {
+            ++i;
+            previous = copy_head;
+            copy_head = copy_head-&gt;next;
+        }
+        // -------------------- 저장용 --------------------
+        ListNode* now = copy_head-&gt;next;
+        ListNode* pre = copy_head;
+
+        for (int j=0; j&lt;right - left; ++j) {
+            ListNode* now_next = now-&gt;next ? now-&gt;next : nullptr;
+            now-&gt;next = pre;
+            pre = now;
+            now = now_next;
+        }
+
+        if (previous)
+            previous-&gt;next = pre;
+        else 
+            head = pre;
+        if (now)
+           copy_head-&gt;next = now;
+        else
+           copy_head-&gt;next = nullptr;
+           
+        return head;
+    }
+};
+</code></pre>
+
+<p class="indent">이런 류의 문제는 무조건 첫 <code>head</code>를 기억해두자. 이것을 반복해서 사용하는 경우가 잦다.</p>
+
+<h1>결론</h1>
+<p class="indent">오랜만에 포인터 가지고 작업을 하려 하니 아주 어려웠다.</p>
+<p class="indent">새삼스럽게 느끼지만, 이런 포인터 연산은 하드웨어 쪽하고 ps 아니면 아예 안 쓰는 듯 하다. 언제 터질 지 모르는 시한 폭탄을 굳이 코드에 넣을 필요가 없으니...</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../posts/Study/NeetCode/Linked List/Merge K Sorted Linked Lists.html">Merge K Sorted Linked Lists &rarr;</a></span><span><a href="../../../../posts/Study/NeetCode/Linked List/Design Circular Queue.html">&larr; Design Circular Queue</a></span></nav>
+
+    <p><a href="../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
