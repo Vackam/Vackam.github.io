@@ -7,6 +7,24 @@
   <language>ko</language>
   <atom:link href="https://vackam.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>25288 영어시험</title>
+    <link>https://vackam.github.io/posts/Study/백준/단계별로 풀어보기/38/25288 영어시험.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Study/백준/단계별로 풀어보기/38/25288 영어시험.html</guid>
+    <pubDate>Mon, 23 Nov 2026 00:00:00 +0900</pubDate>
+    <category>백준</category>
+    <category>단계별로_풀어보기</category>
+    <category>해_구성하기</category>
+    <description>서론 | https://acmicpc.net/problem/25288 무적의 영어 단어를 찾아라. 푸는 방법 n이 입력되고, 중복을 허락하지 않은 문자열 s가 들어온다고 가정해보자. s[i] 에 대해, 문자열이 s[i]s[i+1] ... s[i+1] 로 구성될 수 있으므로, 한 문자에 대해 다른 모든 문자가 적어도 n-1 번씩 있는 경우가 존재해야 한다. 그러므로, n 번 …</description>
+  </item>
+  <item>
+    <title>2026-11-21</title>
+    <link>https://vackam.github.io/posts/Daily/11월/2026-11-21.html</link>
+    <guid isPermaLink="true">https://vackam.github.io/posts/Daily/11월/2026-11-21.html</guid>
+    <pubDate>Sat, 21 Nov 2026 00:00:00 +0900</pubDate>
+    <category>데일리</category>
+    <description>리만가설 증명 오늘 나온 기사인데, 앤소로픽에서 리만 가설을 증명했다고 주장하고 있다. OpenAI에서도 나비에-스토크스 방정식을 증명했다고 하니, 언젠가는 해결되겠다 싶었는데 아주 밭게 나와서 당황스러웠다. 사실 더 당황스러운 것은 기사에 나온 &apos;린으로 검증했다&apos;라고 하는 부분이다. 린(Lean)은 …</description>
+  </item>
+  <item>
     <title>LFU Cache</title>
     <link>https://vackam.github.io/posts/Study/NeetCode/Linked List/LFU Cache.html</link>
     <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Linked List/LFU Cache.html</guid>
@@ -154,23 +172,6 @@
     <pubDate>Wed, 28 Oct 2026 00:00:00 +0900</pubDate>
     <category>공부</category>
     <description>서론 에이전트에서 많이 사용하는 ReAct 방식과 Function Calling에 대해 알아보자. 본론 ReAct Reasoning + Acting - 추론과 행동을 하는 것이다. 유저에게 입력을 받으면, 이 입력에 대해 필요한 정보가 있는 지 추론하고 모델이 필요한 도구를 찾아서 실행 한 뒤 결과를 해석해서 답변한다. 즉, 이것을 하기 위해서는…</description>
-  </item>
-  <item>
-    <title>mcp 프로토콜</title>
-    <link>https://vackam.github.io/posts/Study/AI/mcp 프로토콜.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/AI/mcp 프로토콜.html</guid>
-    <pubDate>Wed, 28 Oct 2026 00:00:00 +0900</pubDate>
-    <category>공부</category>
-    <description>서론 MCP에 대해서 알아보자. Anthropic이 24년 11월에 공개했으며, 특정 벤더에 묶이지 않은 오픈 표준으로 운영되고 있다. 본론 MCP Model Context Protocol로 AI 애플리케이션이 도구, 데이터베이스 및 사전 정의된 템플릿과 같은 외부 서비스와 효과적으로 통신하기 위한 표준화 계층 역할을 합니다. 위와 같은 정…</description>
-  </item>
-  <item>
-    <title>Rotate Array</title>
-    <link>https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Rotate Array.html</link>
-    <guid isPermaLink="true">https://vackam.github.io/posts/Study/NeetCode/Two Pointer/Rotate Array.html</guid>
-    <pubDate>Wed, 28 Oct 2026 00:00:00 +0900</pubDate>
-    <category>ps</category>
-    <category>two_pointer</category>
-    <description>서론 | https://neetcode.io/problems/rotate-array/question 오른쪽으로 밀어보자. 푸는 방법 k 를 n 안으로 한 다음, 전체 배열을 뒤집고, 앞의 k 개를 뒤집고, 이후 나머지를 뒤집으면 된다. 다음은 코드이다. class Solution { public: void rotate(vector&amp;lt;int&amp;gt;&amp;amp; nums, int k) { int n = nums.size(); k %= n; reverse(nums.begin(), nums.end()); // 전…</description>
   </item>
   <item>
     <title>a2a 프로토콜</title>
