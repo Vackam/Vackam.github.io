@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13018 특이한 수열 &mdash; devlog</title>
+    <meta name="description" content="서론 | https://acmicpc.net/problem/13018 특이한 수열을 구해보자. 푸는 방법 n 이 주어졌을 때, 1씩 증가하는 수열을 생각…">
+    <link rel="stylesheet" href="../../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+
+  </head>
+  <body>
+
+    <p><a href="../../../../../posts.html">&larr; back</a></p>
+
+    <h1>13018 특이한 수열</h1>
+    <p class="meta">2026-11-26 <span class="tag">ps</span><span class="tag">백준</span><span class="tag">단계별로_풀어보기</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+
+<p class="indent">| https://acmicpc.net/problem/13018</p>
+<p class="indent">특이한 수열을 구해보자.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent"><code>n</code>이 주어졌을 때, 1씩 증가하는 수열을 생각하자. 이는 <code>{1, 2, 3, ... , n-1, n}</code>이 될 것이다. 여기서 1은 항상 <code>gcd(1, A[i]) == 1</code>을 만족하기 때문에 <code>k</code>의 최댓값이 <code>n-1</code>임을 알 수 있다.</p>
+
+<p class="indent">여기까지 왔으면 다음 두 가지 방식으로 풀 수 있다.</p>
+<h2>홀짝으로 스위칭 하기</h2>
+<p class="indent">인접한 두 정수는 무조건 서로소인 규칙을 사용해서 푸는 방식이다.</p>
+<p class="indent">위에서 정의한 증가수열(이후 표기, a)에서 <code>n-1 - k</code>개 만큼의 서로소를 만들면 된다. 그렇다면, <code>a</code>에서 2씩 증가하면서 값들을 변경해나가면 된다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main() {
+  int n; cin &gt;&gt; n;
+  int k; cin &gt;&gt; k;
+
+  if (k == n) {
+    cout &lt;&lt; "Impossible";
+    return 0;
+  }
+
+  vector&lt;int&gt; a(n+1);
+  for (int i=1; i&lt;=n; ++i) a[i] = i;
+
+  int need = (n - 1) - k;
+  int i = 2;
+
+  while (need &gt;= 2) {
+    swap(a[i], a[i+1]);
+    i += 2;
+    need -= 2;
+  }
+
+  if (need == 1) swap(a[1], a[i]);
+
+  for (int j=1; j&lt;=n; ++j) cout &lt;&lt; a[j] &lt;&lt; " ";
+
+  return 0;
+}
+</code></pre>
+<p class="indent"><code>k == n</code>인 경우는 불가능하므로 예외처리를 해준다.</p>
+<p class="indent">이후 <code>a</code>에서 필요한 만큼 <code>swap</code>을 하여 처리하고, 마지막에 한 개가 남았다면 <code>1</code>을 사용하여 바꿔준다. </p>
+
+<h2>그냥 밀기</h2>
+<p class="indent">똑같은 정의를 통해 <code>a</code>에서 <code>n-k</code>개만큼만 왼쪽으로 돌리는 것이다.</p>
+<pre><code>1 2 3 ... n-k-1 n-k | n-k+1 ... n
+2 3 4 ...  n-k   1  | n-k+1 ... n
+</code></pre>
+
+<p class="indent">이런 식으로 막대기의 왼쪽 파트가 서로소 파트를 담당하고, 오른쪽 파트가 문제에서 요구한 조건 파트로 나누면 된다.</p>
+
+<h1>결론</h1>
+<p class="indent">처음에 <code>n-1</code>까지는 잘 갔는데, 다른 게 안되는 경우가 있나 해서 헤맸다. 인접한 두 정수가 서로소인 것을 항상 기억해야겠다.</p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../../posts/Study/백준/단계별로 풀어보기/38/31836 피보나치 기념품.html">31836 피보나치 기념품 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
