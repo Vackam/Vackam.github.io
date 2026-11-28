@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22967 구름다리 &mdash; devlog</title>
+    <meta name="description" content="서론 | https://acmicpc.net/problem/22967 구름 다리를 추가로 놓아서 지름을 최소화 시켜보자. 푸는 방법 이상적인 방향인…">
+    <link rel="stylesheet" href="../../../../../style.css">
+    <link rel="alternate" type="application/rss+xml" title="devlog" href="../../../../../feed.xml">
+    <!-- 수식(MathJax)·코드 하이라이팅(highlight.js)은 실제로 쓰는 글에만 삽입됨 -->
+    <link rel="stylesheet" media="(prefers-color-scheme: light)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
+<link rel="stylesheet" media="(prefers-color-scheme: dark)"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']],
+           displayMath: [['$$','$$'],['\\[','\\]']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+</script>
+<script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  </head>
+  <body>
+
+    <p><a href="../../../../../posts.html">&larr; back</a></p>
+
+    <h1>22967 구름다리</h1>
+    <p class="meta">2026-11-28 <span class="tag">ps</span><span class="tag">단계별로_풀어보기</span><span class="tag">백준</span></p>
+
+    <hr>
+
+    <article>
+      <h1>서론</h1>
+<p class="indent">| https://acmicpc.net/problem/22967</p>
+<p class="indent">구름 다리를 추가로 놓아서 지름을 최소화 시켜보자.</p>
+
+<h1>푸는 방법</h1>
+<p class="indent">이상적인 방향인 지름이 <code>1</code>인 경우가 가능한 지 생각해보자. 그런 경우는 어떤 점이 다른 모든 점과 연결되어 있어야 한다. 서로 다른 정점 <code>n</code>에 대해서, 다른 두 정점이 연결되는 경우의 수는 \(n \choose 2\)이다. 문제 조건에서 이미 <code>n-1</code>개의 간선이 존재하고 우리가 추가로 그을 수 있는 간선은 <code>n-1</code>개이다. 즉, \(2(n-1) \ge {n \choose 2} = {n(n-1) \div 2}\) 를 만족하는 <code>n</code>에 대해 1인 경우가 존재한다. 결과를 보면 <code>n &lt;= 4</code>인 경우에만 1이 가능하다.</p>
+
+<p class="indent">그럼 지름이 1인 경우는 제한적이므로 구했다. 그럼 <code>n</code>이 5 이상인 경우는 어떻게 되는가?</p>
+<p class="indent">이 경우는 단순한데, 전부 지름이 2인 경우로 만들면 된다. 아무 정점을 하나 정하고 이 정점을 다른 모든 정점과 연결시키면 된다. 그렇게 되면 어느 점에서 시작하든 최대 2번의 간선을 거쳐서 다른 모든 정점으로 갈 수 있다. 또한, 이렇게 했을 때 추가되는 간선이 정확히 <code>n-1</code>개 이므로 이상적인 정답은 아니지만 확실한 정답이다.</p>
+
+<p class="indent">다음은 코드이다.</p>
+<pre><code class="language-cpp">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+constexpr int MAX_VAL = 201;
+
+int main() {
+  int n; cin &gt;&gt; n;
+  
+  vector&lt;vector&lt;int&gt;&gt; v(n + 1, vector&lt;int&gt;(n + 1, MAX_VAL));
+
+  if (n == 2) {
+    int trash1, trash2; cin &gt;&gt; trash1 &gt;&gt; trash2;
+    cout &lt;&lt; "0\n1";
+  } else if (n &lt;= 4) {
+    // 지름 1이 가능
+    
+    vector&lt;pair&lt;int, int&gt;&gt; result;
+    for (int i=1; i&lt;n; ++i) {
+      int a, b; cin &gt;&gt; a &gt;&gt; b;
+
+      v[a][b] = 1;
+      v[b][a] = 1;
+    } 
+
+    for (int i=1; i&lt;=n; ++i) {
+      for (int j=i+1; j&lt;=n; ++j) {
+        if (v[i][j] == MAX_VAL) result.push_back({i, j}); 
+      }
+    }
+
+    cout &lt;&lt; result.size() &lt;&lt; "\n";
+    cout &lt;&lt; 1 &lt;&lt; "\n";
+    for (auto a : result) {
+      cout &lt;&lt; a.first &lt;&lt; " " &lt;&lt; a.second &lt;&lt; "\n";
+    }
+  } else {
+    vector&lt;pair&lt;int, int&gt;&gt; result;
+    for (int i=1; i&lt;n; ++i) {
+      int a, b; cin &gt;&gt; a &gt;&gt; b;
+      v[min(a, b)][max(a, b)] = 1;
+    }
+
+    // 1 로 고정
+    for (int i=2; i&lt;=n; ++i) {
+      if (v[1][i] == MAX_VAL) {
+        result.push_back({1, i});
+      }
+    } 
+
+    cout &lt;&lt; result.size() &lt;&lt; "\n";
+    cout &lt;&lt; 2 &lt;&lt; "\n";
+    for (auto a : result) {
+      cout &lt;&lt; a.first &lt;&lt; " " &lt;&lt; a.second &lt;&lt; "\n";
+    }
+  }
+
+  return 0;
+}
+</code></pre>
+<h1>결론</h1>
+<p class="indent">처음에는 다익스트라로 전부 구해서 하나하나 수정해야 하나 고민했었다. 하지만, 그렇게 되면 말도 안되는 시간복잡도가 걸리기 때문에 케이스를 분리하면서 수식적으로 접근을 했다. </p>
+
+    </article>
+
+    <hr>
+
+    <nav class="post-nav"><span><a href="../../../../../posts/Study/백준/단계별로 풀어보기/38/13018 특이한 수열.html">13018 특이한 수열 &rarr;</a></span><span></span></nav>
+
+    <p><a href="../../../../../posts.html">&larr; back</a></p>
+
+    <h2 class="comments-title">댓글</h2>
+<script src="https://giscus.app/client.js"
+        data-repo="Vackam/Vackam.github.io"
+        data-repo-id="R_kgDOTIL-IA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOTIL-IM4DBtJ_"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="ko"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  </body>
+</html>
